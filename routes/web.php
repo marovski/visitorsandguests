@@ -29,7 +29,6 @@ Route::get('visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVi
 
 Route::post('visitors/saveinternalVisitor', array('as' => 'visitors.saveInternalVisitor', 'uses' => 'VisitorController@saveInternalVisitor'));
 
-Route::get('/visitors/create/{id}', array('as' => 'visitors.create', 'uses' => 'VisitorController@create'));
 
 
 

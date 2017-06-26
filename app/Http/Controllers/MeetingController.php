@@ -79,14 +79,18 @@ class MeetingController extends Controller
         
        if($meeting->save())
         {
+            
+            Mail::to('luismendes535@gmail.com')->send(new NewMeetingNotification( $meeting));
+        
 
             Session::flash('message','Meeting was successfully created');
 
-                return redirect()->route('visitors.create', $meeting->idMeeting);
+                return view('externalVisitors.create', compact('meeting'));
 
         
 
         }else{
+            
 
             Session::flash('warning','Meeting was not created successfully');
 

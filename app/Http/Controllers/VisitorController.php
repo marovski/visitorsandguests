@@ -33,11 +33,10 @@ class VisitorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $meeting=Meeting::findOrFail($id);
         
-        return view('externalVisitors.create', compact('meeting'));
+        return view('externalVisitors.create');
 
 
         
@@ -173,7 +172,7 @@ class VisitorController extends Controller
      
         if ($visitors->meeting->contains($meet))
         {
-
+            
      
         return redirect()->back()->with('warning', 'This Visitor could not be assigned. Duplicate entry!');
 
@@ -191,7 +190,8 @@ class VisitorController extends Controller
             
 
        
-         return redirect()->back()->with('success','Visitor was successfully created');
+         return view('internalVisitors.create', compact('meet'));
+
         } 
 
 

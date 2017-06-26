@@ -20,7 +20,7 @@
 
 
                 
-                    <form  class="form-horizontal" role="form" method="get" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()">
+                    <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()">
                           
                         {{ csrf_field() }}
                            <input id="idMeeting" name="idMeeting" class="ng-hide" type="number"  value="{{$meeting->idMeeting}}"/>
