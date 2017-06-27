@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| View Meeting')
+@section('title', '| View Post')
 
 @section('content')
 
@@ -26,7 +26,7 @@
       </div>
 
       <div id="visitors" style="margin-top: 50px;">
-          <h3>External Visitors <small>{{ $meetingData->visitor()->count() }} total   </small><a href="{{ route('visitors.createExternalVisitor', $meetingData->idMeeting)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h3>
+          <h3>External Visitors <small>{{ $meetingData->visitor()->count() }} total   </small><a href="{{ route('visitors.create', $meetingData->idMeeting)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h3>
 </h3>
         
          

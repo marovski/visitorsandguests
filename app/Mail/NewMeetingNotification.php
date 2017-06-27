@@ -20,10 +20,10 @@ class NewMeetingNotification extends Mailable
      *
      * @return void
      */
-    public function __construct($meet, $visitor)
+    public function __construct($meeting)
     {
-        $this->mailInfo=$meet;   
-        $this->mailInfo2=$visitor;   
+        $this->mailInfo=$meeting;   
+        #$this->mailInfo2=$visitor;   
     }
 
     /**

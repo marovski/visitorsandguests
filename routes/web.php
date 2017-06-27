@@ -27,11 +27,7 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::get('visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVisitor', 'uses' => 'VisitorController@addInternalVisitor'));
 
-Route::post('visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
-
-
-Route::get('visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'));
-
+Route::post('visitors/saveinternalVisitor', array('as' => 'visitors.saveInternalVisitor', 'uses' => 'VisitorController@saveInternalVisitor'));
 
 
 
