@@ -44,11 +44,11 @@ class MeetingController extends Controller
      */
     public function create()
     {
+        $meetings= Meeting::where('meetIdHost', Auth::user()->idUser);
 
+dd($meetings);
 
-
-
-       return view('meetings.create');
+       return view('meetings.create', compact('meetings'));
     }
 
     /**

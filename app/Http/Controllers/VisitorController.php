@@ -33,7 +33,7 @@ class VisitorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function createExternalVisitor($id)
     {
         $meeting = Meeting::findOrFail($id);
         
