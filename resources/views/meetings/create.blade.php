@@ -202,7 +202,7 @@
 
 
     </div>
-     <div class="col-md-4" >
+         <div class="col-md-4" >
 
       <div class="well">
      
@@ -215,7 +215,7 @@
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
                        <th width="">Start</th>
-                       <th width="">Ended</th>
+                       <th width="">End</th>
                          <th width="">Topic</th>
                             <th width="">Visit Reason</th>
                            
@@ -233,8 +233,8 @@
  
                             <tr>
           
-                                <td>{{ date('H:i,j M', strtotime($meeting->meetStartDate)) }}</td>
-                                 <td>{{ date('H:i,j M', strtotime($meeting->meetEndDate)) }}</td>
+                                <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
+                                 <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
                              <th>{{ $meeting->meetingName }}</th>
 
                                 <td>{{ $meeting->visitReason }}</td>
@@ -277,7 +277,6 @@
   
   </div>
   </div>
-
    
     </div>
 

@@ -45,7 +45,7 @@ class MeetingController extends Controller
      */
     public function create()
     {
-        $meetings= Meeting::where('meetIdHost','=', Auth::user()->idUser)->get();
+        $meetings= Meeting::orderBy('meetStartDate', 'asc')->where('meetIdHost','=', Auth::user()->idUser)->paginate(5);
 
 
 

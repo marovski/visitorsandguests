@@ -66,12 +66,15 @@
                                      <td>{{ ($meeting->exitTime ? date(' h:i:s A', strtotime($meeting->exitTime)) : '')  }}</td>
                                     <td>
                                 <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
+                                </td>
+                                <td>
                               
                                 @if(!empty($meeting->entryTime))<a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm" disabled><i class="fa fa-mail-forward"></i> Check-In</a> 
-                                 @else <a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-In</a> @endif
-
+                                 @else <a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-map-marker"></i> Check-In</a> @endif
+                                 </td>
+                                 <td>
                                 @if(!empty($meeting->exitTime))<a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-xsms" disabled><i class="fa fa-mail-forward"></i> Check-Out</a> 
-                                @else <a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-xsms"><i class="fa fa-mail-forward" ></i> Check-Out</a> @endif
+                                @else <a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i> Check-Out</a> @endif
                                 
                                 </td>
                                 
