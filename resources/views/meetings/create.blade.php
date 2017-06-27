@@ -9,7 +9,6 @@
     @endsection
 
     @section('content')
-    
     <div class="container" ng-app="MyApp" > 
         <div class="row">
 
@@ -38,7 +37,7 @@
                                 <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetStartDate" type="datetime-local" class="form-control" name="meetStartDate" value="{{ old('meetStartDate') }}" required autofocus>
+                                    <input id="meetStartDate" type="date" class="form-control" name="meetStartDate" value="{{ old('meetStartDate') }}" required autofocus>
 
                                     @if ($errors->has('meetStartDate'))
                                     <span class="help-block">
@@ -52,7 +51,7 @@
                                 <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetEndDate" type="datetime-local" class="form-control" name="meetEndDate" value="{{ old('meetEndDate') }}"  autofocus>
+                                    <input id="meetEndDate" type="date" class="form-control" name="meetEndDate" value="{{ old('meetEndDate') }}"  autofocus>
 
                                     @if ($errors->has('meetEndDate'))
                                     <span class="help-block">
@@ -215,17 +214,17 @@
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
-                        <tr>  <th>#</th>
-                         <th width="">Meeting Name</th>
+                       <th width="">Start</th>
+                       <th width="">Ended</th>
+                         <th width="">Topic</th>
                             <th width="">Visit Reason</th>
-            
                            
                             <th width="">Status</th>
                         
-                            <th width="">Start at</th>
+                          
                               
-                               <th width="">Ended at</th>
-                                <th width="">Visitor arrival at</th>
+                               
+                          
                         </tr>
                     </thead>
 
@@ -233,7 +232,9 @@
                      @foreach($meetings as $meeting )
  
                             <tr>
-                            <th>{{ $meeting->idMeeting }}</th>
+          
+                                <td>{{ date('H:i,j M', strtotime($meeting->meetStartDate)) }}</td>
+                                 <td>{{ date('H:i,j M', strtotime($meeting->meetEndDate)) }}</td>
                              <th>{{ $meeting->meetingName }}</th>
 
                                 <td>{{ $meeting->visitReason }}</td>
@@ -252,9 +253,9 @@
                                  
                              
                          
-                                <td>{{ date('M j, Y', strtotime($meeting->meetStartDate)) }}</td>
-                                 <td>{{ date('M j, Y', strtotime($meeting->meetEndDate)) }}</td>
-                                   <td>{{ date('M j, Y', strtotime($meeting->entryTime)) }}</td>
+                               
+                                 
+                              
                               
                                 
                         </tr>

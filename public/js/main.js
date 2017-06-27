@@ -23,6 +23,12 @@
         });
 
 
+    app.controller('ShowInput', function($scope){
+      $scope.driverIDType='1';
+
+    });
+
+
 
 //Angular module to use our deliver service created
 angular.module('main', []).controller('mainController', mainController).run(function($rootScope) {

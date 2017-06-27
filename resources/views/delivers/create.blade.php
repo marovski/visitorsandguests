@@ -8,7 +8,7 @@
 
 	@section('content')
 
-	<div class="row">
+	<div class="row" ng-app="MyApp" >
 
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
@@ -30,14 +30,14 @@
 								@endif
 							</div>
 						</div>
-						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
+						<div ng-controller="ShowInput" class="form-group{{ $errors->has('driverIDType') ? ' has-error' : '' }}"  >
 							<label for="driverIDType" class="col-md-4 control-label">Identification Card Type:</label>
 
 							<div class="col-md-6">
-								<select class="form-control" id="driverIDType" name="driverIDType">
-									<option value="1">Passport</option>
-									<option value="2">Citizen Card</option>
-									<option value="3">Driver License</option>
+								<select class="form-control" id="driverIDType" name="driverIDType" ng-model="driverIDType">
+									<option value="1" >Passport</option>
+									<option value="2" >Citizen Card</option>
+									<option value="3" >Driver License</option>
 
 								</select>
 
@@ -49,11 +49,39 @@
 							</div>
 						</div>
 
-						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
-							<label for="driverID" class="col-md-4 control-label">Driver ID Number:</label>
+						<div  class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}" ng-show="driverIDType=='2'" >
+							<label for="driverID" class="col-md-4 control-label">Citizen Card Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
+								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
+
+								@if ($errors->has('driverID'))
+								<span class="help-block">
+									<strong>{{ $errors->first('driverID') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
+
+						<div  class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"   ng-show="driverIDType == '1'">
+							<label for="driverID" class="col-md-4 control-label">Passport Number:</label>
+
+							<div class="col-md-6">
+								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
+
+								@if ($errors->has('driverID'))
+								<span class="help-block">
+									<strong>{{ $errors->first('driverID') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
+
+						<div  class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"  ng-show="driverIDType == '3'">
+							<label for="driverID" class="col-md-4 control-label">Driver License Number:</label>
+
+							<div class="col-md-6">
+								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" required autofocus>
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">
