@@ -203,22 +203,71 @@
 
     </div>
      <div class="col-md-4" >
-      <div class="well">
+
      
 
-        <dl class="dl-horizontal">
-          <label>Instructions:</label>
-          <p><span class="glyphicon glyphicon-chevron-right"></span>To create a meeting, please fill the necessary fields! 
-          To save the meeting, creating external or internal visitor are not mandatory.</p>
-          <p><span class="glyphicon glyphicon-chevron-right"></span>To create a external/internal visitor, just click in "Show Form" and input all the necessary data.</p>
-        </dl>
+          <label>All Your Meetings</label>
+        <div class="table-responsive">
+
+                <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+                    <thead>
+                        <tr>  <th>#</th>
+                         <th width="">Meeting Name</th>
+                            <th width="">Visit Reason</th>
+            
+                           
+                            <th width="">Status</th>
+                        
+                            <th width="">Start at</th>
+                              
+                               <th width="">Ended at</th>
+                                <th width="">Visitor arrival at</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                     @foreach($meetings as $meeting )
+ 
+                            <tr>
+                            <th>{{ $meeting->idMeeting }}</th>
+                             <th>{{ $meeting->meetingName }}</th>
+
+                                <td>{{ $meeting->visitReason }}</td>
+                          
+                                <td> @if ($meeting->meetStatus === 1) 
+                                      {{ 'Scheduled' }}
+                                    @elseif ($meeting->meetStatus === 2) 
+                                        {{ 'Waiting Confirmation' }}
+                                    
+                                    @elseif ($meeting->meetStatus === 3) 
+                                        {{ 'Canceled' }}
+                                    
+                                     @elseif ($meeting->meetStatus === 4) 
+                                        {{ 'Finished' }}
+                                     @endif</td>
+                                 
+                             
+                         
+                                <td>{{ date('M j, Y', strtotime($meeting->meetStartDate)) }}</td>
+                                 <td>{{ date('M j, Y', strtotime($meeting->meetEndDate)) }}</td>
+                                   <td>{{ date('M j, Y', strtotime($meeting->entryTime)) }}</td>
+                              
+                                
+                        </tr>
+               
+                    @endforeach
+
+                </tbody>
+            </table>
+       
+       
 
       
         <hr>
 
        
 
-      </div>
+   
   
   </div>
 

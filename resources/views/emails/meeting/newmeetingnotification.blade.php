@@ -1,22 +1,18 @@
 @component('mail::message')
 # Bem-vindo à Nanium!
 
-Você tem uma reunião marcada para : {{ date('M j, Y', strtotime($mailInfo->meetStartDate)) }}.
+Você tem uma reunião marcada para o dia {{$mailInfo->meetStartDate}}.
 
-Tópico: {{$mailInfo->meetingName}} :
+Reunião {{$mailInfo->meetingName}} :
 
 Sala: {{$mailInfo->room}}<br>
 Motivo: {{$mailInfo->visitReason}}
 
-O seu código de barras:<br>
 @component('mail::panel')
+O seu código de barras:<br>
 
 {!! DNS1D::getBarcodeHTML($mailInfo->meetStartDate, 'C128') !!}
-@endcomponent
 
-
-@component('mail::button',['url' => 'www.nanium.pt', 'color' => 'green'])
-IMPRIMIR
 @endcomponent
 
 
