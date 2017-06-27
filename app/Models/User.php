@@ -80,27 +80,43 @@ class User extends Authenticatable
         return false;
           
     }
+    
+    
 
-
+      //One to Many Relationships
 
     public function delivers()
     {
-      return $this->hasMany('App\Models\Deliver');
+      return $this->hasMany('App\Models\Deliver','deIdUser');
     }
+   public function drops()
+    {
+      return $this->hasMany('App\Models\Drop', 'dropIdUser');
+    }
+
+      public function meetingHost()
+    {
+      return $this->hasMany('App\Models\Meeting', 'meetIdHost');
+    }
+
+     public function losts(){
+
+
+    return $this->hasMany('App\Models\LostsFound', 'idUser');
+
+
+    }
+
+
+    //MAny to Many Relationships
+
     public function meetings()
     {
       return $this->belongsToMany('App\Models\Meeting');
     }
 
-      public function meetingHost()
-    {
-      return $this->hasMany('App\Models\Meeting');
-    }
-    public function drops()
-    {
-      return $this->hasMany('App\Models\Drop');
-    }
 
+    //Many to One Relationships
 
     public function securities()
     {
@@ -108,12 +124,7 @@ class User extends Authenticatable
     }
 
 
-    public function losts(){
-
-
-    return $this->hasMany('App\Models\LostsFound');
-
-
-  }
+   
+  
 
   }

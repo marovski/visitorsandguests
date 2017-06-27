@@ -231,8 +231,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Html'=> Collective\Html\HtmlFacade::class,
         'Form'=> Collective\Html\FormFacade::class,
-        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
-        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 
