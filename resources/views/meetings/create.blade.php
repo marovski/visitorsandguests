@@ -204,7 +204,10 @@
     </div>
      <div class="col-md-4" >
 
+      <div class="well">
      
+
+        <dl class="dl-horizontal">
 
           <label>All Your Meetings</label>
         <div class="table-responsive">
@@ -260,15 +263,17 @@
                 </tbody>
             </table>
        
-       
+        </div>
 
-      
+       </dl>
         <hr>
 
-       
+      
+
 
    
   
+  </div>
   </div>
 
    

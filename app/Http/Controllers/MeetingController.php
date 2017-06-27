@@ -44,9 +44,9 @@ class MeetingController extends Controller
      */
     public function create()
     {
-        $meetings= Meeting::where('meetIdHost', Auth::user()->idUser);
+        $meetings= Meeting::where('meetIdHost','=', Auth::user()->idUser)->get();
 
-dd($meetings);
+
 
        return view('meetings.create', compact('meetings'));
     }
