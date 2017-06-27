@@ -42,7 +42,7 @@
                               </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('ReceiverName') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('dropperName') ? ' has-error' : '' }}">
                             <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
