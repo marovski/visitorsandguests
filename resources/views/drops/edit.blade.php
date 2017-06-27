@@ -57,30 +57,28 @@
                         </div>
 
 
-                          <div class="form-group{{ $errors->has('dropImportance') ? ' has-error' : '' }}">
-                            <label for="dropSize" class="col-md-4 control-label">Type:</label>
+                        <div class="form-group{{ $errors->has('dropItem') ? ' has-error' : '' }}">
+                            <label for="dropItem" class="col-md-4 control-label">Item:</label>
+                             <div class="col-md-6">
+                                @if (($drop->dropItem) == "Large Size")
+                                <label class="radio-inline"><input type="radio" name="dropItem"  checked="checked" value="Large Size">{{ $drop->dropItem }}</label>
+                                @else <label class="radio-inline"><input type="radio" name="dropItem" value="Large Size">Large Size</label>
+                                @endif
+                                @if (($drop->dropItem) == "Medium Size")
+                                <label class="radio-inline"><input type="radio" name="dropItem"  checked="checked" value="Medium Size">{{ $drop->dropItem }}</label>
+                                @else <label class="radio-inline"><input type="radio" name="dropItem" value="Medium Size">Medium Size</label>
+                                @endif
+                                @if (($drop->dropItem) == "Small Size")
+                                <label class="radio-inline"><input type="radio" name="dropItem"  checked="checked" value="Small Size">{{ $drop->dropItem }}</label>
+                                @else <label class="radio-inline"><input type="radio" name="dropItem" value="Small Size">Small Size</label>
+                                @endif
 
-                            <div class="col-md-6" >
-                            <p>
-                                <select class="form-control" name="dropSize">  
-                                      @if($drop->dropSize)=='L')
-                               
-                                      <option value="L">Large</option>
-                                        @elseif(($drop->dropSize)=='M')
-                                        
-                                         <option value="M">Medium</option>
-                                        @endif
-                               
-                                  
-                                </select>
-
-                                @if ($errors->has('dropSize'))
-                                    <span class="help-block">p
-                                        <strong>{{ $errors->first('dropSize') }}</strong>
+                                @if ($errors->has('dropItem'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dropItem') }}</strong>
                                     </span>
                                 @endif
-                            </p>
-                            </div>
+                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('dropImportance') ? ' has-error' : '' }}">
@@ -112,7 +110,6 @@
                             </p>
                             </div>
                         </div>
-                     
 
                         <div class="form-group{{ $errors->has('dropDescription') ? ' has-error' : '' }}">
                             <label for="dropDescription" class="col-md-4 control-label"> Description:</label>

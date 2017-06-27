@@ -1,6 +1,6 @@
-    @extends('main')
+ @extends('main')
 
-    @section('title', '| Register New Object')
+    @section('title', '| Lost and Found Check-out')
 
     @section('assets')
     <link rel='stylesheet' href='/css/parsley.css' />
@@ -11,27 +11,15 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Lost and Found Register</div>
+                <div class="panel-heading">Lost and Found Check-out</div>
                 <div class="panel-body">
-                @if(count($errors) > 0)
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 error">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-@endif
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('losts.store') }}">
-                        {{ csrf_field() }}
-      
-                         <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}">
+                  {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('losts.update', $lost->idLostFound))) !!}
+
+                      <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}">
                             <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
 
                             <div class="col-md-6">
-                                <input id="finderName" type="text" class="form-control" name="finderName" value="{{ old('finderName') }}" required autofocus>
+                                <input id="finderName" type="text" class="form-control" name="finderName" disabled="true" value="{{ $lost->lostFoundFinder }}" required autofocus>
 
                                 @if ($errors->has('finderName'))
                                     <span class="help-block">
@@ -39,13 +27,13 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                       </div>
 
-                        <div class="form-group{{ $errors->has('finderPhone') ? ' has-error' : '' }}">
+                       <div class="form-group{{ $errors->has('finderPhone') ? ' has-error' : '' }}">
                             <label for="finderPhone" class="col-md-4 control-label">Finder Phone:</label>
 
                             <div class="col-md-6">
-                                <input id="finderPhone" type="text" class="form-control" name="finderPhone" value="{{ old('finderPhone') }}" required autofocus>
+                                <input id="finderPhone" type="text" class="form-control" name="finderPhone" disabled="true" value="{{ $lost->finderPhone=$request->finderPhone }}" required autofocus>
 
                                 @if ($errors->has('finderPhone'))
                                     <span class="help-block">
@@ -55,11 +43,39 @@
                             </div>
                         </div>
 
+                       <div class="form-group{{ $errors->has('ReceiverName') ? ' has-error' : '' }}">
+                            <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
+
+                            <div class="col-md-6">
+                                <input id="ReceiverName" type="text" class="form-control" name="ReceiverName" value="{{ old('ReceiverName') }}" required autofocus>
+
+                                @if ($errors->has('ReceiverName'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('ReceiverName') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('receiverPhone') ? ' has-error' : '' }}">
+                            <label for="receiverPhone" class="col-md-4 control-label">Receiver Phone:</label>
+
+                            <div class="col-md-6">
+                                <input id="receiverPhone" type="text" class="form-control" name="receiverPhone" value="{{ old('receiverPhone') }}" required autofocus>
+
+                                @if ($errors->has('receiverPhone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('receiverPhone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('lostFoundDescription') ? ' has-error' : '' }}">
                             <label for="lostFoundDescription" class="col-md-4 control-label"> Description:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="4" cols="" class="form-control" name="lostFoundDescription"></textarea>                                
+                                <textarea rows="4" cols="" class="form-control" disabled="true" name="lostFoundDescription">{{ $lost->lostFoundDescr }}</textarea>                               
 
                                 @if ($errors->has('lostFoundDescription'))
                                     <span class="help-block">
@@ -68,21 +84,19 @@
                                 @endif
                             </div>
                         </div>
-                    
+
                         <div class="form-group{{ $errors->has('lostFoundItemSize') ? ' has-error' : '' }}">
                             <label for="lostFoundItemSize" class="col-md-4 control-label">Item:</label>
+                             <div class="col-md-6">
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" disabled="true"  checked="checked" value="">{{ $lost->lostFoundItemSize}}</label>
+                                
 
-                            <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Large Size">Large Size</label>
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Medium Size">Medium Size</label>
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Small Size">Small Size</label>
-
-                                @if ($errors->has('LostFoundItemSize'))
+                                @if ($errors->has('lostFoundItemSize'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('LostFoundItemSize') }}</strong>
+                                        <strong>{{ $errors->first('lostFoundItemSize') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('lostFoundImportance') ? ' has-error' : '' }}">
@@ -90,10 +104,9 @@
 
                             <div class="col-md-6" >
                             <p>
-                                <select class="form-control" name="lostFoundImportance">
-                                  <option value="High">High</option>
-                                  <option value="Medium">Medium</option>
-                                  <option value="Low">Low</option>
+                                <select class="form-control" name="lostFoundImportance" disabled="true">
+                                  <option value="">{{ $lost->lostFoundImportance }}</option>
+                                  
                                 </select>
 
                                 @if ($errors->has('lostFoundImportance'))
@@ -102,27 +115,19 @@
                                     </span>
                                 @endif
                             </p>
-                        </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                        <label for="image" class="col-md-4 control-label" >Photo Upload:</label>
-                        <div class="col-md-6">
-                        <input type="file" class="form-control"/>
-                        </div>
-                        </div>
-          
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Check-out
                                 </button>
                                 <a href="{{ route('losts.index') }}" class="btn btn-primary">Cancel</a>
                             </div>
-                           
-                        </div>               
-                    </form>
+                        </div>
+                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
