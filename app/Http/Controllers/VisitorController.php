@@ -33,11 +33,10 @@ class VisitorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $meetingData= Meeting::findOrFail($id);
         
-        return view('externalVisitors.create')->withMeetingData($meetingData);
+        return view('externalVisitors.create');
 
 
         
@@ -70,31 +69,29 @@ class VisitorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function storeInternalVisitor(Request $request)
+    public function saveInternalVisitor(Request $request)
 
     {   $user = User::find($request->internalVisitor);
+        $meet = Meeting::find($request->meeting);
 
-        $meetingData = Meeting::find($request->meeting);
 
-
-        if($user->meetings->contains($meetingData)){
+        if($user->meetings->contains($meet)){
     
-     Session::flash('warning','This Visitor could not be assigned. Duplicate entry!');
-        return redirect()->back();
+        return redirect()->back()->with('warning','This Visitor could not be assigned. Duplicate entry!');
         }else{
 
-         $save=$meetingData->user()->save($user);
+         $save=$user->meetings()->save($meet);
 
         if($save){
 
-        if($meetingData->email=='1')
+        if($meet->email=='1')
         {
-            Mail::to($user->email)->send(new NewMeetingNotification($meetingData, $user));
+            Mail::to($user->email)->send(new NewMeetingNotification($meet, $user));
         }
             
 
-           
-            return view('meetings.show')->withMeetingData(($meetingData));
+            Session::flash('success','Visitor was successfully created');
+            return view('meetings.show')->withMeeting(($meet->idMeeting));
         } 
         }
                 
@@ -156,7 +153,7 @@ class VisitorController extends Controller
     {
 
         $visitors = new Visitor();
-        $meet = Meeting::find($request->idMeeting);
+        $meet = Meeting::find($request->meeting);
     
 
         $visitors->visitorName=$request->visitorName;
@@ -171,12 +168,11 @@ class VisitorController extends Controller
         $visitors->visitorCompanyName=$request->visitorCompanyName;
         
        
-       if ($visitors->save()) {
-            # code...
-             
+        $visitors->save();
+     
         if ($visitors->meeting->contains($meet))
         {
-
+            
      
         return redirect()->back()->with('warning', 'This Visitor could not be assigned. Duplicate entry!');
 
@@ -194,20 +190,14 @@ class VisitorController extends Controller
             
 
        
-         return redirect()->route('visitors.addInternalVisitor', $meet->idMeeting)->with('success','External Visitor was successfully created');
+         return view('internalVisitors.create', compact('meet'));
+
         } 
 
 
          
            
-             }
-
-              }else{
-
-
- return redirect()->back()->with('warning', 'This Visitor could not be assigned.');
-
-              }   
+             }   
 
         
         

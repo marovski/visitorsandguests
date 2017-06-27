@@ -15,19 +15,19 @@
                             <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create Internal Visitor for Meeting: {{ $meetingRestricted->meetingName }}</div>
                             <div class="panel-body">
                 
-                   <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.storeInternalVisitor') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()">
+                   <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.saveInternalVisitor') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()">
 
  
                         {{ csrf_field() }}
 
 
                              <div class="form-group{{ $errors->has('meeting') ? ' has-error' : '' }}">
-                            <label for="meeting" class="col-md-4 control-label">Meeting:</label>
+                            <label for="" class="col-md-4 control-label">Meeting:</label>
 
                             <div class="col-md-6">
                                 
 
-                                <select class="form-control" id="meeting"  name="meeting" readonly>
+                                <select class="form-control" name="meeting" disabled="">
                                 
                                     <option value="{{ $meetingRestricted->idMeeting }}"> {{ $meetingRestricted->meetingName }}</option>
                                   

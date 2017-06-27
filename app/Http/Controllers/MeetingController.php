@@ -26,15 +26,10 @@ class MeetingController extends Controller
        public function index()
     {
         $meetings = Meeting::orderBy('idMeeting', 'asc')->paginate(6);
-
-        $user= User::all()->load('meetingHost');
-
-       
-       $visitor=Visitor::all()->load('meeting');
+        
 
 
-
-        return view('meetings.index', compact('meetings', 'user', 'visitor'))->render();
+        return view('meetings.index', compact('meetings'));
     }
 
     /**
@@ -70,20 +65,23 @@ class MeetingController extends Controller
         $meeting->sensibility=$request->sensibility;
         $meeting->meetStatus=$request->meetStatus;
         $meeting->visitReason=$request->visitReason;
-      
+        $meeting->meetIdHost=Auth::user()->idUser;
         $meeting->meetEndDate=$request->meetEndDate;
         $meeting->meetingName=$request->meetingTopic;
         $meeting->email=$request->sendmail;
 
         
 
-      Auth::user()->meetingHost()->save($meeting);
+       
 
 
 
         
        if($meeting->save())
         {
+            
+            Mail::to('luismendes535@gmail.com')->send(new NewMeetingNotification( $meeting));
+        
 
             Session::flash('message','Meeting was successfully created');
 
@@ -92,6 +90,7 @@ class MeetingController extends Controller
         
 
         }else{
+            
 
             Session::flash('warning','Meeting was not created successfully');
 

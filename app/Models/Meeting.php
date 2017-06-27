@@ -14,19 +14,12 @@ class Meeting extends Model
 
 	protected $table='meetings';
 
-  
-     public function host()
-  {
-    return $this->belongsTo('App\Models\User');
-  }
 
   
      public function user()
   {
     return $this->belongsToMany('App\Models\User');
   }
-
- 
 
      public function visitor()
   {

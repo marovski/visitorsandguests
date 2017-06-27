@@ -24,7 +24,6 @@
                         <tr>  <th>#</th>
                          <th width="">Meeting Name</th>
                             <th width="">Visit Reason</th>
-            
                            
                             <th width="">Status</th>
                             <th width="">Host</th>
@@ -42,7 +41,6 @@
                             <tr>
                             <th>{{ $meeting->idMeeting }}</th>
                              <th>{{ $meeting->meetingName }}</th>
-
                                 <td>{{ $meeting->visitReason }}</td>
                           
                                 <td> @if ($meeting->meetStatus === 1) 
@@ -57,7 +55,7 @@
                                         {{ 'Finished' }}
                                      @endif</td>
                                  
-                                <td>{{$user->find($meeting->meetIdHost)->username}}</td>
+                                <td>{{$meeting->meetIdHost}}</td>
                          
                                 <td>{{ date('M j, Y', strtotime($meeting->meetStartDate)) }}</td>
                                  <td>{{ date('M j, Y', strtotime($meeting->meetEndDate)) }}</td>
