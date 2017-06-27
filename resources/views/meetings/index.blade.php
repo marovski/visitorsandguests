@@ -33,6 +33,8 @@
                               
                                <th width="">Ended at</th>
                                 <th width="">Visitor arrival at</th>
+                                <th width="">Visitor delivered at</th>
+                                
                         </tr>
                     </thead>
 
@@ -61,12 +63,14 @@
                          
                                 <td>{{ date('M j, Y', strtotime($meeting->meetStartDate)) }}</td>
                                  <td>{{ date('M j, Y', strtotime($meeting->meetEndDate)) }}</td>
-                                   <td>{{ date('M j, Y', strtotime($meeting->entryTime)) }}</td>
+                                   <td>@if(!empty($meeting->entryTime)){{ date('jS \of F Y h:i:s A', strtotime($meeting->entryTime)) }} @else @endif</td>
+                                   <td>@if(!empty($meeting->exitTime)){{ date('jS \of F Y h:i:s A', strtotime($meeting->exitTime)) }} @else @endif</td>
                                 <td>
                                 <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
                               
-                                <a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-In</a>
-                                <a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-Out</a>
+                                @if(!empty($meeting->entryTime))<a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm" disabled><i class="fa fa-mail-forward"></i> Check-In</a>  @else <a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-In</a> @endif
+
+                                @if(!empty($meeting->exitTime))<a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-xsms" disabled><i class="fa fa-mail-forward"></i> Check-Out</a> @else <a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-xsms"><i class="fa fa-mail-forward" ></i> Check-Out</a> @endif
                                 
                                 </td>
                                 
