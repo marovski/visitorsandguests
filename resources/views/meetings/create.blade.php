@@ -9,6 +9,7 @@
     @endsection
 
     @section('content')
+    
     <div class="container" ng-app="MyApp" > 
         <div class="row">
 
@@ -37,7 +38,7 @@
                                 <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetStartDate" type="date" class="form-control" name="meetStartDate" value="{{ old('meetStartDate') }}" required autofocus>
+                                    <input id="meetStartDate" type="datetime-local" class="form-control" name="meetStartDate" value="{{ old('meetStartDate') }}" required autofocus>
 
                                     @if ($errors->has('meetStartDate'))
                                     <span class="help-block">
@@ -51,7 +52,7 @@
                                 <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetEndDate" type="date" class="form-control" name="meetEndDate" value="{{ old('meetEndDate') }}"  autofocus>
+                                    <input id="meetEndDate" type="datetime-local" class="form-control" name="meetEndDate" value="{{ old('meetEndDate') }}"  autofocus>
 
                                     @if ($errors->has('meetEndDate'))
                                     <span class="help-block">

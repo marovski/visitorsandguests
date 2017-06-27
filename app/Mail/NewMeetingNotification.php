@@ -20,10 +20,10 @@ class NewMeetingNotification extends Mailable
      *
      * @return void
      */
-    public function __construct($meeting)
+    public function __construct($meeting, $visitor)
     {
         $this->mailInfo=$meeting;   
-        #$this->mailInfo2=$visitor;   
+        $this->mailInfo2=$visitor;   
     }
 
     /**
@@ -33,7 +33,7 @@ class NewMeetingNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.meeting.newmeetingnotification');
+        return $this->markdown('emails.meeting.newMeetingMailNotification');
                     
     }
 }

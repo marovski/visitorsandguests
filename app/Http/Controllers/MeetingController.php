@@ -10,6 +10,7 @@ use Session;
 use Auth;
 use App\Mail\NewMeetingNotification;
 use Mail;
+use Carbon\Carbon;
 
 
 class MeetingController extends Controller
@@ -192,5 +193,24 @@ class MeetingController extends Controller
         {
             Meeting::destroy($id);
             return redirect('/meetings');
+    }
+    public function checkin($id){
+
+        $meeting= Meeting::find($id);
+
+        $meeting->entryTime = Carbon::now();
+        $meeting->save();
+
+        return redirect()->route('meetings.index',$meeting->idMeeting);
+    }
+    public function checkout($id){
+        $meeting= Meeting::find($id);
+
+        $meeting->exitTime = Carbon::now();
+        $meeting->save();
+
+        
+        return redirect()->route('meetings.index',$meeting->idMeeting);
+
     }
 }

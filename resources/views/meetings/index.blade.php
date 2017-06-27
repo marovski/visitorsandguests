@@ -65,7 +65,8 @@
                                 <td>
                                 <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
                               
-                                <a href="{{ route('sendEmail')}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-In</a>
+                                <a href="{{ route('meetings.checkin',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-In</a>
+                                <a href="{{ route('meetings.checkout',$meeting->idMeeting)}}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward"></i> Check-Out</a>
                                 
                                 </td>
                                 
