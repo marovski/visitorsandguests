@@ -26,7 +26,10 @@ class MeetingController extends Controller
      */
        public function index()
     {
+
+
         $meetings = Meeting::orderBy('idMeeting', 'asc')->paginate(6);
+
 
         $user= User::all()->load('meetingHost');
 
@@ -198,43 +201,86 @@ class MeetingController extends Controller
     }
 
 
-    public function checkin(Request $request, $id){
+    public function checkin($id){
 
+      
+
+
+
+        $currentMeeting= Meeting::findOrFail($id);
+
+
+      
+       if (empty($currentMeeting->entryTime)) {
+           $currentMeeting->entryTime = Carbon::now('Europe/Lisbon');
+
+        if ($currentMeeting->save()) {
+
+
+        Session::flash('success','The meeting check-in was successfully done! The meeting as ended!');
         
-
-        $currentMeeting= Meeting::find($id);
-
-       
-
-        $currentMeeting->entryTime = Carbon::now();
-
-        $currentMeeting->save();
-
-
-        Session::flash('success','The meeting check-in was successfully done! The visitor as arrived for the meeting');
+        return redirect()->back();
         
-        return redirect($request->only('redirects_to'));
+        }else{
+
+        Session::flash('danger','The meeting check-in process found an error!');
+        
+        return redirect()->back();
+
+
+        }
+
+
+
+         }else{
+
+        Session::flash('danger','The meeting check-in is already done! The meeting as already started!');
+        
+        return redirect()->back();
+
+         }
 
 
     }
 
 
-    public function checkout(Request $request, $id){
 
-      
+    public function checkout($id){
+        
+    
 
-        $currentMeeting= Meeting::find($id);
+        $currentMeeting= Meeting::findOrFail($id);
 
-        $currentMeeting->exitTime = Carbon::now();
+         if (empty($currentMeeting->exitTime)) {
+           $currentMeeting->exitTime = Carbon::now('Europe/Lisbon');
 
-
-
-        $currentMeeting->save();
+        if ($currentMeeting->save()) {
 
 
         Session::flash('success','The meeting check-out was successfully done! The meeting as ended!');
         
-        return redirect($request->only('redirects_to'));
+        return redirect()->back();
+        
+        }else{
+
+        Session::flash('danger','The meeting check-out process found an error!');
+        
+        return redirect()->back();
+
+
+        }
+
+
+
+         }else{
+
+        Session::flash('danger','The meeting check-out is already done! The meeting as ended!');
+        
+        return redirect()->back();
+
+         }
+
+        
 
     }
 }

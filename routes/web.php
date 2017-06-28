@@ -32,10 +32,10 @@ Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.create
 
 
 
-Route::put('/meetings/checkin/{id}', ['as' => 'meetings.checkin',
+Route::post('/meetings/checkin/{id}', ['as' => 'meetings.checkin',
                                                         'uses' => 'MeetingController@checkin'
                                                         ]); 
-Route::put('/meetings/checkout/{id}', ['as' => 'meetings.checkout',
+Route::post('/meetings/checkout/{id}', ['as' => 'meetings.checkout',
                                                         'uses' => 'MeetingController@checkout'
                                                         ]); 
 

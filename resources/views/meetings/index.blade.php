@@ -71,8 +71,8 @@
                               
                                 @if(!empty($meeting->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i>  Check-In</button> 
                                  @else 
-                                {!! Form::open(['method' => 'put', 'route' => array('meetings.checkin', $meeting->idMeeting)]) !!}
-                                {!! Form::hidden('redirects_to', URL::previous()) !!}
+                                  {!! Form::open(array('action' => array('MeetingController@checkin', $meeting->idMeeting))) !!}
+                              
                                <button  type="submit" class="btn btn-default btn-sm"><i class="fa fa-map-marker"></i> Check-In</button>
                               
                                 {!! Form::close() !!}
@@ -81,8 +81,8 @@
                                  <td>
                                 @if(!empty($meeting->exitTime))<button class="btn btn-default btn-sm" disabled="true"><i class="fa fa-mail-forward"></i> Check-Out</button> 
                                 @else 
-                                {!! Form::model($meeting,['method' => 'put', 'route' => array('meetings.checkout', $meeting->idMeeting)]) !!}
-                                {!! Form::hidden('redirects_to', URL::previous()) !!}
+                                {!! Form::open(array('action' => array('MeetingController@checkout', $meeting->idMeeting))) !!}
+                              
                              <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i> Check-Out</button>
                                 {!! Form::close() !!}
 
