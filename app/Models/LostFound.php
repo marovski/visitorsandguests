@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LostsFound extends Model
+class LostFound extends Model
 {
     /*
 	|--------------------------------------------------------------------------
@@ -13,8 +13,8 @@ class LostsFound extends Model
 	*/
 
 	protected $table = 'lostItems';
-	protected $primaryKey = 'id';
-	public $timestamps = true
+	protected $primaryKey = 'idLostFound';
+	public $timestamps = true;
 
 
 

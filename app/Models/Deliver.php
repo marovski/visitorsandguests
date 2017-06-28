@@ -7,6 +7,11 @@ use Carbon\Carbon;
 
 class Deliver extends Model
 {
+  /*
+  |--------------------------------------------------------------------------
+  | GLOBAL VARIABLES
+  |--------------------------------------------------------------------------
+  */
 
     protected $dates = [
     
@@ -20,6 +25,12 @@ class Deliver extends Model
   	protected $table='delivers';
 
 
+
+    /*
+  |--------------------------------------------------------------------------
+  | FUNCTIONS
+  |--------------------------------------------------------------------------
+  */
    	public function user()
   {
     return $this->belongsTo('App\Models\User');

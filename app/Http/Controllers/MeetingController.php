@@ -31,7 +31,7 @@ class MeetingController extends Controller
         $user= User::all()->load('meetingHost');
 
        
-       $visitor=Visitor::all()->load('meeting');
+        $visitor=Visitor::all()->load('meeting');
 
 
 
@@ -86,7 +86,7 @@ class MeetingController extends Controller
        if($meeting->save())
         {
 
-            Session::flash('message','Meeting was successfully created');
+            Session::flash('success','Meeting was successfully created');
 
                 return view('externalVisitors.create', compact('meeting'));
 
@@ -94,7 +94,7 @@ class MeetingController extends Controller
 
         }else{
 
-            Session::flash('warning','Meeting was not created successfully');
+            Session::flash('danger','Meeting was not created successfully');
 
                 return redirect()->route('meetings.create');
 
@@ -169,15 +169,15 @@ class MeetingController extends Controller
 
             Session::flash('success','Meeting was successfully edited');
 
-                return redirect()->back();
+                return redirect()->route('meetings.show', $meeting->idMeeting);
 
         
 
         }else{
 
-            Session::flash('warning','Meeting was not edited successfully');
+            Session::flash('danger','Meeting was not edited successfully');
 
-                return redirect()->back();
+                return redirect()->route('meetings.index');
 
 
         }

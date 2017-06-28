@@ -14,7 +14,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Create Delivery</div>
 				<div class="panel-body"> 
-					<form class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="">
+					<form class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
 						{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
@@ -205,7 +205,7 @@
 						<div class="form-group">
 						<label for="image" class="col-md-4 control-label" >Image Upload:</label>
 						<div class="col-md-6">
-						<input type="file" class="form-control" />
+						<input name="image" id="image" type="file" class="form-control" />
 							
 						</div>
 					</div>

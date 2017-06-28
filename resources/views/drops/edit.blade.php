@@ -13,7 +13,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Drop Edit</div>
                 <div class="panel-body">
-                  {!! Form::model($drop, array('method'=>'post','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('drops.updateEdit', $drop->idDrop))) !!}
+           
+                       {!! Form::model($drop, array('method'=>'put','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('drops.updateEdit', $drop->idDrop))) !!}
                     
                         <div class="form-group{{ $errors->has('dropperCompany') ? ' has-error' : '' }}">
                             <label for="dropperCompany" class="col-md-4 control-label">Company Name:</label>
@@ -57,30 +58,28 @@
                         </div>
 
 
-                          <div class="form-group{{ $errors->has('dropImportance') ? ' has-error' : '' }}">
-                            <label for="dropSize" class="col-md-4 control-label">Type:</label>
+                        <div class="form-group{{ $errors->has('dropItem') ? ' has-error' : '' }}">
+                            <label for="dropItem" class="col-md-4 control-label">Item:</label>
+                             <div class="col-md-6">
+                                @if (($drop->dropItem) == "L")
+                                <label class="radio-inline"><input type="radio" name="dropItem"  checked="checked" value="L">{{ $drop->dropItem }}</label>
+                                @else <label class="radio-inline"><input type="radio" name="dropItem" value="L">Large Size</label>
+                                @endif
+                                @if (($drop->dropItem) == "M")
+                                <label class="radio-inline"><input type="radio" name="dropItem"  checked="checked" value="M">{{ $drop->dropItem }}</label>
+                                @else <label class="radio-inline"><input type="radio" name="dropItem" value="M">Medium Size</label>
+                                @endif
+                                @if (($drop->dropItem) == "S")
+                                <label class="radio-inline"><input type="radio" name="dropItem"  checked="checked" value="S">{{ $drop->dropItem }}</label>
+                                @else <label class="radio-inline"><input type="radio" name="dropItem" value="S">Small Size</label>
+                                @endif
 
-                            <div class="col-md-6" >
-                            <p>
-                                <select class="form-control" name="dropSize">  
-                                      @if($drop->dropSize)=='L')
-                               
-                                      <option value="L">Large</option>
-                                        @elseif(($drop->dropSize)=='M')
-                                        
-                                         <option value="M">Medium</option>
-                                        @endif
-                               
-                                  
-                                </select>
-
-                                @if ($errors->has('dropSize'))
-                                    <span class="help-block">p
-                                        <strong>{{ $errors->first('dropSize') }}</strong>
+                                @if ($errors->has('dropItem'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dropItem') }}</strong>
                                     </span>
                                 @endif
-                            </p>
-                            </div>
+                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('dropImportance') ? ' has-error' : '' }}">
@@ -90,16 +89,16 @@
                             <p>
                                 <select class="form-control" name="dropImportance">  
                                 @if (($drop->dropImportance))           
-                                <option value="High">{{ $drop->dropImportance }}</option>
-                                @else <option value="High">High</option>
+                                <option value="3">{{ $drop->dropImportance }}</option>
+                                @else <option value="3">High</option>
                                 @endif
                                 @if (($drop->dropImportance))           
-                                <option value="Medium">{{ $drop->dropImportance }}</option>
-                                @else <option value="Medium">Medium</option>
+                                <option value="2">{{ $drop->dropImportance }}</option>
+                                @else <option value="2">Medium</option>
                                 @endif
                                 @if (($drop->dropImportance))           
-                                <option value="Small">{{ $drop->dropImportance }}</option>
-                                @else <option value="Small">Small</option>
+                                <option value="1">{{ $drop->dropImportance }}</option>
+                                @else <option value="1">Low</option>
                                 @endif
                                   
                                 </select>
@@ -112,7 +111,6 @@
                             </p>
                             </div>
                         </div>
-                     
 
                         <div class="form-group{{ $errors->has('dropDescription') ? ' has-error' : '' }}">
                             <label for="dropDescription" class="col-md-4 control-label"> Description:</label>
@@ -133,7 +131,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Submit
                                 </button>
-                                <a href="{{ route('drops.index') }}" class="btn btn-primary">Cancel</a>
+                                <a href="{{ route('drops.show',  $drop->idDrop) }}" class="btn btn-primary">Cancel</a>
                             </div>
                         </div>
                      {!! Form::close() !!}

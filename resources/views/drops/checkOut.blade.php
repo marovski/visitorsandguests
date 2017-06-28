@@ -13,7 +13,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Drop Check-out</div>
                 <div class="panel-body">
-                  {!! Form::model($drop, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('drops.update', $drop->idDrop))) !!}
+                  {!! Form::model($drop, array('method'=>'put','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('drops.updateCheckOut', $drop->idDrop))) !!}
                     
                         <div class="form-group{{ $errors->has('dropperCompany') ? ' has-error' : '' }}">
                             <label for="dropperCompany" class="col-md-4 control-label">Company Name:</label>
@@ -42,7 +42,7 @@
                               </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('dropperName') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('ReceiverName') ? ' has-error' : '' }}">
                             <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">

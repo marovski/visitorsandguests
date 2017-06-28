@@ -64,14 +64,16 @@ class DropController extends Controller
         $drop->dropperName=$request->dropperName;
         $drop->droppedWhen=Carbon::now();
         $drop->dropReceiver=$request->ReceiverName;
-        $drop->dropItem=$request->dropItem;
+        $drop->dropSize=$request->dropItem;
         $drop->dropImportance=$request->dropImportance;
         $drop->dropDescr=$request->dropDescription;
-        $drop->dropidUser=Auth::user()->idUser;
+        
+         //Associate relationship to insert the foreign key of the user that create the new entity.
+         Auth::user()->drops()->save($drop);
 
         if($drop->save())
         {
-            Session::flash('message','Drop was successfully created');
+            Session::flash('success','Drop was successfully created');
             return redirect()->route('drops.index');
 
         }
@@ -112,7 +114,7 @@ class DropController extends Controller
     {
         $idDrop=$id;
         $drop = Drop::find($idDrop);
-        return view('drops.view')->withDrop($drop);
+        return view('drops.show')->withDrop($drop);
     }
 
      /**
@@ -130,15 +132,15 @@ class DropController extends Controller
         $drop->dropperCompanyName=$request->dropperCompany;
         $drop->dropperName=$request->dropperName;
         $drop->dropReceiver=$request->ReceiverName;
-        $drop->dropItem=$request->dropItem;
+        $drop->dropSize=$request->dropItem;
         $drop->dropImportance=$request->dropImportance;
         $drop->dropDescr=$request->dropDescription;
         $drop->dropidUser=Auth::user()->idUser;
 
         if($drop->save())
         {
-            Session::flash('message','Drop was successfully edited');
-            return redirect()->route('drops.index',$drop->idDrop);
+            Session::flash('success','Drop was successfully edited');
+            return redirect()->route('drops.show',$drop->idDrop);
             
 
         }
@@ -148,42 +150,26 @@ class DropController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCheckOut($id)
     {
         $idDrop=$id;
         $drop = Drop::find($idDrop);
         
         $drop->dropReceivedDate=Carbon::now();
+
         $drop->save();
-        Session::flash('message','Checkout was successfully done');
+
+        Session::flash('success','Checkout was successfully done');
         
 
-       return redirect()->route('drops.index',$drop->idDrop);
+       return redirect()->route('drops.index');
         
     }
-     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-     /*public function updateCheckout(Request $request, $id)
-    {
-        $idDrop=$id;
-        $drop = Drop::find($idDrop);
 
-        $drop->dropReceivedDate=$request->receivedDate;
-        $drop->save();
-        Session::flash('message','Checkout was successfully done');
-        
-
-       return redirect()->route('drops.index',$drop->idDrop);
-    }*/
     /**
      * Remove the specified resource from storage.
      *
@@ -199,15 +185,9 @@ class DropController extends Controller
              $drop->delete();
         }
 
-        Session::flash('message','Drop was successfully deleted');
+        Session::flash('success','Drop was successfully deleted');
         return redirect()->route('drops.index',$drop->idDrop);
         //
     }
-/*
-    public function delete($id)
-    {
-        $drop = Drop::find($idDrop);
-        return view('drop.delete')->withDeliver($drop);
-    }
-*/
+
 }

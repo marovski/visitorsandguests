@@ -7,11 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class DeliverType extends Model
 {
 
+  /*
+	|--------------------------------------------------------------------------
+	| GLOBAL VARIABLES
+	|--------------------------------------------------------------------------
+	*/
 
 	protected $primaryKey = 'idDeliverType';
     
     protected $table='delivertype';
-    
+        /*
+  |--------------------------------------------------------------------------
+  | FUNCTIONS
+  |--------------------------------------------------------------------------
+  */
 
  public function deliver()
   {

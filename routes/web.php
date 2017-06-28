@@ -18,75 +18,82 @@ Route::group(['middleware' => ['web']], function () {
 
 
 
-	//Model Controllers 
+//Extra methods beyond CRUD for Visitor Functionalities
+Route::get('/visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVisitor', 'uses' => 'VisitorController@addInternalVisitor'));
+
+Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
+
+
+Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'));
 
 
 
+//Extra methods beyond CRUD for Meeting Functionalities
 
 
 
-Route::get('visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVisitor', 'uses' => 'VisitorController@addInternalVisitor'));
-
-Route::post('visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
-
-
-Route::get('visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'));
-
-Route::post('meetings/checkin/{id}', 'MeetingController@checkin');
-
-Route::get('/meetings/{idMeeting}/checkin/', ['as' => 'meetings.checkin',
+Route::put('/meetings/{idMeeting}/checkin/', ['as' => 'meetings.checkin',
                                                         'uses' => 'MeetingController@checkin'
                                                         ]); 
-Route::get('/meetings/{idMeeting}/checkout/', ['as' => 'meetings.checkout',
+Route::put('/meetings/{idMeeting}/checkout/', ['as' => 'meetings.checkout',
                                                         'uses' => 'MeetingController@checkout'
                                                         ]); 
 
 
 
 
+//Extra methods beyond CRUD for Delivery Functionalities
+
+Route::get('/delivers/show/{id}', array('as' => 'delivers.showDeliver', 'uses' => 'DeliverController@showDeliver'));
 
 
-Route::get('delivers/show/{id}', array('as' => 'delivers.showDeliver', 'uses' => 'DeliverController@showDeliver'));
+Route::get('/delivers/indexJ', 'DeliverController@indexJSON');
 
-
-Route::get('delivers/indexJ', 'DeliverController@indexJSON');
-
-Route::put('delivers/checkOut/{id}', 'DeliverController@checkOut');
-Route::put('delivers/checkOut/weight/{id}/{x}', 'DeliverController@exitWeight');
+Route::put('/delivers/checkOut/{id}', 'DeliverController@checkOut');
+Route::put('/delivers/checkOut/weight/{id}/{x}', 'DeliverController@exitWeight');
 
 
 
-//Resources From The Controllers
-Route::resource('visitors','VisitorController');
-Route::resource('delivers','DeliverController');
-Route::resource('deliveryType','DelivertypeController');
-
+//Extra methods beyond CRUD for Drop Functionalities
 
 Route::get('/drops/{idDrop}/checkOut/', ['as' => 'drops.checkOut',
                                                         'uses' => 'DropController@checkout'
                                                         ]); 
 
-Route::post('/drops/{idDrop}', ['as' => 'drops.updateEdit',
+Route::put('/drops/{idDrop}', ['as' => 'drops.updateEdit',
                                                         'uses' => 'DropController@updateEdit'
                                                         ]);
-Route::get('/drops/edit/', ['as' => 'drops.edit',
-                                                        'uses' => 'DropController@edit'
+
+Route::put('/drops/Checkout/Update/{idDrop}', ['as' => 'drops.updateCheckOut',
+                                                        'uses' => 'DropController@updateCheckOut'
                                                         ]);
+
+
 Route::get('/drops/{idDrop}/show/', ['as' => 'drops.show',
                                                         'uses' => 'DropController@show'
                                                         ]); 
 Route::resource('drops','DropController');
 
 
-Route::resource('meetings','MeetingController');
+//Extra methods beyond CRUD for Lost and Found Functionalities
 
+Route::get('/losts/{id}/checkOut/', ['as' => 'losts.checkout',
+                                                        'uses' => 'LostFoundController@checkout'
+                                                        ]); 
+
+//Resources From The Controllers
+Route::resource('visitors','VisitorController');
+Route::resource('delivers','DeliverController');
+Route::resource('deliveryType','DelivertypeController');
 Route::resource('losts', 'LostFoundController');
-
+Route::resource('meetings','MeetingController');
 
 //Initial Pages
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
+
+
 
 //Send Mail Route
 Route::get('/email','mailController@send')->name('sendEmail');

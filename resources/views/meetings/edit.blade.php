@@ -16,7 +16,8 @@
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> Edit Meeting <b>{{$meetingData->meetingId}}</b> </div>
                     <div class="col-md-8">
 
-                        <form  class="form-horizontal"  role="form" method="POST" action="{{route('meetings.update', '$meetingData->idMeeting')}}" data-parsley-validate="">
+                     
+                          {!! Form::model($meetingData, array('method'=>'PUT','class'=>'form-horizontal','data-parsley-validate'=>'true', 'role'=> 'form', 'route' => array('meetings.update', $meetingData->idMeeting))) !!}
                          
                             {{ csrf_field() }}
 

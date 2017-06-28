@@ -13,17 +13,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Drop Check-in</div>
                 <div class="panel-body">
-                @if(count($errors) > 0)
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 error">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-@endif
+ 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('drops.store') }}">
                         {{ csrf_field() }}
                     
@@ -55,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('dropperName') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('ReceiverName') ? ' has-error' : '' }}">
                             <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
@@ -74,9 +64,9 @@
                             <label for="dropItem" class="col-md-4 control-label">Item:</label>
 
                             <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="dropItem" value="Large Size">Large Size</label>
-                                <label class="radio-inline"><input type="radio" name="dropItem" value="Medium Size">Medium Size</label>
-                                <label class="radio-inline"><input type="radio" name="dropItem" value="Small Size">Small Size</label>
+                                <label class="radio-inline"><input type="radio" name="dropItem" value="L">Large Size</label>
+                                <label class="radio-inline"><input type="radio" name="dropItem" value="M">Medium Size</label>
+                                <label class="radio-inline"><input type="radio" name="dropItem" value="S">Small Size</label>
 
                                 @if ($errors->has('dropItem'))
                                     <span class="help-block">
@@ -92,9 +82,9 @@
                             <div class="col-md-6" >
                             <p>
                                 <select class="form-control" name="dropImportance">
-                                  <option value="High">High</option>
-                                  <option value="Medium">Medium</option>
-                                  <option value="Low">Low</option>
+                                  <option value="3">High</option>
+                                  <option value="2">Medium</option>
+                                  <option value="1">Low</option>
                                 </select>
 
                                 @if ($errors->has('dropImportance'))
@@ -122,10 +112,10 @@
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-default">
                                     Register
                                 </button>
-                                <a href="{{ route('drops.index') }}" class="btn btn-primary">Cancel</a>
+                                <a href="{{ route('drops.index') }}" class="btn btn-default">Cancel</a>
                             </div>
                            
                         </div>               

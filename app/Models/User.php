@@ -14,6 +14,12 @@ class User extends Authenticatable
 {
   use Notifiable;
 
+      /*
+  |--------------------------------------------------------------------------
+  | GLOBAL VARIABLES
+  |--------------------------------------------------------------------------
+  */
+
 
 
     protected $primaryKey = 'idUser';
@@ -28,14 +34,21 @@ class User extends Authenticatable
         'username', 'email',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    // protected $hidden = [
-    // 'password', 'remember_token',
-    // ];
+    // *
+    //  * The attributes that should be hidden for arrays.
+    //  *
+    //  * @var array
+     
+    protected $hidden = [
+     'remember_token',
+     ];
+
+
+      /*
+  |--------------------------------------------------------------------------
+  | FUNCTIONS
+  |--------------------------------------------------------------------------
+  */
 
     public function isSuperAdmin()
     {
@@ -102,7 +115,7 @@ class User extends Authenticatable
      public function losts(){
 
 
-    return $this->hasMany('App\Models\LostsFound', 'idUser');
+    return $this->hasMany('App\Models\LostFound', 'idUser');
 
 
     }

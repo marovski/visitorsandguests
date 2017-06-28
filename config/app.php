@@ -174,11 +174,14 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        //Barcode Service Provider
         Milon\Barcode\BarcodeServiceProvider::class,
-       
+       //Image Upload Service Provider
+        Intervention\Image\ImageServiceProvider::class,
        
 
     ],
@@ -207,11 +210,14 @@ return [
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -231,8 +237,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Html'=> Collective\Html\HtmlFacade::class,
         'Form'=> Collective\Html\FormFacade::class,
-        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
-        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+       
 
     ],
 

@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+//Requiring the Needed Services
 use Illuminate\Http\Request;
+use Auth;
+use Session;
+use Image;
+use Carbon\Carbon;
 
+//Requiring the Needed Models
 use App\Http\Requests;
 use App\Models\Deliver;
 use App\Models\DeliverType;
-use Auth;
-use Session;
-use Carbon\Carbon;
+
+
 
 
 class DeliverController extends Controller
@@ -80,11 +85,14 @@ class DeliverController extends Controller
    
      $deliver->deIdUser=Auth::user()->idUser;
 
+
+//Save Photos
      if ($request->hasFile('image')) {
       $image = $request->file('image');
       $filename = time() . '.' . $image->getClientOriginalExtension();
       $location = public_path('images/' . $filename);
-      Image::make($image)->resize(600, 300)->save($location);
+
+      Image::make($image)->resize(800, 400)->save($location);
 
       $deliver->image = $filename;
   }

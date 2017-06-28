@@ -1,6 +1,6 @@
  @extends('main')
 
-    @section('title', '| Drop View')
+    @section('title', '| View Drop')
 
     @section('assets')
     <link rel='stylesheet' href='/css/parsley.css' />
@@ -8,46 +8,12 @@
 
 @section('content')
 
-<div class="container"> 
     <div class="row">
-        <div class="col-md-4" >
-      <div class="well">
-     
-
-        <dl class="dl-horizontal">
-          <label>Dropped at:</label>
-          <p>{{ date('M j, Y h:ia', strtotime($drop->droppedWhen)) }}</p>
-        </dl>
-
-        <dl class="dl-horizontal">  
-          <label>Received Date:</label>
-          <p>{{ $drop->dropReceivedDate ? date('M j, Y h:ia', strtotime($drop->dropReceivedDate)) : '' }}</p>
-        </dl>
-        <hr>
-        <div class="row">
-           <div class="col-sm-4">
-             <a href="{{ route('drops.edit', $drop->idDrop) }}" class="btn btn-primary btn-block">Edit</a>             
-          </div>
-         
-          <div class="col-sm-4">         
-           {{ Form::open(['route' => ['drops.destroy', $drop->idDrop], 'method' => 'delete', 'style'=>'display:inline-block']) }}
-           <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
-           {{ Form::close() }}
-
-          </div>
-
-            <div class="col-md-12">
-          <a href="{{ route('drops.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << See All Drops</a>             
-          </div>
-        </div>
-      </div>  
-  </div>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Drop View</div>
                 <div class="panel-body">
                  <form class="form-horizontal">
-
                                      
                         <div class="form-group{{ $errors->has('dropperCompany') ? ' has-error' : '' }}">
                             <label for="dropperCompany" class="col-md-4 control-label">Company Name:</label>
@@ -138,15 +104,45 @@
                             </div>
                         </div>
                                                         
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <a href="{{ route('drops.index') }}" class="btn btn-primary">Return</a>
-                            </div>
-                        </div>
+                      
                     </form>   
                 </div>
             </div>
         </div>
+    
+    <div class="col-md-4" >
+      <div class="well">
+     
+
+        <dl class="dl-horizontal">
+          <label>Dropped at:</label>
+          <p>{{ date('M j, Y h:ia', strtotime($drop->droppedWhen)) }}</p>
+        </dl>
+
+        <dl class="dl-horizontal">  
+          <label>Received Date:</label>
+          <p>{{ $drop->dropReceivedDate ? date('M j, Y h:ia', strtotime($drop->dropReceivedDate)) : '' }}</p>
+        </dl>
+        <hr>
+        <div class="row">
+           <div class="col-sm-4">
+             <a href="{{ route('drops.edit', $drop->idDrop) }}" class="btn btn-primary btn-block">Edit</a>             
+          </div>
+         
+          <div class="col-sm-4">         
+           {{ Form::open(['route' => ['drops.destroy', $drop->idDrop], 'method' => 'delete', 'style'=>'display:inline-block']) }}
+           <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
+           {{ Form::close() }}
+
+          </div>
+
+            <div class="col-md-12">
+          <a href="{{ route('drops.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << See All Drops</a>             
+          </div>
+        </div>
+      </div>  
+  </div>
     </div>
-</div>
+
+
 @endsection
