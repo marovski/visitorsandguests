@@ -52,6 +52,7 @@ class LostFoundController extends Controller
     {
         $lost = new LostFound();
 
+        $lost->foundDate=Carbon::now();
         $lost->finderName=$request->finderName;
         $lost->finderPhone=$request->finderPhone;
         $lost->itemSize=$request->lostFoundItemSize;

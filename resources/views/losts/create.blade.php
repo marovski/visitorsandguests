@@ -60,7 +60,7 @@
                         </div>
                     
                         <div class="form-group{{ $errors->has('lostFoundItemSize') ? ' has-error' : '' }}">
-                            <label for="lostFoundItemSize" class="col-md-4 control-label">Item:</label>
+                            <label for="lostFoundItemSize" class="col-md-4 control-label">Item Size:</label>
 
                             <div class="col-md-6">
                                 <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Large">Large Size</label>

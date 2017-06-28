@@ -46,10 +46,10 @@ class DropController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-                'dropperCompany' => 'required|min:5|max:50|string',
-                'dropperName' => 'required|min:5|max:50|string',
-                'ReceiverName' => 'required|min:5|max:50|string',
-                'dropItem' => 'required',
+                'dropperCompany' => 'required|min:1|max:50|string',
+                'dropperName' => 'required|min:1|max:50|string',
+                'ReceiverName' => 'required|min:1|max:50|string',
+                'dropSize' => 'required',
                 'dropImportance' => 'required',
                 'dropDescription' => 'required|min:2|max:255'
             ]);    
@@ -64,7 +64,7 @@ class DropController extends Controller
         $drop->dropperName=$request->dropperName;
         $drop->droppedWhen=Carbon::now();
         $drop->dropReceiver=$request->ReceiverName;
-        $drop->dropSize=$request->dropItem;
+        $drop->dropSize=$request->dropSize;
         $drop->dropImportance=$request->dropImportance;
         $drop->dropDescr=$request->dropDescription;
         
@@ -132,7 +132,7 @@ class DropController extends Controller
         $drop->dropperCompanyName=$request->dropperCompany;
         $drop->dropperName=$request->dropperName;
         $drop->dropReceiver=$request->ReceiverName;
-        $drop->dropSize=$request->dropItem;
+        $drop->dropSize=$request->dropSize;
         $drop->dropImportance=$request->dropImportance;
         $drop->dropDescr=$request->dropDescription;
         $drop->dropidUser=Auth::user()->idUser;
