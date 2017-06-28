@@ -27,9 +27,8 @@
                             <th width="">Finder Name</th>
                             <th width="">Finder Phone</th>
                             <th width="">Item Description</th>
-                            <th width="">Item Size</th>
                             <th width="">Receiver Name</th>
-                            <th width="">Received at</th>
+                            <th width="">Claimed at</th>
                         </tr>
                     </thead>
 
@@ -39,7 +38,6 @@
                                 <td>{{ $lost->finderName }}</td>
                                 <td>{{ $lost->finderPhone }}</td>
                                 <td>{{ $lost->itemDescription }}</td>
-                                <td>{{ $lost->itemSize }}</td>
                                 <td>{{ $lost->receiverName }}</td>
                                 <td>{{ $lost->claimedDate ? date('M j, Y H:i', strtotime($lost->claimedDate)) : '' }}</td>
                                 <td>

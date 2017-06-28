@@ -63,9 +63,9 @@
                             <label for="lostFoundItemSize" class="col-md-4 control-label">Item:</label>
 
                             <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="L">Large Size</label>
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="M">Medium Size</label>
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="S">Small Size</label>
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Large">Large Size</label>
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Medium">Medium Size</label>
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Small">Small Size</label>
 
                                 @if ($errors->has('LostFoundItemSize'))
                                     <span class="help-block">
@@ -81,9 +81,9 @@
                             <div class="col-md-6" >
                             <p>
                                 <select class="form-control" name="lostFoundImportance">
-                                  <option value="3">High</option>
-                                  <option value="2">Medium</option>
-                                  <option value="1">Low</option>
+                                  <option value="High">High</option>
+                                  <option value="Medium">Medium</option>
+                                  <option value="Low">Low</option>
                                 </select>
 
                                 @if ($errors->has('lostFoundImportance'))
