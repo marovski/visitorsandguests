@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Object Check-Out</div>
+                <div class="panel-heading">Object View</div>
                 <div class="panel-body">
                   {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('losts.update', $lost->idLostFound))) !!}
 
@@ -43,25 +43,25 @@
                             </div>
                         </div>
 
-                       <div class="form-group{{ $errors->has('receiverName') ? ' has-error' : '' }}">
-                            <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
+                        <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}">
+                            <label for="receiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
-                                <input id="ReceiverName" type="text" class="form-control" name="receiverName" value="{{ old('ReceiverName') }}" required autofocus>
+                                <input id="finderName" type="text" class="form-control" name="receiverName" disabled="true" value="{{ $lost->finderName }}" required autofocus>
 
-                                @if ($errors->has('ReceiverName'))
+                                @if ($errors->has('receiverName'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ReceiverName') }}</strong>
+                                        <strong>{{ $errors->first('receiverName') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                       </div>
 
-                        <div class="form-group{{ $errors->has('receiverPhone') ? ' has-error' : '' }}">
+                       <div class="form-group{{ $errors->has('receiverPhone') ? ' has-error' : '' }}">
                             <label for="receiverPhone" class="col-md-4 control-label">Receiver Phone:</label>
 
                             <div class="col-md-6">
-                                <input id="receiverPhone" type="text" class="form-control" name="receiverPhone" value="{{ old('receiverPhone') }}" required autofocus>
+                                <input id="receiverPhone" type="text" class="form-control" name="receiverPhone" disabled="true" value="{{ $lost->receiverPhone }}" required autofocus>
 
                                 @if ($errors->has('receiverPhone'))
                                     <span class="help-block">
@@ -117,6 +117,14 @@
                             </p>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                        <label for="image" class="col-md-4 control-label" >Photo Upload:</label>
+                        <div class="col-md-6">
+                        <img src="{{ asset('images/'. $lost->photo)}}" height="300" width="400">
+                        </div>
+                        </div>
+
 
                                                         
                         <div class="form-group">

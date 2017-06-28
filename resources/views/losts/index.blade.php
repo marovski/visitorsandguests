@@ -45,7 +45,7 @@
                                 <a href="{{ route('losts.checkout',$lost->idLostFound) }}" class="btn btn-default btn-sm">Check-out</a>
                                 @else <a  disabled="disabled" class="btn btn-default btn-sm">Check-out</a>
                                 @endif
-                              
+                                <a href="{{ route('losts.show',$lost->idLostFound) }}" class="btn btn-default btn-sm">View</a>
                                 {{ Form::open(['route' => ['losts.destroy', $lost->idLostFound], 'method' => 'delete', 'style'=>'display:inline-block']) }}
                                 <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
                                 {{ Form::close() }}

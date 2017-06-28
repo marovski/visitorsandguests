@@ -66,7 +66,7 @@ class LostFoundController extends Controller
       $filename = time() . '.' . $image->getClientOriginalExtension();
       $location = public_path('images/' . $filename);
 
-      Image::make($image)->resize(800, 400)->save($location);
+      Image::make($image)->resize(600, 300)->save($location);
 
       $lost->photo = $filename;
   }
@@ -100,7 +100,17 @@ class LostFoundController extends Controller
     {
         $idLostFound=$id;
         $lost = LostFound::find($idLostFound);
-        return view('losts.checkout')->withLost($lost);
+        if(!empty($lost->claimedDate))
+        {   
+            
+            Session::flash('Lost and Found item was already claimed!');
+            return redirect()->route('losts.index');
+            
+        }
+        else{
+         
+            return view('losts.checkout')->withLost($lost);
+        }
         //
     }
 
@@ -113,6 +123,19 @@ class LostFoundController extends Controller
     public function edit(LostFound $lostFound)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $idLostFound=$id;
+        $lost = lostFound::find($idLostFound);
+        return view('losts.show')->withLost($lost);
     }
 
     /**
