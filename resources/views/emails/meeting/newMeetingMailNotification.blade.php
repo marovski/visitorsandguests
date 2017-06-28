@@ -22,7 +22,7 @@ O seu código de barras:<br>
  @if(!empty( $mailInfo2->visitorName ))
 {!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', 'C128') !!}
 @else
-{!! DNS1D::getBarcodeHTML(['$mailInfo2->user_idUser', 'C128') !!}
+{!! DNS1D::getBarcodeHTML('$mailInfo2->user_idUser', 'C128') !!}
 @endif
 
 @endcomponent

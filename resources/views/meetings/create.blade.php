@@ -180,9 +180,11 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-lg btn-block btn-default btn-h1-spacing">
+                        <button type="submit" class="btn btn-lg btn-block btn-basic btn-h1-spacing">
                            Save Meeting
                        </button>
+            <a class="btn btn-default btn-block"  href="{{ route('meetings.index') }}"><i class="fa fa-close"></i> Cancel</a>
+        
 
 
                    </div>

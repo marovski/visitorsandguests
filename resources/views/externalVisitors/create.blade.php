@@ -197,11 +197,11 @@
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <button type="submit" class="btn btn-basic btn-sm btn-block">
                                     Save
                                 </button>
                               
-                                  <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-danger btn-lg btn-block">Cancel</a>  
+                                  <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm btn-block">Cancel</a>  
                             </div>
                         </div>
                         

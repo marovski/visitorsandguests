@@ -39,7 +39,7 @@
                               <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                               <div class="col-md-6">
-                                  <input id="meetStartDate" type="date" class="form-control" name="meetStartDate" value= {{$meetingData->meetStartDate}} required autofocus>
+                                  <input id="meetStartDate" type="datetime-local" class="form-control" name="meetStartDate" value= {{$meetingData->meetStartDate}} required autofocus>
 
                                   @if ($errors->has('meetStartDate'))
                                   <span class="help-block">
@@ -54,7 +54,7 @@
                               <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                               <div class="col-md-6">
-                                  <input id="meetEndDate" type="date" class="form-control" name="meetEndDate" value= {{ $meetingData->meetEndDate}} >
+                                  <input id="meetEndDate" type="datetime-local" class="form-control" name="meetEndDate" value= {{ $meetingData->meetEndDate}} >
 
                                   @if ($errors->has('meetEndDate'))
                                   <span class="help-block">
@@ -205,7 +205,7 @@
           <div class="col-sm-6">
 
          
-            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
+            <button type="submit" class="btn btn-default btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
            
           </div>
          <div class="col-sm-6">
