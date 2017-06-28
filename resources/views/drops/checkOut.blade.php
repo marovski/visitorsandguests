@@ -57,15 +57,15 @@
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('dropItem') ? ' has-error' : '' }}">
-                            <label for="dropItem" class="col-md-4 control-label">Item:</label>
+                        <div class="form-group{{ $errors->has('dropSize') ? ' has-error' : '' }}">
+                            <label for="dropSize" class="col-md-4 control-label">Item:</label>
                              <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="dropItem" disabled="true"  checked="checked" value="">{{ $drop->dropItem }}</label>
+                                <label class="radio-inline"><input type="radio" name="dropSize" disabled="true"  checked="checked" value="">{{ $drop->dropSize }}</label>
                                 
 
-                                @if ($errors->has('dropItem'))
+                                @if ($errors->has('dropSize'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('dropItem') }}</strong>
+                                        <strong>{{ $errors->first('dropSize') }}</strong>
                                     </span>
                                 @endif
                              </div>
