@@ -175,7 +175,7 @@ class MeetingController extends Controller
 
         }else{
 
-            Session::flash('danger','Meeting was not edited successfully');
+            Session::flash('danger','Meeting was not edited successfully!');
 
                 return redirect()->route('meetings.index');
 
@@ -193,24 +193,48 @@ class MeetingController extends Controller
         {
             Meeting::destroy($id);
             return redirect('/meetings');
+
+
     }
-    public function checkin($id){
 
-        $meeting= Meeting::find($id);
 
-        $meeting->entryTime = Carbon::now();
-        $meeting->save();
-
-        return redirect()->route('meetings.index',$meeting->idMeeting);
-    }
-    public function checkout($id){
-        $meeting= Meeting::find($id);
-
-        $meeting->exitTime = Carbon::now();
-        $meeting->save();
+    public function checkin(Request $request, $id){
 
         
-        return redirect()->route('meetings.index',$meeting->idMeeting);
+
+        $currentMeeting= Meeting::find($id);
+
+       
+
+        $currentMeeting->entryTime = Carbon::now();
+
+        $currentMeeting->save();
+
+
+        Session::flash('success','The meeting check-in was successfully done! The visitor as arrived for the meeting');
+        
+        return redirect($request->only('redirects_to'));
+
+
+    }
+
+
+    public function checkout(Request $request, $id){
+
+      
+
+        $currentMeeting= Meeting::find($id);
+
+        $currentMeeting->exitTime = Carbon::now();
+
+
+
+        $currentMeeting->save();
+
+
+        Session::flash('success','The meeting check-out was successfully done! The meeting as ended!');
+        
+        return redirect($request->only('redirects_to'));
 
     }
 }

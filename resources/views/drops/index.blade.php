@@ -44,7 +44,7 @@
                                 <td>
                                 @if (empty($drop->dropReceivedDate))
                                 <a href="{{ route('drops.checkOut',$drop->idDrop) }}" class="btn btn-default btn-sm">Check-out</a>
-                                @else <a href="{{ route('drops.checkOut',$drop->idDrop) }}" disabled="disabled" class="btn btn-default btn-sm">Check-out</a>
+                                @else <a disabled="disabled" class="btn btn-default btn-sm">Check-out</a>
                                 @endif
                                 <a href="{{ route('drops.show',$drop->idDrop) }}" class="btn btn-default btn-sm">View</a>
                                 {{ Form::open(['route' => ['drops.destroy', $drop->idDrop], 'method' => 'delete', 'style'=>'display:inline-block']) }}

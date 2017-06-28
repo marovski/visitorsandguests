@@ -45,7 +45,7 @@
                                 <td>
                                 @if (empty($lost->claimedDate))
                                 <a href="{{ route('losts.checkout',$lost->idLostFound) }}" class="btn btn-default btn-sm">Check-out</a>
-                                @else <a href="{{ route('losts.checkout',$lost->idLostFound) }}" disabled="disabled" class="btn btn-default btn-sm">Check-out</a>
+                                @else <a  disabled="disabled" class="btn btn-default btn-sm">Check-out</a>
                                 @endif
                               
                                 {{ Form::open(['route' => ['losts.destroy', $lost->idLostFound], 'method' => 'delete', 'style'=>'display:inline-block']) }}
