@@ -63,6 +63,13 @@ class MeetingController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+                
+                'meetingTopic' => 'required|min:1|max:20|string',
+                'visitReason' => 'max:200'
+            ]);    
+        
         //Saving Meeting
         $meeting=new Meeting();
 

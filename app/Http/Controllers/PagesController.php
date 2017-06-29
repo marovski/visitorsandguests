@@ -46,7 +46,7 @@ public function postContact(Request $request) {
 
 		if (Mail::send('emails.contact', $data, function($message) use ($data){
 			$message->from($data['email']);
-			$message->to('cardozo27cv@gmail.com');
+			$message->to('luismendes535@gmail.com');
 			$message->subject($data['subject']);
 		})){
 
