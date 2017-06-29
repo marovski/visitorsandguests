@@ -9,15 +9,18 @@
 
   @section('content')
   
-      <div class="row"  >
+      <div class="row" ng-app="MyApp" ng-controller="showInputController" >
 
          
 
       <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> Edit External Visitor</div>
 
+                    <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
 
-
-  {!! Form::model($externalVisitor,['route' => ['visitors.update', $externalVisitor->idVisitor], 'method' => 'PUT','class' => 'form-horizontal','data-parsley-validate' => '']) !!}
+ 
+    <form ng-show="loading == true"  class="form-horizontal" role="form" method="put" action="{{ route('visitors.update',$externalVisitor->idVisitor) }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
   {{ csrf_field() }}
 
   <div class="col-md-8">

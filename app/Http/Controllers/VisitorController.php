@@ -217,7 +217,7 @@ class VisitorController extends Controller
               }else{
 
 
- return redirect()->back()->with('warning', 'This Visitor could not be assigned.');
+            return redirect()->back()->with('warning', 'This Visitor could not be assigned.');
 
               }   
 
