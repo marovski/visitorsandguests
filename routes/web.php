@@ -29,6 +29,8 @@ Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInter
 
 Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'));
 
+Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
+
 
 
 //Extra methods beyond CRUD for Meeting Functionalities

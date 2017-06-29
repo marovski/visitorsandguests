@@ -9,8 +9,8 @@
     @endsection
 
     @section('content')
-
-        <div class="row" ng-app="MyApp">
+<div class="container" ng-app="MyApp">
+        <div class="row" >
 
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
@@ -19,8 +19,8 @@
                             <!-- LOADING ICON -->
             <!-- show loading icon if the loading variable is set to true -->
         <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
-  <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()" ng-show="loading == true" >
-                          
+
+  <form ng-show="loading == true"  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
                         {{ csrf_field() }}
                            <input id="idMeeting" name="idMeeting" class="ng-hide" type="number"  value="{{$meeting->idMeeting}}"/>
               
@@ -59,8 +59,8 @@
                             </div>
                         </div>
 
-                      <div ng-show="visitorCitizenCardType == 1" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}"   >
-                            <label for="visitorCitizenCard" class="col-md-4 control-label">Passport Number:</label>
+                      <div ng-show="visitorCitizenCardType != 0" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}"   >
+                            <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
                                 <input id="visitorCitizenCard" max="9" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
@@ -73,35 +73,7 @@
                             </div>
                         </div>
 
-                        <div ng-show="visitorCitizenCardType == 2" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}"  >
-                            <label for="visitorCitizenCard" class="col-md-4 control-label">Citizen Card Number:</label>
-
-                            <div class="col-md-6">
-                                <input id="visitorCitizenCard" max="9" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
-
-                                @if ($errors->has('visitorCitizenCard'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('visitorCitizenCard') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-                        <div  ng-show="visitorCitizenCardType == 3" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}" >
-                            <label for="visitorCitizenCard" class="col-md-4 control-label">Driver License Number:</label>
-
-                            <div class="col-md-6">
-                                <input id="visitorCitizenCard" max="9" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
-
-                                @if ($errors->has('visitorCitizenCard'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('visitorCitizenCard') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
+            
 
 
                               
@@ -240,7 +212,7 @@
                 </div>
                 </div>
                 
-         
+         </div>
        
 
         @endsection

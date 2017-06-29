@@ -228,7 +228,7 @@ class VisitorController extends Controller
 
       public function  selfcheckIn (){
 
-        return view('externalVisitor.selfcheckIn')
+        return view('externalVisitors.selfCheckIn');
 
 
 

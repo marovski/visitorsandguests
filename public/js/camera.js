@@ -20,7 +20,7 @@ $(function() {
         // <canvas> is not supported in this browser. We'll use anonymous
         // graphic instead.
         var image = document.createElement("img");
-        image.src = "no_canvas_photo.jpg";
+        image.src = "/images/no_canvas_photo.jpg";
         setTimeout(function() {add_snapshot.call(snapshot, image)}, 1);
       }
 
@@ -133,9 +133,9 @@ $(function() {
     $("#show_stream").click(show_stream);
 
     var options = {
-      shutter_ogg_url: "../dist/shutter.ogg",
-      shutter_mp3_url: "../dist/shutter.mp3",
-      swf_url: "../dist/jpeg_camera.swf"
+      shutter_ogg_url: "/jpeg_camera/shutter.ogg",
+      shutter_mp3_url: "/jpeg_camera/shutter.mp3",
+      swf_url: "/jpeg_camera/jpeg_camera.swf"
     }
 
     camera = new JpegCamera("#camera", options).ready(function(info) {
