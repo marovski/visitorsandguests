@@ -30,7 +30,7 @@ class DeliverController extends Controller
      */
       public function index()
     {
-        $delivers = Deliver::orderBy('idDeliver', 'asc')->paginate(6);
+        $delivers = Deliver::orderBy('idDeliver', 'asc')->paginate(10);
         return view('delivers.index')->withDelivers($delivers);
     }
 
@@ -109,7 +109,7 @@ class DeliverController extends Controller
 
 }else{
 
- Session::flash('warning', 'The Deliver was not created successfully!');
+ Session::flash('danger', 'The Deliver was not created successfully!');
 
      return redirect()->route('delivers.create');
 
@@ -130,15 +130,16 @@ class DeliverController extends Controller
         
         $deliver = Deliver::findOrFail($id);
 
-  
+        //GEt local Time
         $time=Carbon::now('Europe/Lisbon');
-
-        $exitweight=$deliver->exitWeight;
 
         $exittime=$deliver->deExitTime;
 
+//CHeck if the field is empty or not
         if (empty($exittime)) {
 
+
+//Save it to the model/database
         $deliver->deExitTime=$time;
 
         $save=$deliver->save();
@@ -180,15 +181,20 @@ class DeliverController extends Controller
         
         $deliver = Deliver::findOrFail($id);
 
+
+//Get value from the database and check if it's empty or not
         $exitweight=$deliver->exitWeight;
     
         if (empty($exitweight)){
 
+         
+
          $deliver->exitWeight=$x;
 
-
+//Save the new value for exit weight in the database
         $save=$deliver->save();
         if ($save) {
+
 
         return response()->json(array('success'=>true));
          }

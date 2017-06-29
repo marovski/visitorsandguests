@@ -1,20 +1,23 @@
     @extends('main')
 
-    @section('title', '| New Lost and Found Report')
+    @section('title', '| Create New Lost and Found Report')
 
     @section('assets')
     <link rel='stylesheet' href='/css/parsley.css' />
     @endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
+<div class="container" ng-app="MyApp">
+    <div class="row" >
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Report Lost Item</div>
-                <div class="panel-body">
+                <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> <b>Create Lost Item Report</b></div>
+                <div class="panel-body" ng-controller="showInputController">
+                                <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
   
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('losts.store') }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('losts.store') }}" enctype="multipart/form-data" ng-show="loading == true">
                         {{ csrf_field() }}
       
                          <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}">
@@ -81,9 +84,9 @@
                             <div class="col-md-6" >
                             <p>
                                 <select class="form-control" name="lostFoundImportance">
-                                  <option value="High">High</option>
-                                  <option value="Medium">Medium</option>
-                                  <option value="Low">Low</option>
+                                  <option value="3">High</option>
+                                  <option value="2">Medium</option>
+                                  <option value="1">Low</option>
                                 </select>
 
                                 @if ($errors->has('lostFoundImportance'))
@@ -105,10 +108,10 @@
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-default">
-                                    Register
+                                <button type="submit" class="btn btn-basic btn-sm btn-block">
+                                  Save Report
                                 </button>
-                                <a href="{{ route('losts.index') }}" class="btn btn-default">Cancel</a>
+                                <a href="{{ route('losts.index') }}" class="btn btn-default btn-block">Cancel</a>
                             </div>
                            
                         </div>               

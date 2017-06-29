@@ -8,14 +8,16 @@
     @endsection
 
     @section('content')
-        <div class="row">
+        <div class="row" ng-app="MyApp">
 
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create Internal Visitor for Meeting: {{ $meetingRestricted->meetingName }}</div>
-                            <div class="panel-body">
-                
-                   <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.storeInternalVisitor') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()">
+                            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create Internal Visitor for Meeting: <b>{{ $meetingRestricted->meetingName }}</b></div>
+                                    <div class="panel-body" ng-controller="showInputController">
+                                <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+                   <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.storeInternalVisitor') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  ng-show="loading == true">
 
  
                         {{ csrf_field() }}
@@ -66,11 +68,11 @@
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <button type="submit" class="btn btn-basic btn-sm btn-block">
                                    Save 
                                 </button>
 
-                                  <a href="{{ route('meetings.show', $meetingRestricted->idMeeting) }}" class="btn btn-danger btn-lg btn-block">Cancel</a>  
+                                  <a href="{{ route('meetings.show', $meetingRestricted->idMeeting) }}" class="btn btn-default btn-sm btn-block">Cancel</a>  
                             </div>
                         </div>
                     </form>

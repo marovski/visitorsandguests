@@ -1,22 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Meeting;
+use App\Models\LostFound;
 
 class PagesController extends Controller{
 
 	public function getIndex() {
-		$meetings = Meeting::all();
+		$meetings = LostFound::all();
 		
 		return view('pages.welcome')->withMeetings($meetings);
 	}
 
 	public function getAbout(){
-		$first = 'Mário';
-		$second = 'Cardoso';
-		$full= $first . " ". $second;
-		$email='ada@g';
-		return view('pages.about')->withFullname($full)->withEmail($email);
+	
+		return view('pages.about');
 	}
 
 

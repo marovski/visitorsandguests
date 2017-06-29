@@ -21,8 +21,8 @@
               <label name="message">Message:</label>
               <textarea id="message" name="message" class="form-control">Type your message here...</textarea>
             </div>
-
-            <input type="submit" value="Send Message" class="btn btn-default">
+ <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span> Send Message</button>
+          
           </form>
         </div>
       </div>

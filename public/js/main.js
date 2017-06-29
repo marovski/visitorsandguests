@@ -1,9 +1,9 @@
   
 //Angular Module to hide and show forms
-  var app = angular.module('MyApp', [])
+angular.module('MyApp', []).controller('ShowController', ShowController).controller('showInputController', showInputController);
 
 
-    app.controller('ShowController', function ($scope, $http) {
+    function ShowController($scope, $timeout){
             //This will hide the DIV by default.
             $scope.IsVisible = false;
             $scope.IsVisible2=false;
@@ -20,13 +20,22 @@
 
             }
 
-        });
+        }
 
 
-    app.controller('ShowInput', function($scope){
+function showInputController($scope, $timeout){
+
+   
+    $scope.loading = false;
+
+      $timeout(function() {      
+      $scope.loading = true;
+      }, 2000);
+    
+
       $scope.driverIDType='1';
-
-    });
+     
+    }
 
 
 
@@ -42,17 +51,25 @@ angular.module('main', []).controller('mainController', mainController).run(func
 
 
 // inject the Deliver service into our controller
-function mainController($scope, $window, $http ,$location, Deliver) {
+function mainController($scope, $window, $http ,$location, $timeout, Deliver) {
+
+   $scope.loading = false;
 
 
- 
+ $timeout(function() {      
+        $scope.loading = true;
+      }, 2000);
+          
+      
    
-  $scope.loading = true;
+  
 
 
   Deliver.get().then(function(response) {
+
+   
   $scope.delivers =  angular.fromJson(response.data);
-  $scope.loading = false;
+  
    console.log($scope.delivers);
         });
 
@@ -65,14 +82,14 @@ $scope.showDeliver = function(pid){
                   url= angular.fromJson(response.data);
                   window.location.replace(url.url);
           
-});
+                          });
             };
 
     // function to handle submitting the form
     // SAVE A CheckOut and Exit Weight================
     $scope.submitCheckOut = function($id) {
 
-      $scope.loading = true;
+     
 
 
      //Get the id of the specific Delivery
@@ -88,11 +105,10 @@ $scope.showDeliver = function(pid){
 
   alert("The following is not a number!");
 
-    $scope.loading = true;
+    
 
   Deliver.get().then(function(response) {
          
-         $scope.loading = false;
 
          $scope.delivers =  angular.fromJson(response.data);
 
@@ -127,7 +143,7 @@ $scope.showDeliver = function(pid){
 
         Deliver.get().then(function(response) {
          
-         $scope.loading = false;
+    
 
          $scope.delivers =  angular.fromJson(response.data);
 
@@ -144,7 +160,7 @@ $scope.showDeliver = function(pid){
 
           Deliver.get().then(function(response) {
          
-         $scope.loading = false;
+
 
          $scope.delivers =  angular.fromJson(response.data);
 
@@ -176,7 +192,7 @@ $scope.showDeliver = function(pid){
 
           Deliver.get().then(function(response) {
          
-         $scope.loading = false;
+
 
          $scope.delivers =  angular.fromJson(response.data);
 
@@ -192,7 +208,7 @@ $scope.showDeliver = function(pid){
 
          Deliver.get().then(function(response) {
          
-         $scope.loading = false;
+         
 
          $scope.delivers =  angular.fromJson(response.data);
 
@@ -211,7 +227,7 @@ $scope.showDeliver = function(pid){
 
         Deliver.get().then(function(response) {
          
-         $scope.loading = false;
+     
 
          $scope.delivers =  angular.fromJson(response.data);
 

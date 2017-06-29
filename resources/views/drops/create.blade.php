@@ -7,14 +7,18 @@
     @endsection
 
 @section('content')
-<div class="container">
+<div class="container" ng-app="MyApp">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Drop Check-in</div>
-                <div class="panel-body">
+                <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> <b>Create Drop</b></div>
+                <div class="panel-body" ng-controller="showInputController" >
+
+                              <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
  
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('drops.store') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('drops.store') }}"  ng-show="loading == true">
                         {{ csrf_field() }}
                     
                         <div class="form-group{{ $errors->has('dropperCompany') ? ' has-error' : '' }}">
@@ -112,10 +116,10 @@
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-default">
-                                    Register
+                                <button type="submit" class="btn btn-basic btn-sm btn-block">
+                                    Save Drop
                                 </button>
-                                <a href="{{ route('drops.index') }}" class="btn btn-default">Cancel</a>
+                                <a href="{{ route('drops.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
                             </div>
                            
                         </div>               

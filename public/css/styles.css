@@ -26,3 +26,25 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+.loader{
+
+  background-image: url('../images/gears.svg');
+  height: 100%;
+  width: 100%;
+  position: fixed;
+ 
+  
+
+  background-repeat: no-repeat;
+
+
+}
+.about{
+  padding-top: 50px;
+  position: initial;
+  margin: 10px;
+  text-align: justify;
+  display: inline-grid;
+  overflow: auto;
+  margin-bottom: 100px;
+}

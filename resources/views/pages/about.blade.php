@@ -32,10 +32,7 @@
 </section>
 <br/>
 
-<div class="text-justify; text-muted" style="  margin: 0 auto;
-  padding-top: 64px;
-  max-width: 640px;
-  width: 94%;">
+<div class="about">
   <h1 >About NANIUM</h1>
 <p ><span>For over 20 years, NANIUM has provided advanced assembly and test services to a global customer base of semiconductor companies serving the consumer, communication, automotive, medical and computer industries.</span></p>
 

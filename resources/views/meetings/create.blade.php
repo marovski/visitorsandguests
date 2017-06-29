@@ -9,15 +9,18 @@
     @endsection
 
     @section('content')
-    <div class="container" ng-app="MyApp" > 
+    <div class="container" ng-app="MyApp" ng-controller="showInputController" > 
         <div class="row">
 
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create Meeting</div>
-                    <div class="panel-body">
+                    <div class="panel-body" >
+                          <!-- LOADING ICON -->
+      <!-- show loading icon if the loading variable is set to true -->
+    <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
 
-                        <form  class="form-horizontal"  role="form" method="POST" action="{{ route('meetings.store') }}" data-parsley-validate="">
+                        <form  class="form-horizontal" ng-show="loading == true"   role="form" method="POST" action="{{ route('meetings.store') }}" data-parsley-validate="">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('meetingName') ? ' has-error' : '' }}">
@@ -180,10 +183,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-lg btn-block btn-basic btn-h1-spacing">
+                        <button type="submit" class="btn btn-basic btn-sm btn-block">
                            Save Meeting
                        </button>
-            <a class="btn btn-default btn-block"  href="{{ route('meetings.index') }}"><i class="fa fa-close"></i> Cancel</a>
+            <a class="btn btn-default btn-sm btn-block"  href="{{ route('meetings.index') }}"> Cancel</a>
         
 
 
@@ -204,7 +207,9 @@
 
 
     </div>
-         <div class="col-md-4" >
+
+
+         <div class="col-md-4" ng-show="loading == true" >
 
       <div class="well">
      
@@ -212,18 +217,21 @@
         <dl class="dl-horizontal">
 
           <label>All Your Meetings</label>
+
+<section class="panel panel-default" >
+<i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
         <div class="table-responsive">
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
-                       <th width="">Start</th>
-                       <th width="">End</th>
+                      
                          <th width="">Topic</th>
                             <th width="">Visit Reason</th>
                            
                             <th width="">Status</th>
                         
-                          
+                           <th width="">Start</th>
+                       <th width="">End</th>
                               
                                
                           
@@ -235,9 +243,7 @@
  
                             <tr>
           
-                                <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
-                                 <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
-                             <th>{{ $meeting->meetingName }}</th>
+                            <th>{{ $meeting->meetingName }}</th>
 
                                 <td>{{ $meeting->visitReason }}</td>
                           
@@ -252,7 +258,9 @@
                                      @elseif ($meeting->meetStatus === 4) 
                                         {{ 'Finished' }}
                                      @endif</td>
-                                 
+                                      <td>{{ date('H:i', strtotime($meeting->meetStartDate)) }}-{{ date('m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
+                                 <td>{{ date('H:i', strtotime($meeting->meetEndDate)) }}-{{ date('m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
+                            
                              
                          
                                
@@ -266,9 +274,12 @@
 
                 </tbody>
             </table>
+              <div class="text-center">
+                {!! $meetings->links(); !!}
+            </div>
        
         </div>
-
+</section>
        </dl>
         <hr>
 
@@ -277,6 +288,7 @@
 
    
   
+  </div>
   </div>
   </div>
    

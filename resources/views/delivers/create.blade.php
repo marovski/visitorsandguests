@@ -13,8 +13,12 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Create Delivery</div>
-				<div class="panel-body"> 
-					<form class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
+				<div class="panel-body"  ng-controller="showInputController"> 
+							<!-- LOADING ICON -->
+			<!-- show loading icon if the loading variable is set to true -->
+		<div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+
+					<form ng-show="loading == true"  class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
 						{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
@@ -30,7 +34,7 @@
 								@endif
 							</div>
 						</div>
-						<div ng-controller="ShowInput" class="form-group{{ $errors->has('driverIDType') ? ' has-error' : '' }}"  >
+						<div class="form-group{{ $errors->has('driverIDType') ? ' has-error' : '' }}"  >
 							<label for="driverIDType" class="col-md-4 control-label">Identification Card Type:</label>
 
 							<div class="col-md-6">
@@ -49,21 +53,8 @@
 							</div>
 						</div>
 
-						<div  class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}" ng-show="driverIDType=='2'" >
-							<label for="driverID" class="col-md-4 control-label">Citizen Card Number:</label>
 
-							<div class="col-md-6">
-								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
-
-								@if ($errors->has('driverID'))
-								<span class="help-block">
-									<strong>{{ $errors->first('driverID') }}</strong>
-								</span>
-								@endif
-							</div>
-						</div>
-
-						<div  class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"   ng-show="driverIDType == '1'">
+						<div ng-show="driverIDType == 1" class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"   >
 							<label for="driverID" class="col-md-4 control-label">Passport Number:</label>
 
 							<div class="col-md-6">
@@ -77,7 +68,22 @@
 							</div>
 						</div>
 
-						<div  class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"  ng-show="driverIDType == '3'">
+						<div ng-show="driverIDType == 2" class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"  >
+							<label for="driverID" class="col-md-4 control-label">Citizen Card Number:</label>
+
+							<div class="col-md-6">
+								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
+
+								@if ($errors->has('driverID'))
+								<span class="help-block">
+									<strong>{{ $errors->first('driverID') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
+
+
+						<div  ng-show="driverIDType == 3" class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}" >
 							<label for="driverID" class="col-md-4 control-label">Driver License Number:</label>
 
 							<div class="col-md-6">
@@ -211,10 +217,10 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-4" >
-							<button type="submit" class="btn btn-default">
-								Register
+							<button type="submit" class="btn btn-basic btn-sm btn-block">
+								Save Delivery
 							</button>
-							<a href="{{ route('delivers.index') }}" class="btn btn-default">Cancel</a>
+							<a href="{{ route('delivers.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
 						</div>
 					</div>
 				</form>

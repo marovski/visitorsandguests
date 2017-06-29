@@ -89,6 +89,7 @@ Route::resource('losts', 'LostFoundController');
 Route::resource('meetings','MeetingController');
 
 //Initial Pages
+Route::get('dashboard', 'PagesController@getDashboard');
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');

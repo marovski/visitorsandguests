@@ -17,11 +17,17 @@
         </div>
     </div> <!-- end of .row -->
 
-     <div class="table-responsive">
+<section class="panel panel-default" ng-app="MyApp"  ng-controller="showInputController">
+<i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
+
+                          <!-- LOADING ICON -->
+      <!-- show loading icon if the loading variable is set to true -->
+    <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+     <div class="table-responsive" ng-show="loading == true">
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
-                        <tr>  <th>#</th>
+                        <tr>  
                          <th width="">Meeting Name</th>
                             <th width="">Visit Reason</th>
             
@@ -41,7 +47,7 @@
                      @foreach($meetings as $meeting )
  
                             <tr>
-                            <th>{{ $meeting->idMeeting }}</th>
+                            
                              <th>{{ $meeting->meetingName }}</th>
 
                                 <td>{{ $meeting->visitReason }}</td>
@@ -101,6 +107,7 @@
             </div>
         
         </div>
+        </section>
     
     
 @stop

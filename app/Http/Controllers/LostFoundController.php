@@ -15,7 +15,7 @@ use App\Models\LostFound;
 class LostFoundController extends Controller
 {
 
-    public $timestamps = false; 
+    
     public function __construct() {
         $this->middleware('auth');
     }
@@ -26,7 +26,7 @@ class LostFoundController extends Controller
      */
     public function index()
     {
-        $losts = LostFound::orderBy('idLostFound', 'desc')->paginate(10);
+        $losts = LostFound::orderBy('idLostFound', 'asc')->paginate(10);
         return view('losts.index')->withLosts($losts);
         //
     }
@@ -39,7 +39,7 @@ class LostFoundController extends Controller
     public function create()
     {
         return view('losts.create');
-        //
+        //calling the view
     }
 
     /**
@@ -52,7 +52,7 @@ class LostFoundController extends Controller
     {
         $lost = new LostFound();
 
-        $lost->foundDate=Carbon::now();
+        $lost->foundDate=Carbon::now('Europe/Lisbon');
         $lost->finderName=$request->finderName;
         $lost->finderPhone=$request->finderPhone;
         $lost->itemSize=$request->lostFoundItemSize;
@@ -100,17 +100,9 @@ class LostFoundController extends Controller
     {
         $idLostFound=$id;
         $lost = LostFound::find($idLostFound);
-        if(!empty($lost->claimedDate))
-        {   
-            
-            Session::flash('Lost and Found item was already claimed!');
-            return redirect()->route('losts.index');
-            
-        }
-        else{
-         
-            return view('losts.checkout')->withLost($lost);
-        }
+
+         return view('losts.checkout')->withLost($lost);
+       
         //
     }
 
@@ -150,11 +142,29 @@ class LostFoundController extends Controller
         $idLostFound=$id;
         $lost = LostFound::find($idLostFound);     
         
-         $lost->receiverName=$request->ReceiverName;
-        $lost->receiverPhone=$request->finderPhone;
-        $lost->claimedDate=Carbon::now();
-        
-        if ($lost->save()) {
+         
+
+//CHeck if claimed date is empty
+
+         if(!empty($lost->claimedDate))
+        {   
+            
+            Session::flash('danger','Lost and Found item was already claimed!');
+            return redirect()->route('losts.index');
+            
+        }
+        else{
+
+            //Getting the new input values for the receiver
+            $lost->receiverName=$request->receiverName;
+            $lost->receiverPhone=$request->receiverPhone;
+         
+         //Getting the local time
+             $lost->claimedDate=Carbon::now('Europe/Lisbon');
+
+
+             //Save the model with the new values in the database
+            if ($lost->save()) {
 
             
             Session::flash('success','Lost item was successfully claimed!');
@@ -166,12 +176,15 @@ class LostFoundController extends Controller
              Session::flash('danger', 'The claiming process failed!');
             return redirect()->route('losts.index');
         }
+        }
+        
+       
 
 
            
         
 
-       return redirect()->route('losts.index',$lost->idLostFound);
+       
         //
     }
 

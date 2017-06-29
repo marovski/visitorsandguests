@@ -23,7 +23,7 @@ class DropController extends Controller
      */
         public function index()
     {
-        $drops = Drop::orderBy('idDrop', 'desc')->paginate(6);
+        $drops = Drop::orderBy('idDrop', 'desc')->paginate(10);
         return view('drops.index')->withDrops($drops);
     }
 

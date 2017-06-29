@@ -213,13 +213,14 @@
       <hr>
       <div class="row">
         <div class="col-sm-6">
-       
-         
-        <a class="btn btn-danger btn-block"  href="{{ route('meetings.show', $externalVisitor->meeting->first()->idMeeting) }}">Cancel</a>
+          {{ Form::submit('Save Changes', ['class' => 'btn btn-basic btn-sm btn-block']) }}
         </div>
         <div class="col-sm-6">
-          {{ Form::submit('Save Changes', ['class' => 'btn btn-default btn-block']) }}
+       
+         
+        <a class="btn btn-default btn-block"  href="{{ route('meetings.show', $externalVisitor->meeting->first()->idMeeting) }}">Cancel</a>
         </div>
+      
       </div>
 
     </div>

@@ -1,21 +1,26 @@
  @extends('main')
 
-    @section('title', '| Lost Object Check-out')
+    @section('title', '| View Lost and Found')
 
     @section('assets')
     <link rel='stylesheet' href='/css/parsley.css' />
     @endsection
 
 @section('content')
-<div class="container">
+<div class="container"  ng-app="MyApp">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Object View</div>
-                <div class="panel-body">
-                  {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('losts.update', $lost->idLostFound))) !!}
+            <div class="panel panel-default" ng-controller="showInputController">
+                <div class="panel-heading"><b>Lost and Found Report</b></div>
+                                                <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+                  <div class="panel-body" ng-show="loading == true" >
 
-                      <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}">
+
+                  {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form')) !!}
+
+                      <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}" >
                             <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
 
                             <div class="col-md-6">
@@ -47,7 +52,7 @@
                             <label for="receiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
-                                <input id="finderName" type="text" class="form-control" name="receiverName" disabled="true" value="{{ $lost->finderName }}" required autofocus>
+                                <input id="finderName" type="text" class="form-control" name="receiverName" disabled="true" value="{{ $lost->receiverName }}" required autofocus>
 
                                 @if ($errors->has('receiverName'))
                                     <span class="help-block">
@@ -105,7 +110,14 @@
                             <div class="col-md-6" >
                             <p>
                                 <select class="form-control" name="lostFoundImportance" disabled="true">
-                                  <option value="">{{ $lost->itemImportance }}</option>
+                                 
+                                @if ($lost->itemImportance==3)
+                                  <option value="">High</option>
+                                  @elseif ($lost->itemImportance==2)
+                                  <option value="">Medium</option>
+                                  @else
+                                  <option value="">Small</option>
+                                  @endif
                                   
                                 </select>
 
@@ -129,10 +141,8 @@
                                                         
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Check-out
-                                </button>
-                                <a href="{{ route('losts.index') }}" class="btn btn-primary">Cancel</a>
+                               
+                                <a href="{{ route('losts.index') }}" class="btn btn-default btn-sm btn-block">Return</a>
                             </div>
                         </div>
                      {!! Form::close() !!}

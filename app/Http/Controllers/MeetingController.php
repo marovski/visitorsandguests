@@ -28,7 +28,7 @@ class MeetingController extends Controller
     {
 
 
-        $meetings = Meeting::orderBy('idMeeting', 'asc')->paginate(6);
+        $meetings = Meeting::orderBy('idMeeting', 'asc')->paginate(10);
 
 
         $user= User::all()->load('meetingHost');

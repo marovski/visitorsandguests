@@ -14,7 +14,7 @@ class LostFound extends Model
 
 	protected $table = 'lostItems';
 	protected $primaryKey = 'idLostFound';
-	public $timestamps = true;
+	
 
 
 
