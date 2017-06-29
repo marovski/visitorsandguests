@@ -82,7 +82,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="tel"  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
+                                <input id="visitorNPhone" type="tel" max=20  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">

@@ -58,7 +58,13 @@ class DeliverController extends Controller
     public function store(Request $request)
     {
        //validate data
-
+       $this->validate($request,[
+                'driverName' => 'required|min:1|max:50|string',
+                'driverID' => 'required|min:1|max:20|integer',
+                'vehicleLicensePlate' => 'required|min:1|max:50|integer',
+                'cargo' => 'required|max:100|string'
+            ]);    
+        
 
     
         //creating the models
