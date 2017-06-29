@@ -91,6 +91,8 @@
                                       <option value="4"> Gadget</option>
                                       @elseif (empty($lost->itemCategory))
                                       <option value=""> </option>
+                                      @elseif($lost->itemCategory==6)
+                                      <option value="2"> Document</option>
                                       @else
                                       <option value="5"> Cloth</option>
                                    
@@ -165,7 +167,7 @@
                           <div class="thumbnail">
                                     <div class="image">
     
-                        <img  src="{{ asset('images/'. $lost->photo)}}" height="150"  width="400" alt="Some awesome text"/>
+                        <img  src="{{ asset('images/'. $lost->photo)}}" height="235"  width="300">
                                         </div>
                                             </div>
                         </div>

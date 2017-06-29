@@ -52,13 +52,15 @@
 
                             <div class="col-md-6">
 
-                                <select class="form-group" name="itemCategory" ng-model="itemCategory" required style="margin-left: 4px;
-    margin-top: 9px;">
+                                <select class="form-control" name="itemCategory" ng-model="itemCategory" required>
                                     <option value="1"> Electronic</option>
                                       <option value="2"> Document</option> 
                                       <option value="3"> Money</option> 
                                       <option value="4"> Gadget</option>
                                       <option value="5"> Cloth</option>
+                                      <option value="6"> Other</option>
+
+
                                    
 
                                 </select>                                
