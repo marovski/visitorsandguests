@@ -50,6 +50,15 @@ class LostFoundController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+                'finderName' => 'required|min:1|max:100|string',
+                'finderPhone' => 'required|min:1|max:20|numeric',
+                'lostFoundItemSize' => 'required',
+                'itemCategory' => 'required',
+                'lostFoundImportance' => 'required',
+                'lostFoundDescription' => 'required|min:1|max:255',
+                'photo' => 'required'
+            ]);
         $lost = new LostFound();
 
         $lost->foundDate=Carbon::now('Europe/Lisbon');
