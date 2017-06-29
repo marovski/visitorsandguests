@@ -28,7 +28,7 @@ class MeetingController extends Controller
     {
 
 
-        $meetings = Meeting::orderBy('idMeeting', 'asc')->paginate(10);
+        $meetings = Meeting::orderBy('idMeeting', 'desc')->paginate(10);
 
 
         $user= User::all()->load('meetingHost');
@@ -213,11 +213,11 @@ class MeetingController extends Controller
       
        if (empty($currentMeeting->entryTime)) {
            $currentMeeting->entryTime = Carbon::now('Europe/Lisbon');
-
+            $currentMeeting->meetStatus=2;
         if ($currentMeeting->save()) {
 
 
-        Session::flash('success','The meeting check-in was successfully done! The meeting as ended!');
+        Session::flash('success','The meeting check-in was successfully done! The visitor as arrived!');
         
         return redirect()->back();
         
@@ -253,11 +253,12 @@ class MeetingController extends Controller
 
          if (empty($currentMeeting->exitTime)) {
            $currentMeeting->exitTime = Carbon::now('Europe/Lisbon');
+           $currentMeeting->meetStatus=4;
 
         if ($currentMeeting->save()) {
 
 
-        Session::flash('success','The meeting check-out was successfully done! The meeting as ended!');
+        Session::flash('success','The meeting check-out was successfully done! The meeting is finished!');
         
         return redirect()->back();
         

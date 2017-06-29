@@ -55,7 +55,7 @@
                                 <td> @if ($meeting->meetStatus === 1) 
                                       {{ 'Scheduled' }}
                                     @elseif ($meeting->meetStatus === 2) 
-                                        {{ 'Waiting Confirmation' }}
+                                        {{ 'Started' }}
                                     
                                     @elseif ($meeting->meetStatus === 3) 
                                         {{ 'Canceled' }}

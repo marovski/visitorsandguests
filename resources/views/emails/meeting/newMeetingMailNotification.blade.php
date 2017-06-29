@@ -8,26 +8,30 @@
 
 
 
-Você tem uma reunião marcada para {{ date('M j, Y', strtotime($mailInfo->meetStartDate)) }}.
+Tem uma reunião marcada para {{ date('M j, Y', strtotime($mailInfo->meetStartDate)) }}, às {{ date('H:i', strtotime($mailInfo->meetStartDate)) }}.
 
 Reunião {{$mailInfo->meetingName}} :
 
 Sala: {{$mailInfo->room}}<br>
+
 Motivo: {{$mailInfo->visitReason}}
 
+ @if(!empty( $mailInfo2->visitorName ))
 O seu código de barras:<br>
 
 @component('mail::panel')
 
- @if(!empty( $mailInfo2->visitorName ))
+
 {!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', 'C128') !!}
-@else
-{!! DNS1D::getBarcodeHTML('$mailInfo2->user_idUser', 'C128') !!}
-@endif
+
+
+
 
 @endcomponent
+@else
 
 
 Obrigado,<br>
 {{ config('app.name') }}
+@endif
 @endcomponent

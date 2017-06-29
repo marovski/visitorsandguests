@@ -75,6 +75,35 @@
                                 @endif
                             </div>
                         </div>
+                         <div class="form-group{{ $errors->has('itemCategory') ? ' has-error' : '' }}">
+                            <label for="itemCategory" class="col-md-4 control-label">Category: </label>
+
+                            <div class="col-md-6">
+
+                      <select class="form-group" name="itemCategory" disabled="" readonly="" required style="margin-left: 4px; margin-top:9px;">
+                                    @if ($lost->itemCategory==1)
+                                    <option value="1"> Electronic</option>
+                                    @elseif($lost->itemCategory==2)
+                                      <option value="2"> Document</option>
+                                      @elseif ($lost->itemCategory==3) 
+                                      <option value="3"> Money</option> 
+                                       @elseif ($lost->itemCategory==4)
+                                      <option value="4"> Gadget</option>
+                                      @elseif (empty($lost->itemCategory))
+                                      <option value=""> </option>
+                                      @else
+                                      <option value="5"> Cloth</option>
+                                   
+                                    @endif
+                                </select>                                
+
+                                @if ($errors->has('itemCategory'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('itemCategory') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('lostFoundDescription') ? ' has-error' : '' }}">
                             <label for="lostFoundDescription" class="col-md-4 control-label"> Description:</label>
@@ -131,9 +160,14 @@
                         </div>
 
                         <div class="form-group">
-                        <label for="image" class="col-md-4 control-label" >Photo Upload:</label>
+                        <label for="image" class="col-md-4 control-label" >Item Image:</label>
                         <div class="col-md-6">
-                        <img src="{{ asset('images/'. $lost->photo)}}" height="300" width="400">
+                          <div class="thumbnail">
+                                    <div class="image">
+    
+                        <img  src="{{ asset('images/'. $lost->photo)}}" height="150"  width="400" alt="Some awesome text"/>
+                                        </div>
+                                            </div>
                         </div>
                         </div>
 

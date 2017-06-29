@@ -10,17 +10,16 @@
 
     @section('content')
 
-        <div class="row">
+        <div class="row" ng-app="MyApp">
 
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create New External Visitor for Meeting - {{$meeting->meetingName}}</div>
-                            <div class="panel-body">
-
-
-
-                
-                    <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()">
+                <div class="panel-body"  ng-controller="showInputController"> 
+                            <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+  <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()" ng-show="loading == true" >
                           
                         {{ csrf_field() }}
                            <input id="idMeeting" name="idMeeting" class="ng-hide" type="number"  value="{{$meeting->idMeeting}}"/>
@@ -40,12 +39,13 @@
                             
                         </div>
                          <div class="form-group{{ $errors->has('visitorCitizenCardType') ? ' has-error' : '' }}">
-                            <label for="visitorCitizenCardType" class="col-md-4 control-label">Citizen Identification Type:</label>
+                            <label for="visitorCitizenCardType" class="col-md-4 control-label">Identification Type:</label>
 
                             <div class="col-md-6"  name="visitorCitizenCardType">
-                                <select class="form-control">
-                                  <option value="1">Passport</option>
-                                  <option value="2">Citizen Card</option>
+                                <select class="form-control" name="visitorCitizenCardType" ng-model="visitorCitizenCardType">
+                                 <option value="1" >Passport</option>
+                                    <option value="2" >Citizen Card</option>
+                                    <option value="3" >Driver License</option>
                                  
                                 </select>
 
@@ -59,16 +59,45 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}">
-                            <label for="visitorCitizenCard" class="col-md-4 control-label">Citizen Card/Passaport Number:</label>
+                      <div ng-show="visitorCitizenCardType == 1" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}"   >
+                            <label for="visitorCitizenCard" class="col-md-4 control-label">Passport Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}"  autofocus  ng-model="visitorCitizenCard"></input>
+                                <input id="visitorCitizenCard" max="9" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
 
                                 @if ($errors->has('visitorCitizenCard'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('visitorCitizenCard') }}</strong>
-                                    </span>
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('visitorCitizenCard') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div ng-show="visitorCitizenCardType == 2" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}"  >
+                            <label for="visitorCitizenCard" class="col-md-4 control-label">Citizen Card Number:</label>
+
+                            <div class="col-md-6">
+                                <input id="visitorCitizenCard" max="9" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
+
+                                @if ($errors->has('visitorCitizenCard'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('visitorCitizenCard') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div  ng-show="visitorCitizenCardType == 3" class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}" >
+                            <label for="visitorCitizenCard" class="col-md-4 control-label">Driver License Number:</label>
+
+                            <div class="col-md-6">
+                                <input id="visitorCitizenCard" max="9" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
+
+                                @if ($errors->has('visitorCitizenCard'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('visitorCitizenCard') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -81,7 +110,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="text"  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
+                                <input id="visitorNPhone" type="tel"  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">

@@ -40,14 +40,72 @@
     
     <div class="col-sm-9">
       <div class="well">
-        <h4>Dashboard</h4>
-        <p>Some text..</p>
+     
+        <!-- prepare a DOM container with width and height -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // specify chart configuration item and data
+        var option = {
+
+            title: {
+                text: '{{ date('M') }}' + ' Regists'
+            },
+            tooltip: { trigger: 'axis'},
+            legend: {
+                data:['Sales']
+            },
+            xAxis: {
+                data: ["Deliveries","Drops","LostF Items","Meetings","Visitors"]
+            },
+            yAxis: {},
+            series: [{
+                name: 'regists',
+               
+                type: 'bar',
+                data: [{{ $deliveries->count() }},{{  $drops->count() }}, {{ $lostItems->count() }}, {{ $meetings->count() }}, {{ $visitors->count() }}]
+            }]
+        };
+
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
       </div>
-      <div class="row">
-        <div class="col-sm-3">
+      <div class="row" >
+        <div class="col-sm-3" >
           <div class="well">
-            <h4>Users</h4>
-            <p>1 Million</p> 
+     
+             <div id="main1" style="width: 600px;height:400px;"></div>
+            <script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('main1'));
+
+        // specify chart configuration item and data
+        var option = {
+           color: 'blue',
+            title: {
+                text: 'Users'
+            },
+            tooltip: {},
+            legend: {
+                data:['users']
+            },
+            xAxis: {
+                data: ["Users"]
+            },
+            yAxis: {},
+            series: [{
+                name: 'regists',
+                type: 'line',
+                data: [{{ $users->count() }}]
+            }]
+        };
+
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
           </div>
         </div>
         <div class="col-sm-3">

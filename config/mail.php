@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'nanium@nanium.com'),
-        'name' => env('MAIL_FROM_NAME', 'Nanium'),
+        'name' => env('MAIL_FROM_NAME', 'Nanium Visitor and Guest Management'),
     ],
 
     /*

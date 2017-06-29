@@ -182,6 +182,11 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
        //Image Upload Service Provider
         Intervention\Image\ImageServiceProvider::class,
+
+
+
+        
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
        
 
     ],

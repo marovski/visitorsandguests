@@ -18,19 +18,30 @@
 
  <div class="row">
             <div class="col-md-8">
-            <h3>Your next meetings:</h3>
+            <h3>Lost and Found items:</h3>
                 
-                @foreach($meetings as $meet)
+                @foreach($lostItems as $item)
 
-                    <div class="post">
-                        <h4>{{ $meet->meetingName }}</h4> <h5>at :</h5> {{ $meet->meetStartDate }} 
-                        <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
-                        <a href="{{ url('meetings/') }}" class="btn btn-primary btn-sm">See More</a>
+                    <div class="lostitems">
+                    <div class="thumbnail">
+    <div class="image">
+    <b>Item: {{ $item->itemCategory }}</b>
+        <img  src="{{ asset('images/'. $item->photo)}}" height="150"  width="400" alt="Some awesome text"/>
+    </div>
+</div>
+                     
+                        <h5>Found Date:</h5> {{ $item->foundDate ? date('M j, Y H:i', strtotime($item->foundDate)) : '' }} 
+                        
+                        <a href="{{ url('/losts/' . $item->idLostFound) }}" class="btn btn-primary btn-sm">See More</a>
                     </div>
+                
 
                     <hr>
 
                 @endforeach
+                      <div class="tedelivert-center">
+                 {!! $lostItems->links(); !!}
+                     </div>
 
             </div>
         <div class="col-md-3 col-md-offset-1">

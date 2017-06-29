@@ -58,7 +58,7 @@
 							<label for="driverID" class="col-md-4 control-label">Passport Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
+								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" required autofocus>
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">
@@ -72,7 +72,7 @@
 							<label for="driverID" class="col-md-4 control-label">Citizen Card Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverName') }}" required autofocus>
+								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" required autofocus>
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">

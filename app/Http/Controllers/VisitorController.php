@@ -15,7 +15,7 @@ class VisitorController extends Controller
 {
 
      public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => ['selfcheckIn']]);
     }
     /**
      * Display a listing of the resource.
@@ -50,6 +50,7 @@ class VisitorController extends Controller
     public function addInternalVisitor($i)
     {    
         $id=Auth::user()->idUser;
+
         $users= User::where('idUser', '!=', $id)->get();
 
         $meetingRestricted=Meeting::findOrFail($i);
@@ -79,8 +80,9 @@ class VisitorController extends Controller
 
         if($user->meetings->contains($meetingData)){
     
-        
-        return redirect()->back()->with('warning','This Visitor could not be assigned. Duplicate entry!');
+        Session::flash('danger','This visitor could not be assigned. Duplicate entry!');
+        return redirect()->back();
+
 
         }
         else{
@@ -91,13 +93,21 @@ class VisitorController extends Controller
 
         if($meetingData->email=='1')
         {
-            Mail::to($user->email)->send(new NewMeetingNotification($meetingData, $user));
+           if(Mail::to($user->email)->send(new NewMeetingNotification($meetingData, $user))){
+            Session::flash('success','The email was sent!');
+
+           } else{
+            Session::flash('danger','The email was not sent!');
+           }
         }
             
 
            
-            return view('meetings.show', compact('meetingData'));
-        } 
+            
+        }
+        Session::flash('success','The internal visitor was assigned to the meeting, with success!');
+
+        return view('meetings.show', compact('meetingData'));
         }
                 
        
@@ -214,6 +224,15 @@ class VisitorController extends Controller
         
         
         }
+
+
+      public function  selfcheckIn (){
+
+        return view('externalVisitor.selfcheckIn')
+
+
+
+      }
 
     /**
      * Remove the specified resource from storage.

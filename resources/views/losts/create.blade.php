@@ -47,8 +47,30 @@
                                 @endif
                             </div>
                         </div>
+                    <div class="form-group{{ $errors->has('itemCategory') ? ' has-error' : '' }}">
+                            <label for="itemCategory" class="col-md-4 control-label">Category: </label>
 
-                        <div class="form-group{{ $errors->has('lostFoundDescription') ? ' has-error' : '' }}">
+                            <div class="col-md-6">
+
+                                <select class="form-group" name="itemCategory" ng-model="itemCategory" required style="margin-left: 4px;
+    margin-top: 9px;">
+                                    <option value="1"> Electronic</option>
+                                      <option value="2"> Document</option> 
+                                      <option value="3"> Money</option> 
+                                      <option value="4"> Gadget</option>
+                                      <option value="5"> Cloth</option>
+                                   
+
+                                </select>                                
+
+                                @if ($errors->has('itemCategory'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('itemCategory') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div  ng-show="itemCategory != 0" class="form-group{{ $errors->has('lostFoundDescription') ? ' has-error' : '' }}"  >
                             <label for="lostFoundDescription" class="col-md-4 control-label"> Description:</label>
 
                             <div class="col-md-6">
