@@ -44,11 +44,13 @@ use Carbon\Carbon;?>
                     </div>
                 </div>
                 </div>
-
+                <div class="header b-b b-light hidden-print">
+     
                 <div class="col-md-6 col-md-offset-4">
                  <button href="#" class="btn btn-default btn-sm btn-block" onClick="window.print();">Print</button>
                 </button>
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
+                </div>
                 </div>              
                 </div>
                 </div>
