@@ -39,6 +39,9 @@ Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.create
 
 Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
 
+Route::get('/visitors/badge/', ['as' => 'visitors.badge',
+                                                        'uses' => 'VisitorController@badge'
+                                                        ]); 
 
 
 //Extra methods beyond CRUD for Meeting Functionalities

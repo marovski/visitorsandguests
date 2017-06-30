@@ -35,7 +35,7 @@ function showInputController($scope, $timeout){
    
     $scope.loading = false;
     $scope.driverIDType='0';
-     $scope.visitorCitizenCardType='0';
+     $scope.visitorCitizenCardType='1';
 
       $scope.itemCategory='0';
 

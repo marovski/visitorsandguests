@@ -52,12 +52,12 @@ class LostFoundController extends Controller
     {
         $this->validate($request,[
                 'finderName' => 'required|min:1|max:100|string',
-                'finderPhone' => 'required|min:1|max:20|numeric',
+                'finderPhone' => 'required|min:1|max:25',
                 'lostFoundItemSize' => 'required',
                 'itemCategory' => 'required',
                 'lostFoundImportance' => 'required',
                 'lostFoundDescription' => 'required|min:1|max:255',
-                'photo' => 'required'
+                'image' => 'required'
             ]);
         $lost = new LostFound();
 

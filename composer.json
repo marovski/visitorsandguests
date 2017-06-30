@@ -14,6 +14,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
         "milon/barcode": "^5.3",
+        "nexmo/laravel": "^0.4.0",
         "spatie/laravel-feed": "^1.4"
     },
     "require-dev": {
