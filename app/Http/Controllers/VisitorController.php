@@ -223,6 +223,13 @@ class VisitorController extends Controller
         if($meet->email=='1')
         {
             Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors));
+
+            $nexmo = app('Nexmo\Client');
+            $nexmo->message()->send([
+            'to' => '351918064359 ',
+            'from' => '351918064359 ',
+            'text' => 'Using the instance to send a message.'
+]);
         }
             
 
