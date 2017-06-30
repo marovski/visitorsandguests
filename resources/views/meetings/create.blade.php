@@ -125,7 +125,7 @@
                             <label for="sensibility" class="col-md-4 control-label">Sensibility:</label>
 
                             <div class="col-md-6">
-                             <label class="radio-inline"><input type="radio" name="sensibility" value="1">Small</label>
+                             <label class="radio-inline"><input type="radio" name="sensibility" value="1" checked>Small</label>
                              <label class="radio-inline"><input type="radio" name="sensibility" value="2">Medium </label>
                              <label class="radio-inline"><input type="radio" name="sensibility" value="3">High</label>
                              
