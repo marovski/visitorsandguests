@@ -22,7 +22,7 @@ O seu código de barras:<br>
 @component('mail::panel')
 
   <div align="center">
-{!! DNS2D::getBarcodeSVG("@{{ $mailInfo2->idVisitor  }}", 'QRCODE') !!}
+{!! DNS2D::getBarcodeSVG("$mailInfo2->idVisitor, $mailInfo2->visitorName, $mailInfo2->visitorCompanyName", 'QRCODE') !!}
 
  </div> 
 

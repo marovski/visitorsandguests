@@ -31,7 +31,7 @@ use Carbon\Carbon;?>
                         {{ $meetingE->meetingName }}
                     </p>
                     <div align="center">
-                    {!! DNS2D::getBarcodeSVG("@{{ $externalVisitor->idVisitor, $externalVisitor->visitorName, $externalVisitor->visitorCompanyName }}", 'QRCODE') !!}
+                    {!! DNS2D::getBarcodeSVG(" $externalVisitor->idVisitor, $externalVisitor->visitorName, $externalVisitor->visitorCompanyName", 'QRCODE') !!}
                     </div>
                     <br>
                     <br>
