@@ -3,7 +3,10 @@
   @section('title','| HomePage')
 
     @section('content')
-    
+<header class="header b-b b-light hidden-print" align="right">
+        <button href="#" class="tn btn-m btn-icon btn-success" onClick="window.print();"><span class="glyphicon glyphicon-print">Print</span></button>
+        <p></p>
+</header>  
 <nav class="navbar navbar-inverse visible-xs">
   <div class="container-fluid">
     <div class="navbar-header">
