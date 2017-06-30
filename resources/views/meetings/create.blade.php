@@ -5,22 +5,28 @@
     @section('title', '| Create New Meeting')
 
     @section('assets')
-    <link rel='stylesheet' href='/css/parsley.css' />
+    
     @endsection
 
     @section('content')
-    <div class="container" ng-app="MyApp" ng-controller="showInputController" > 
-        <div class="row">
+<link rel='stylesheet' href='/css/parsley.css' />
+    <link rel='stylesheet' href='/css/jquery.datetimepicker.css'>
+    <script src='/js/jquery.datetimepicker.full.js'>
+    <script src="/js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/jquery.datetimepicker.css"/>
+    
+<script src="/js/jquery.datetimepicker.full.js"></script>
+    
+    
+    <div class="container" ng-app="MyApp" > 
+ <div class="row">
 
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create Meeting</div>
-                    <div class="panel-body" >
-                          <!-- LOADING ICON -->
-      <!-- show loading icon if the loading variable is set to true -->
-    <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+                    <div class="panel-body">
 
-                        <form  class="form-horizontal" ng-show="loading == true"   role="form" method="POST" action="{{ route('meetings.store') }}" data-parsley-validate="">
+                        <form  class="form-horizontal"  role="form" method="POST" action="{{ route('meetings.store') }}" data-parsley-validate="">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('meetingName') ? ' has-error' : '' }}">
@@ -40,8 +46,8 @@
                                 <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetStartDate" type="datetime-local" class="form-control" name="meetStartDate" value="{{ old('meetStartDate') }}" required autofocus>
-
+	                                <input type="text" class="form-control" value="{{date('Y/m/d H:i')}}" id="meetStartDate" name="meetStartDate">
+	
                                     @if ($errors->has('meetStartDate'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('meetStartDate') }}</strong>
@@ -54,7 +60,7 @@
                                 <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetEndDate" type="datetime-local" class="form-control" name="meetEndDate" value="{{ old('meetEndDate') }}"  autofocus>
+                                    <input id="meetEndDate" type="text" class="form-control" value="{{date('Y/m/d H:i',strtotime("+60 minutes"))}}" name="meetEndDate"/>
 
                                     @if ($errors->has('meetEndDate'))
                                     <span class="help-block">
@@ -139,7 +145,7 @@
                             <p>
                                 <select class="form-control" value="scheduled" name="meetStatus">
                                   <option value="1">Scheduled</option>
-                                  <option disabled value="2">Started</option>
+                                  <option disabled value="2">Waiting Confirmation</option>
                                   <option  disabled="" value="3">Canceled</option>
                                   <option  disabled="" value="4">Finished</option>
                               </select>
@@ -183,10 +189,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-basic btn-sm btn-block">
+                        <button type="submit" class="btn btn-lg btn-block btn-basic btn-h1-spacing">
                            Save Meeting
                        </button>
-            <a class="btn btn-default btn-sm btn-block"  href="{{ route('meetings.index') }}"> Cancel</a>
+            <a class="btn btn-default btn-block"  href="{{ route('meetings.index') }}"><i class="fa fa-close"></i> Cancel</a>
         
 
 
@@ -207,9 +213,7 @@
 
 
     </div>
-
-
-         <div class="col-md-4" ng-show="loading == true" >
+         <div class="col-md-4" >
 
       <div class="well">
      
@@ -217,21 +221,18 @@
         <dl class="dl-horizontal">
 
           <label>All Your Meetings</label>
-
-<section class="panel panel-default" >
-<i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
         <div class="table-responsive">
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
-                      
+                       <th width="">Start</th>
+                       <th width="">End</th>
                          <th width="">Topic</th>
                             <th width="">Visit Reason</th>
                            
                             <th width="">Status</th>
                         
-                           <th width="">Start</th>
-                       <th width="">End</th>
+                          
                               
                                
                           
@@ -243,7 +244,9 @@
  
                             <tr>
           
-                            <th>{{ $meeting->meetingName }}</th>
+                                <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
+                                 <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
+                             <th>{{ $meeting->meetingName }}</th>
 
                                 <td>{{ $meeting->visitReason }}</td>
                           
@@ -258,9 +261,7 @@
                                      @elseif ($meeting->meetStatus === 4) 
                                         {{ 'Finished' }}
                                      @endif</td>
-                                      <td>{{ date('H:i', strtotime($meeting->meetStartDate)) }}-{{ date('m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
-                                 <td>{{ date('H:i', strtotime($meeting->meetEndDate)) }}-{{ date('m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
-                            
+                                 
                              
                          
                                
@@ -274,12 +275,9 @@
 
                 </tbody>
             </table>
-              <div class="text-center">
-                {!! $meetings->links(); !!}
-            </div>
        
         </div>
-</section>
+
        </dl>
         <hr>
 
@@ -290,10 +288,23 @@
   
   </div>
   </div>
-  </div>
    
     </div>
 
 
+<script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('en');
+
+$('#meetStartDate').datetimepicker();
+$('#meetEndDate').datetimepicker();
+$( "#meetStartDate" ).datetimepicker({ minDate: 0 });
+$( "#meetEndDate" ).datetimepicker({ minDate: 0});
+
+</script>
+</html>
 
     @endsection
