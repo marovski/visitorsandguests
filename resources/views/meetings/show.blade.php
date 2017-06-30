@@ -125,7 +125,7 @@
           </div>
          
           <div class="col-sm-4">
-           <form method="POST" action="{{ route('meetings.destroy', '$meetingData->idMeeting') }}" >
+           <form method="POST" action="{{ route('meetings.destroy', $meetingData->idMeeting) }}" >
              <div class="form-group">
                    
                         <button type="submit" class="btn btn-danger btn-block">

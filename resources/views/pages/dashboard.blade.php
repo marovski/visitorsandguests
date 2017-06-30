@@ -32,9 +32,7 @@
                         <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
                             <a href="{{ ('tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ ('forms') }}"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
+                      
                       
                     </ul>
                 </div>
@@ -50,8 +48,8 @@
         <div class="col-sm-3" style="width: 80%;" ng-controller="ShowController">
     
 
-         
-        @yield('dashboard')
+         <div>     @yield('dashboard1')</div>
+     <div>@yield('dashboard')</div>   
 
         </div>
        </div>
