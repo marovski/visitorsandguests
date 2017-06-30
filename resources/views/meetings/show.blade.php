@@ -38,7 +38,7 @@
               <th>Email</th>
               <th>Company</th>
               <th>ID Number</th>
-              <th width="70px"></th>
+              <th width="100px"></th>
             </tr>
           </thead>
 
@@ -52,6 +52,8 @@
               <td>
                 <a href="{{ route('visitors.edit', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a href="{{ route('visitors.destroy', $visitorEx->idVisitor) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="{{ route('visitors.show',$visitorEx->idVisitor) }}" class="btn btn-xs btn-icon btn-success"><span class="glyphicon glyphicon-print"></span></a>
+              </td>
               </td>
             </tr>
             @endforeach

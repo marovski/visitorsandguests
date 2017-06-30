@@ -125,7 +125,27 @@ class VisitorController extends Controller
      */
     public function show($id)
     {
-        //
+        $externalVisitor = Visitor::findOrFail($id);
+    
+
+        return view('externalVisitors.badge', compact('externalVisitor') ) ;  
+        
+    }
+
+      /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function badge($id)
+    {
+        $externalVisitor = Visitor::findOrFail($id);
+        
+    
+
+        return view('externalVisitors.badge', compact('externalVisitor') ) ;  
+        
     }
 
     /**
@@ -138,6 +158,7 @@ class VisitorController extends Controller
     {
         
         $externalVisitor = Visitor::findOrFail($id);
+
     
 
         return view('externalVisitors.edit', compact('externalVisitor') ) ;   
