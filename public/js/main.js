@@ -8,13 +8,20 @@ var app= angular.module('MyApp', []).controller('ShowController', ShowController
             $scope.IsVisible = false;
             $scope.IsVisible2=false;
          
-            
-            $scope.ShowHide = function () {
+            console.log($scope.IsVisible);
+            $scope.ShowHide = function (id) {
            //If DIV is visible it will be hidden and vice versa.
+            if (id==1) {
 
-          $scope.IsVisible = $scope.IsVisible ? false : true;
+        $scope.IsVisible = $scope.IsVisible ? false : true;
+            }else
+            {
+
+              $scope.IsVisible2 = $scope.IsVisible2 ? false : true;
+            }
+         
                 
-  				$scope.IsVisible2 = $scope.IsVisible2 ? false : true;
+  				
 
 
 
@@ -329,14 +336,7 @@ $scope.showDeliver = function(pid){
 
 
 
-  function ConfirmExternVisitor()
-  {
-  var x = confirm("Are you sure you want to add this visitor?");
-  if (x)
-    return true;
-  else
-    return false;
-  }
+
 
 
   

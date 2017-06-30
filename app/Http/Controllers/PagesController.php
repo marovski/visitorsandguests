@@ -65,16 +65,6 @@ public function postContact(Request $request) {
 	}
 
 
-	public function getDashboard(){
-	$currentMonth = date('m');
-	$lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-	$meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-	$visitors = Visitor::orderBy('idVisitor','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-	$deliveries = Deliver::orderBy('idDeliver','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-	$drops = Drop::orderBy('idDrop','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth]);
-	$users = User::orderBy('idUser','desc');
 
-		return view('pages.dashboard', compact('drops','visitors','deliveries','meetings','lostItems', 'users'));
-	}
 
 }

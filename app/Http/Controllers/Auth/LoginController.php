@@ -63,7 +63,10 @@ class LoginController extends Controller
        $loguser= User::where($match) -> first();
 
        if(empty($loguser))  {
-        abort(404);
+
+        Session::flash('danger', 'Incorrect user, please insert the correct username and email!');
+
+       return redirect()->back();
 
       }
 

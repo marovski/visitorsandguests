@@ -18,17 +18,40 @@
 
  <div class="row">
             <div class="col-md-8">
-            <h3>Lost and Found items:</h3>
-                
+            
+
+            </div>
+        <div class="col-md-3 col-md-offset-1">
+    <h3 style="margin-left: 68px">Lost and Found</h3>
+               
                 @foreach($lostItems as $item)
 
-                    <div class="lostitems">
-                    <div class="thumbnail">
-    <div class="image">
-    <b>Item: {{ $item->itemCategory }}</b>
-        <img  src="{{ asset('images/'. $item->photo)}}" height="150"  width="400" alt="Some awesome text"/>
-    </div>
-</div>
+                    <div class="mySlides" >
+                       <b style="color: #0078ab;
+    margin-left: 93px;">Category
+
+     
+
+
+                       @if($item->itemCategory==1){
+                       Electronic
+                       }@elseif($item->itemCategory==2){
+                       Document
+                       }@elseif($item->itemCategory==3){
+                       Money
+                       }@elseif($item->itemCategory==4){
+                       Gadget
+                       }@elseif($item->itemCategory==5){
+                       Cloth
+                       }@else Other
+                       @endif
+                     </b>
+            <div class="thumbnail">
+               <div class="image">
+        
+              <img src="{{ asset('images/'. $item->photo)}}" height="150"  width="200" style="margin-left: 35px;" alt="Some awesome text"/>
+      </div>
+                </div>
                      
                         <h5>Found Date:</h5> {{ $item->foundDate ? date('M j, Y H:i', strtotime($item->foundDate)) : '' }} 
                         
@@ -42,14 +65,15 @@
                       <div class="tedelivert-center">
                  {!! $lostItems->links(); !!}
                      </div>
-
-            </div>
-        <div class="col-md-3 col-md-offset-1">
-    
-    
+{{--     
 <!-- start feedwind code --> 
-<script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="30616/"></script> <!-- end feedwind code -->
-        </div>
+<script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="30616/"></script> <!-- end feedwind code --> --}}
+      <script>
+            var myIndex = 0;
+            carousel();
+</script>
+</div>
+
       </div>
 @endsection
   

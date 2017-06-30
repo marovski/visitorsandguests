@@ -18,9 +18,25 @@
 
                                                     <!-- LOADING ICON -->
     		    <!-- show loading icon if the loading variable is set to true -->
-   			 <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
+   			<div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
             <div class="panel-body"  ng-show="loading == true" > 
+            <form  >
+            	
+            	  <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
+                            <label for="visitorName" class="col-md-4 control-label"> Name:</label>
 
+                            <div class="col-md-6">
+                    <input id="visitorName" type="text" class="form-control" name="visitorName" value=""  autofocus  ng-model="visitorName"  
+                              >
+
+                                @if ($errors->has('visitorName'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('visitorName') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+            </form>
 			<div class="col-md-6" ng-controller="BarcodeCtrl">     
 			<div data-barcode-scanner="barcodeScanned"></div>
 			<div>

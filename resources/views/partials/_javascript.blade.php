@@ -11,6 +11,7 @@
 
   <!-- including ECharts file -->
     <script src="/js/echarts.common.min.js"></script>
+    <script src="/node_modules/chart.js/dist/Chart.js"></script>
 
  <script src="https://www.google.com/recaptcha/api.js"></script>
 
@@ -19,6 +20,7 @@
 <script src="/jpeg_camera/jpeg_camera.min.js" type="text/javascript"></script>
 <script src="/jpeg_camera/jpeg_camera_with_dependencies.min.js" type="text/javascript"></script>
 <script src="/js/camera.js"></script>
+<script src="/js/utilities.js"></script>
  <!-- load our application -->
 
 <script src="/js/main.js"></script>

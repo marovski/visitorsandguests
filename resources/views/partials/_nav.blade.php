@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="">Visitors and Guests Management System</a>
+      <a class="navbar-brand" href="">Guests and Visitors</a>
       
     </div>
 
@@ -26,7 +26,7 @@
         @if (Auth::check())
 
         <li class="dropdown">
-          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ Auth::user()->username }} <span class="glyphicon glyphicon-user"></span></a>
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;"><img src="../images/{{ Auth::user()->photo }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">     {{ Auth::user()->username }} <span class="caret"></span></a>
          
           <ul class="dropdown-menu">
 

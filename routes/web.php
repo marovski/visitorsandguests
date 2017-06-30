@@ -16,9 +16,17 @@
 Route::group(['middleware' => ['web']], function () {
 
  
+Route::get('search',array('as'=>'search','uses'=>'SearchController@search'));
+Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 
- 
 
+ Route::get('denied', array('as' => 'denied', function()
+{
+    return View::make('errors.401');
+}) );
+
+
+ Route::get('/dashboard/barcharts', array('as' => 'dashboard.barcharts', 'uses'=>'DashboardController@getBarChart'));
 
 
 //Extra methods beyond CRUD for Visitor Functionalities
@@ -94,7 +102,7 @@ Route::resource('losts', 'LostFoundController');
 Route::resource('meetings','MeetingController');
 
 //Initial Pages
-Route::get('dashboard', 'PagesController@getDashboard');
+Route::get('dashboard', 'DashboardController@getDashboard');
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');

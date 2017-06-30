@@ -23,4 +23,25 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
+
+    //    /**
+    //  * Handle an incoming request.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  \Closure  $next
+    //  * @return mixed
+    //  */
+    // public function handle($request, Closure $next)
+    // {
+    //     if ($request->server('AUTH_USER') && ($user = User::where('username', $request->server('AUTH_USER'))->first()))
+    //     {
+    //         $this->auth->login($user);
+    //     }
+    //     else
+    //     {
+    //         return redirect()->guest('auth/login');
+    //     }
+
+    //     return $next($request);
+    // }
 }
