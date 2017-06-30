@@ -178,7 +178,7 @@
 
                     <div class="col-md-6">
 
-                        <input id="sendmail" type="checkbox"  name="sendmail" value="1" >
+                        <input id="sendmail" type="checkbox"  name="sendmail" value="1" checked>
 
                         @if ($errors->has('sendmail'))
                         <span class="help-block">
