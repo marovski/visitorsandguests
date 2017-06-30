@@ -60,9 +60,15 @@
                         <div class="form-group{{ $errors->has('dropSize') ? ' has-error' : '' }}">
                             <label for="dropSize" class="col-md-4 control-label">Item:</label>
                              <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="dropSize" disabled="true"  checked="checked" value="">{{ $drop->dropSize }}</label>
-                                
-
+                                <label class="radio-inline"><input type="radio" name="dropSize" disabled="true"  checked="checked" value="">
+                                @if ($drop->dropSize=="L")
+                                Large 
+                                @elseif($drop->dropSize=="M")
+                                Medium
+                                @elseif($drop->dropSize=="S") 
+                                Small
+                                @endif
+                                </label>
                                 @if ($errors->has('dropSize'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('dropSize') }}</strong>
@@ -76,10 +82,16 @@
 
                             <div class="col-md-6" >
                             <p>
-                                <select class="form-control" name="dropImportance" disabled="true">
-                                  <option value="">{{ $drop->dropImportance }}</option>
-                                  
+                                <select class="form-control" name="dropImportance" disabled="true">    
+                                @if ($drop->dropImportance==3)
+                                  <option value="">High</option>
+                                  @elseif ($lost->dropImportance==2)
+                                  <option value="">Medium</option>
+                                  @else
+                                  <option value="">Small</option>
+                                  @endif
                                 </select>
+                                  
 
                                 @if ($errors->has('dropImportance'))
                                     <span class="help-block">
