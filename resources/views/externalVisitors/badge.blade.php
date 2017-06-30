@@ -15,9 +15,8 @@ use Carbon\Carbon;?>
     <div class="container" ng-app="MyApp" style="width: 550px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="width: 400px; height: 260px;">
+            <div class="panel panel-default" style="width: 400px; height: 225px;">
                 <div class="panel-body" ng-controller="showInputController">
-                {!! Form::open(array('route'=>'visitors.badge')) !!}
                 <div class="form-group" style="">
                 <div class="row">
                 <div class="col-md-6" style="width: 400px">
@@ -25,6 +24,7 @@ use Carbon\Carbon;?>
                     <img src="../images/nanium.jpg">
                      <h5 style="">Expires at: {{ date('d-m-Y', strtotime($current = Carbon::now()))}}</h5>
                     </div>
+                    <br>   
                     <div class="row"> 
                     <div class="col-xs-6">         
                     <h4 align="left">Visitor: {{ $externalVisitor->visitorName }}</h4>
@@ -34,6 +34,7 @@ use Carbon\Carbon;?>
                     Host: {{ $user->find($meetingE->meetIdHost)->username}}
                     </p>
                     </div>
+                    <br>
                     <div class="col-xs-6 text-right">
                     {!! DNS2D::getBarcodeSVG(" $externalVisitor->idVisitor, $externalVisitor->visitorName, $externalVisitor->visitorCompanyName", 'QRCODE') !!}
                     </div>
@@ -43,15 +44,16 @@ use Carbon\Carbon;?>
                     </div>
                 </div>
                 </div>
+
+                <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-basic btn-sm btn-block">
+                Save Drop
+                </button>
+                <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
+                </div>              
                 </div>
-                {!! Form::close() !!}               
-          
                 </div>
-                <br><br>
-                <br><br>
-                <div class="header b-b b-light hidden-print">
-                <button href="#" class="btn btn-m btn-info pull-right" onClick="window.print();">Print</button>     
-                </div>  
+
             </div>
         </div>
     </div>
