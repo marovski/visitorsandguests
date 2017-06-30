@@ -43,8 +43,8 @@
 
                             <div class="col-md-6"  name="visitorCitizenCardType">
                                 <select class="form-control" name="visitorCitizenCardType"  ng-model="visitorCitizenCardType">
-                                 <option value="1" selected>Passport</option>
-                                    <option value="2" >Citizen Card</option>
+                                 <option value="1" >Passport</option>
+                                    <option value="2" selected>Citizen Card</option>
                                     <option value="3" >Driver License</option>
                                  
                                 </select>
@@ -63,7 +63,7 @@
                             <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" max="9" type="text" class="form-control" required name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" required autofocus>
+                                <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus>
 
                                 @if ($errors->has('visitorCitizenCard'))
                                 <span class="help-block">
@@ -82,7 +82,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="tel" max=20  class="form-control" required name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
+                                <input id="visitorNPhone" type="text" max=20  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">

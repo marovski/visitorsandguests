@@ -10,28 +10,26 @@
 
 Tem uma reunião marcada para {{ date('M j, Y', strtotime($mailInfo->meetStartDate)) }}, às {{ date('H:i', strtotime($mailInfo->meetStartDate)) }}.
 
-Reunião {{$mailInfo->meetingName}} :
+<b>Reunião:</b> {{$mailInfo->meetingName}} 
 
-Sala: {{$mailInfo->room}}<br>
+<b>Sala:</b> {{$mailInfo->room}}<br>
 
-Motivo: {{$mailInfo->visitReason}}
+<b>Tópico:</b> {{$mailInfo->visitReason}}
 
  @if(!empty( $mailInfo2->visitorName ))
-O seu código de barras:<br>
+Código de barras identificativo da reunião:<br>
 
 @component('mail::panel')
 
   <div align="center">
-{!! DNS2D::getBarcodeSVG("$mailInfo2->idVisitor, $mailInfo2->visitorName, $mailInfo2->visitorCompanyName", 'QRCODE') !!}
-
+{!! DNS2D::getBarcodeSVG("Id Meeting:$mailInfo->idMeeting,Id Visitor:$mailInfo2->idVisitor, Visitor Name:$mailInfo2->visitorName, Visitor Email:$mailInfo2->visitorEmail", 'QRCODE') !!}
  </div> 
-
-
 @endcomponent
-@else
-
-
+@endif
+@if(empty($mailInfo2->visitorCitizenCard))
+Para esta reunião é <b>obrigatória</b> a sua identificação . Por favor traga o seu documento de identificação.
+@endif<br>
+<br>
 Obrigado,<br>
 {{ config('app.name') }}
-@endif
 @endcomponent
