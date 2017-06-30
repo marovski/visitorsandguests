@@ -22,7 +22,7 @@ O seu código de barras:<br>
 @component('mail::panel')
 
 
-{!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', 'C128') !!}
+{!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', 'C128', 1,35) !!}
 
 
 
