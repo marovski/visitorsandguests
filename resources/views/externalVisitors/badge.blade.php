@@ -47,7 +47,7 @@ use Carbon\Carbon;?>
 
                 <div class="col-md-6 col-md-offset-4">
                 <button type="submit" class="btn btn-basic btn-sm btn-block">
-                Save Drop
+                Print
                 </button>
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
                 </div>              
