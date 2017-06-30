@@ -21,10 +21,10 @@ O seu código de barras:<br>
 
 @component('mail::panel')
 
+  <div align="center">
+{!! DNS2D::getBarcodeSVG("@{{ $mailInfo2->idVisitor  }}", 'QRCODE') !!}
 
-{!! DNS1D::getBarcodeHTML("@{{ $mailInfo2->idVisitor  }}", 'QRCODE', 1,35) !!}
-
-
+ </div> 
 
 
 @endcomponent
