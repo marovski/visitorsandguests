@@ -1,8 +1,8 @@
-         @extends ('pages.dashboard')
+@extends ('pages.dashboard')
 @section('title','| Bar Charts')
 
 @section('dashboard1')
-
+<input type="button" value="Line Chart" ng-click="ShowHide(2)">
 
           <div class="well" ng-show="IsVisible2">
      

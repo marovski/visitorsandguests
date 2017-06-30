@@ -26,11 +26,7 @@ class MeetingController extends Controller
      */
        public function index()
     {
-            Nexmo::message()->send([
-            'to' => '351918064359 ',
-            'from' => '351918064359 ',
-            'text' => 'Using the instance to send a message.'
-]);
+
 
 
         $meetings = Meeting::orderBy('idMeeting', 'desc')->paginate(10);
@@ -40,6 +36,9 @@ class MeetingController extends Controller
 
        
         $visitor=Visitor::all()->load('meeting');
+
+
+        
 
 
 

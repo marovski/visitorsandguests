@@ -35,11 +35,11 @@
                             <th width="">Status</th>
                             <th width="">Host</th>
 
-                            <th width="">Start at</th>
+                            <th width="">Start </th>
                               
-                               <th width="">Ended at</th>
-                              <th width="">Visitor arrival at</th>
-                                <th width="">Visitor departure at</th>
+                               <th width="">Ended </th>
+                              <th width="">Visitor arrival</th>
+                                <th width="">Visitor departure</th>
                         </tr>
                     </thead>
 

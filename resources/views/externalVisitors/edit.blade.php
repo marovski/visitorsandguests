@@ -34,7 +34,7 @@
                             <label for="visitorName" class="col-md-4 control-label"> Name:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorName" type="text" class="form-control" name="visitorName" value="{{ $externalVisitor->visitorName }}"  autofocus  ng-model="visitorName">
+                                <input id="visitorName" type="text" class="form-control" name="visitorName" value="{{ $externalVisitor->visitorName }}"  >
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -45,7 +45,7 @@
                             
                         </div>
                          <div class="form-group{{ $errors->has('visitorCitizenCardType') ? ' has-error' : '' }}">
-                            <label for="visitorCitizenCardType" class="col-md-4 control-label">Citizen Identification Type:</label>
+                            <label for="visitorCitizenCardType" class="col-md-4 control-label">Identification Type:</label>
 
                             <div class="col-md-6"  name="visitorCitizenCardType">
                                 <select class="form-control">
@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('visitorCitizenCard') ? ' has-error' : '' }}">
-                            <label for="visitorCitizenCard" class="col-md-4 control-label">Citizen Card/Passaport Number:</label>
+                            <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
                                 <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ $externalVisitor->visitorCitizenCard}}"  autofocus  ng-model="visitorCitizenCard"></input>

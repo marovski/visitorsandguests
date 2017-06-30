@@ -22,7 +22,9 @@ O seu código de barras:<br>
 @component('mail::panel')
 
 
-{!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', '$mailInfo2->visitorName', 'C39') !!}
+{!! DNS1D::getBarcodeHTML("@{{ $mailInfo2->idVisitor  }}", 'QRCODE', 1,35) !!}
+
+
 
 
 @endcomponent

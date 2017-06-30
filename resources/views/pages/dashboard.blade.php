@@ -3,37 +3,10 @@
   @section('title','| HomePage')
 
     @section('content')
-<<<<<<< HEAD
+
     
 <div class="container-fluid" ng-app="MyApp">
-=======
-<header class="header b-b b-light hidden-print" align="right">
-        <button href="#" class="tn btn-m btn-icon btn-success" onClick="window.print();"><span class="glyphicon glyphicon-print">Print</span></button>
-        <p></p>
-</header>  
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dashboard</a></li>
-        <li><a href="#">Age</a></li>
-        <li><a href="#">Gender</a></li>
-        <li><a href="#">Geo</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
-<div class="container-fluid">
->>>>>>> 070336d80a52b7c7fa0e877fa05484a99ea6da06
   <div class="row content">
             <div class="col-sm-3 navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -75,9 +48,9 @@
 
       <div class="row" >
         <div class="col-sm-3" style="width: 80%;" ng-controller="ShowController">
-        <input type="button" value="Bar Chart" ng-click="ShowHide(1)">
+    
 
-         <input type="button" value="Line Chart" ng-click="ShowHide(2)">
+         
         @yield('dashboard')
 
         </div>

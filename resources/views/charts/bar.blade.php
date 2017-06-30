@@ -3,7 +3,7 @@
 @section('title','| Bar Charts')
 
 @section('dashboard')
-
+    <input type="button" value="Bar Chart" ng-click="ShowHide(1)">
  <div class="well"  ng-show="IsVisible">
      
         <!-- prepare a DOM container with width and height -->

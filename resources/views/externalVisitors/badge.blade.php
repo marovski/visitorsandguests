@@ -31,14 +31,14 @@ use Carbon\Carbon;?>
                         {{ $meetingE->meetingName }}
                     </p>
                     <div align="center">
-                    {!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', 'C128', 1,35) !!}
+                    {!! DNS2D::getBarcodeSVG("@{{ $externalVisitor->idVisitor, $externalVisitor->visitorName, $externalVisitor->visitorCompanyName }}", 'QRCODE') !!}
                     </div>
                     <br>
                     <br>
                     @endforeach
                 </div>
-                <div class="col-md-6">
-                    <h5>Expires: {{ date('d-m-Y', strtotime($current = Carbon::now())) }}</h5>
+                <div class="">
+                    <h5 style="margin-left: 232px">Expires at: {{ date('d-m-Y', strtotime($current = Carbon::now())) }}</h5>
                 </div>
                 </div>
                 </div>
