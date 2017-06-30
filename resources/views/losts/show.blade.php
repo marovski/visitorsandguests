@@ -7,18 +7,19 @@
     @endsection
 
 @section('content')
-<div class="container"  ng-app="MyApp">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" ng-controller="showInputController">
-                <div class="panel-heading"><b>Lost and Found Report</b></div>
-                                                <!-- LOADING ICON -->
+
+    <div class="row" ng-app="MyApp" ng-controller="showInputController" >
+        <div class="col-md-8">
+                                                        <!-- LOADING ICON -->
             <!-- show loading icon if the loading variable is set to true -->
         <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
-                  <div class="panel-body" ng-show="loading == true" >
+            <div class="panel panel-default"  ng-show="loading == true">
+                <div class="panel-heading"><b>Lost and Found Report</b></div>
+
+           <div class="panel-body"  >
 
 
-                  {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form')) !!}
+       {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form')) !!}
 
                       <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}" >
                             <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
@@ -173,18 +174,38 @@
                         </div>
                         </div>
 
-
-                                                        
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                               
-                                <a href="{{ route('losts.index') }}" class="btn btn-default btn-sm btn-block">Return</a>
-                            </div>
-                        </div>
                      {!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </div>
-</div>
+     <div class="col-md-4" >
+      <div class="well">
+     
+
+        <dl class="dl-horizontal">
+          <label>Found at:</label>
+          <p>{{ date('h:i a - M j, Y', strtotime($lost->foundDate)) }}</p>
+        </dl>
+
+        <dl class="dl-horizontal">
+          <label>Claimed at</label>
+          <p>{{ ($lost->claimedDate ? date(' h:i a - M j, Y', strtotime($lost->claimedDate)) : 'Unclaimed')  }}</p>
+        </dl>
+        <hr>
+  
+        <div class="row">
+            <div class="col-md-12">
+          <a href="{{ route('losts.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << Return</a> 
+        
+            
+          </div>
+          </div>
+        </div>
+
+       
+
+      </div>
+  
+  </div>
+
 @endsection

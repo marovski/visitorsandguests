@@ -42,14 +42,20 @@
 
    
     
-    <div class="col-sm-9">
+    <div class="col-sm-9" ng-controller="ShowController">
 
-      <div class="row" >
-        <div class="col-sm-3" style="width: 80%;" ng-controller="ShowController">
+                        <!-- LOADING ICON -->
+            <!-- show loading icon if the loading variable is set to true -->
+        <div ng-show="loading == false"  ><br/><p class="text-center" ><span class="loader"></span></p></div>
+      <div class="row" ng-show="loading == true" >
+        <div class="col-sm-3" style="width: 80%;" >
     
 
-         <div>     @yield('dashboard1')</div>
-     <div>@yield('dashboard')</div>   
+     <div>
+
+     @yield('dashboard')
+
+     </div>   
 
         </div>
        </div>

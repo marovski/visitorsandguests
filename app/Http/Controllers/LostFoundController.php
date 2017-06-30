@@ -51,13 +51,11 @@ class LostFoundController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-                'finderName' => 'required|min:1|max:100|string',
-                'finderPhone' => 'required|min:1|max:25',
-                'lostFoundItemSize' => 'required',
+                'finderName' => 'required|min:1|max:50|string',
+                'finderPhone' => 'required|min:1|max:25!string',
                 'itemCategory' => 'required',
-                'lostFoundImportance' => 'required',
                 'lostFoundDescription' => 'required|min:1|max:255',
-                'image' => 'required'
+                
             ]);
         $lost = new LostFound();
 

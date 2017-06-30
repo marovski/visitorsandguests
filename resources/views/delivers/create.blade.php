@@ -74,7 +74,7 @@
 							<label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 
 							<div class="col-md-6">
-								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="25">
+								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="40">
 
 								@if ($errors->has('vehicleLicensePlate'))
 								<span class="help-block">
@@ -153,7 +153,7 @@
 							<label for="weight" class="col-md-4 control-label">Entry Weight (Kg):</label>
 
 							<div class="col-md-6">
-								<input type="number"  name="weight" max="12000" min="10" placeholder="Kg" data-parsley-pattern="/^\d{2,3} ?kg$/">
+								<input type="number"  name="weight"  min="0" placeholder="Kg" data-parsley-pattern="/^\d{2,3} ?kg$/">
 
 							                               
 
@@ -169,7 +169,7 @@
 							<label for="quantity" class="col-md-4 control-label">Quantity (per unity):</label>
 
 							<div class="col-md-6">
-								<input type="number" name="quantity" required="" max="1000" min="100" placeholder="">
+								<input type="number" name="quantity" required="" min="0" placeholder="">
 
 							                            
 

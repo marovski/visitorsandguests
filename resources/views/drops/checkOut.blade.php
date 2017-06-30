@@ -18,7 +18,7 @@
                         <div class="form-group{{ $errors->has('dropperCompany') ? ' has-error' : '' }}">
                             <label for="dropperCompany" class="col-md-4 control-label">Company Name:</label>
                             <div class="col-md-6">
-                            <input id="dropperCompany" type="text" class="form-control" name="dropperCompany" disabled="true" value="{{ $drop->dropperCompanyName}}">
+                            <input id="dropperCompany" type="text" class="form-control" name="dropperCompany" disabled="true" readonly="" value="{{ $drop->dropperCompanyName}}">
 
                                 @if ($errors->has('dropperCompany'))
                                     <span class="help-block">
@@ -32,7 +32,7 @@
                             <label for="dropperName" class="col-md-4 control-label">Dropper Name:</label>
 
                             <div class="col-md-6">
-                                <input id="dropperName" type="text" class="form-control" name="dropperName" disabled="true" value="{{ $drop->dropperName }}">
+                                <input id="dropperName" type="text" class="form-control" name="dropperName" disabled="true" readonly="" value="{{ $drop->dropperName }}">
 
                                 @if ($errors->has('dropperName'))
                                     <span class="help-block">
@@ -46,7 +46,7 @@
                             <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
-                                <input id="ReceiverName" type="text" class="form-control" name="ReceiverName" disabled="true" value="{{ $drop->dropReceiver }}" required autofocus>
+                                <input id="ReceiverName" type="text" class="form-control" name="ReceiverName" disabled="true" readonly="" value="{{ $drop->dropReceiver }}" required autofocus>
 
                                 @if ($errors->has('ReceiverName'))
                                     <span class="help-block">
@@ -60,7 +60,7 @@
                         <div class="form-group{{ $errors->has('dropSize') ? ' has-error' : '' }}">
                             <label for="dropSize" class="col-md-4 control-label">Item:</label>
                              <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="dropSize" disabled="true"  checked="checked" value="">{{ $drop->dropSize }}</label>
+                                <label class="radio-inline"><input type="radio" name="dropSize" disabled="true"  checked="checked" readonly=""  value="">{{ $drop->dropSize }}</label>
                                 
 
                                 @if ($errors->has('dropSize'))
@@ -76,7 +76,7 @@
 
                             <div class="col-md-6" >
                             <p>
-                                <select class="form-control" name="dropImportance" disabled="true">
+                                <select class="form-control" name="dropImportance" disabled="true" readonly="">
                                   <option value="">{{ $drop->dropImportance }}</option>
                                   
                                 </select>
@@ -94,7 +94,7 @@
                             <label for="dropDescription" class="col-md-4 control-label"> Description:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="4" cols="" class="form-control" disabled="true" name="dropDescription">{{ $drop->dropDescr }}</textarea>                               
+                                <textarea rows="4" cols="" class="form-control" disabled="true" name="dropDescription" readonly="">{{ $drop->dropDescr }}</textarea>                               
 
                                 @if ($errors->has('dropDescription'))
                                     <span class="help-block">

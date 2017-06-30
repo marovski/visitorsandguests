@@ -20,7 +20,7 @@
 			<p class="lead">Entry Weight: {{ $deliver->entryWeight }}</p>
 	
 			<hr>
-<p class="lead">Exit Weight: {{ $deliver->exitWeight }}</p>
+				<p class="lead">Exit Weight: {{ $deliver->exitWeight }}</p>
 				<hr>
      
 

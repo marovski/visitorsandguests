@@ -61,7 +61,7 @@ class DeliverController extends Controller
        $this->validate($request,[
                 'driverName' => 'required|min:1|max:50|string',
                 'driverID' => 'required|min:1|max:20|string',
-                'vehicleLicensePlate' => 'required|min:1|max:50|integer',
+                'vehicleLicensePlate' => 'required|min:1|max:30|string',
                 
             ]);    
         

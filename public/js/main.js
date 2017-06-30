@@ -4,11 +4,19 @@ var app= angular.module('MyApp', []).controller('ShowController', ShowController
 
 
     function ShowController($scope, $timeout){
+
+
+    $scope.loading = false;
             //This will hide the DIV by default.
-            $scope.IsVisible = false;
+            $scope.IsVisible=false;
             $scope.IsVisible2=false;
-         
+          $timeout(function() {      
+        $scope.loading = true;
+      }, 1000);
+          
             console.log($scope.IsVisible);
+
+
             $scope.ShowHide = function (id) {
            //If DIV is visible it will be hidden and vice versa.
             if (id==1) {
@@ -139,7 +147,7 @@ function mainController($scope, $window, $http ,$location, $timeout, Deliver) {
 
  $timeout(function() {      
         $scope.loading = true;
-      }, 2000);
+      }, 1000);
           
       
    

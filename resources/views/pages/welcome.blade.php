@@ -33,17 +33,17 @@
      
 
 
-                       @if($item->itemCategory==1){
+                       @if($item->itemCategory==1)
                        Electronic
-                       }@elseif($item->itemCategory==2){
+                       @elseif($item->itemCategory==2)
                        Document
-                       }@elseif($item->itemCategory==3){
+                       @elseif($item->itemCategory==3)
                        Money
-                       }@elseif($item->itemCategory==4){
+                       @elseif($item->itemCategory==4)
                        Gadget
-                       }@elseif($item->itemCategory==5){
+                       @elseif($item->itemCategory==5)
                        Cloth
-                       }@else Other
+                       @else Other
                        @endif
                      </b>
             <div class="thumbnail">
