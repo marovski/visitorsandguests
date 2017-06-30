@@ -89,6 +89,7 @@ class DropController extends Controller
     {
         
         $drop = Drop::find($id);
+        
         return view('drops.checkOut')->withDrop($drop);
     }
        /**
