@@ -20,7 +20,7 @@
     		    <!-- show loading icon if the loading variable is set to true -->
    			<div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
             <div class="panel-body"  ng-show="loading == true" > 
-            <form  >
+            <form  class="form-horizontal" >
             	
             	  <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
                             <label for="visitorName" class="col-md-4 control-label"> Name:</label>
@@ -36,8 +36,50 @@
                                 @endif
                             </div>
 
+                            </div>
+                              <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
+                            <label for="visitorName" class="col-md-4 control-label"> Company:</label>
+
+                            <div class="col-md-6">
+                    <input id="visitorCompany" type="text" class="form-control" name="visitorCompany" value=""  autofocus    
+                              >
+
+                                @if ($errors->has('visitorCompany'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('visitorCompany') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            </div>
+                                <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
+                            <label for="visitorName" class="col-md-4 control-label"> Email:</label>
+
+                            <div class="col-md-6">
+                    <input id="visitorEmail" type="text" class="form-control" name="visitorEmail" value=""  autofocus    
+                              >
+
+                                @if ($errors->has('visitorEmail'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('visitorEmail') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            </div>
+
+                               <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-basic btn-sm btn-block">
+                                    Confirm
+                                </button>
+                              
+                                  <a href="#" class="btn btn-default btn-sm btn-block">Cancel</a>  
+                            </div>
+                        </div
+
             </form>
-			<div class="col-md-6" ng-controller="BarcodeCtrl">     
+		{{-- 	<div class="col-md-6" ng-controller="BarcodeCtrl">     
 			<div data-barcode-scanner="barcodeScanned"></div>
 			<div>
    			 <span>Barcode:</span>
@@ -46,7 +88,7 @@
 			<div><input type="text" data-ng-model="testvalue"></input></div>
 			<div><span data-ng-bind="testvalue"></span></div>
 			</div> 
-
+ --}}
 
 
 

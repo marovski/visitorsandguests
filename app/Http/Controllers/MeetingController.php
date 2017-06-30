@@ -205,8 +205,16 @@ class MeetingController extends Controller
      */
     public function destroy($id)
         {
-            Meeting::destroy($id);
-            return redirect('/meetings');
+            
+
+        $meeting = Meeting::find($id);
+        if (!is_null($meeting)) {
+             $meeting->delete();
+        }
+
+        Session::flash('success','Meeting was successfully deleted');
+        return redirect()->route('meetings.index');
+        //
 
 
     }

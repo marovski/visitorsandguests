@@ -68,7 +68,7 @@
                             <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ $externalVisitor->visitorCitizenCard}}"  autofocus  ng-model="visitorCitizenCard"></input>
+                                <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ $externalVisitor->visitorCitizenCard}}"   ></input>
 
                                 @if ($errors->has('visitorCitizenCard'))
                                     <span class="help-block">
@@ -86,7 +86,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="text"  class="form-control" name="visitorNPhone" value="{{$externalVisitor->visitorNPhone  }}"  autofocus ng-model="visitorNPhone">
+                                <input id="visitorNPhone" type="text"  class="form-control" name="visitorNPhone" value="{{$externalVisitor->visitorNPhone  }}"  >
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">
@@ -129,7 +129,7 @@
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ $externalVisitor->visitorCompanyName }}"  autofocus  ng-model="visitorCompanyName">
+                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ $externalVisitor->visitorCompanyName }}"  >
 
                                 @if ($errors->has('visitorCompanyName'))
                                     <span class="help-block">
@@ -144,7 +144,7 @@
                             <label for="wifiAccess" class="col-md-4 control-label">WiFi Access:</label>
 
                             <div class="col-md-6">
-                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1"  autofocus>
+                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1"  >
 
                                 @if ($errors->has('wifiAccess')) 
                                     <span class="help-block">
@@ -158,7 +158,7 @@
                             <label for="visitorDeclaredGood" class="col-md-4 control-label">Declared Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value="{{ $externalVisitor->visitorDeclaredGood }}"  autofocus >
+                                <input id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value="{{ $externalVisitor->visitorDeclaredGood }}"   >
 
                                 @if ($errors->has('visitorDeclaredGood'))
                                     <span class="help-block">
@@ -173,7 +173,7 @@
                             <label for="visitorDangerousGood" class="col-md-4 control-label">Dangerous Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="1"  autofocus >
+                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="1"  >
 
                                 @if ($errors->has('visitorDangerousGood')) 
                                     <span class="help-block">
@@ -188,7 +188,7 @@
                             <label for="escorted" class="col-md-4 control-label">Escorted:</label>
 
                             <div class="col-md-6">
-                                <input id="escorted" type="checkbox" name="escorted" value="1"  autofocus >
+                                <input id="escorted" type="checkbox" name="escorted" value="1"  >
 
                                 @if ($errors->has('escorted')) 
                                     <span class="help-block">
