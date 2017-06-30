@@ -53,8 +53,8 @@
                             <div class="col-md-6">
 
                                 <select class="form-control" name="itemCategory" ng-model="itemCategory" required>
-                                    <option value="1"> Electronic</option>
-                                      <option value="2"> Document</option> 
+                                    <option value="1" checked>Document</option>
+                                      <option value="2">Electronic</option> 
                                       <option value="3"> Money</option> 
                                       <option value="4"> Gadget</option>
                                       <option value="5"> Cloth</option>
@@ -89,10 +89,10 @@
                         <div class="form-group{{ $errors->has('lostFoundItemSize') ? ' has-error' : '' }}">
                             <label for="lostFoundItemSize" class="col-md-4 control-label">Item Size:</label>
 
-                            <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Large">Large Size</label>
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Medium">Medium Size</label>
-                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Small">Small Size</label>
+                            <div class="col-md-6">                                
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Small" checked>Small size</label>
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Medium">Medium size</label>
+                                <label class="radio-inline"><input type="radio" name="lostFoundItemSize" value="Large">Large size</label>
 
                                 @if ($errors->has('LostFoundItemSize'))
                                     <span class="help-block">
@@ -108,9 +108,9 @@
                             <div class="col-md-6" >
                             <p>
                                 <select class="form-control" name="lostFoundImportance">
-                                  <option value="3">High</option>
-                                  <option value="2">Medium</option>
                                   <option value="1">Low</option>
+                                  <option value="2">Medium</option> 
+                                  <option value="3">High</option>
                                 </select>
 
                                 @if ($errors->has('lostFoundImportance'))
