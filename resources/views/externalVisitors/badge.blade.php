@@ -46,8 +46,7 @@ use Carbon\Carbon;?>
                 </div>
 
                 <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-basic btn-sm btn-block">
-                Print
+                 <button href="#" class="btn btn-default btn-sm btn-block" onClick="window.print();">Print</button>
                 </button>
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
                 </div>              
