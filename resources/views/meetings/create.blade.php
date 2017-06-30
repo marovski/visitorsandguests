@@ -46,7 +46,7 @@
                                 <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                                 <div class="col-md-6">
-	                                <input type="text" class="form-control" value="{{date('Y/m/d H:i')}}" id="meetStartDate" name="meetStartDate">
+	                                <input type="text" class="form-control" value="{{date('Y/m/d H:i',strtotime("+60 minutes"))}}" id="meetStartDate" name="meetStartDate">
 	
                                     @if ($errors->has('meetStartDate'))
                                     <span class="help-block">
@@ -60,7 +60,7 @@
                                 <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetEndDate" type="text" class="form-control" value="{{date('Y/m/d H:i',strtotime("+60 minutes"))}}" name="meetEndDate"/>
+                                    <input id="meetEndDate" type="text" class="form-control" value="{{date('Y/m/d H:i',strtotime("+120 minutes"))}}" name="meetEndDate"/>
 
                                     @if ($errors->has('meetEndDate'))
                                     <span class="help-block">
