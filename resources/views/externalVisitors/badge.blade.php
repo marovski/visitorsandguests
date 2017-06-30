@@ -11,20 +11,15 @@
     <?php
 use Carbon\Carbon;?>
 
-    <header class="header b-b b-light hidden-print">
-        <button href="#" class="btn btn-m btn-info pull-right" onClick="window.print();">Print</button>     
-    </header>
+    
     <div class="container" ng-app="MyApp" style="width: 550px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" style="width: 400px">
                 <div class="panel-body" ng-controller="showInputController">
-
-                     
-        
-         {!! Form::open(array('route'=>'visitors.badge')) !!}
-          <div class="form-group" style="">
-            <div class="row">
+                {!! Form::open(array('route'=>'visitors.badge')) !!}
+                <div class="form-group" style="">
+                <div class="row">
                 <div class="col-md-6" style="width: 400px">
                     <div id="logo">
                     <img src="../images/nanium.jpg">
@@ -34,7 +29,10 @@ use Carbon\Carbon;?>
                     @foreach ($externalVisitor->meeting as $meetingE)
                     <p align="center">
                         {{ $meetingE->meetingName }}
-                    </p><br>
+                    </p>
+                    <div align="center">
+                    {!! DNS1D::getBarcodeHTML('$mailInfo2->idVisitor', 'C128', 1,35) !!}
+                    </div>
                     <br>
                     <br>
                     @endforeach
@@ -42,12 +40,14 @@ use Carbon\Carbon;?>
                 <div class="col-md-6">
                     <h5>Expires: {{ date('d-m-Y', strtotime($current = Carbon::now())) }}</h5>
                 </div>
-            </div>
-        </div>
-          {!! Form::close() !!}
- 
-                    
                 </div>
+                </div>
+          {!! Form::close() !!}               
+         
+                </div>
+                <div class="header b-b b-light hidden-print">
+                <button href="#" class="btn btn-m btn-info pull-right" onClick="window.print();">Print</button>     
+                </div>  
             </div>
         </div>
     </div>
