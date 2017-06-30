@@ -119,8 +119,8 @@
 							<div class="col-md-6" >
 								<p>
 
+									<label class="radio-inline"><input type="radio" name="danger" value="0" checked>No</label>
 									<label class="radio-inline"><input type="radio" name="danger" value="1">Yes</label>
-									<label class="radio-inline"><input type="radio" name="danger" value="0">No</label>
 
 									@if ($errors->has('danger'))
 									<span class="help-block">
@@ -153,9 +153,10 @@
 							<label for="weight" class="col-md-4 control-label">Entry Weight (Kg):</label>
 
 							<div class="col-md-6">
+
 								<input type="number"  name="weight"  min="0" placeholder="Kg" data-parsley-pattern="/^\d{2,3} ?kg$/">
 
-							                               
+                            
 
 							@if ($errors->has('weight'))
 							<span class="help-block">

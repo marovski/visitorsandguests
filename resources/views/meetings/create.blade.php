@@ -33,7 +33,7 @@
                                 <label for="meetingName" class="col-md-4 control-label">Meeting Topic:</label>
 
                                 <div class="col-md-6">
-                                    <textarea rows="2" cols="" class="form-control" name="meetingTopic" required autofocus></textarea>                                
+                                    <textarea rows="2" cols="" class="form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'></textarea>                                
 
                                     @if ($errors->has('meetingName'))
                                     <span class="help-block">
@@ -100,7 +100,7 @@
                             <label for="visitReason" class="col-md-4 control-label"> Meeting Purpose:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="2" cols="" class="form-control" name="visitReason"></textarea>                                
+                                <textarea rows="2" cols="" class="form-control" name="visitReason" placeholder='Type here your meeting purpose'></textarea>                                
 
                                 @if ($errors->has('visitReason'))
                                 <span class="help-block">
@@ -125,7 +125,7 @@
                             <label for="sensibility" class="col-md-4 control-label">Sensibility:</label>
 
                             <div class="col-md-6">
-                             <label class="radio-inline"><input type="radio" name="sensibility" value="1">Small</label>
+                             <label class="radio-inline"><input type="radio" name="sensibility" value="1" checked>Small</label>
                              <label class="radio-inline"><input type="radio" name="sensibility" value="2">Medium </label>
                              <label class="radio-inline"><input type="radio" name="sensibility" value="3">High</label>
                              
@@ -178,7 +178,7 @@
 
                     <div class="col-md-6">
 
-                        <input id="sendmail" type="checkbox"  name="sendmail" value="1" >
+                        <input id="sendmail" type="checkbox"  name="sendmail" value="1" checked>
 
                         @if ($errors->has('sendmail'))
                         <span class="help-block">

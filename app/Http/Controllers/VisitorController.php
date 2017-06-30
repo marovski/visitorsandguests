@@ -126,9 +126,9 @@ class VisitorController extends Controller
     public function show($id)
     {
         $externalVisitor = Visitor::findOrFail($id);
-    
+        $user= User::all()->load('meetingHost');    
 
-        return view('externalVisitors.badge', compact('externalVisitor') ) ;  
+        return view('externalVisitors.badge', compact('externalVisitor','user') ) ;  
         
     }
 
