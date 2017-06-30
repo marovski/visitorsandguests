@@ -10,13 +10,6 @@
 
     @section('content')
 <link rel='stylesheet' href='/css/parsley.css' />
-    <link rel='stylesheet' href='/css/jquery.datetimepicker.css'>
-    <script src='/js/jquery.datetimepicker.full.js'>
-    <script src="/js/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="/public/css/jquery.datetimepicker.css"/>
-    
-<script src="/js/jquery.datetimepicker.full.js"></script>
-    
     
     <div class="container" ng-app="MyApp" > 
  <div class="row">
@@ -46,7 +39,7 @@
                                 <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                                 <div class="col-md-6">
-	                                <input type="text" class="form-control" value="{{date('Y/m/d H:i',strtotime("+60 minutes"))}}" id="meetStartDate" name="meetStartDate">
+	                                <input type="text" class="form-control" id="meetStartDate" name="meetStartDate">
 	
                                     @if ($errors->has('meetStartDate'))
                                     <span class="help-block">
@@ -60,7 +53,7 @@
                                 <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetEndDate" type="text" class="form-control" value="{{date('Y/m/d H:i',strtotime("+120 minutes"))}}" name="meetEndDate"/>
+                                    <input id="meetEndDate" type="text" class="form-control" name="meetEndDate"/>
 
                                     @if ($errors->has('meetEndDate'))
                                     <span class="help-block">
@@ -292,19 +285,36 @@
     </div>
 
 
-<script>/*
-window.onerror = function(errorMsg) {
-	$('#console').html($('#console').html()+'<br>'+errorMsg)
-}*/
-
-$.datetimepicker.setLocale('en');
-
-$('#meetStartDate').datetimepicker();
-$('#meetEndDate').datetimepicker();
-$( "#meetStartDate" ).datetimepicker({ minDate: 0 });
-$( "#meetEndDate" ).datetimepicker({ minDate: 0});
-
-</script>
 </html>
 
+<!-- this should go after your </body> -->
+<link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/ >
+<script src="/js/jquery.js"></script>
+<script src="/js/jquery.datetimepicker.full.min.js"></script>
+
+<script>
+
+jQuery(function(){
+ jQuery('#meetStartDate').datetimepicker({
+  format:'Y/m/d H:i',
+  minDate:0,
+  onShow:function( ct ){
+   this.setOptions({
+    maxDate:jQuery('#meetEndDate').val()?jQuery('#meetEndDate').val():false
+   })
+  },
+  timepicker:true
+ });
+ jQuery('#meetEndDate').datetimepicker({
+  format:'Y/m/d H:i',
+  minDate:0,
+  onShow:function( ct ){
+   this.setOptions({
+    minDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
+   })
+  },
+  timepicker:true
+ });
+});
+</script>
     @endsection
