@@ -2,6 +2,14 @@
 <script src="/js/jquery.datetimepicker.full.min.js"></script>
 
 
+<script type="text/javascript" src="{{ asset('js/tableExport/tableExport.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/tableExport/jquery.base64.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('js/tableExport/jspdf/libs/sprintf.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/tableExport/jspdf/jspdf.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/tableExport/jspdf/libs/base64.js') }}"></script>
+
+
 
 
 {{--  <script src="/jpeg_camera/swfobject.min.js" type="text/javascript"></script>
