@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckAuth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +39,7 @@ Route::get('/visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalV
 Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
 
 
-Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'));
+Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'))->middleware('CheckAuth');
 
 Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
 
@@ -104,7 +105,7 @@ Route::resource('delivers','DeliverController');
 Route::resource('deliveryType','DelivertypeController');
 Route::resource('losts', 'LostFoundController');
 Route::resource('meetings','MeetingController');
-
+Route::get('meetings/create','MeetingController@create')->middleware('CheckAuth');
 //Initial Pages
 Route::get('dashboard', 'DashboardController@getDashboard');
 Route::get('contact', 'PagesController@getContact');

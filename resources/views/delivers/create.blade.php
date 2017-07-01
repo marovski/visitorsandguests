@@ -170,7 +170,7 @@
 							<label for="quantity" class="col-md-4 control-label">Quantity (per unity):</label>
 
 							<div class="col-md-6">
-								<input type="number" name="quantity" required="" min="0" placeholder="Quantaty">
+								<input type="number" name="quantity" required="" min="0" placeholder="Quantity">
 
 							                            
 
