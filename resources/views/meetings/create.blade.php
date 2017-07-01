@@ -10,7 +10,7 @@
 
     @section('content')
 <link rel='stylesheet' href='/css/parsley.css' />
-    
+
     <div class="container" ng-app="MyApp" > 
  <div class="row">
 
@@ -26,7 +26,7 @@
                                 <label for="meetingName" class="col-md-4 control-label">Meeting Topic:</label>
 
                                 <div class="col-md-6">
-                                    <textarea rows="2" cols="" class="form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'></textarea>                                
+                                    <input type="textarea" name="" rows="2" cols="" class="typeaheadName form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'>                                
 
                                     @if ($errors->has('meetingName'))
                                     <span class="help-block">
@@ -185,7 +185,7 @@
                         <button type="submit" class="btn btn-lg btn-block btn-basic btn-h1-spacing">
                            Save Meeting
                        </button>
-            <a class="btn btn-default btn-block"  href="{{ route('meetings.index') }}"><i class="fa fa-close"></i> Cancel</a>
+            <a class="btn btn-default btn-block"  href="{{ route('meetings.index') }}"> Cancel</a>
         
 
 
@@ -197,7 +197,6 @@
 
        </div>
     </div>
-
 
 
 
@@ -285,12 +284,8 @@
     </div>
 
 
-</html>
+@section('scripts')
 
-<!-- this should go after your </body> -->
-<link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/ >
-<script src="/js/jquery.js"></script>
-<script src="/js/jquery.datetimepicker.full.min.js"></script>
 
 <script>
 
@@ -317,4 +312,5 @@ jQuery(function(){
  });
 });
 </script>
+@endsection
     @endsection

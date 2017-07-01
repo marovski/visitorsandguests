@@ -190,9 +190,12 @@ return [
 
 
 
-        
+        //Captcha Service
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
-       
+           
+        //Scout Service
+        Laravel\Scout\ScoutServiceProvider::class,
+        AlgoliaSearch\Laravel\AlgoliaServiceProvider::class,           
 
     ],
 

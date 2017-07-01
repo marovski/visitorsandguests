@@ -20,14 +20,13 @@
     		    <!-- show loading icon if the loading variable is set to true -->
    			<div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
             <div class="panel-body"  ng-show="loading == true" > 
-            <form  class="form-horizontal" >
-            	
+            <form  class="form-horizontal" method="post" action="{{ route('visitors.selfSign') }}">
+            	 {{ csrf_field() }}
             	  <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
                             <label for="visitorName" class="col-md-4 control-label"> Name:</label>
 
                             <div class="col-md-6">
-                    <input id="visitorName" type="text" class="form-control" name="visitorName" value=""  autofocus  ng-model="visitorName"  
-                              >
+                    <input id="visitorName" type="text" class="form-control" name="visitorName" value=""  autofocus   >
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -67,16 +66,32 @@
                             </div>
 
                             </div>
+       <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
+                            <label for="visitorName" class="col-md-4 control-label"> QrCOde:</label>
+
+                            <div class="col-md-6">
+                <input id="input" type="file" onclick="apaga_campo()">
+<a href="#" onclick="ler('webcam')">Webcam</a>
+
+                                @if ($errors->has('visitorEmail'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('visitorEmail') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            </div>
+
 
                                <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-basic btn-sm btn-block">
-                                    Confirm
+                                    Sign In and Print
                                 </button>
                               
                                   <a href="#" class="btn btn-default btn-sm btn-block">Cancel</a>  
                             </div>
-                        </div
+                        </div>
 
             </form>
 		{{-- 	<div class="col-md-6" ng-controller="BarcodeCtrl">     

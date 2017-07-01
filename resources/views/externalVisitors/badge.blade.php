@@ -1,7 +1,7 @@
 
     @extends('main')
 
-    @section('title', '| Badge')
+    @section('title', '| Badge Print')
 
     @section('assets')
     <link rel='stylesheet' href='/css/parsley.css' />
@@ -9,12 +9,12 @@
 
     @section('content')
     <?php
-use Carbon\Carbon;?>
+            use Carbon\Carbon;?>
 
     
     <div class="container" ng-app="MyApp" style="width: 550px">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2" style="margin-left: 11.666667%;">
             <div class="panel panel-default" style="width: 400px; height: 225px;">
                 <div class="panel-body" ng-controller="showInputController">
                 <div class="form-group" style="">
@@ -22,7 +22,7 @@ use Carbon\Carbon;?>
                 <div class="col-md-6" style="width: 400px">
                     <div id="logo">
                     <img src="../images/nanium.jpg">
-                     <h5 style="">Expires at: {{ date('d-m-Y', strtotime($current = Carbon::now()))}}</h5>
+                     <h5 style="">Expires at: {{ date('d-m-Y', strtotime($current = Carbon::now('Europe/Lisbon')))}}</h5>
                     </div>
                     <br>   
                     <div class="row"> 
@@ -44,13 +44,14 @@ use Carbon\Carbon;?>
                     </div>
                 </div>
                 </div>
-                <div class="header b-b b-light hidden-print">
-     
-                <div class="col-md-6 col-md-offset-4">
-                 <button href="#" class="btn btn-default btn-sm btn-block" onClick="window.print();">Print</button>
+
+                <div class="col-md-12" style="    width: 113%;
+    margin-left: -21px;
+    margin-top: 35px;">
+                <button type="submit" class="btn btn-basic btn-sm btn-block">
+                Print
                 </button>
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
-                </div>
                 </div>              
                 </div>
                 </div>

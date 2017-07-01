@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Meeting;
 use App\Models\Visitor;
 use App\Models\User;
+use App\Http\Requests;
 use Auth;
 use Session;
 use Mail;
@@ -15,7 +16,7 @@ class VisitorController extends Controller
 {
 
      public function __construct() {
-        $this->middleware('auth',['except' => ['selfcheckIn']]);
+        $this->middleware('auth',['except' => ['selfcheckIn', 'show','selfSign']]);
     }
     /**
      * Display a listing of the resource.
@@ -258,6 +259,25 @@ class VisitorController extends Controller
         return view('externalVisitors.selfCheckIn');
 
 
+
+      }
+
+       public function  selfSign (Request $request){
+
+    $searchVisitor= Visitor::where('visitorEmail', 'LIKE', '%$request->visitorEmail%')->where('visitorCompanyName','LIKE','%$request->visitorCompany%')->where('visitorName', 'LIKE', '%$request->visitorName%')->count() > 0;
+  
+
+      if ($searchVisitor) {
+        $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompany', '=', $request->visitorCompany)->first();
+
+        Session::flash('success', 'The visitor is valid!');
+        return redirect()->route('visitors.show', $visitor->idVisitor);
+      }else{
+
+        Session::flash('danger','The visitor is invalid');
+
+        return redirect()->back();
+      }
 
       }
 

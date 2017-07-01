@@ -30,6 +30,9 @@ Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@a
 
 
 //Extra methods beyond CRUD for Visitor Functionalities
+
+Route::post('/visitors/selfSign', array('as' => 'visitors.selfSign','uses'=>'VisitorController@selfSign' ));
+
 Route::get('/visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVisitor', 'uses' => 'VisitorController@addInternalVisitor'));
 
 Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
@@ -39,9 +42,7 @@ Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.create
 
 Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
 
-Route::get('/visitors/badge/', ['as' => 'visitors.badge',
-                                                        'uses' => 'VisitorController@badge'
-                                                        ]); 
+
 
 
 //Extra methods beyond CRUD for Meeting Functionalities

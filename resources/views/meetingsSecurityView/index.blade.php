@@ -8,15 +8,8 @@
         <div class="col-md-10">
             <h1>All Meetings</h1>
         </div>
-
-    <div class="col-md-2">
-            <a href="{{ route('meetings.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">  <span class="glyphicon glyphicon-plus"></span> New Meeting</a>
-        </div>
-        <div class="col-md-12">
-            <hr>
-        </div>
-    </div> <!-- end of .row -->
-
+<!-- end of .row -->
+</div>
 <div class="input-group custom-search-form">
                                 <input type="text" class="typeahead form-control" placeholder="Search...">
                                 <span class="input-group-btn">

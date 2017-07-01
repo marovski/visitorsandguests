@@ -40,8 +40,10 @@ class MeetingController extends Controller
 
         
 
-
-
+        if (Auth::user()->role()==true) {
+            return view('meetingsSecurityView.index', compact('meetings', 'user', 'visitor'))->render();
+        }
+        else
         return view('meetings.index', compact('meetings', 'user', 'visitor'))->render();
     }
 
@@ -131,7 +133,12 @@ class MeetingController extends Controller
     {
         $meetingData = Meeting::findOrFail($id);
 
-        return view('meetings.show', compact('meetingData') ) ;   
+        if(Auth::user()->role()==true){
+
+return view('meetingsSecurityView.show', compact('meetingData') ) ;
+
+        }
+       return view('meetings.show', compact('meetingData') ); 
 
     }
 
@@ -273,6 +280,18 @@ class MeetingController extends Controller
          if (empty($currentMeeting->exitTime)) {
            $currentMeeting->exitTime = Carbon::now('Europe/Lisbon');
            $currentMeeting->meetStatus=4;
+
+         
+            foreach ($currentMeeting->visitor as $visitor) {
+               
+
+                $visitor->signOutFlag=1;
+
+                $visitor->save();
+            }
+          
+
+
 
         if ($currentMeeting->save()) {
 

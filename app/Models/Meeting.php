@@ -20,6 +20,8 @@ class Meeting extends Model
 	protected $table='meetings';
 
 
+  public $fillable = ['meetingName','visitReason'];
+
     /*
   |--------------------------------------------------------------------------
   | FUNCTIONS
