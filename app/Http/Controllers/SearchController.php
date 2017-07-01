@@ -33,7 +33,7 @@ class SearchController extends Controller
 
     {
           $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
-
+             
              return response()->json($data);
     //     if ($id=='mM') {
    

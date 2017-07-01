@@ -1,15 +1,22 @@
 @extends('main')
 
 @section('title', '| All Meetings')
+@section('assets')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
+
+@endsection
 
 @section('content')
-
+<div class="container" ng-app="MyApp" >
     <div class="row">
         <div class="col-md-10">
             <h1>All Meetings</h1>
         </div>
 <!-- end of .row -->
 </div>
+
 <div class="input-group custom-search-form">
                                 <input type="text" class="typeahead form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -19,9 +26,18 @@
                             </span>
                             </div>
 
+<script type="text/javascript">
+    var path = "{{ route('autocomplete') }}";
+    $('input.typeahead').typeahead({
+        source:  function (query, process) {
+        return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>
 
-
-<section class="panel panel-default" ng-app="MyApp"  ng-controller="showInputController">
+<section class="panel panel-default"   ng-controller="showInputController">
 <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
 
                           <!-- LOADING ICON -->
@@ -113,6 +129,6 @@
         </div>
         </section>
     
-    
+    </div>
 @stop
 

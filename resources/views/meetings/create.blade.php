@@ -5,7 +5,7 @@
     @section('title', '| Create New Meeting')
 
     @section('assets')
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     @endsection
 
     @section('content')
@@ -182,7 +182,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-lg btn-block btn-basic btn-h1-spacing">
+                        <button type="submit" class="btn btn-basic btn-sm btn-block">
                            Save Meeting
                        </button>
             <a class="btn btn-default btn-block"  href="{{ route('meetings.index') }}"> Cancel</a>
@@ -284,33 +284,5 @@
     </div>
 
 
-@section('scripts')
 
-
-<script>
-
-jQuery(function(){
- jQuery('#meetStartDate').datetimepicker({
-  format:'Y/m/d H:i',
-  minDate:0,
-  onShow:function( ct ){
-   this.setOptions({
-    maxDate:jQuery('#meetEndDate').val()?jQuery('#meetEndDate').val():false
-   })
-  },
-  timepicker:true
- });
- jQuery('#meetEndDate').datetimepicker({
-  format:'Y/m/d H:i',
-  minDate:0,
-  onShow:function( ct ){
-   this.setOptions({
-    minDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
-   })
-  },
-  timepicker:true
- });
-});
-</script>
-@endsection
     @endsection

@@ -16,7 +16,11 @@
 		</div>
 		<!-- end of .container -->
 
-		@yield('scripts')
+
+
+
+<!--Scripts-->
+		@include('partials._scripts')
 
 
 		

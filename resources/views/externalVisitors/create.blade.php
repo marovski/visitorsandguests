@@ -97,7 +97,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail"></input>
+                               <input type="email" class="form-control" name="visitorEmail" ></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">

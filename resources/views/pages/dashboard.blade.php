@@ -1,7 +1,12 @@
 
   @extends('main')
   @section('title','| HomePage')
+@section('assets')
+ 
+    <script src="/node_modules/chart.js/dist/Chart.js"></script>
+   <script src="/js/echarts.common.min.js"></script>
 
+@endsection
     @section('content')
 
     
