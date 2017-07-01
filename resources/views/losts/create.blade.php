@@ -24,7 +24,7 @@
                             <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
 
                             <div class="col-md-6">
-                                <input id="finderName" type="text" class="form-control" name="finderName" value="{{ old('finderName') }}" required autofocus>
+                                <input id="finderName" type="text" class="form-control" name="finderName" value="{{ old('finderName') }}" required autofocus placeholder="Type here the finder's name">
 
                                 @if ($errors->has('finderName'))
                                     <span class="help-block">
@@ -38,7 +38,7 @@
                             <label for="finderPhone" class="col-md-4 control-label">Finder Phone:</label>
 
                             <div class="col-md-6">
-                                <input id="finderPhone" type="text" class="form-control" name="finderPhone" value="{{ old('finderPhone') }}" required autofocus>
+                                <input id="finderPhone" type="text" class="form-control" name="finderPhone" value="{{ old('finderPhone') }}" placeholder="Type here the finder's phone" required autofocus>
 
                                 @if ($errors->has('finderPhone'))
                                     <span class="help-block">
@@ -52,7 +52,7 @@
 
                             <div class="col-md-6">
 
-                                <select class="form-control" name="itemCategory" ng-model="itemCategory" required>
+                                <select class="form-control" name="itemCategory" ng-model="itemCategory" required >
                                     <option value="1" checked>Document</option>
                                       <option value="2">Electronic</option> 
                                       <option value="3"> Money</option> 
@@ -76,7 +76,7 @@
                             <label for="lostFoundDescription" class="col-md-4 control-label"> Description:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="4" cols="" class="form-control" name="lostFoundDescription"></textarea>                                
+                                <textarea rows="4" cols="" class="form-control" name="lostFoundDescription" placeholder="Type here a description about the item"></textarea>                                
 
                                 @if ($errors->has('lostFoundDescription'))
                                     <span class="help-block">

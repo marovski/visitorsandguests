@@ -42,14 +42,14 @@ function showInputController($scope, $timeout){
 
    
     $scope.loading = false;
-    $scope.driverIDType='0';
+    $scope.driverIDType='3';
      $scope.visitorCitizenCardType='1';
 
-      $scope.itemCategory='0';
+      $scope.itemCategory='1';
 
       $timeout(function() {      
       $scope.loading = true;
-      }, 1000);
+      }, 750);
     
 
       

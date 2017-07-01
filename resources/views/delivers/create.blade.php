@@ -25,7 +25,7 @@
 							<label for="driverName" class="col-md-4 control-label">Driver Name:</label>
 
 							<div class="col-md-6">
-								<input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" required autofocus>
+								<input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" placeholder='Type here the driver name' required autofocus>
 
 								@if ($errors->has('driverName'))
 								<span class="help-block">
@@ -38,7 +38,7 @@
 							<label for="driverIDType" class="col-md-4 control-label">Identification Card Type:</label>
 
 							<div class="col-md-6">
-								<select class="form-control" id="driverIDType" name="driverIDType" ng-model="driverIDType">
+								<select class="form-control" id="driverIDType" name="driverIDType" ng-model="driverIDType" >
 									<option value="1" >Passport</option>
 									<option value="2" >Citizen Card</option>
 									<option value="3" >Driver License</option>
@@ -58,7 +58,7 @@
 							<label for="driverID" class="col-md-4 control-label">Identification Card Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID" max="9" type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" required autofocus>
+								<input id="driverID" max="20" type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type your id card number' required autofocus>
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">
@@ -74,7 +74,7 @@
 							<label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 
 							<div class="col-md-6">
-								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="40">
+								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="40" placeholder='ex.:00-AA-00'>
 
 								@if ($errors->has('vehicleLicensePlate'))
 								<span class="help-block">
@@ -88,7 +88,7 @@
 							<label for="firm" class="col-md-4 control-label">Firm Supplier:</label>
 
 							<div class="col-md-6">
-								<input id="firm" type="text" class="form-control" name="firm" value="{{ old('firm') }}" required autofocus>
+								<input id="firm" type="text" class="form-control" name="firm" value="{{ old('firm') }}" required autofocus placeholder='Type here the firm supplier'>
 
 								@if ($errors->has('firm'))
 								<span class="help-block">
@@ -103,7 +103,7 @@
 							<label for="cargo" class="col-md-4 control-label">Cargo Details:</label>
 
 							<div class="col-md-6">
-								<input id="cargo" type="text" class="form-control" name="cargo" value="{{ old('cargo') }}" required autofocus>
+								<input id="cargo" type="text" class="form-control" name="cargo" value="{{ old('cargo') }}" required autofocus placeholder='Type here the cargo details'>
 
 								@if ($errors->has('cargo'))
 								<span class="help-block">
@@ -170,7 +170,7 @@
 							<label for="quantity" class="col-md-4 control-label">Quantity (per unity):</label>
 
 							<div class="col-md-6">
-								<input type="number" name="quantity" required="" min="0" placeholder="">
+								<input type="number" name="quantity" required="" min="0" placeholder="Quantaty">
 
 							                            
 

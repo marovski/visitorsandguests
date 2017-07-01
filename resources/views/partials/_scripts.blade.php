@@ -34,10 +34,10 @@ jQuery(function(){
  });
  jQuery('#meetEndDate').datetimepicker({
   format:'Y/m/d H:i',
-  minDate:0,
   onShow:function( ct ){
    this.setOptions({
-    minDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
+    minDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false,
+    maxDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
    })
   },
   timepicker:true
