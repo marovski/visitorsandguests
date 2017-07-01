@@ -3,11 +3,12 @@
 @section('title','| Bar Charts')
 
 @section('dashboard')
-<input type="button" value="Bar Chart" ng-click="ShowHide(1)">
- <div class="well"  ng-show="IsVisible"  >
+<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <button type="submit" >Make</button></form>
+ <div class="well"  >
      
         <!-- prepare a DOM container with width and height -->
     <div id="main" style="width: 600px;height:400px;"></div>
+
     <script type="text/javascript">
         // based on prepared DOM, initialize echarts instance
         var myChart = echarts.init(document.getElementById('main'));
@@ -17,6 +18,14 @@
 
             title: {
                 text: '{{ date('F') }}' + ' Regists'
+            },
+            toolbox: {
+            show : true,
+             feature : {
+                mark : {show: true},
+                restore : {show: true},
+                saveAsImage : {show: true}
+                     }
             },
             
             tooltip: { trigger: 'axis'},
@@ -31,7 +40,7 @@
                 name: 'regists',
                
                 type: 'bar',
-                data: [{{ $deliveries->count() }},{{  $drops->count() }}, {{ $lostItems->count() }}, {{ $meetings->count() }}, {{ $visitors->count() }}]
+                data: [@if (!empty($deliveries)) {{ $deliveries->count() }}@else "Empty Month" @endif,@if (!empty($drops)) {{  $drops->count() }}@else "Empty Month" @endif,@if (!empty($lostItems)) {{ $lostItems->count() }} @else "Empty Month" @endif, @if (!empty($meetings)) {{ $meetings->count() }}@else "Empty Month" @endif,@if (!empty($meetings)) {{ $visitors->count() }}@else "Empty Month" @endif]
             }]
         };
 

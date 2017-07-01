@@ -46,14 +46,22 @@
                        @else Other
                        @endif
                      </b>
+                      @if(!empty($item->photo))
             <div class="thumbnail">
                <div class="image">
-        
+       
+
               <img src="{{ asset('images/'. $item->photo)}}" height="150"  width="200" style="margin-left: 35px;" alt="Some awesome text"/>
+
+             
       </div>
                 </div>
+                 @else
+<h3>No photo available</h3>
+             
+              @endif
                      
-                        <h5>Found Date:</h5> {{ $item->foundDate ? date('M j, Y H:i', strtotime($item->foundDate)) : '' }} 
+                        <h5>Found Date: {{ $item->foundDate ? date('F j, Y', strtotime($item->foundDate)) : '' }}</h5>  
                         
                         <a href="{{ url('/losts/' . $item->idLostFound) }}" class="btn btn-primary btn-sm">See More</a>
                     </div>

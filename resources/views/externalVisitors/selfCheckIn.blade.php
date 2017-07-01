@@ -94,16 +94,6 @@
                         </div>
 
             </form>
-		{{-- 	<div class="col-md-6" ng-controller="BarcodeCtrl">     
-			<div data-barcode-scanner="barcodeScanned"></div>
-			<div>
-   			 <span>Barcode:</span>
-    		<span data-ng-bind="model.barcode"></span>
-			</div>
-			<div><input type="text" data-ng-model="testvalue"></input></div>
-			<div><span data-ng-bind="testvalue"></span></div>
-			</div> 
- --}}
 
 
 

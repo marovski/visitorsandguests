@@ -28,6 +28,7 @@ Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@a
 
  Route::get('/dashboard/barcharts', array('as' => 'dashboard.barcharts', 'uses'=>'DashboardController@getBarChart'));
 
+Route::get('/dashboard/barcharts/show', array('as' => 'barChart.show', 'uses'=>'DashboardController@barChartShow'));
 
 //Extra methods beyond CRUD for Visitor Functionalities
 
@@ -61,13 +62,16 @@ Route::post('/meetings/checkout/{id}', ['as' => 'meetings.checkout',
 
 //Extra methods beyond CRUD for Delivery Functionalities
 
-Route::get('/delivers/show/{id}', array('as' => 'delivers.showDeliver', 'uses' => 'DeliverController@showDeliver'));
 
 
-Route::get('/delivers/indexJ', 'DeliverController@indexJSON');
 
-Route::put('/delivers/checkOut/{id}', 'DeliverController@checkOut');
-Route::put('/delivers/checkOut/weight/{id}/{x}', 'DeliverController@exitWeight');
+Route::get('/delivers/checkOut/{id}', ['as' => 'delivers.checkout',
+                                                        'uses' => 'DeliverController@showCheckOut'
+                                                        ]);
+
+Route::post('/delivers/checkOut/update/{id}', ['as' => 'delivers.checkoutUpdate',
+                                                        'uses' => 'DeliverController@checkoutUpdate'
+                                                        ]);
 
 
 

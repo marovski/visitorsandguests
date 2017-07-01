@@ -20,7 +20,7 @@
             <!-- show loading icon if the loading variable is set to true -->
         <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
 
-  <form ng-show="loading == true"  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
+  <form ng-show="loading == true"  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.store') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  name="newvisitor">
                         {{ csrf_field() }}
                            <input id="idMeeting" name="idMeeting" class="ng-hide" type="number"  value="{{$meeting->idMeeting}}"/>
               
@@ -72,11 +72,38 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('vehicleonsiste') ? ' has-error' : '' }}"   >
+                            <label for="vehicleonsiste" class="col-md-4 control-label">Vehicle On Site:</label>
 
-            
+                            <div class="col-md-6">
+                               <input type="radio" id="vehicleonsiteradio1" name="vehicleonsite" value="1" onchange="OnVehicleOnSiteValueChanged(newvisitor)">
+                <label for="vehicleonsiteradio1">Yes</label>
+                <input type="radio" id="vehicleonsiteradio2" name="vehicleonsiste" value="0" onchange="OnVehicleOnSiteValueChanged(newvisitor)"><label for="vehicleonsiteradio2">No</label>
 
+                                @if ($errors->has('vehicleonsiste'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('vehicleonsiste') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
 
-                              
+          
+                         
+
+                           <div class="form-group{{ $errors->has('licenseplate') ? ' has-error' : '' }}">
+                            <label for="licenseplatenumberlabel" class="col-md-4 control-label">License Plate Number:</label>
+
+                            <div class="col-md-6">
+                               <input id="licenseplateinternational" type="text" name="licenseplate" autocomplete="off" placeholder="<?php echo "Enter your license plate number";?>" maxlength="50" disabled>
+
+                                @if ($errors->has('licenseplate'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('licenseplate') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>    
                         <div class="form-group{{ $errors->has('visitorNPhone') ? ' has-error' : '' }}">
                             <label for="visitorNPhone" class="col-md-4 control-label">Phone Number:</label>
 

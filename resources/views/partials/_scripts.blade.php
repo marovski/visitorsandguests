@@ -1,6 +1,7 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/jquery.datetimepicker.full.min.js"></script>
 
+<script type="text/javascript" src="/js/parsley.min.js"></script>
 
 
 
@@ -13,9 +14,8 @@
  <!-- load our application -->
 
 <script src="/js/main.js"></script>
-<script src="/js/services/deliverService.js"></script> <!-- load our service -->
-<script src="/js/app.js"></script>
 
+<script src="/js/app.js"></script>
 
 
 
