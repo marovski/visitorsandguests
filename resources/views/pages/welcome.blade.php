@@ -18,7 +18,19 @@
 
  <div class="row">
             <div class="col-md-8">
-            
+            <h4>Your next meetings:</h4>
+                
+                @foreach($meetings as $meet)
+
+                    <div class="post" >
+                        <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
+                        <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
+                        <a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a>
+                    </div>
+
+                    <hr>
+
+                @endforeach
 
             </div>
         <div class="col-md-3 col-md-offset-1">
@@ -28,7 +40,7 @@
 
                     <div class="mySlides" >
                        <b style="color: #0078ab;
-    margin-left: 93px;">Category
+    margin-left: 93px;">Category:
 
      
 
