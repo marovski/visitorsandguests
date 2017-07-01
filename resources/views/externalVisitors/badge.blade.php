@@ -44,15 +44,14 @@
                     </div>
                 </div>
                 </div>
-
-                <div class="col-md-12" style="    width: 113%;
-    margin-left: -21px;
-    margin-top: 35px;">
-                <button type="submit" class="btn btn-basic btn-sm btn-block">
+                <header class="header b-b b-light hidden-print">
+                <div class="col-md-12" style=" width: 113%; margin-left: -21px; margin-top: 35px;">
+                <button type="submit" class="btn btn-basic btn-sm btn-block" onClick="window.print();">
                 Print
                 </button>
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
-                </div>              
+                </div>
+                </header>              
                 </div>
                 </div>
 
