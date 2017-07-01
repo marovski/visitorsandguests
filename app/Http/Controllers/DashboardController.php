@@ -74,4 +74,24 @@ dd($lostItems);
     return view('charts.bar', compact('drops','visitors','deliveries','meetings','lostItems', 'users'));
 
     }
+
+    public function getTables(){
+
+     
+    //$currentMonth = date('m');
+
+    $lostItems = LostFound::orderBy('idLostFound','desc');
+
+    $meetings = Meeting::orderBy('idMeeting','desc');
+    $visitors = Visitor::orderBy('idVisitor','desc');
+    
+    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
+    
+    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
+    
+    $users = User::orderBy('idUser','desc');
+
+    return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems', 'users'));
+
+    }
 }

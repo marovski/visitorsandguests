@@ -89,7 +89,7 @@
                                 <select class="form-control" name="dropImportance" disabled="true">    
                                 @if ($drop->dropImportance==3)
                                   <option value="">High</option>
-                                  @elseif ($lost->dropImportance==2)
+                                  @elseif ($drop->dropImportance==2)
                                   <option value="">Medium</option>
                                   @else
                                   <option value="">Small</option>

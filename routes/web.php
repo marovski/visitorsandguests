@@ -27,6 +27,7 @@ Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@a
 
 
  Route::get('/dashboard/barcharts', array('as' => 'dashboard.barcharts', 'uses'=>'DashboardController@getBarChart'));
+Route::get('/dashboard/tables', array('as' => 'dashboard.tables', 'uses'=>'DashboardController@getTables'));
 
 Route::get('/dashboard/barcharts/show', array('as' => 'barChart.show', 'uses'=>'DashboardController@barChartShow'));
 

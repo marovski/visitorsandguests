@@ -34,8 +34,8 @@
                             <a href="{{ route('dashboard.barcharts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
-                            <a href="{{ ('tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        <li {{ (Request::is('*dashboard.tables') ? 'class="active"' : '') }}>
+                            <a href="{{ route('dashboard.tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                       
                       
