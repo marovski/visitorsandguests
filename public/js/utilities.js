@@ -1,22 +1,4 @@
-function checkEmail (strng) {
-var error="";
-if (strng == "") {
-return error
-}
 
-    var emailFilter=/^.+@.+\..{2,3}$/;
-    if (!(emailFilter.test(strng))) { 
-       error = "Please enter a valid email address. \n";
-    }
-    else {
-//test email for illegal characters
-       var illegalChars= /[\(\)\<\>\,\;\:\\\"\[\]]/
-         if (strng.match(illegalChars)) {
-          error = "The email address contains illegal characters.\n";
-       }
-    }
-return error;    
-}
 
   function ConfirmExternVisitor()
   {

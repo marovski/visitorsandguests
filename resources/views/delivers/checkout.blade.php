@@ -14,13 +14,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Deliver Check-out</div>
 				<div class="panel-body"> 
-					{!! Form::model($deliver, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('delivers.checkOut', $deliver->idDeliver))) !!}
+					{!! Form::model($deliver, array('method'=>'post','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('delivers.checkoutUpdate', $deliver->idDeliver))) !!}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
 							<label for="driverName" class="col-md-4 control-label">Driver Name:</label>
 
 							<div class="col-md-6">
-								<input id="driverName" type="text" class="form-control" name="driverName"  value="{{ $deliver->deDriverName}}">
+								<input id="driverName" type="text" class="form-control" name="driverName" readonly="" disabled="" value="{{ $deliver->deDriverName}}">
 
 								@if ($errors->has('driverName'))
 								<span class="help-block">
@@ -33,7 +33,7 @@
 						<div class="form-group{{ $errors->has('vehicleLicensePlate') ? ' has-error' : '' }}">
 							<label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 							<div class="col-md-6">
-								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ $deliver->vehicleRegistry }}"  data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="25">
+								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ $deliver->vehicleRegistry }}"  data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="50" readonly="" disabled="">
 
 								@if ($errors->has('vehicleLicensePlate'))
 								<span class="help-block">
@@ -47,7 +47,7 @@
 							<label for="firm" class="col-md-4 control-label">Firm Supplier:</label>
 
 							<div class="col-md-6">
-								<input id="firm" type="text" class="form-control" name="firm" value="{{ $deliver->deFirmSupplier }}">
+								<input id="firm" type="text" class="form-control" name="firm" readonly="" disabled=""  value="{{ $deliver->deFirmSupplier }}">
 
 								@if ($errors->has('firm'))
 								<span class="help-block">
@@ -62,7 +62,7 @@
 							<label for="cargo" class="col-md-4 control-label">Cargo Details:</label>
 
 							<div class="col-md-6">
-								<input id="cargo" type="text" class="form-control" name="cargo" value="{{ $deliver->deMaterialDetails }}">
+								<input id="cargo" type="text"  readonly="" disabled=""  class="form-control" name="cargo" value="{{ $deliver->deMaterialDetails }}">
 
 								@if ($errors->has('cargo'))
 								<span class="help-block">
@@ -78,7 +78,7 @@
 							<div class="col-md-6" >
 								<p>
 
-									<label class="radio-inline"><input type="radio" name="danger">{{$deliver->deDangerousGood}}</label>									
+									<label class="radio-inline"><input type="radio" name="danger" readonly="" disabled="" value="{{$deliver->deDangerousGood}}"></label>									
 
 									@if ($errors->has('danger'))
 									<span class="help-block">
@@ -93,7 +93,7 @@
 							<label for="sensitivity" class="col-md-4 control-label"> Sensitivity Level (select one):</label>
 
 							<div class="col-md-6">
-								<select class="form-control" id="sensitivity">
+								<select class="form-control" id="sensitivity" readonly="" disabled="" >
 									<option value="">{{$deliver->deSensitiveLevel}}</option>
 									
 
@@ -110,7 +110,7 @@
 							<label for="weight" class="col-md-4 control-label">Entry Weight (Kg):</label>
 
 							<div class="col-md-6">
-								<input type="number"  name="weight" required="" max="1000" min="100" placeholder="Kg" value="{{ $deliver->entryWeight}}">
+								<input type="number"  name="weight" readonly="" disabled=""  min="0" placeholder="Kg" value="{{ $deliver->entryWeight}}">
 
 							</select>                               
 
@@ -121,12 +121,27 @@
 							@endif
 						</div>
 					</div>
-
-						<div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}" >
-							<label for="quantity" class="col-md-4 control-label">Quantity (per unity):</label>
+						<div class="form-group{{ $errors->has('exitweight') ? ' has-error' : '' }}" >
+							<label for="exitweight" class="col-md-4 control-label">Exit Weight (Kg):</label>
 
 							<div class="col-md-6">
-								<input type="number" name="quantity" required="" max="1000" min="100" placeholder="" value="{{ $deliver->deQuantity}}">
+								<input type="number"  name="exitweight" required=""  min="0" placeholder="Kg" value="{{ $deliver->exitWeight}}">
+
+							</select>                               
+
+							@if ($errors->has('exitweight'))
+							<span class="help-block">
+								<strong>{{ $errors->first('exitweight') }}</strong>
+							</span>
+							@endif
+						</div>
+					</div>
+
+						<div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}" >
+							<label for="quantity" class="col-md-4 control-label">Entry Quantity (per unity):</label>
+
+							<div class="col-md-6">
+								<input type="number" readonly="" disabled="" name="quantity" min="1" placeholder="" value="{{ $deliver->deQuantity}}">
 
 							</select>                               
 
@@ -140,10 +155,10 @@
 									
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-4" >
-							<button type="submit" class="btn btn-default btn-lg btn-block">
+							<button type="submit" class="btn btn-basic btn-sm btn-block">
 								Check-out
 							</button>
-							<a href="{{ route('drops.index') }}" class="btn btn-default btn-lg btn-block">Cancel</a>
+							<a href="{{ route('drops.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
 						</div>
 					</div>
 				{!! Form::close() !!}
@@ -151,8 +166,5 @@
 		</div>
 	</div>
 </div>
-</div>
-@endsection
-@section('scripts')
-<script type="text/java				script" src="/js/parsley.min.js"></script>
+
 @endsection

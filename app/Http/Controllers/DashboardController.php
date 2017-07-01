@@ -21,7 +21,7 @@ class DashboardController extends Controller
     public function getDashboard(){
 
 
-    $currentMonth = date('m');
+    $currentMonth = date('F');
 
     $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
 
@@ -45,9 +45,21 @@ class DashboardController extends Controller
     public function getBarChart(){
 
      
-    $currentMonth = date('m');
+  
 
-    $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
+    return view('charts.bar');
+
+    }
+
+    public function barChartShow(Request $request){
+
+
+    $currentMonth = date($request->month);
+
+
+
+    $lostItems = LostFound::orderBy('idLostFound','desc')->whereDate('created_at','=',$currentMonth)->get();
+dd($lostItems);
 
     $meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
     
@@ -60,6 +72,26 @@ class DashboardController extends Controller
     $users = User::orderBy('idUser','desc');
 
     return view('charts.bar', compact('drops','visitors','deliveries','meetings','lostItems', 'users'));
+
+    }
+
+    public function getTables(){
+
+     
+    //$currentMonth = date('m');
+
+    $lostItems = LostFound::orderBy('idLostFound','desc');
+
+    $meetings = Meeting::orderBy('idMeeting','desc');
+    $visitors = Visitor::orderBy('idVisitor','desc');
+    
+    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
+    
+    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
+    
+    $users = User::orderBy('idUser','desc');
+
+    return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems', 'users'));
 
     }
 }

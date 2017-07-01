@@ -17,14 +17,12 @@
 		</div>
 	</div> 
 	     <!-- end of .row -->
-<section class="panel panel-default" ng-app="deliverApp"  ng-controller="mainController">
+<section class="panel panel-default" >
 <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
 
 
-						<!-- LOADING ICON -->
-			<!-- show loading icon if the loading variable is set to true -->
-		<div ng-show="loading == false"  ><br/><p class="text-center" ><span class="loader"></span></p></div>
-		<div class="table-responsive"   ng-show="loading == true"  >
+				
+		<div class="table-responsive"    >
 	
 			<table class="table table-striped m-b-none" data-ride="datatables" id="table" >
 				<thead>
@@ -39,25 +37,33 @@
 			
 				<tbody >
 				
-								
+								@foreach($delivers as $deliver)
 	
-						<tr class="delive"   ng-repeat="deliver in delivers" >
+						<tr class="delive" >
 
 							
 						
-							<td>@{{deliver.deFirmSupplier}}</td>
-							<td>@{{ deliver.vehicleRegistry}}</td>
-							<td>@{{ deliver.deDriverName}}</td>
-							<td>@{{ deliver.deEntryTime  | date : "medium" }}</td>
-							<td>@{{ deliver.deExitTime  | date : "medium"  }}</td>
+							<td>{{$deliver->deFirmSupplier }}</td>
+							<td>{{ $deliver->vehicleRegistry}}</td>
+							<td>{{ $deliver->deDriverName}}</td>
+							
+							     <td>{{ ($deliver->deEntryTime ? date('M, d, y - h:i:s A', strtotime($deliver->deEntryTime)) : '')  }}</td>
+                                     <td>{{ ($deliver->deExitTime ? date('M, d, y - h:i:s A', strtotime($deliver->deExitTime)) : '')  }}</td>
 						
 							<td>
 							
-								<a class="btn btn-default btn-sm" ng-click="showDeliver(deliver.idDeliver)"><span class="glyphicon glyphicon-zoom-in"></span>View</a></td>
+								<a class="btn btn-default btn-sm" href="{{ route('delivers.show',$deliver->idDeliver) }}"><span class="glyphicon glyphicon-zoom-in"></span>View</a></td>
 								<td>
 							
-							
-											<a  href="" id="checkOut" ng-click="submitCheckOut(deliver.idDeliver)" class="btn btn-default btn-sm"  ><span class="glyphicon glyphicon-check"></span> Check-out</a>
+							@if (empty($deliver->deExitTime))
+										
+					
+					<a  href="{{ route('delivers.checkout', $deliver->idDeliver) }}" id="checkOut" onclick="return confirm('Are you certain to proceed to the Check-out process?')" class="btn btn-default btn-sm"   ><span class="glyphicon glyphicon-check"></span> Check-out</a>
+
+								@else
+					<a disabled readonly id="checkOut"  class="btn btn-default btn-sm"  ><span class="glyphicon glyphicon-check"></span> Check-out</a>
+
+											@endif
 
 				</td>
 							
@@ -68,7 +74,7 @@
 						
 
 						</tr>
-
+@endforeach
 
 				</tbody>
 					
@@ -80,15 +86,5 @@
 			</div>
 		</div>
 		</section>
-
-
-	<script type="text/javascript">
-    var _deliver = {
-    };
-
-
-
-
-</script>
 
 @stop

@@ -165,12 +165,16 @@
                         <div class="form-group">
                         <label for="image" class="col-md-4 control-label" >Item Image:</label>
                         <div class="col-md-6">
+                        @if(!empty($lost->photo))
                           <div class="thumbnail">
                                     <div class="image">
     
                         <img  src="{{ asset('images/'. $lost->photo)}}" height="235"  width="300">
                                         </div>
                                             </div>
+                                            @else
+                                            <img  src="{{ asset('images/'. 'noimage.jpg')}}" height="235"  width="300">
+                                            @endif
                         </div>
                         </div>
 
