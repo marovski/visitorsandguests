@@ -29,7 +29,7 @@ var app= angular.module('MyApp', []).controller('ShowController', ShowController
             }
          
                 
-  				
+          
 
 
 
@@ -56,82 +56,82 @@ function showInputController($scope, $timeout){
 
       console.log( $scope.visitorCitizenCardType);
     }
-function BarcodeCtrl($scope) {
-    $scope.model = {
-        barcode: 'none',
-    };
+// function BarcodeCtrl($scope) {
+//     $scope.model = {
+//         barcode: 'none',
+//     };
     
-    $scope.barcodeScanned = function(barcode) {        
-        console.log('callback received barcode: ' + barcode);                     
-        $scope.model.barcode = barcode;        
-    };  
-}
+//     $scope.barcodeScanned = function(barcode) {        
+//         console.log('callback received barcode: ' + barcode);                     
+//         $scope.model.barcode = barcode;        
+//     };  
+// }
 
-app.directive('barcodeScanner', function() {
-  return {
-    restrict: 'A',    
-    scope: {
-        callback: '=barcodeScanner',        
-      },      
-    link:    function postLink(scope, iElement, iAttrs){       
-        // Settings
-        var zeroCode = 48;
-        var nineCode = 57;
-        var enterCode = 13;    
-        var minLength = 3;
-        var delay = 300; // ms
+// app.directive('barcodeScanner', function() {
+//   return {
+//     restrict: 'A',    
+//     scope: {
+//         callback: '=barcodeScanner',        
+//       },      
+//     link:    function postLink(scope, iElement, iAttrs){       
+//         // Settings
+//         var zeroCode = 48;
+//         var nineCode = 57;
+//         var enterCode = 13;    
+//         var minLength = 3;
+//         var delay = 300; // ms
         
-        // Variables
-        var pressed = false; 
-        var chars = []; 
-        var enterPressedLast = false;
+//         // Variables
+//         var pressed = false; 
+//         var chars = []; 
+//         var enterPressedLast = false;
         
-        // Timing
-        var startTime = undefined;
-        var endTime = undefined;
+//         // Timing
+//         var startTime = undefined;
+//         var endTime = undefined;
         
-        jQuery(document).keypress(function(e) {            
-            if (chars.length === 0) {
-                startTime = new Date().getTime();
-            } else {
-                endTime = new Date().getTime();
-            }
+//         jQuery(document).keypress(function(e) {            
+//             if (chars.length === 0) {
+//                 startTime = new Date().getTime();
+//             } else {
+//                 endTime = new Date().getTime();
+//             }
             
-            // Register characters and enter key
-            if (e.which >= zeroCode && e.which <= nineCode) {
-                chars.push(String.fromCharCode(e.which));
-            }
+//             // Register characters and enter key
+//             if (e.which >= zeroCode && e.which <= nineCode) {
+//                 chars.push(String.fromCharCode(e.which));
+//             }
             
-            enterPressedLast = (e.which === enterCode);
+//             enterPressedLast = (e.which === enterCode);
             
-            if (pressed == false) {
-                setTimeout(function(){
-                    if (chars.length >= minLength && enterPressedLast) {
-                        var barcode = chars.join('');                                                
-                        //console.log('barcode : ' + barcode + ', scan time (ms): ' + (endTime - startTime));
+//             if (pressed == false) {
+//                 setTimeout(function(){
+//                     if (chars.length >= minLength && enterPressedLast) {
+//                         var barcode = chars.join('');                                                
+//                         //console.log('barcode : ' + barcode + ', scan time (ms): ' + (endTime - startTime));
                                                 
-                        if (angular.isFunction(scope.callback)) {
-                            scope.$apply(function() {
-                                scope.callback(barcode);    
-                            });
-                        }
-                    }
-                    chars = [];
-                    pressed = false;
-                },delay);
-            }
-            pressed = true;
-        });
-    }
-  };
-});
+//                         if (angular.isFunction(scope.callback)) {
+//                             scope.$apply(function() {
+//                                 scope.callback(barcode);    
+//                             });
+//                         }
+//                     }
+//                     chars = [];
+//                     pressed = false;
+//                 },delay);
+//             }
+//             pressed = true;
+//         });
+//     }
+//   };
+// });
 
 
 
-//Angular module to use our deliver service created
-angular.module('main', []).controller('mainController', mainController).run(function($rootScope) {
-        $rootScope.delivers = _deliver;
-    });
+// //Angular module to use our deliver service created
+// angular.module('main', []).controller('mainController', mainController).run(function($rootScope) {
+//         $rootScope.delivers = _deliver;
+//     });
 
 
 
@@ -139,203 +139,203 @@ angular.module('main', []).controller('mainController', mainController).run(func
 
 
 
-// inject the Deliver service into our controller
-function mainController($scope, $window, $http ,$location, $timeout, Deliver) {
+// // inject the Deliver service into our controller
+// function mainController($scope, $window, $http ,$location, $timeout, Deliver) {
 
-   $scope.loading = false;
+//    $scope.loading = false;
 
 
- $timeout(function() {      
-        $scope.loading = true;
-      }, 1000);
+//  $timeout(function() {      
+//         $scope.loading = true;
+//       }, 1000);
           
       
    
   
 
 
-  Deliver.get().then(function(response) {
+//   Deliver.get().then(function(response) {
 
    
-  $scope.delivers =  angular.fromJson(response.data);
+//   $scope.delivers =  angular.fromJson(response.data);
   
-   console.log($scope.delivers);
-        });
+//    console.log($scope.delivers);
+//         });
 
 
-$scope.showDeliver = function(pid){
-                //console.log(pid) ----> return 16
+// $scope.showDeliver = function(pid){
+//                 //console.log(pid) ----> return 16
 
-                Deliver.show(pid).then(function(response) {
+//                 Deliver.show(pid).then(function(response) {
 
-                  url= angular.fromJson(response.data);
-                  window.location.replace(url.url);
+//                   url= angular.fromJson(response.data);
+//                   window.location.replace(url.url);
           
-                          });
-            };
+//                           });
+//             };
 
-    // function to handle submitting the form
-    // SAVE A CheckOut and Exit Weight================
-    $scope.submitCheckOut = function($id) {
+//     // function to handle submitting the form
+//     // SAVE A CheckOut and Exit Weight================
+//     $scope.submitCheckOut = function($id) {
 
      
 
 
-     //Get the id of the specific Delivery
-       var id=$id;
+//      //Get the id of the specific Delivery
+//        var id=$id;
 
-     //Ask user to input the exit weight!
-       var x= prompt("Please, add the exit weight!!");
+//      //Ask user to input the exit weight!
+//        var x= prompt("Please, add the exit weight!!");
        
-      //Verify if the value inputed is a number or if it was an empty field
-       if (isNaN(x) || x=="")
-{
+//       //Verify if the value inputed is a number or if it was an empty field
+//        if (isNaN(x) || x=="")
+// {
 
 
-  alert("The following is not a number!");
+//   alert("The following is not a number!");
 
     
 
-  Deliver.get().then(function(response) {
+//   Deliver.get().then(function(response) {
          
 
-         $scope.delivers =  angular.fromJson(response.data);
+//          $scope.delivers =  angular.fromJson(response.data);
 
 
         
-         console.log($scope.delivers);
+//          console.log($scope.delivers);
        
-      });
+//       });
 
 
-}
-  else
-    {
+// }
+//   else
+//     {
   
-  alert("The exit weight you entered is " + x +"!");
+//   alert("The exit weight you entered is " + x +"!");
 
 
 
-         // save the checkOut-setting the exit time
-        // use the function we created in our service
-    Deliver.insertWeight(id,x).then(function(response){
+//          // save the checkOut-setting the exit time
+//         // use the function we created in our service
+//     Deliver.insertWeight(id,x).then(function(response){
     
 
-    x= angular.fromJson(response.data);
+//     x= angular.fromJson(response.data);
 
-    console.log(x.success);
+//     console.log(x.success);
 
-      if (x.success==true) {
+//       if (x.success==true) {
 
-        alert("The exit weight was correctly inserted!");
+//         alert("The exit weight was correctly inserted!");
 
 
-        Deliver.get().then(function(response) {
+//         Deliver.get().then(function(response) {
          
     
 
-         $scope.delivers =  angular.fromJson(response.data);
+//          $scope.delivers =  angular.fromJson(response.data);
 
 
         
-         console.log($scope.delivers);
+//          console.log($scope.delivers);
        
-      });
+//       });
        
-    }
-      else{ 
+//     }
+//       else{ 
 
-        alert("The exit weight was not inserted!" + "\n" +"You already have one inserted!!");
+//         alert("The exit weight was not inserted!" + "\n" +"You already have one inserted!!");
 
-          Deliver.get().then(function(response) {
+//           Deliver.get().then(function(response) {
          
 
 
-         $scope.delivers =  angular.fromJson(response.data);
+//          $scope.delivers =  angular.fromJson(response.data);
 
 
         
-         console.log($scope.delivers);
+//          console.log($scope.delivers);
        
-      });
-    }
+//       });
+//     }
        
 
-    }).catch(function(data, status){
-      console.error(response.status,response.data);
+//     }).catch(function(data, status){
+//       console.error(response.status,response.data);
      
 
-    }).finally(function(){
+//     }).finally(function(){
 
-      Deliver.insertExitTime(id).then(function(response){
+//       Deliver.insertExitTime(id).then(function(response){
 
-        y= angular.fromJson(response.data);
-        console.log(y.success);
+//         y= angular.fromJson(response.data);
+//         console.log(y.success);
 
 
-        if (y.success==true) {
+//         if (y.success==true) {
 
-          alert("The CheckOut was correctly done!");
+//           alert("The CheckOut was correctly done!");
           
        
 
-          Deliver.get().then(function(response) {
+//           Deliver.get().then(function(response) {
          
 
 
-         $scope.delivers =  angular.fromJson(response.data);
+//          $scope.delivers =  angular.fromJson(response.data);
 
 
         
-         console.log($scope.delivers);
+//          console.log($scope.delivers);
        
-      });
+//       });
          
-        }
-        else{
-           alert("The CheckOut process failed!" + "\n" +"CheckOut can only be done once!");
+//         }
+//         else{
+//            alert("The CheckOut process failed!" + "\n" +"CheckOut can only be done once!");
 
-         Deliver.get().then(function(response) {
+//          Deliver.get().then(function(response) {
          
          
 
-         $scope.delivers =  angular.fromJson(response.data);
+//          $scope.delivers =  angular.fromJson(response.data);
 
 
         
-         console.log($scope.delivers);
+//          console.log($scope.delivers);
        
-      });
+//       });
 
-         }
+//          }
                
 
 
-      }).catch(function(data, status){
-        console.error(response.status,response.data);
+//       }).catch(function(data, status){
+//         console.error(response.status,response.data);
 
-        Deliver.get().then(function(response) {
+//         Deliver.get().then(function(response) {
          
      
 
-         $scope.delivers =  angular.fromJson(response.data);
+//          $scope.delivers =  angular.fromJson(response.data);
 
 
         
-         console.log($scope.delivers);
+//          console.log($scope.delivers);
        
-      });
+//       });
         
-      })
-    });
+//       })
+//     });
 
 
    
 
-    };
-    }
+//     };
+//     }
 
-};
+// };
 
 
 

@@ -34,10 +34,7 @@ class DeliverController extends Controller
         return view('delivers.index')->withDelivers($delivers);
     }
 
-    public function indexJSON()
-    {
-        return response()->json(Deliver::get());
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -124,123 +121,9 @@ class DeliverController extends Controller
  
 }
 
-  /**
-     * Update the specified resource in storage.
-     *
-  
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function checkOut($id) 
-    {
-        
-        $deliver = Deliver::findOrFail($id);
-
-        //GEt local Time
-        $time=Carbon::now('Europe/Lisbon');
-
-        $exittime=$deliver->deExitTime;
-
-//CHeck if the field is empty or not
-        if (empty($exittime)) {
 
 
-//Save it to the model/database
-        $deliver->deExitTime=$time;
-
-        $save=$deliver->save();
-        
-        if ($save) {
-            return response()->json(array('success'=>true));
-        }
-        else
-            { 
-
-                return response()->json(['success'=>false]);
-            }
-        
-                                                    }
-
-        else{
-
-             return response()->json(['success'=>false]);
-        }
-                
-            
-               
-             
-
-
-
-        }
-
- /**
-     * Update the exit weight value of the delivery.
-     *
-  
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function exitWeight($id, $x) 
-    {
-        
-        $deliver = Deliver::findOrFail($id);
-
-
-//Get value from the database and check if it's empty or not
-        $exitweight=$deliver->exitWeight;
-    
-        if (empty($exitweight)){
-
-         
-
-         $deliver->exitWeight=$x;
-
-//Save the new value for exit weight in the database
-        $save=$deliver->save();
-        if ($save) {
-
-
-        return response()->json(array('success'=>true));
-         }
-        }
-        else{
-
-
-          return response()->json(['success'=>false]);
-
-        }
-    
-
-     
-
-        
-        
    
-
-}
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  string  $id
-     * @return \Illuminate\Http\Response
-     */
- 
-    public function showDeliver($id)
-    {
-    
-
-        
-
-        $response = ['status' =>'success', 'url' => '/delivers/'. $id];
-
-        return response()->json($response);
-
-       
-    }
   
 /**
      * Return the specified resource using JSON
@@ -335,9 +218,82 @@ class DeliverController extends Controller
       
     }
 
+  /**
+     * Display the specified resource.
+     *
+  
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showCheckOut($id) 
+    {
+        
+        
+             $deliver= Deliver::findOrFail($id);
+
+             return view('delivers.checkout', compact('deliver'));
 
 
 
+        }
+
+
+
+        public function checkoutUpdate(Request $request, $id){
+
+
+
+        $deliver = Deliver::findOrFail($id);
+
+        //GEt local Time
+        $time=Carbon::now('Europe/Lisbon');
+
+        $exittime=$deliver->deExitTime;
+
+        //Get value from the database and check if it's empty or not
+        $exitweight=$deliver->exitWeight;
+
+//CHeck if the field is empty or not
+        if (empty($exittime)) {
+
+            $deliver->exitWeight=$request->exitweight;
+//Save it to the model/database
+        $deliver->deExitTime=$time;
+
+        $save=$deliver->save();
+        
+        if ($save) {
+              // set flash data with success message
+        Session::flash('success', 'The Check-out process was successfully done.');
+           // redirect with flash data to delivers.show
+         return view('delivers.show')->withDeliver($deliver);
+        }
+        else
+            { 
+
+             // set flash data with success message
+        Session::flash('danger', 'The Check-out process not successfully saved.');
+           // redirect with flash data to delivers.show
+         return redirect()->route('delivers.index');
+            }
+        
+                                                    }
+
+                                                    else{
+         // set flash data with success message
+        Session::flash('danger', 'The Check-out process was already done!');
+           // redirect with flash data to delivers.show
+         return redirect()->route('delivers.index');
+
+                                                    }
+
+      
+                
+            
+               
+        }
+
+ 
 
     /**
      * Remove the specified resource from storage.

@@ -21,7 +21,7 @@ class DashboardController extends Controller
     public function getDashboard(){
 
 
-    $currentMonth = date('m');
+    $currentMonth = date('F');
 
     $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
 
@@ -45,9 +45,21 @@ class DashboardController extends Controller
     public function getBarChart(){
 
      
-    $currentMonth = date('m');
+  
 
-    $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
+    return view('charts.bar');
+
+    }
+
+    public function barChartShow(Request $request){
+
+
+    $currentMonth = date($request->month);
+
+
+
+    $lostItems = LostFound::orderBy('idLostFound','desc')->whereDate('created_at','=',$currentMonth)->get();
+dd($lostItems);
 
     $meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
     
