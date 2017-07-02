@@ -53,7 +53,7 @@
         <td>{{$user->find($meeting->meetIdHost)->username}}</td>
         <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
            <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-           <td>{{ $visitor->meeting() }}</td>
+           <td></td>
       </tr>  
       @endif
     </tbody>

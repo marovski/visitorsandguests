@@ -24,12 +24,9 @@
 
 <div class="input-group custom-search-form">
 <form action="/search" method="get" role="form">
-                                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}"> <i class="fa fa-search"></i>
+                              
+                          
                             </form>
                             </div>
 

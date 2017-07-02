@@ -319,7 +319,17 @@ class VisitorController extends Controller
 
         if($meet->email=='1')
         {
-            Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors));
+            if(!(Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors)))){
+
+            return redirect()->route('meetings.show', $request->idMeeting)->with('success', 'The Visitor was assigned but the email was not sent.');
+
+              
+
+                }
+ 
+               
+
+            
 
             /*Nexmo::message()->send([
             'to' => '351918064359 ',
