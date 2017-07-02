@@ -24,7 +24,7 @@
                             <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
 
                             <div class="col-md-6">
-                                <input id="finderName" type="text" class="form-control" name="finderName" value="{{ old('finderName') }}" required autofocus placeholder="Type here the finder's name">
+                                <input id="finderName" type="text" class="form-control" name="finderName" value="{{ old('finderName') }}" required autofocus placeholder="Type here the finder's name" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('finderName'))
                                     <span class="help-block">
@@ -38,7 +38,7 @@
                             <label for="finderPhone" class="col-md-4 control-label">Finder Phone:</label>
 
                             <div class="col-md-6">
-                                <input id="finderPhone" type="text" class="form-control" name="finderPhone" value="{{ old('finderPhone') }}" placeholder="Type here the finder's phone" required autofocus>
+                                <input id="finderPhone" type="text" class="form-control" name="finderPhone" value="{{ old('finderPhone') }}" placeholder="Type here the finder's phone"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('finderPhone'))
                                     <span class="help-block">
@@ -76,7 +76,7 @@
                             <label for="lostFoundDescription" class="col-md-4 control-label"> Description:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="4" cols="" class="form-control" name="lostFoundDescription" placeholder="Type here a description about the item"></textarea>                                
+                                <textarea rows="4" cols="" class="form-control" name="lostFoundDescription" placeholder="Type here a description about the item" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></textarea>                                
 
                                 @if ($errors->has('lostFoundDescription'))
                                     <span class="help-block">

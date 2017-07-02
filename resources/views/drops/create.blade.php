@@ -25,7 +25,7 @@
                             <label for="dropperCompany" class="col-md-4 control-label">Company Name:</label>
 
                             <div class="col-md-6">
-                                <input id="dropperCompany" type="text" class="form-control" name="dropperCompany" value="{{ old('dropperCompany') }}" required autofocus placeholder='Type here your company name'>
+                                <input id="dropperCompany" type="text" class="form-control" name="dropperCompany" value="{{ old('dropperCompany') }}" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" autofocus placeholder='Type here the company name'>
 
                                 @if ($errors->has('dropperCompany'))
                                     <span class="help-block">
@@ -39,7 +39,7 @@
                             <label for="dropperName" class="col-md-4 control-label">Dropper Name:</label>
 
                             <div class="col-md-6">
-                                <input id="dropperName" type="text" class="form-control" name="dropperName" value="{{ old('dropperName') }}" required autofocus placeholder='Type here your dropper name'>
+                                <input id="dropperName" type="text" class="form-control" name="dropperName" value="{{ old('dropperName') }}" required autofocus placeholder='Type here the dropper name' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('dropperName'))
                                     <span class="help-block">
@@ -53,7 +53,7 @@
                             <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
-                                <input id="ReceiverName" type="text" class="form-control" name="ReceiverName" value="{{ old('ReceiverName') }}" required autofocus placeholder='Type here your receiver name'>
+                                <input id="ReceiverName" type="text" class="form-control" name="ReceiverName" value="{{ old('ReceiverName') }}" required autofocus placeholder='Type here the receiver name' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('ReceiverName'))
                                     <span class="help-block">
@@ -104,7 +104,7 @@
                             <label for="dropDescription" class="col-md-4 control-label"> Description:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="4" cols="" class="form-control" name="dropDescription" placeholder='Describe the product'></textarea>                                
+                                <textarea rows="4" cols="" class="form-control" name="dropDescription" placeholder='Describe the package' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></textarea>                                
 
                                 @if ($errors->has('dropDescription'))
                                     <span class="help-block">

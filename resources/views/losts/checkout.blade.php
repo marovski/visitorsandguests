@@ -51,7 +51,7 @@
                             <label for="ReceiverName" class="col-md-4 control-label">Receiver Name:</label>
 
                             <div class="col-md-6">
-                                <input id="ReceiverName" type="text" class="form-control" name="receiverName" value="{{ $lost->receiverName }}" required autofocus>
+                                <input id="ReceiverName" type="text" class="form-control" name="receiverName" value="{{ $lost->receiverName }}" required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('ReceiverName'))
                                     <span class="help-block">
@@ -65,7 +65,7 @@
                             <label for="receiverPhone" class="col-md-4 control-label">Receiver Phone:</label>
 
                             <div class="col-md-6">
-                                <input id="receiverPhone"  type="tel"  class="form-control" name="receiverPhone" value="{{ $lost->receiverPhone  }}" required autofocus>
+                                <input id="receiverPhone"  type="tel"  class="form-control" name="receiverPhone" value="{{ $lost->receiverPhone  }}"  autofocus>
 
                                 @if ($errors->has('receiverPhone'))
                                     <span class="help-block">

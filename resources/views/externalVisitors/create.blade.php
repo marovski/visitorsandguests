@@ -28,7 +28,7 @@
                             <label for="visitorName" class="col-md-4 control-label"> Name:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorName" type="text" class="form-control" name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="">
+                                <input id="visitorName" type="text" class="form-control"  name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -63,7 +63,7 @@
                             <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus>
+                                <input id="visitorCitizenCard" type="text" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus>
 
                                 @if ($errors->has('visitorCitizenCard'))
                                 <span class="help-block">
@@ -109,7 +109,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="text" max=20  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone">
+                                <input id="visitorNPhone" type="text" max=20  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">
@@ -124,7 +124,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail" required=""></input>
+                               <input type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -138,7 +138,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Confirm Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail" required="" ></input>
+                               <input type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -154,7 +154,7 @@
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus  >
+                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" >
 
                                 @if ($errors->has('visitorCompanyName'))
                                     <span class="help-block">
@@ -183,7 +183,7 @@
                             <label for="visitorDeclaredGood" class="col-md-4 control-label">Declared Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus >
+                                <input id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('visitorDeclaredGood'))
                                     <span class="help-block">

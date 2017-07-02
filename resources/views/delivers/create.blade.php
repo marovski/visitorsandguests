@@ -25,7 +25,7 @@
 							<label for="driverName" class="col-md-4 control-label">Driver Name:</label>
 
 							<div class="col-md-6">
-								<input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" placeholder='Type here the driver name' required autofocus>
+								<input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" placeholder='Type here the driver name' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('driverName'))
 								<span class="help-block">
@@ -58,7 +58,7 @@
 							<label for="driverID" class="col-md-4 control-label">Identification Card Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID" max="20" type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type your id card number' required autofocus>
+								<input id="driverID"  type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type your id card number' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">
@@ -74,7 +74,7 @@
 							<label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 
 							<div class="col-md-6">
-								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="40" placeholder='ex.:00-AA-00'>
+								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus  max-lenght="40" placeholder='ex.PT:00-AA-00'>
 
 								@if ($errors->has('vehicleLicensePlate'))
 								<span class="help-block">
@@ -88,7 +88,7 @@
 							<label for="firm" class="col-md-4 control-label">Firm Supplier:</label>
 
 							<div class="col-md-6">
-								<input id="firm" type="text" class="form-control" name="firm" value="{{ old('firm') }}" required autofocus placeholder='Type here the firm supplier'>
+								<input id="firm" type="text" class="form-control" name="firm" value="{{ old('firm') }}" required autofocus placeholder='Type here the firm supplier' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('firm'))
 								<span class="help-block">
@@ -103,7 +103,7 @@
 							<label for="cargo" class="col-md-4 control-label">Cargo Details:</label>
 
 							<div class="col-md-6">
-								<input id="cargo" type="text" class="form-control" name="cargo" value="{{ old('cargo') }}" required autofocus placeholder='Type here the cargo details'>
+								<input id="cargo" type="text" class="form-control" name="cargo" value="{{ old('cargo') }}" required autofocus placeholder='Type here the cargo details' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('cargo'))
 								<span class="help-block">
@@ -154,7 +154,7 @@
 
 							<div class="col-md-6">
 
-								<input type="number"  name="weight"  min="0" placeholder="Kg" data-parsley-pattern="/^\d{2,3} ?kg$/">
+								<input type="number"  name="weight"  min="0" placeholder="Kg"  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                             
 

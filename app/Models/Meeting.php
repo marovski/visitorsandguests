@@ -9,6 +9,8 @@ use Laravel\Scout\Searchable;
 
 class Meeting extends Model
 {
+
+  use Searchable;
   /*
   |--------------------------------------------------------------------------
   | GLOBAL VARIABLES
