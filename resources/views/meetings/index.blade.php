@@ -88,7 +88,7 @@
                                 <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
                                 </td>
                                 <td>
-                              
+                              @if($userAuth->fk_idSecurity != 1 )
                                 @if(!empty($meeting->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i>  Check-In</button> 
                                  @else 
                                   {!! Form::open(array('action' => array('MeetingController@checkin', $meeting->idMeeting))) !!}
@@ -107,7 +107,8 @@
                                 {!! Form::close() !!}
 
                                 @endif
-                                
+                                @else
+                                @endif
                                 </td>
                                 
                         </tr>

@@ -8,10 +8,12 @@ use App\Models\Visitor;
 use App\Models\User;
 use Session;
 use Auth;
-use App\Mail\NewMeetingNotification;
 use Mail;
 use Carbon\Carbon;
-use Nexmo;
+use App\Mail\NewMeetingNotification;
+
+
+
 
 class MeetingController extends Controller
 {
@@ -27,7 +29,8 @@ class MeetingController extends Controller
        public function index()
     {
 
-
+        $userId = Auth::id();
+        $userAuth = User::find($userId);
 
         $meetings = Meeting::orderBy('idMeeting', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
 
@@ -45,7 +48,7 @@ class MeetingController extends Controller
             return view('meetingsSecurityView.index', compact('meetings', 'user', 'visitor'));
         }
         else
-        return view('meetings.index', compact('meetingsStaff', 'user', 'visitor'));
+        return view('meetings.index', compact('meetingsStaff', 'user', 'visitor', 'userAuth'));
     }
 
     /**

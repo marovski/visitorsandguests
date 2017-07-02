@@ -17,6 +17,12 @@ use App\Http\Middleware\CheckAuth;
 Route::group(['middleware' => ['web']], function () {
 
  
+Route::group(['middleware' => 'CheckAuth'], function()
+{
+    Route::resource('meetings', 'MeetingController', ['only' => ['create']]);
+});
+
+
 Route::get('search',array('as'=>'search','uses'=>'SearchController@search'));
 Route::get('autocomplete/{id}',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 
@@ -108,9 +114,6 @@ Route::get('/losts/{id}/checkOut/', ['as' => 'losts.checkout',
                                                         'uses' => 'LostFoundController@checkout'
                                                         ]); 
 
-
-
-Route::get('meetings/create',['as' => 'meetings.create', 'uses' =>'MeetingController@create'])->middleware('CheckAuth');
 //Resources From The Controllers
 Route::resource('visitors','VisitorController');
 Route::resource('delivers','DeliverController');
@@ -118,17 +121,12 @@ Route::resource('deliveryType','DelivertypeController');
 Route::resource('losts', 'LostFoundController');
 Route::resource('meetings','MeetingController');
 
+
 //Initial Pages
 Route::get('dashboard', 'DashboardController@getDashboard');
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
-
-
-
-//Send Mail Route
-Route::get('/email','mailController@send')->name('sendEmail');
-
 
 
 
