@@ -76,7 +76,7 @@ class MeetingController extends Controller
 
         $this->validate($request,[
                 
-                'meetingTopic'=> 'required|max:50|string',
+                'meetingTopic'=> 'required|max:50|string|unique:meetings,meetingName',
                 'visitReason' => 'required|max:200|string',
             ]);    
         

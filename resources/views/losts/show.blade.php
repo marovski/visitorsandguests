@@ -10,10 +10,8 @@
 
     <div class="row" ng-app="MyApp" ng-controller="showInputController" >
         <div class="col-md-8">
-                                                        <!-- LOADING ICON -->
-            <!-- show loading icon if the loading variable is set to true -->
-        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
-            <div class="panel panel-default"  ng-show="loading == true">
+                                                        
+            <div class="panel panel-default"  >
                 <div class="panel-heading"><b>Lost and Found Report</b></div>
 
            <div class="panel-body"  >
@@ -81,7 +79,7 @@
 
                             <div class="col-md-6">
 
-                      <select class="form-group" name="itemCategory" disabled="" readonly="" required style="margin-left: 4px; margin-top:9px;">
+                      <select class="form-group" name="itemCategory" disabled required style="margin-left: 4px; margin-top:9px;">
                                     @if ($lost->itemCategory==1)
                                     <option value="1"> Electronic</option>
                                     @elseif($lost->itemCategory==2)

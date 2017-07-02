@@ -6,27 +6,32 @@
 
   <div class="row">
     <div class="col-md-8">
-      
-      <h3 class="lead">Topic: {!! $meetingData->meetingName !!}</h3>
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Confidentiality</th>
+              <th>Sensibility</th>
+              <th>Escorted Visitors</th>
+              <th width="100px"></th>
+            </tr>
+          </thead>
 
-      <hr>
-          <p class="lead">Confidentiality: @if($meetingData->confidentiality==1) Top Secret @else Unclassified @endif</p>
-          <hr>
-          <h3>Sensibility: @if($meetingData->sensibility==1) Small @elseif($meetingData->sensibility==2) Medium @else High @endif</h3>
-      <hr>
-      <div class="visitors">
-      <p class="lead">Escorted Visitors:
-      
-        
-          <span class="label label-default">{{$meetingData->visitor->where('escorted', 1)->count()}} </span>
-       
-        </p>
-        
+          <tbody>
+            
+            <tr>
+              <td>{{ $meetingData->meetingName }}</td>
+              <td>@if($meetingData->confidentiality==1) Top Secret @else Unclassified @endif</td>
+              <td>@if($meetingData->sensibility==1) Small @elseif($meetingData->sensibility==2) Medium @else High @endif</td>
+              <td><span class="label label-default">{{$meetingData->visitor->where('escorted', 1)->count()}} </span></td>
+              </td>
+            </tr>
 
-      </div>
-
+          </tbody>
+        </table>
+    
       <div id="visitors" style="margin-top: 50px;">
-          <h3>External Visitors <small>{{ $meetingData->visitor()->count() }} total   </small></h3>
+          <h4><b>External Visitors</b> <small>{{ $meetingData->visitor()->count() }} total   </small></h4>
 </h3>
         
          
@@ -67,7 +72,7 @@
         @endforeach
       </div>
         <div id="visitors" style="margin-top: 50px;">
-        <h3>Internal Visitors <small>{{ $meetingData->user()->count() }} total   </small></h3>
+        <h4><b>Internal Visitors</b> <small>{{ $meetingData->user()->count() }} total   </small></h4>
   
          
 

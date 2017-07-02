@@ -6,24 +6,32 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<h3 class="lead">Firm Supplier: {!! $deliver->deFirmSupplier !!}</h3>
-			
-			
-			<hr>
-			 <div class="visitors">
-        <p class="lead">Content: 
-        @foreach ($deliver->type as $typeItem)
-        <span class="label label-default">{{ $typeItem->materialDetails }}</span>
-       @endforeach </p>
-      </div>
-      <hr>
-			<p class="lead">Entry Weight: {{ $deliver->entryWeight }}</p>
-	
-			<hr>
-				<p class="lead">Exit Weight: {{ $deliver->exitWeight }}</p>
-				<hr>
-     
+		<table class="table">
+          <thead>
+            <tr>
+              <th>Firm Supplier</th>
+              <th>Content</th>
+              <th>Entry Weight</th>
+              <th>Exit Weight</th>
+              <th width="100px"></th>
+            </tr>
+          </thead>
 
+          <tbody>
+            
+            <tr>
+              <td>{!! $deliver->deFirmSupplier !!}</td>
+              <td>@foreach ($deliver->type as $typeItem)
+        <span class="label label-default">{{ $typeItem->materialDetails }}</span>
+       @endforeach</td>
+              <td>{{ $deliver->entryWeight }}</td>
+			  <td>{{ $deliver->exitWeight }}</td>
+               </tr>
+
+          </tbody>
+        </table>
+    
+			
 			<div id="backend-comments" style="margin-top: 50px;">
 				<h3>Items <small>{{ $deliver->type()->count() }} total</small></h3>
 

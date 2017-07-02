@@ -139,8 +139,8 @@
                                 <select class="form-control" value="scheduled" name="meetStatus">
                                   <option value="1">Scheduled</option>
                                   <option disabled value="2">Waiting Confirmation</option>
-                                  <option  disabled="" value="3">Canceled</option>
-                                  <option  disabled="" value="4">Finished</option>
+                                  <option  disabled value="3">Canceled</option>
+                                  <option  disabled value="4">Finished</option>
                               </select>
 
                               @if ($errors->has('meetStatus'))
