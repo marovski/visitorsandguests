@@ -119,7 +119,7 @@
                             <label for="deEntryTime" class="col-md-4 control-label">Entry Time:</label>
 
                             <div class="col-md-6">
-                                <input id="deEntryTime" type="date" class="form-control" name="deEntryTime" value= {{$deliveryData->deEntryTime}} disabled="" autofocus>
+                                <input id="deEntryTime" type="text" class="form-control" name="deEntryTime" value= '{{$deliveryData->deEntryTime}}' disabled autofocus>
 
                                 @if ($errors->has('deEntryTime'))
                                 <span class="help-block">
@@ -134,7 +134,7 @@
                             <label for="deExitTime" class="col-md-4 control-label">Exit Time:</label>
 
                             <div class="col-md-6">
-                                <input id="deExitTime" type="date" class="form-control" name="deExitTime" value= {{ $deliveryData->deExitTime}}  autofocus>
+                                <input id="deExitTime" type="text" class="form-control" name="deExitTime" value= '{{ $deliveryData->deExitTime}}' disabled autofocus>
 
                                 @if ($errors->has('deExitTime'))
                                 <span class="help-block">

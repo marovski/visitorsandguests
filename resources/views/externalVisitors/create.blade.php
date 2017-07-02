@@ -72,22 +72,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('vehicleonsiste') ? ' has-error' : '' }}"   >
-                            <label for="vehicleonsiste" class="col-md-4 control-label">Vehicle On Site:</label>
-
-                            <div class="col-md-6">
-                               <input type="radio" id="vehicleonsiteradio1" name="vehicleonsite" value="1" ng-model="yes">
-                <label for="vehicleonsiteradio1">Yes</label>
-                <input type="radio" id="vehicleonsiteradio2" name="vehicleonsiste" value="0" onchange=""><label for="vehicleonsiteradio2">No</label>
-
-                                @if ($errors->has('vehicleonsiste'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('vehicleonsiste') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
+                        
           
                          
 
