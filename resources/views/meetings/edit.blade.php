@@ -25,7 +25,7 @@
                               <label for="meetingName" class="col-md-4 control-label">Meeting Topic:</label>
 
                               <div class="col-md-6">
-                                  <textarea rows="4" cols="" class="form-control" name="meetingTopic">{{$meetingData->meetingName}}</textarea>                                
+                                  <textarea rows="4" cols="" class="form-control" name="meetingTopic" disabled="">{{$meetingData->meetingName}}</textarea>                                
 
                                   @if ($errors->has('name'))
                                   <span class="help-block">
@@ -39,7 +39,7 @@
                               <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
 
                               <div class="col-md-6">
-                                  <input id="meetStartDate" type="datetime-local" class="form-control" name="meetStartDate" value="{{$meetingData->meetStartDate}}" disabled="" >
+                                  <input id="meetStartDate" type="text" class="form-control" name="meetStartDate" disabled="" value="{{$meetingData->meetStartDate}}"  >
 
                                   @if ($errors->has('meetStartDate'))
                                   <span class="help-block">
@@ -54,7 +54,7 @@
                               <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
 
                               <div class="col-md-6">
-                                  <input id="meetEndDate" type="datetime-local" class="form-control" name="meetEndDate" value="{{ $meetingData->meetEndDate}}" disabled="">
+                                  <input id="meetEndDate" type="text" class="form-control" name="meetEndDate" disabled="" value="{{ $meetingData->meetEndDate}}" >
 
                                   @if ($errors->has('meetEndDate'))
                                   <span class="help-block">
@@ -94,7 +94,7 @@
                           <label for="visitReason" class="col-md-4 control-label"> Meeting Purpose:</label>
 
                           <div class="col-md-6">
-                              <textarea rows="4" cols="" class="form-control" name="visitReason" >{{$meetingData->visitReason}}</textarea>                                
+                              <textarea rows="4" cols="" class="form-control" name="visitReason" disabled="" >{{$meetingData->visitReason}}</textarea>                                
 
                               @if ($errors->has('visitReason'))
                               <span class="help-block">
@@ -108,8 +108,11 @@
                           <label for="confidentiality" class="col-md-4 control-label">Confidentiality:</label>
 
                           <div class="col-md-6">
-
-                              <input id="confidentiality" type="checkbox"  name="confidentiality" disabled value="{{ $meetingData->confidentiality }}">
+                              @if ($meetingData->confidentiality==1)
+                              <input id="confidentiality" type="checkbox"  name="confidentiality" disabled=""  value="1"> Top Secret
+                              @else
+                                <input id="confidentiality" type="checkbox"  name="confidentiality" disabled=""  value="0">  Unclassified
+                              @endif
 
                               @if ($errors->has('confidentiality'))
                               <span class="help-block">
@@ -125,11 +128,11 @@
 
                           <div class="col-md-6">
                           @if($meetingData->sensibility==3)
-                           <label class="radio-inline"><input type="radio" name="sensibility" value="3" disabled>High</label>
-                           @elseif($meeting->sensibility==2)
-                           <label class="radio-inline"><input type="radio" name="sensibility" value="2" disabled>Medium </label>
+                           <label class="radio-inline"><input type="radio" name="sensibility" value="3" checked="" disabled>High</label>
+                           @elseif($meetingData->sensibility==2)
+                           <label class="radio-inline"><input type="radio" name="sensibility" value="2" checked disabled>Medium </label>
                            @else
-                           <label class="radio-inline"><input type="radio" name="sensibility" value="1" disabled="">Small</label>
+                           <label class="radio-inline"><input type="radio" name="sensibility" value="1" checked disabled="">Small</label>
                            @endif
                            @if ($errors->has('sensibility'))
                            <span class="help-block">
@@ -183,9 +186,11 @@
                   <label for="sendmail" class="col-md-4 control-label">Send Email:</label>
 
                   <div class="col-md-6">
-
-                      <input id="sendmail" type="checkbox"  name="sendmail" disabled="" readonly value="{{ old('$meetingData->sendmail') }}" >
-
+                  @if($meetingData->sendmail ==1)
+                      <input id="sendmail" type="checkbox"  name="sendmail" disabled="" readonly value="1" > Email Alert
+                      @else
+<input id="sendmail" type="checkbox"  name="sendmail" disabled="" readonly value="0" > Without Email Alert
+@endif
                       @if ($errors->has('sendmail'))
                       <span class="help-block">
                           <strong>{{ $errors->first('sendmail') }}</strong>

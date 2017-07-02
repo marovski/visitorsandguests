@@ -198,6 +198,21 @@
         <hr>
   
         <div class="row">
+
+             <div class="col-sm-12">         
+        {{ Form::open(['class'=>'form-group','route' => ['lost.destroy', $lost->idLostFound], 'method' => 'delete']) }}
+          <div class="form-group">
+                   
+                        <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">
+                           Delete
+                       </button>
+
+
+                
+               </div> 
+           {{ Form::close() }}
+
+          </div>
             <div class="col-md-12">
             @if(Auth::check())
           <a href="{{ route('losts.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << Return</a> 

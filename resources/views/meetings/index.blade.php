@@ -58,7 +58,7 @@
                     </thead>
 
                     <tbody>
-                     @foreach($meetings as $meeting )
+                     @foreach($meetingsStaff as $meeting )
  
                             <tr>
                             
@@ -117,7 +117,7 @@
                 </tbody>
             </table>
             <div class="text-center">
-                {!! $meetings->links(); !!}
+                {!! $meetingsStaff->links(); !!}
             </div>
         
         </div>

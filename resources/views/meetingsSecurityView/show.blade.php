@@ -105,17 +105,18 @@
      
 
         <dl class="dl-horizontal">
-          <label>Start at:</label>
-          <p>{{ date('M j, Y h:ia', strtotime($meetingData->meetStartDate)) }}</p>
+         <label>Start at:</label>
+          <p>{{ ($meetingData->meetStartDate ? date('M j, Y h:ia', strtotime($meetingData->meetStartDate)) : '')  }}</p>
         </dl>
 
         <dl class="dl-horizontal">
           <label>End Date:</label>
-          <p>{{ date('M j, Y h:ia', strtotime($meetingData->meetEndDate)) }}</p>
+          <p>{{ ($meetingData->meetEndDate ? date('M j, Y h:ia', strtotime($meetingData->meetEndDate)) : '')  }}</p>
         </dl>
         <hr>
         <div class="row">
-        <div class="form-group"><div class="col-md-12">
+        <div class="form-group">
+        <div class="col-md-12">
              <a href="{{ route('meetings.edit', $meetingData->idMeeting) }}" class="btn btn-primary btn-block">Edit</a> 
         
             

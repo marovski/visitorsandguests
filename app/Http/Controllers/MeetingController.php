@@ -31,20 +31,21 @@ class MeetingController extends Controller
 
         $meetings = Meeting::orderBy('idMeeting', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
 
+        $meetingsStaff = Meeting::orderBy('meetStartDate', 'desc')->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
 
         $user= User::all()->load('meetingHost');
 
        
         $visitor=Visitor::all()->load('meeting');
-
+   
 
         
 
         if (Auth::user()->role()==true) {
-            return view('meetingsSecurityView.index', compact('meetings', 'user', 'visitor'))->render();
+            return view('meetingsSecurityView.index', compact('meetings', 'user', 'visitor'));
         }
         else
-        return view('meetings.index', compact('meetings', 'user', 'visitor'))->render();
+        return view('meetings.index', compact('meetingsStaff', 'user', 'visitor'));
     }
 
     /**
@@ -131,11 +132,11 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
-        $meetingData = Meeting::findOrFail($id)->where('deleteFlag', '=', 0);
+        $meetingData = Meeting::findOrFail($id);
 
         if(Auth::user()->role()==true){
 
-return view('meetingsSecurityView.show', compact('meetingData') ) ;
+        return view('meetingsSecurityView.show', compact('meetingData') ) ;
 
         }
        return view('meetings.show', compact('meetingData') ); 

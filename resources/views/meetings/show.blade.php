@@ -109,12 +109,12 @@
 
         <dl class="dl-horizontal">
           <label>Start at:</label>
-          <p>{{ date('M j, Y h:ia', strtotime($meetingData->meetStartDate)) }}</p>
+          <p>{{ ($meetingData->meetStartDate ? date('M j, Y h:ia', strtotime($meetingData->meetStartDate)) : '')  }}</p>
         </dl>
 
         <dl class="dl-horizontal">
           <label>End Date:</label>
-          <p>{{ date('M j, Y h:ia', strtotime($meetingData->meetEndDate)) }}</p>
+          <p>{{ ($meetingData->meetEndDate ? date('M j, Y h:ia', strtotime($meetingData->meetEndDate)) : '')  }}</p>
         </dl>
         <hr>
         <div class="row">
@@ -128,7 +128,7 @@
            <form method="POST" action="{{ route('meetings.destroy', $meetingData->idMeeting) }}" >
              <div class="form-group">
                    
-                        <button type="submit" class="btn btn-danger btn-block">
+                        <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">
                            Delete
                        </button>
 

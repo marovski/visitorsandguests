@@ -87,7 +87,7 @@
                                 <select class="form-control" name="dropImportance" disabled="true">
                                  @if ($drop->dropImportance==3)
                                   <option value="">High</option>
-                                  @elseif ($lost->dropImportance==2)
+                                  @elseif ($drop->dropImportance==2)
                                   <option value="">Medium</option>
                                   @else
                                   <option value="">Small</option>
@@ -138,14 +138,23 @@
         </dl>
         <hr>
         <div class="row">
-          
+       
          
-          <div class="col-sm-4">         
-           {{ Form::open(['route' => ['drops.destroy', $drop->idDrop], 'method' => 'delete', 'style'=>'display:inline-block']) }}
-           <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
+          <div class="col-sm-12">         
+        {{ Form::open(['class'=>'form-group','route' => ['drops.destroy', $drop->idDrop], 'method' => 'delete']) }}
+          <div class="form-group">
+                   
+                        <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">
+                           Delete
+                       </button>
+
+
+                
+               </div> 
            {{ Form::close() }}
 
           </div>
+      
 
             <div class="col-md-12">
           <a href="{{ route('drops.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << See All Drops</a>             

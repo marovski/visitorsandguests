@@ -34,7 +34,7 @@
                             <label for="visitorName" class="col-md-4 control-label"> Name:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorName" type="text" class="form-control" name="visitorName" value="{{ $externalVisitor->visitorName }}"  >
+                                <input id="visitorName" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" type="text" disabled="" class="form-control" name="visitorName" value="{{ $externalVisitor->visitorName }}"  >
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -68,7 +68,7 @@
                             <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" type="text" class="form-control" name="visitorCitizenCard" value="{{ $externalVisitor->visitorCitizenCard}}"   ></input>
+                                <input id="visitorCitizenCard" type="text" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" class="form-control" name="visitorCitizenCard" value="{{ $externalVisitor->visitorCitizenCard}}"   ></input>
 
                                 @if ($errors->has('visitorCitizenCard'))
                                     <span class="help-block">
@@ -86,7 +86,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="text"  class="form-control" name="visitorNPhone" value="{{$externalVisitor->visitorNPhone  }}"  >
+                                <input id="visitorNPhone" type="text" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" class="form-control" name="visitorNPhone" value="{{$externalVisitor->visitorNPhone  }}"  >
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">
@@ -101,7 +101,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail" value="{{ $externalVisitor->visitorEmail }}"></input>
+                               <input type="email" class="form-control" id="visitorEmail" name="visitorEmail" value="{{ $externalVisitor->visitorEmail }}" ng-cut="$event.preventDefault()" disabled ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -111,15 +111,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
-                            <label for="visitorEmail" class="col-md-4 control-label">Confirm Email:</label>
+                        <div class="form-group{{ $errors->has('confirmEmail') ? ' has-error' : '' }}">
+                            <label for="confirmEmail" class="col-md-4 control-label">Confirm Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail"></input>
+                               <input type="email" class="form-control" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" name="confirmEmail" value="{{ $externalVisitor->visitorEmail }}" disabled></input>
 
-                                @if ($errors->has('visitorEmail'))
+                                @if ($errors->has('confirmEmail'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('visitorEmail') }}</strong>
+                                        <strong>{{ $errors->first('confirmEmail') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -129,7 +129,7 @@
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ $externalVisitor->visitorCompanyName }}"  >
+                                <input id="visitorCompanyName" type="text" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" disabled="" class="form-control" name="visitorCompanyName" value="{{ $externalVisitor->visitorCompanyName }}"  >
 
                                 @if ($errors->has('visitorCompanyName'))
                                     <span class="help-block">
@@ -144,7 +144,11 @@
                             <label for="wifiAccess" class="col-md-4 control-label">WiFi Access:</label>
 
                             <div class="col-md-6">
-                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1"  >
+                            @if($externalVisitor->wifiAcess==1)
+                                <input id="wifiAcess" type="checkbox" name="wifiAccess" value=""  checked="" > Has Wifi Acess
+                                @else
+                                   <input id="wifiAccess" type="checkbox" name="wifiAccess" value=""  > No Wifi Acess
+                                 @endif
 
                                 @if ($errors->has('wifiAccess')) 
                                     <span class="help-block">
@@ -173,8 +177,11 @@
                             <label for="visitorDangerousGood" class="col-md-4 control-label">Dangerous Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="1"  >
-
+                            @if($externalVisitor->visitorEmail==1)
+                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value=""  checked="">Atention: Has Dangerous Goods!
+                                @else
+                                   <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value=""  > No Dangerous Goods
+                                   @endif
                                 @if ($errors->has('visitorDangerousGood')) 
                                     <span class="help-block">
                                         <strong>{{ $errors->first('visitorDangerousGood') }}</strong>
@@ -188,7 +195,11 @@
                             <label for="escorted" class="col-md-4 control-label">Escorted:</label>
 
                             <div class="col-md-6">
-                                <input id="escorted" type="checkbox" name="escorted" value="1"  >
+                            @if($externalVisitor->escorted==1)
+                                <input id="escorted" type="checkbox" name="escorted" value="" checked="" > Escorted
+                                @else
+                                  <input id="escorted" type="checkbox" name="escorted" value=""  > Not Escorted
+                                @endif
 
                                 @if ($errors->has('escorted')) 
                                     <span class="help-block">

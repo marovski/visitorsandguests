@@ -52,11 +52,7 @@
                                 @else <a disabled="disabled" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i> Check-out</a>
                                 @endif
                                 </td>
-                                <td>
-                                {{ Form::open(['route' => ['drops.destroy', $drop->idDrop], 'method' => 'delete', 'style'=>'display:inline-block']) }}
-                                <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
-                                {{ Form::close() }}
-                                </td>
+                               
 							    
 						</tr>
 

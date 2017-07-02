@@ -7,7 +7,7 @@ use App\Models\Drop;
 use App\Models\DropItem;
 use Auth;
 use Session;
-// use Purifier;
+
 use Carbon\Carbon;
 
 
@@ -50,13 +50,12 @@ class DropController extends Controller
             
                 'dropperName' => 'required|min:1|max:50|string',
                 'ReceiverName' => 'required|min:1|max:50|string',
-         
                 'dropImportance' => 'required',
                 'dropDescription' => 'required|min:2|max:255'
             ]);    
         $drop = new Drop();
     
-        if ('%$request->dropperName%'=='%$request->ReceiverName%') {
+        if ($request->dropperName==$request->ReceiverName) {
            Session::flash('danger','The receiver name cannot be the same as the dropper!');
             return redirect()->back();
         }
@@ -66,7 +65,7 @@ class DropController extends Controller
         $drop->dropReceiver=$request->ReceiverName;
         $drop->dropSize=$request->dropSize;
         $drop->dropImportance=$request->dropImportance;
-        $drop->dropDescr=Purifier::clean($request->dropDescription);
+        $drop->dropDescr=$request->dropDescription;
         
          //Associate relationship to insert the foreign key of the user that create the new entity.
          Auth::user()->drops()->save($drop);

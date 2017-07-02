@@ -147,7 +147,9 @@
                                 @endif
                             </div>
                         </div>
-
+<script type="text/javascript">$('#visitorEmail').bind("cut copy paste",function(e) {
+          e.preventDefault();
+      });</script>
                         <div class="form-group{{ $errors->has('visitorCompanyName') ? ' has-error' : '' }}">
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
