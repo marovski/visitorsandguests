@@ -168,7 +168,7 @@
         </div>
         <div class="col-sm-6">
 
-        <a class="btn btn-danger btn-block"  href="{{ route('delivers.show', $deliveryData->idDeliver) }}"><span class="glyphicon glyphicon-floppy-save"></span> Cancel</a> </div>
+        <a class="btn btn-danger btn-block"  href="{{ route('delivers.show', $deliveryData->idDeliver) }}">Cancel</a> </div>
         
       </div>
 
