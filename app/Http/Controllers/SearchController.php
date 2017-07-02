@@ -32,31 +32,33 @@ class SearchController extends Controller
     public function autocomplete(Request $request, $id)
 
     {
-          $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
+         
+        if ($id=='mN') {
+
+             $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
              
              return response()->json($data);
-    //     if ($id=='mM') {
    
-    // }elseif ($id=='mP') {
-    //          $data = Meeting::select("visitReason as name")->where("visitReason","LIKE","%{$request->input('query')}%")->get();
+    }elseif ($id=='mP') {
+             $data = Meeting::select("visitReason as name")->where("visitReason","LIKE","%{$request->input('query')}%")->get();
 
-    //          return response()->json($data);
-    // }elseif ($id=='vN') {
+             return response()->json($data);
+    }elseif ($id=='vN') {
 
-    //     $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
+        $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
 
-    //          return response()->json($data);
-    // }elseif ($id=='vC') {
-    //       $data = Visitor::select("visitorCompanyName as name")->where("visitorCompanyName","LIKE","%{$request->input('query')}%")->get();
+             return response()->json($data);
+    }elseif ($id=='vC') {
+          $data = Visitor::select("visitorCompanyName as name")->where("visitorCompanyName","LIKE","%{$request->input('query')}%")->get();
 
-    //          return response()->json($data);
-    // }elseif ($id=='vE') {
-    //       $data = Visitor::select("visitorEmail as name")->where("visitorEmail","LIKE","%{$request->input('query')}%")->get();
+             return response()->json($data);
+    }elseif ($id=='vE') {
+          $data = Visitor::select("visitorEmail as name")->where("visitorEmail","LIKE","%{$request->input('query')}%")->get();
 
-    //          return response()->json($data);
-    // }elseif ($id=='dC') {
-    //     # code...
-    // }
+             return response()->json($data);
+    }elseif ($id=='dC') {
+        # code...
+    }
         }
        
 

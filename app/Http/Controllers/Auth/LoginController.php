@@ -86,8 +86,9 @@ class LoginController extends Controller
     //Logout Function for our users
     
     public function logout(){
-     $v= Auth::logout();
-      if ($v) {
+  ;
+      if (!(Auth::logout())) {
+
        Session::flash('success', 'The logout was successfull!');
 
 

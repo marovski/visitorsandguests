@@ -76,9 +76,9 @@
                             <label for="vehicleonsiste" class="col-md-4 control-label">Vehicle On Site:</label>
 
                             <div class="col-md-6">
-                               <input type="radio" id="vehicleonsiteradio1" name="vehicleonsite" value="1" onchange="OnVehicleOnSiteValueChanged(newvisitor)">
+                               <input type="radio" id="vehicleonsiteradio1" name="vehicleonsite" value="1" ng-model="yes">
                 <label for="vehicleonsiteradio1">Yes</label>
-                <input type="radio" id="vehicleonsiteradio2" name="vehicleonsiste" value="0" onchange="OnVehicleOnSiteValueChanged(newvisitor)"><label for="vehicleonsiteradio2">No</label>
+                <input type="radio" id="vehicleonsiteradio2" name="vehicleonsiste" value="0" onchange=""><label for="vehicleonsiteradio2">No</label>
 
                                 @if ($errors->has('vehicleonsiste'))
                                 <span class="help-block">
@@ -95,7 +95,7 @@
                             <label for="licenseplatenumberlabel" class="col-md-4 control-label">License Plate Number:</label>
 
                             <div class="col-md-6">
-                               <input id="licenseplateinternational" type="text" name="licenseplate" autocomplete="off" placeholder="<?php echo "Enter your license plate number";?>" maxlength="50" disabled>
+                               <input id="licenseplateinternational" ng-show="yes==1" type="text" name="licenseplate" autocomplete="off" placeholder="<?php echo "Enter your license plate number";?>" maxlength="50" disabled>
 
                                 @if ($errors->has('licenseplate'))
                                     <span class="help-block">

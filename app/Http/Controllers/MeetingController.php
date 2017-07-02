@@ -72,8 +72,8 @@ class MeetingController extends Controller
 
         $this->validate($request,[
                 
-                'meetingTopic'=> 'max:50',
-                'visitReason' => 'max:200',
+                'meetingTopic'=> 'required|max:50|string',
+                'visitReason' => 'required|max:200|string',
             ]);    
         
         //Saving Meeting
@@ -131,7 +131,7 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
-        $meetingData = Meeting::findOrFail($id);
+        $meetingData = Meeting::findOrFail($id)->where('deleteFlag', '=', 0);
 
         if(Auth::user()->role()==true){
 

@@ -1,6 +1,6 @@
   
 //Angular Module to hide and show forms
-var app= angular.module('MyApp', []).controller('ShowController', ShowController).controller('showInputController', showInputController).controller('BarcodeCtrl', BarcodeCtrl);
+var app= angular.module('MyApp', []).controller('ShowController', ShowController).controller('showInputController', showInputController);
 
 
     function ShowController($scope, $timeout){

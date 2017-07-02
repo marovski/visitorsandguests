@@ -26,24 +26,13 @@
                             </span>
                             </div>
 
-<script type="text/javascript">
-    var path = "{{ route('autocomplete') }}";
-    $('input.typeahead').typeahead({
-        source:  function (query, process) {
-        return $.get(path, { query: query }, function (data) {
-                return process(data);
-            });
-        }
-    });
-</script>
+
 
 <section class="panel panel-default"   ng-controller="showInputController">
 <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
 
-                          <!-- LOADING ICON -->
-      <!-- show loading icon if the loading variable is set to true -->
-    <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
-     <div class="table-responsive" ng-show="loading == true">
+ 
+     <div class="table-responsive" >
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
