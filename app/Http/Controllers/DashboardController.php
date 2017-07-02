@@ -76,22 +76,46 @@ dd($lostItems);
     }
 
     public function getTables(){
+    
+    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
+    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
+    $lostItems = LostFound::orderBy('idLostFound','desc')->paginate();
+    $meetings = Meeting::orderBy('idMeeting','desc')->paginate();
 
-     
-    //$currentMonth = date('m');
+    return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems'));
 
-    $lostItems = LostFound::orderBy('idLostFound','desc');
+    }
 
-    $meetings = Meeting::orderBy('idMeeting','desc');
-    $visitors = Visitor::orderBy('idVisitor','desc');
+    public function getDropsTable(){
+    
+    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
+
+    return view('tables.drops', compact('drops'));
+
+    }
+
+    public function getDeliversTable(){
     
     $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
     
-    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
-    
-    $users = User::orderBy('idUser','desc');
+    return view('tables.delivers', compact('delivers'));
 
-    return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems', 'users'));
+    }
+
+    public function getLostItemsTable(){
+    
+    $losts = LostFound::orderBy('idLostFound','desc')->paginate();
+    
+    return view('tables.lostItems', compact('losts'));
+
+    }
+
+     public function getMeetingsTable(){
+     $user= User::all()->load('meetingHost');
+     $meetings = Meeting::orderBy('idMeeting','desc')->paginate();
+    
+    return view('tables.meetings', compact('meetings', 'user'));
 
     }
 }
+
