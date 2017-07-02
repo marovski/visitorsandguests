@@ -17,7 +17,15 @@ class Drop extends Model
   
   protected $table='drops';	
 
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public $fillable = [
+    
+        'dropperCompanyName','idDrop', 'dropReceiver','dropperName', 'dropDescr','receiverPhone',
+    ];
     /*
   |--------------------------------------------------------------------------
   | FUNCTIONS

@@ -118,13 +118,13 @@
         </dl>
         <hr>
         <div class="row">
-           <div class="col-sm-4">
+           <div class="col-sm-6">
              <a href="{{ route('meetings.edit', $meetingData->idMeeting) }}" class="btn btn-primary btn-block">Edit</a> 
         
             
           </div>
          
-          <div class="col-sm-4">
+          <div class="col-sm-6">
            <form method="POST" action="{{ route('meetings.destroy', $meetingData->idMeeting) }}" >
              <div class="form-group">
                    
@@ -140,7 +140,11 @@
 
           </div>
 
-            <div class="col-md-12">
+            
+        </div>
+        <div class="row">
+          
+          <div class="col-md-12">
           <a href="{{ route('meetings.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << See All Meetings</a> 
         
             

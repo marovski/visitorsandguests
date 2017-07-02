@@ -23,7 +23,7 @@ class LostFound extends Model
      */
     public $fillable = [
     
-        'itemDescription', 'finderName', 'finderPhone'
+        'itemDescription','idLostFound', 'finderName','receiverName', 'finderPhone','receiverPhone',
     ];
 
 

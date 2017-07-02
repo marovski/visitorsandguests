@@ -16,7 +16,7 @@ class Visitor extends Model
 	protected $primaryKey = 'idVisitor';
 	
 	protected $table='visitors';
-	public $fillable=['visitorName' , 'visitorCompanyName' , 'visitorEmail'];
+	public $fillable=['idVisitor','visitorName' , 'visitorCompanyName' , 'visitorEmail'];
 
 	  /*
   |--------------------------------------------------------------------------

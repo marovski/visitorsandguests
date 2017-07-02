@@ -23,7 +23,7 @@ class Meeting extends Model
 	protected $table='meetings';
 
 
-  public $fillable = ['meetingName','visitReason'];
+  public $fillable = ['idMeeting','meetingName','visitReason','meetStatus','room'];
 
     /*
   |--------------------------------------------------------------------------

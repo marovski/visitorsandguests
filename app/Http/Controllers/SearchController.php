@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+
+
 use App\Http\Controllers\Controller;
+
 use App\Models\Meeting;
 use App\Models\LostFound;
 use App\Models\Visitor;
-
+use App\Models\User;
 use App\Models\Drop;
 use App\Models\Deliver;
 
@@ -19,9 +23,20 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search()
+    public function index(Request $request)
     {
-        return view('search');
+        $user= User::all()->load('meetingHost');
+        $visitor= Visitor::all()->load('meeting');
+
+        if (!$request->q) {
+
+            return redirect('/');
+        }
+
+
+        $meetings = Meeting::search($request->q)->take(3)->get();
+
+        return view('search.index', compact('meetings','user','visitor'));
     }
 
     /**

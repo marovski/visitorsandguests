@@ -16,9 +16,9 @@ use App\Http\Middleware\CheckAuth;
 
 Route::group(['middleware' => ['web']], function () {
 
- 
 
-Route::get('search',array('as'=>'search','uses'=>'SearchController@search'));
+
+Route::get('/search','SearchController@index');
 Route::get('autocomplete/{id}',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 
 

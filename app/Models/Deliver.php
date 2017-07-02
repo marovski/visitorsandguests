@@ -24,7 +24,15 @@ class Deliver extends Model
   
   	protected $table='delivers';
 
-
+      /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public $fillable = [
+    
+        'deFirmSupplier','idDeliver', 'deDriverName','deDriverID',
+    ];
 
     /*
   |--------------------------------------------------------------------------
