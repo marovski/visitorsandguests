@@ -22,10 +22,10 @@
                            <input id="idMeeting" name="idMeeting" class="ng-hide" type="number"  value="{{$meeting->idMeeting}}"/>
               
                         <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
-                            <label for="visitorName" class="col-md-4 control-label"> Name:</label>
+                            <label for="visitorName" class="col-md-4 control-label" > Name:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorName" type="text" class="form-control"  name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+                                <input id="visitorName" type="text" class="form-control"  name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" placeholder="Type here your name">
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -60,7 +60,7 @@
                             <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" type="text" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus>
+                                <input id="visitorCitizenCard" type="text" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus placeholder="Type here your ID number">
 
                                 @if ($errors->has('visitorCitizenCard'))
                                 <span class="help-block">
@@ -79,7 +79,7 @@
 
                             <div class="col-md-6">
                             
-                                <input id="visitorNPhone" type="text" max=20  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+                                <input placeholder="Type here your phone number" id="visitorNPhone" type="text" max=20  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">
@@ -94,7 +94,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
+                               <input placeholder="Type here your email" type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -108,7 +108,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Confirm Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
+                               <input placeholder="Confirm your email" type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -124,7 +124,7 @@
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" >
+                                <input placeholder="Type here your company name" id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" >
 
                                 @if ($errors->has('visitorCompanyName'))
                                     <span class="help-block">
@@ -139,7 +139,7 @@
                             <label for="wifiAccess" class="col-md-4 control-label">WiFi Access:</label>
 
                             <div class="col-md-6">
-                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1"  autofocus>
+                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1" checked autofocus>
 
                                 @if ($errors->has('wifiAccess')) 
                                     <span class="help-block">
@@ -153,7 +153,7 @@
                             <label for="visitorDeclaredGood" class="col-md-4 control-label">Declared Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+                                <input placeholder="Type here your goods" id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
                                 @if ($errors->has('visitorDeclaredGood'))
                                     <span class="help-block">
