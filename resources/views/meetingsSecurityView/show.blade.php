@@ -43,19 +43,43 @@
               <th>Email</th>
               <th>Company</th>
               <th>ID Number</th>
-              <th width="100px"></th>
+               <th >Visitor arrival</th>
+              <th >Visitor departure</th>
+              <th ></th>
             </tr>
           </thead>
 
           <tbody>
             @foreach ($meetingData->visitor as $visitorEx)
+
             <tr>
-              <td>{{ $visitorEx->visitorName }}</td>
+              <td><a alt="Edit" href="{{ route('visitors.edit', $visitorEx->idVisitor)}}">{{ $visitorEx->visitorName }}</a></td>
               <td>{{ $visitorEx->visitorEmail }}</td>
               <td>{{ $visitorEx->visitorCompanyName }}</td>
               <td>{{ $visitorEx->visitorCitizenCard }}</td>
-              <td>
-                <a href="{{ route('visitors.edit', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+              <td> {{ $meetingData->entryTime }}</td>
+              <td>{{ $meetingData->exitTime }}</td>
+              
+              <td> 
+                 
+                                 @if(!empty($meetingData->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i></button> 
+                                 @else 
+                                  {!! Form::open(array('action' => array('MeetingController@checkin', $meetingData->idMeeting))) !!}
+                              
+                               <button  type="submit" class="btn btn-default btn-sm"><i class="fa fa-map-marker"></i></button>
+                              
+                                {!! Form::close() !!}
+                                @endif
+                                  @if(!empty($meetingData->exitTime))<button class="btn btn-default btn-sm" disabled="true"><i class="fa fa-mail-forward"></i></button> 
+                                @else 
+                                {!! Form::open(array('action' => array('MeetingController@checkout', $meetingData->idMeeting))) !!}
+                              
+                             <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i></button>
+                                {!! Form::close() !!}
+
+                                @endif
+
+               
            
                 <a href="{{ route('visitors.show',$visitorEx->idVisitor) }}" class="btn btn-xs btn-icon btn-success"><span class="glyphicon glyphicon-print"></span></a>
               </td>

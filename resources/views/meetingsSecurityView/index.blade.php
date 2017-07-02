@@ -12,7 +12,7 @@
 <div class="container" ng-app="MyApp" >
     <div class="row">
         <div class="col-md-10">
-            <h1>All Visitors</h1>
+            <h1>All Meetings</h1>
         </div>
 <!-- end of .row -->
 </div>
@@ -41,8 +41,8 @@
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
                         <tr>  
-                         <th width="">Visitor Name</th>
-                            <th width="">Visitor Company</th>
+                         <th width="">Meeting Name</th>
+                            <th width="">Visit Reason</th>
             
                            
                             <th width="">Status</th>
@@ -51,8 +51,7 @@
                             <th width="">Start </th>
                               
                                <th width="">Ended </th>
-                              <th width="">Visitor arrival</th>
-                                <th width="">Visitor departure</th>
+                             
                         </tr>
                     </thead>
 
@@ -81,8 +80,7 @@
                          
                                 <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
                                  <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-                                   <td>{{ ($meeting->entryTime ? date('H:i', strtotime($meeting->entryTime)) : '')  }}</td>
-                                     <td>{{ ($meeting->exitTime ? date('H:i', strtotime($meeting->exitTime)) : '')  }}</td>
+                               
                                     <td>
                                 <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
                                 </td>
