@@ -52,7 +52,7 @@ class LostFoundController extends Controller
     {
         $this->validate($request,[
                 'finderName' => 'required|min:1|max:50|string',
-                'finderPhone' => 'required|min:1|max:25!string',
+                'finderPhone' => 'min:1|max:25!string',
                 'itemCategory' => 'required',
                 'lostFoundDescription' => 'required|min:1|max:255',
                 
@@ -151,7 +151,12 @@ class LostFoundController extends Controller
         $idLostFound=$id;
         $lost = LostFound::find($idLostFound);     
         
-         
+          $this->validate($request,[
+                'receiverName' => 'required|min:1|max:50|string',
+                'receiverPhone' => 'min:1|max:25!string',
+               
+                
+            ]);
 
 //CHeck if claimed date is empty
 
