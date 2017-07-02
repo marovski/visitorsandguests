@@ -54,7 +54,7 @@ class DashboardController extends Controller
     public function barChartShow(Request $request){
 
 
-        $input=$request->month;
+    $input=$request->month;
     $date = "$request->month";
     $currentMonth=date("m", strtotime($date));
 

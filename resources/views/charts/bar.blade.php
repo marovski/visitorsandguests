@@ -17,7 +17,7 @@
         var option = {
 
             title: {
-                text: '{{ date('M', strtotime("$input")) }}' + ' Regists'
+                text: @if (!empty($input))'{{ date('M', strtotime("$input")) }}' @else 'Insert the month' @endif + ' Regists'
             },
             toolbox: {
             show : true,
