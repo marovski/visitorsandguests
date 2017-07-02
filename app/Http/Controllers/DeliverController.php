@@ -59,6 +59,7 @@ class DeliverController extends Controller
                 'driverName' => 'required|min:1|max:50|string',
                 'driverID' => 'required|min:1|max:20|string',
                 'vehicleLicensePlate' => 'required|min:1|max:30|string',
+
                 
             ]);    
         
@@ -231,7 +232,9 @@ class DeliverController extends Controller
         
              $deliver= Deliver::findOrFail($id);
 
-             return view('delivers.checkout', compact('deliver'));
+             $type=DeliverType::where('deliver_idDeliver', '=', $id)->first();
+
+             return view('delivers.checkout', compact('deliver', 'type'));
 
 
 
@@ -256,7 +259,7 @@ class DeliverController extends Controller
 //CHeck if the field is empty or not
         if (empty($exittime)) {
 
-            $deliver->exitWeight=$request->exitweight;
+        $deliver->exitWeight=$request->exitweight;
 //Save it to the model/database
         $deliver->deExitTime=$time;
 

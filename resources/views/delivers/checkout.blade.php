@@ -62,7 +62,7 @@
 							<label for="cargo" class="col-md-4 control-label">Cargo Details:</label>
 
 							<div class="col-md-6">
-								<input id="cargo" type="text"  readonly="" disabled=""  class="form-control" name="cargo" value="{{ $deliver->deMaterialDetails }}">
+								<input id="cargo" type="text"  readonly=""  class="form-control" name="cargo" value="{{ $type->materialDetails }}">
 
 								@if ($errors->has('cargo'))
 								<span class="help-block">
@@ -77,8 +77,10 @@
 
 							<div class="col-md-6" >
 								<p>
-
-									<label class="radio-inline"><input type="radio" name="danger" readonly="" disabled="" value="{{$deliver->deDangerousGood}}"></label>									
+								@if($type->dangerousGood==1)
+									<label class="radio-inline"><input type="radio" name="danger" readonly="" disabled="" value="1" > Danger Materials</label>								@else
+										<label class="radio-inline"><input type="radio" name="danger" readonly="" disabled="" value="0" > No Danger Materials</label>
+									@endif	
 
 									@if ($errors->has('danger'))
 									<span class="help-block">
@@ -94,8 +96,14 @@
 
 							<div class="col-md-6">
 								<select class="form-control" id="sensitivity" readonly="" disabled="" >
-									<option value="">{{$deliver->deSensitiveLevel}}</option>
-									
+
+								@if($type->sensitiveLevel==1)
+									<option value="" >Low</option>
+									@elseif($deliver->sensitiveLevel==2)
+									<option value="">Medium</option>
+									@elseif($deliver->sensitiveLevel==3)
+									<option value="">High</option>
+									@endif
 
 								</select>                               
 
@@ -158,7 +166,7 @@
 							<button type="submit" class="btn btn-basic btn-sm btn-block">
 								Check-out
 							</button>
-							<a href="{{ route('drops.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
+							<a href="{{ route('delivers.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
 						</div>
 					</div>
 				{!! Form::close() !!}

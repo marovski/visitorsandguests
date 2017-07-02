@@ -53,7 +53,9 @@
         <td>{{$user->find($meeting->meetIdHost)->username}}</td>
         <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
            <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-           <td></td>
+           <td>
+              <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
+                                </td>
       </tr>  
       @endif
     </tbody>

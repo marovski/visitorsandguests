@@ -17,7 +17,7 @@
         var option = {
 
             title: {
-                text: '{{ date('F') }}' + ' Regists'
+                text: '{{ date('M', strtotime("$input")) }}' + ' Regists'
             },
             toolbox: {
             show : true,

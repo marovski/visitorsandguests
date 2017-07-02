@@ -121,14 +121,14 @@
                             </div>
                         </div>
                                                         
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Check-out
-                                </button>
-                                <a href="{{ route('drops.index') }}" class="btn btn-primary">Cancel</a>
-                            </div>
+                            <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4" >
+                            <button type="submit" class="btn btn-basic btn-sm btn-block">
+                                Check-out
+                            </button>
+                            <a href="{{ route('drops.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
                         </div>
+                    </div>
                      {!! Form::close() !!}
                 </div>
             </div>

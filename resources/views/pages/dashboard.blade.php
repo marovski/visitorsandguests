@@ -29,11 +29,11 @@
                         </li>
                         
                         <li {{ (Request::is('*dashboard.barcharts') ? 'class="active"' : '') }}> 
-                            <a href="{{ route('dashboard.barcharts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
+                            <a style="color: #310826;"  href="{{ route('dashboard.barcharts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*dashboard.tables') ? 'class="active"' : '') }}>
-                            <a href="{{ route('dashboard.tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a style="color: #310826;" href="{{ route('dashboard.tables') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                       
                       
