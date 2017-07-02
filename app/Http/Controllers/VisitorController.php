@@ -279,7 +279,7 @@ class VisitorController extends Controller
             
             ]);  
 
-        if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->get())) {
+        if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
             # code...
          $visitors = new Visitor();
         $meet = Meeting::find($request->idMeeting);
@@ -301,10 +301,10 @@ class VisitorController extends Controller
         $visitors->visitorCompanyName=$request->visitorCompanyName;
         
        
-       if ($visitors->save()) {
+       if (!($visitors->meeting->contains($meet))) {
             # code...
-             
-        if ($visitors->meeting->contains($meet))
+             $v=$visitors->save();
+        if (!$v)
         {
 
      
