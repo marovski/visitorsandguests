@@ -279,7 +279,7 @@ class VisitorController extends Controller
             
             ]);  
 
-        if (empty(Visitor::where('visitorCitizenCard', "LIKE", "%$request->visitorCitizenCard%")->get())) {
+        if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->get())) {
             # code...
          $visitors = new Visitor();
         $meet = Meeting::find($request->idMeeting);

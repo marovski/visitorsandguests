@@ -218,7 +218,7 @@
           <div class="col-sm-6">
 
          
-            <button type="submit" class="btn btn-default btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
+            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
            
           </div>
          <div class="col-sm-6">

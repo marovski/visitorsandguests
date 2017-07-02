@@ -303,8 +303,28 @@ class DeliverController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+         $iddeliver = $id;
+
+        $deliver = Deliver::find($iddeliver);
+        if ($deliver->deleteFlag==0) {
+             $deliver->deleteFlag=1;
+
+        $save=$deliver->save();
+        if ($save) {
+             Session::flash('success','Deliver was successfully deleted');
+        return redirect()->route('delivers.index');
+        }else{
+
+             Session::flash('danger','Deleted process failed!');
+        return redirect()->route('delivers.index');
+        }
+        
+        }
+        else{
+             Session::flash('danger','Deliver was already deleted');
+        return redirect()->route('delivers.index');
+
+        }    }
 
    
 }

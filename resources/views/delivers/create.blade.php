@@ -58,7 +58,7 @@
 							<label for="driverID" class="col-md-4 control-label">Identification Card Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID"  type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type your id card number' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+								<input id="driverID"  type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type here the id card number' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">

@@ -12,7 +12,7 @@
 
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Create Internal Visitor for Meeting: <b>{{ $meetingRestricted->meetingName }}</b></div>
+                            <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Add Internal Visitor for the Meeting: </div>
                                     <div class="panel-body" ng-controller="showInputController">
                                 <!-- LOADING ICON -->
             <!-- show loading icon if the loading variable is set to true -->
@@ -46,7 +46,7 @@
                         </div>
               
                             <div class="form-group{{ $errors->has('internalVisitor') ? ' has-error' : '' }}">
-                            <label for="" class="col-md-4 control-label">Name:</label>
+                            <label for="" class="col-md-4 control-label">Company Employee:</label>
 
                             <div class="col-md-6">
                                 
