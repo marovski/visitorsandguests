@@ -45,12 +45,12 @@
 
    
     
-    <div class="col-sm-9" ng-controller="ShowController">
+    <div class="col-sm-9">
 
                         <!-- LOADING ICON -->
             <!-- show loading icon if the loading variable is set to true -->
        
-      <div class="row" ng-show="loading == true" >
+      <div class="row">
         <div class="col-sm-3" style="width: 80%;" >
     
 
