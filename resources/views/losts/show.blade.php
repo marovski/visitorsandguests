@@ -200,7 +200,7 @@
         <div class="row">
 
              <div class="col-sm-12">         
-        {{ Form::open(['class'=>'form-group','route' => ['lost.destroy', $lost->idLostFound], 'method' => 'delete']) }}
+        {{ Form::open(['class'=>'form-group','route' => ['losts.destroy', $lost->idLostFound], 'method' => 'delete']) }}
           <div class="form-group">
                    
                         <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">

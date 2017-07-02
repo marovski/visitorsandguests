@@ -214,18 +214,35 @@ class LostFoundController extends Controller
      * @param  \App\LostFound  $lostFound
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+   
+
+        public function destroy($id)
     {
         $idLostFound = $id;
+
         $lost = LostFound::find($idLostFound);
-        if (!is_null($lost)) {
-             $lost->delete();
+        if ($lost->deleteFlag==0) {
+             $lost->deleteFlag=1;
+
+        $save=$lost->save();
+        if ($save) {
+             Session::flash('success','Lost object report was successfully deleted');
+        return redirect()->route('losts.index');
+        }else{
+
+             Session::flash('danger','Deleted process failed!');
+        return redirect()->route('losts.index');
+        }
+        
+        }
+        else{
+             Session::flash('danger','Lost object report was already deleted');
+        return redirect()->route('losts.index');
+
         }
 
-        Session::flash('success','Report was successfully deleted');
-
-        
-        return redirect()->route('losts.index');
+     
         //
     }
+
 }
