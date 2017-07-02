@@ -26,7 +26,7 @@
                                 <label for="meetingName" class="col-md-4 control-label">Meeting Topic:</label>
 
                                 <div class="col-md-6">
-                                    <input type="textarea" name="" rows="2" cols="" class="typeaheadName form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'>                                
+                                    <input type="textarea" rows="2" cols="" class="typeaheadName form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'>                                
 
                                     @if ($errors->has('meetingName'))
                                     <span class="help-block">
