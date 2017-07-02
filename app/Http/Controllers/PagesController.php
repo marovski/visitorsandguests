@@ -15,10 +15,10 @@ class PagesController extends Controller{
 
 	public function getIndex() {
 
-
+		$meetings = Meeting::orderBy('meetStartDate','asc')->where('entryTime','=',null)->paginate(10);
 		$lostItems = LostFound::orderBy('idLostFound','desc')->where('claimedDate', '=', null)->paginate(6);
 	
-		return view('pages.welcome', compact('lostItems'));
+		return view('pages.welcome', compact('lostItems','meetings'));
 	}
 
 	public function getAbout(){

@@ -51,7 +51,7 @@
 
                         <!-- LOADING ICON -->
             <!-- show loading icon if the loading variable is set to true -->
-        <div ng-show="loading == false"  ><br/><p class="text-center" ><span class="loader"></span></p></div>
+       
       <div class="row" ng-show="loading == true" >
         <div class="col-sm-3" style="width: 80%;" >
     
@@ -63,7 +63,7 @@
      </div>   
 
         </div>
-       </div>
+ 
   </div>
 </div>
 
