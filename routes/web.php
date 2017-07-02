@@ -16,8 +16,7 @@ use App\Http\Middleware\CheckAuth;
 
 Route::group(['middleware' => ['web']], function () {
 
-
-
+ 
 
 Route::get('search',array('as'=>'search','uses'=>'SearchController@search'));
 Route::get('autocomplete/{id}',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
@@ -108,8 +107,9 @@ Route::resource('drops','DropController');
 
 Route::get('/losts/{id}/checkOut/', ['as' => 'losts.checkout',
                                                         'uses' => 'LostFoundController@checkout'
-                                                      ]); 
- 
+                                                        ]); 
+
+
 
 //Resources From The Controllers
 Route::resource('visitors','VisitorController');
@@ -118,10 +118,12 @@ Route::resource('deliveryType','DelivertypeController');
 Route::resource('losts', 'LostFoundController');
 Route::resource('meetings','MeetingController');
 
+
 Route::group(['middleware' => 'CheckAuth'], function()
 {
     Route::resource('meetings', 'MeetingController', ['only' => ['create']]);
 });
+
 
 //Initial Pages
 Route::get('dashboard', 'DashboardController@getDashboard');
