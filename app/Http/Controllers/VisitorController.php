@@ -274,8 +274,7 @@ class VisitorController extends Controller
     {
         $this->validate($request,[
                 'visitorName' => 'required|min:1|max:50|string',
-                'visitorEmail' => 'required|email|max:255|unique:visitors,visitorEmail',
-                'visitorCompanyName' => 'required|min:4',
+                'visitorEmail' => 'required|email|max:255',
             
             ]);  
 
