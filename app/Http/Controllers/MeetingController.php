@@ -32,9 +32,9 @@ class MeetingController extends Controller
         $userId = Auth::id();
         $userAuth = User::find($userId);
 
-        $meetings = Meeting::orderBy('idMeeting', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
+        $meetings = Meeting::orderBy('meetStartDate', 'asc')->where('deleteFlag', '=', 0)->paginate(10);
 
-        $meetingsStaff = Meeting::orderBy('meetStartDate', 'desc')->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
+        $meetingsStaff = Meeting::orderBy('meetStartDate', 'asc')->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
 
         $user= User::all()->load('meetingHost');
 
