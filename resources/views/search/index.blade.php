@@ -33,11 +33,12 @@
         <th>Start Date</th>
          <th>End Date</th>
          <th>Visitor Name</th>
+
       </tr>
     </thead>
     <tbody>
     @if(!empty($meeting->entryTime))
-           <tr class="success">
+        <tr class="success">
         <td>{{ $meeting->meetingName }}</td>
         <td>{{ $meeting->visitReason }}</td>
         <td>{{$user->find($meeting->meetIdHost)->username}}</td>
@@ -52,7 +53,7 @@
         <td>{{$user->find($meeting->meetIdHost)->username}}</td>
         <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
            <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-           <td></td>
+           <td>{{ $visitor->meeting() }}</td>
       </tr>  
       @endif
     </tbody>

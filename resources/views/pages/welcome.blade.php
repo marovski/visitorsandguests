@@ -118,7 +118,7 @@
       
         @if(isset($user))    
         <div class="col-md-3 col-md-offset-1">
-    <h3 style="margin-left: 68px">Lost and Found</h3>
+    <h4 style="margin-left: 68px">Lost and Found:</h4>
                
                 @foreach($lostItems as $item)
 

@@ -48,7 +48,7 @@
             <label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 
             <div class="col-md-6">
-              <input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ $deliveryData->vehicleRegistry }}" required autofocus data-parsley-pattern="(^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$)" max-lenght="25">
+              <input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ $deliveryData->vehicleRegistry }}" required autofocus data-parsley-pattern="" max-lenght="25">
 
               @if ($errors->has('vehicleLicensePlate'))
               <span class="help-block">

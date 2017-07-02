@@ -306,9 +306,5 @@ class DeliverController extends Controller
         //
     }
 
-      public function delete($id)
-    {
-        $deliver = Deliver::find($idDeliver);
-        return view('deliver.delete')->withDeliver($deliver);
-    }
+   
 }

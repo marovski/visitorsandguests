@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
+                            <label for="username" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="password" class="form-control" name="username" required>
@@ -44,7 +44,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
