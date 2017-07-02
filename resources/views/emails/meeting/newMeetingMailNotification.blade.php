@@ -26,7 +26,7 @@ Código de barras identificativo da reunião:<br>
  </div> 
 @endcomponent
 @endif
-@if(empty($mailInfo2->visitorCitizenCard))
+@if(empty($mailInfo2->visitorCitizenCard) && empty($mailInfo2->idUser))
 Para esta reunião é <b>obrigatória</b> a sua identificação . Por favor traga o seu documento de identificação.
 @endif<br>
 <br>

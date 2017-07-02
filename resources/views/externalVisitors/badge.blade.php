@@ -15,7 +15,7 @@
     <div class="container" ng-app="MyApp" style="width: 550px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2" style="margin-left: 11.666667%;">
-            <div class="panel panel-default" style="width: 400px; height: 225px;">
+            <div class="panel panel-default" style="width: 400px; height: 250px;">
                 <div class="panel-body" ng-controller="showInputController">
                 <div class="form-group" style="">
                 <div class="row">
