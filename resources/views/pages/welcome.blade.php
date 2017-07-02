@@ -18,7 +18,9 @@
 
  <div class="row">
             <div class="col-md-8">
-            <h4>Your next meetings:</h4>
+            @if(!isset($user->fk_idSecurity))
+            @elseif($user->fk_idSecurity == 1)
+            <h4>Your next meetings:</h4><hr>
                 
                 @foreach($meetings as $meet)
 
@@ -31,8 +33,24 @@
                     <hr>
 
                 @endforeach
+                          
+@else
+ @foreach($meetingWithoutCheckin as $meet)
 
-            </div>
+                    <div class="post" >
+                        <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
+                        <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
+                        <a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a>
+                    </div>
+
+                    <hr>
+
+                @endforeach
+               
+@endif
+                </div>
+      
+            
         <div class="col-md-3 col-md-offset-1">
     <h3 style="margin-left: 68px">Lost and Found</h3>
                

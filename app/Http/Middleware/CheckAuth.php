@@ -15,7 +15,7 @@ class CheckAuth
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {       
         $userId = Auth::id();
         $user = User::find($userId);
          if($user->fk_idSecurity == 3){

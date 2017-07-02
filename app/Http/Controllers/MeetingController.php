@@ -27,11 +27,12 @@ class MeetingController extends Controller
        public function index()
     {
 
-
+        $userId = Auth::id();
+        $userAuth = User::find($userId);
+        
 
         $meetings = Meeting::orderBy('idMeeting', 'desc')->paginate(10);
-
-
+        
         $user= User::all()->load('meetingHost');
 
        
@@ -44,7 +45,7 @@ class MeetingController extends Controller
             return view('meetingsSecurityView.index', compact('meetings', 'user', 'visitor'))->render();
         }
         else
-        return view('meetings.index', compact('meetings', 'user', 'visitor'))->render();
+        return view('meetings.index', compact('meetings', 'user', 'visitor','userAuth'))->render();
     }
 
     /**
