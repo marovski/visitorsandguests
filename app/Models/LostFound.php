@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Laravel\Scout\Searchable;
 class LostFound extends Model
 {
     /*
@@ -16,7 +16,15 @@ class LostFound extends Model
 	protected $primaryKey = 'idLostFound';
 	
 
-
+  /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public $fillable = [
+    
+        'itemDescription', 'finderName', 'finderPhone'
+    ];
 
 
   /*

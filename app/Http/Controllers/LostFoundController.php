@@ -26,7 +26,7 @@ class LostFoundController extends Controller
      */
     public function index()
     {
-        $losts = LostFound::orderBy('idLostFound', 'desc')->paginate(10);
+        $losts = LostFound::orderBy('idLostFound', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
         return view('losts.index')->withLosts($losts);
         //
     }
@@ -62,6 +62,7 @@ class LostFoundController extends Controller
         $lost->foundDate=Carbon::now('Europe/Lisbon');
         $lost->finderName=$request->finderName;
         $lost->finderPhone=$request->finderPhone;
+
         $lost->itemSize=$request->lostFoundItemSize;
         $lost->itemCategory=$request->itemCategory;
         $lost->itemImportance=$request->lostFoundImportance;
@@ -163,7 +164,16 @@ class LostFoundController extends Controller
         }
         else{
 
-            //Getting the new input values for the receiver
+            if ($request->receiverName==$lost->finderName || $request->receiverPhone==$lost->finderPhone) {
+
+                 Session::flash('danger','The receiver might be the same as the finder!Security issues!');
+                 return redirect()->route('losts.index');
+            }
+            else{
+
+
+
+                    //Getting the new input values for the receiver
             $lost->receiverName=$request->receiverName;
             $lost->receiverPhone=$request->receiverPhone;
          
@@ -184,6 +194,8 @@ class LostFoundController extends Controller
              Session::flash('danger', 'The claiming process failed!');
             return redirect()->route('losts.index');
         }
+            }
+        
         }
         
        

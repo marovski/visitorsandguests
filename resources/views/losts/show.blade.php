@@ -199,8 +199,11 @@
   
         <div class="row">
             <div class="col-md-12">
+            @if(Auth::check())
           <a href="{{ route('losts.index') }}" class="btn btn-default btn-block btn-h1-spacing"> << Return</a> 
-        
+        @else
+         <a href="/" class="btn btn-default btn-block btn-h1-spacing"> << Return</a> 
+        @endif
             
           </div>
           </div>

@@ -29,7 +29,7 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function autocomplete(Request $request)
+    public function autocomplete(Request $request, $id)
 
     {
           $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();

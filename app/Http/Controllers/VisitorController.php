@@ -176,7 +176,91 @@ class VisitorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // Validate the data
+        $visitor = Visitor::find($id);
+
+        if ($request->input('visitorEmail') == $visitor->visitorEmail) {
+            $this->validate($request, array(
+                'visitorName' => 'required|min:1|max:50|string',
+               'visitorCompanyName' => 'required|min:4',
+             
+            ));
+        } else {
+        $this->validate($request, array(
+                 'visitorName' => 'required|min:1|max:50|string',
+                'visitorEmail' => 'required|email|max:255|unique:visitors,visitorEmail',
+                'visitorCompanyName' => 'required|min:4',
+            ));
+        }
+
+        if (empty($request->visitorCitizenCard)) {
+            $visitor->visitorName=$request->visitorName;
+
+
+        $visitor->visitorCitizenCard=$request->visitorCitizenCard;
+
+
+        $visitor->visitorCitizenCardType=$request->visitorCitizenCardType;
+        $visitor->visitorNPhone=$request->visitorNPhone;
+        $visitor->visitorEmail=$request->visitorEmail;
+        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
+        $visitor->wifiAcess=$request->wifiAccess;
+        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
+        $visitor->escorted=$request->escorted;
+        $visitor->visitorCompanyName=$request->visitorCompanyName;
+        
+       
+       if ($visitor->save()) {
+            # code...
+
+
+            return redirect()->back()->with('success', 'This visitor' + $visitor->visitorName + 'information was updated!');
+
+              }   
+        else{
+
+             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+
+
+        }
+        }else{
+
+        if (empty(Visitor::where('visitorCitizenCard', "LIKE", "%$request->visitorCitizenCard%")->get())) {
+
+    
+        $visitor->visitorName=$request->visitorName;
+
+
+        $visitor->visitorCitizenCard=$request->visitorCitizenCard;
+
+
+        $visitor->visitorCitizenCardType=$request->visitorCitizenCardType;
+        $visitor->visitorNPhone=$request->visitorNPhone;
+        $visitor->visitorEmail=$request->visitorEmail;
+        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
+        $visitor->wifiAcess=$request->wifiAccess;
+        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
+        $visitor->escorted=$request->escorted;
+        $visitor->visitorCompanyName=$request->visitorCompanyName;
+        
+       
+       if ($visitor->save()) {
+            # code...
+
+
+            return redirect()->back()->with('success', 'This visitor' + $visitor->$visitorName + 'information was updated!');
+
+              }   
+        else{
+
+             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+
+
+        }
+         } 
+        }
+    
+
     }
 
   
@@ -186,15 +270,27 @@ class VisitorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
+        $this->validate($request,[
+                'visitorName' => 'required|min:1|max:50|string',
+                'visitorEmail' => 'required|email|max:255|unique:visitors,visitorEmail',
+                'visitorCompanyName' => 'required|min:4',
+            
+            ]);  
 
-        $visitors = new Visitor();
+        if (empty(Visitor::where('visitorCitizenCard', "LIKE", "%$request->visitorCitizenCard%")->get())) {
+            # code...
+         $visitors = new Visitor();
         $meet = Meeting::find($request->idMeeting);
     
 
         $visitors->visitorName=$request->visitorName;
+
+
         $visitors->visitorCitizenCard=$request->visitorCitizenCard;
+
+
         $visitors->visitorCitizenCardType=$request->visitorCitizenCardType;
         $visitors->visitorNPhone=$request->visitorNPhone;
         $visitors->visitorEmail=$request->visitorEmail;
@@ -212,7 +308,7 @@ class VisitorController extends Controller
         {
 
      
-        return redirect()->back()->with('warning', 'This Visitor could not be assigned. Duplicate entry!');
+        return redirect()->back()->with('danger', 'This Visitor could not be assigned. Duplicate entry!');
 
         } else {
 
@@ -245,9 +341,16 @@ class VisitorController extends Controller
               }else{
 
 
-            return redirect()->back()->with('warning', 'This Visitor could not be assigned.');
+            return redirect()->back()->with('danger', 'This Visitor could not be assigned.');
 
               }   
+        }else{
+
+             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+
+
+        }
+        
 
         
         
@@ -264,19 +367,31 @@ class VisitorController extends Controller
 
        public function  selfSign (Request $request){
 
-    $searchVisitor= Visitor::where('visitorEmail', 'LIKE', '%$request->visitorEmail%')->where('visitorCompanyName','LIKE','%$request->visitorCompany%')->where('visitorName', 'LIKE', '%$request->visitorName%')->count() > 0;
+  $this->validate($request,[
+                'visitorName' => 'required|min:1|max:50|string',
+                'visitorEmail' => 'required|email|max:255|unique:visitors,visitorEmail',
+                'visitorCompanyName' => 'required|min:4|string',
+            
+            ]); 
+
+
+    $searchVisitor= Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName','LIKE','%$request->visitorCompany%')->where('visitorName', 'LIKE', '%$request->visitorName%')->get();
   
 
-      if ($searchVisitor) {
-        $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompany', '=', $request->visitorCompany)->first();
+      if (empty($searchVisitor)) {
+
+
+       Session::flash('danger','The visitor is invalid');
+
+        return redirect()->back();
+
+      }else{
+
+        
+         $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName', '=', $request->visitorCompany)->first();
 
         Session::flash('success', 'The visitor is valid!');
         return redirect()->route('visitors.show', $visitor->idVisitor);
-      }else{
-
-        Session::flash('danger','The visitor is invalid');
-
-        return redirect()->back();
       }
 
       }

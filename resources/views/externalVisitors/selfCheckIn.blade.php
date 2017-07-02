@@ -36,8 +36,8 @@
                             </div>
 
                             </div>
-                              <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
-                            <label for="visitorName" class="col-md-4 control-label"> Company:</label>
+                              <div class="form-group{{ $errors->has('visitorCompany') ? ' has-error' : '' }}">
+                            <label for="visitorCompany" class="col-md-4 control-label"> Company:</label>
 
                             <div class="col-md-6">
                     <input id="visitorCompany" type="text" class="form-control" name="visitorCompany" value=""  autofocus    
@@ -52,7 +52,7 @@
 
                             </div>
                                 <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
-                            <label for="visitorName" class="col-md-4 control-label"> Email:</label>
+                            <label for="visitorEmail" class="col-md-4 control-label"> Email:</label>
 
                             <div class="col-md-6">
                     <input id="visitorEmail" type="text" class="form-control" name="visitorEmail" value=""  autofocus    
@@ -66,16 +66,16 @@
                             </div>
 
                             </div>
-       <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
-                            <label for="visitorName" class="col-md-4 control-label"> QrCOde:</label>
+       <div class="form-group{{ $errors->has('QrCOde') ? ' has-error' : '' }}">
+                            <label for="QrCOde" class="col-md-4 control-label"> QrCOde:</label>
 
                             <div class="col-md-6">
                 <input id="input" type="file" onclick="apaga_campo()">
 <a href="#" onclick="ler('webcam')">Webcam</a>
 
-                                @if ($errors->has('visitorEmail'))
+                                @if ($errors->has('QrCOde'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('visitorEmail') }}</strong>
+                                        <strong>{{ $errors->first('QrCOde') }}</strong>
                                     </span>
                                 @endif
                             </div>

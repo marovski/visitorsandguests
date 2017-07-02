@@ -28,7 +28,7 @@
                             <label for="visitorName" class="col-md-4 control-label"> Name:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorName" type="text" class="form-control" name="visitorName" value="{{ old('visitorName') }}"  autofocus  ng-model="visitorName">
+                                <input id="visitorName" type="text" class="form-control" name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="">
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -124,7 +124,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail" ></input>
+                               <input type="email" class="form-control" name="visitorEmail" required=""></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -138,7 +138,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label">Confirm Email:</label>
 
                             <div class="col-md-6">
-                               <input type="email" class="form-control" name="visitorEmail"></input>
+                               <input type="email" class="form-control" name="visitorEmail" required="" ></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -152,7 +152,7 @@
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus  ng-model="visitorCompanyName">
+                                <input id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus  >
 
                                 @if ($errors->has('visitorCompanyName'))
                                     <span class="help-block">
@@ -196,7 +196,7 @@
                             <label for="visitorDangerousGood" class="col-md-4 control-label">Dangerous Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="1"  autofocus >
+                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="0"  autofocus >
 
                                 @if ($errors->has('visitorDangerousGood')) 
                                     <span class="help-block">

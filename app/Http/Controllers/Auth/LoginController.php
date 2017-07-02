@@ -55,6 +55,10 @@ class LoginController extends Controller
         return 'username';
       }
 
+
+
+      //LOgin Function with UserName and Email
+
       public function login(Request $request){
 
        $match=['email' => $request->email, 'username'=>$request->username];
@@ -78,11 +82,26 @@ class LoginController extends Controller
       }
       
     }
+
+    //Logout Function for our users
     
     public function logout(){
-      Auth::logout();
-      Session::flash('success', 'The logout was successfull!');
+     $v= Auth::logout();
+      if ($v) {
+       Session::flash('success', 'The logout was successfull!');
+
+
       return Redirect::to('/');
+      }else{
+
+         Session::flash('danger', 'The logout was unsuccessfull!');
+
+
+      return redirect()->back();
+
+      }
+
+
     }
 
 

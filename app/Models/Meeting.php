@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Laravel\Scout\Searchable;
 
 
 class Meeting extends Model

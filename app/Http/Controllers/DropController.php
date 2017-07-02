@@ -7,6 +7,7 @@ use App\Models\Drop;
 use App\Models\DropItem;
 use Auth;
 use Session;
+// use Purifier;
 use Carbon\Carbon;
 
 
@@ -23,7 +24,7 @@ class DropController extends Controller
      */
         public function index()
     {
-        $drops = Drop::orderBy('idDrop', 'desc')->paginate(10);
+        $drops = Drop::orderBy('idDrop', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
         return view('drops.index')->withDrops($drops);
     }
 
@@ -46,27 +47,26 @@ class DropController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-                'dropperCompany' => 'required|min:1|max:50|string',
+            
                 'dropperName' => 'required|min:1|max:50|string',
                 'ReceiverName' => 'required|min:1|max:50|string',
-                'dropSize' => 'required',
+         
                 'dropImportance' => 'required',
                 'dropDescription' => 'required|min:2|max:255'
             ]);    
         $drop = new Drop();
-        //$item = new DropItem();
-
-        //$item->dropDescr=$request->dropDescription;
-        //$save=$item->save();
-       // if($save){
-
+    
+        if ('%$request->dropperName%'=='%$request->ReceiverName%') {
+           Session::flash('danger','The receiver name cannot be the same as the dropper!');
+            return redirect()->back();
+        }
         $drop->dropperCompanyName=$request->dropperCompany;
         $drop->dropperName=$request->dropperName;
-        $drop->droppedWhen=Carbon::now();
+        $drop->droppedWhen=Carbon::now('Europe/Lisbon');
         $drop->dropReceiver=$request->ReceiverName;
         $drop->dropSize=$request->dropSize;
         $drop->dropImportance=$request->dropImportance;
-        $drop->dropDescr=$request->dropDescription;
+        $drop->dropDescr=Purifier::clean($request->dropDescription);
         
          //Associate relationship to insert the foreign key of the user that create the new entity.
          Auth::user()->drops()->save($drop);
@@ -157,17 +157,29 @@ class DropController extends Controller
      */
     public function updateCheckOut($id)
     {
-        $idDrop=$id;
-        $drop = Drop::find($idDrop);
         
-        $drop->dropReceivedDate=Carbon::now();
+        $drop = Drop::find($id);
+        
+        if (empty($drop->dropReceivedDate)) {
+            $drop->dropReceivedDate=Carbon::now('Europe/Lisbon');
 
-        $drop->save();
-
+       if ($drop->save()) {
         Session::flash('success','Checkout was successfully done');
-        
+        return redirect()->route('drops.index');
+        }else{
+            Session::flash('danger','Checkout was not successfully done');
+        return redirect()->route('drops.index');
+        } 
 
-       return redirect()->route('drops.index');
+      
+        }else{
+
+        Session::flash('danger','Checkout was already done!');
+        return redirect()->route('drops.index');
+        }
+
+
+        
         
     }
 
@@ -182,12 +194,27 @@ class DropController extends Controller
         $idDrop = $id;
 
         $drop = Drop::find($idDrop);
-        if (!is_null($drop)) {
-             $drop->delete();
+        if ($drop->deleteFlag==0) {
+             $drop->deleteFlag=1;
+
+        $save=$drop->save();
+        if ($save) {
+             Session::flash('success','Drop was successfully deleted');
+        return redirect()->route('drops.index');
+        }else{
+
+             Session::flash('danger','Deleted process failed!');
+        return redirect()->route('drops.index');
+        }
+        
+        }
+        else{
+             Session::flash('danger','Drop was already deleted');
+        return redirect()->route('drops.index');
+
         }
 
-        Session::flash('success','Drop was successfully deleted');
-        return redirect()->route('drops.index',$drop->idDrop);
+     
         //
     }
 

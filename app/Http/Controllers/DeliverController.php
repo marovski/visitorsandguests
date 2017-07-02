@@ -30,7 +30,7 @@ class DeliverController extends Controller
      */
       public function index()
     {
-        $delivers = Deliver::orderBy('idDeliver', 'desc')->paginate(10);
+        $delivers = Deliver::orderBy('idDeliver', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
         return view('delivers.index')->withDelivers($delivers);
     }
 

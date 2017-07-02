@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Mews\Purifier\PurifierServiceProvider::class,
         /*
          * SMS Service Provider...
          */
@@ -237,6 +237,7 @@ return [
         'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
+        'Purifier'  => Mews\Purifier\Facades\Purifier::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,

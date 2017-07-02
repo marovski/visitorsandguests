@@ -54,11 +54,11 @@ class DashboardController extends Controller
     public function barChartShow(Request $request){
 
 
-    $currentMonth = date($request->month);
+    $currentMonth = dateYear($request->month);
 
 
 
-    $lostItems = LostFound::orderBy('idLostFound','desc')->whereDate('created_at','=',$currentMonth)->get();
+    $lostItems = LostFound::orderBy('idLostFound','desc')->whereYear('created_at', '=' ,  $currentMonth)->whereMonth('created_at', '=' , $currentMonth )->get();
 dd($lostItems);
 
     $meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();

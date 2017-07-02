@@ -29,7 +29,7 @@ class MeetingController extends Controller
 
 
 
-        $meetings = Meeting::orderBy('idMeeting', 'desc')->paginate(10);
+        $meetings = Meeting::orderBy('idMeeting', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
 
 
         $user= User::all()->load('meetingHost');
@@ -72,8 +72,8 @@ class MeetingController extends Controller
 
         $this->validate($request,[
                 
-               
-                'visitReason' => 'max:200'
+                'meetingTopic'=> 'max:50',
+                'visitReason' => 'max:200',
             ]);    
         
         //Saving Meeting
@@ -167,7 +167,14 @@ return view('meetingsSecurityView.show', compact('meetingData') ) ;
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+
+
+         $this->validate($request,[
+                
+                'meetingTopic'=> 'max:50',
+                'visitReason' => 'max:200',
+            ]);  
         //Saving Meeting
         $meeting = Meeting::find($id);
 
@@ -215,12 +222,24 @@ return view('meetingsSecurityView.show', compact('meetingData') ) ;
             
 
         $meeting = Meeting::find($id);
-        if (!is_null($meeting)) {
-             $meeting->delete();
+        if ($meeting->deleteFlag==0) {
+            $meeting->deleteFlag=1;
+            foreach ($meeting->visitor as $visitors) {
+
+                $visitors->deleteFlag=1;
+                $visitor->save();
+            }
+            $meeting->save();
+             Session::flash('success','Meeting was successfully deleted!');
+        return redirect()->route('meetings.index');
+        }
+        else{
+
+             Session::flash('danger','Meeting was already erased!');
+        return redirect()->route('meetings.index');
         }
 
-        Session::flash('success','Meeting was successfully deleted');
-        return redirect()->route('meetings.index');
+       
         //
 
 
@@ -228,9 +247,6 @@ return view('meetingsSecurityView.show', compact('meetingData') ) ;
 
 
     public function checkin($id){
-
-      
-
 
 
         $currentMeeting= Meeting::findOrFail($id);

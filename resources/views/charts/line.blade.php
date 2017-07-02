@@ -15,7 +15,7 @@ var myChart = new Chart(ctx, {
     labels: ['2016', '2017'],
     datasets: [{
       label: 'users',
-      data: [12],
+      data: [12,89],
       backgroundColor: "rgba(153,255,51,0.4)"
     }]
   }
