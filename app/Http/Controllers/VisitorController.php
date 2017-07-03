@@ -379,28 +379,31 @@ class VisitorController extends Controller
 
   $this->validate($request,[
                 'visitorName' => 'required|min:1|max:50|string',
-                'visitorEmail' => 'required|email|max:255|unique:visitors,visitorEmail',
-                'visitorCompanyName' => 'required|min:4|string',
+                'visitorEmail' => 'required|email|max:255',
+                'visitorCompany' => 'required|string',
             
             ]); 
 
 
     $searchVisitor= Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName','LIKE','%$request->visitorCompany%')->where('visitorName', 'LIKE', '%$request->visitorName%')->get();
-  
+    
+    $searchMeeting=$searchVisitor->meeting()->get();
 
-      if (empty($searchVisitor)) {
+      if ((empty($searchVisitor)) && (empty($searchMeeting))) {
 
 
-       Session::flash('danger','The visitor is invalid');
+    Session::flash('danger','The visitor is invalid');
 
-        return redirect()->back();
+    return redirect()->back();
 
-      }else{
+      }
+      else{
 
         
-         $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName', '=', $request->visitorCompany)->first();
+     $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName', '=', $request->visitorCompany)->first();
 
         Session::flash('success', 'The visitor is valid!');
+        
         return redirect()->route('visitors.show', $visitor->idVisitor);
       }
 

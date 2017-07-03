@@ -34,7 +34,7 @@ class MeetingController extends Controller
 
         $meetings = Meeting::orderBy('meetStartDate', 'asc')->where('deleteFlag', '=', 0)->paginate(10);
 
-        $meetingsStaff = Meeting::orderBy('meetStartDate', 'asc')->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
+        $meetingsStaff = Meeting::orderBy('meetStartDate', 'asc')->where('deleteFlag', '=', 0)->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
 
         $user= User::all()->load('meetingHost');
 
@@ -226,12 +226,16 @@ class MeetingController extends Controller
             
 
         $meeting = Meeting::find($id);
+
+
         if ($meeting->deleteFlag==0) {
+
             $meeting->deleteFlag=1;
+
             foreach ($meeting->visitor as $visitors) {
 
                 $visitors->deleteFlag=1;
-                $visitor->save();
+                $visitors->save();
             }
             $meeting->save();
              Session::flash('success','Meeting was successfully deleted!');

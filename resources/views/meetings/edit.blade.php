@@ -25,7 +25,7 @@
                               <label for="meetingName" class="col-md-4 control-label">Meeting Topic:</label>
 
                               <div class="col-md-6">
-                                  <textarea rows="4" cols="" class="form-control" name="meetingTopic" disabled="">{{$meetingData->meetingName}}</textarea>                                
+                                  <textarea rows="4" cols="" class="form-control" name="meetingTopic" disabled="" value="{{$meetingData->meetingName}}">{{$meetingData->meetingName}}</textarea>                                
 
                                   @if ($errors->has('name'))
                                   <span class="help-block">
@@ -67,13 +67,13 @@
 
                           
 
-                          <div class="form-group{{ $errors->has('$meetingData->room') ? ' has-error' : '' }}">
+                          <div class="form-group{{ $errors->has('room') ? ' has-error' : '' }}">
                               <label for="room" class="col-md-4 control-label">Room:</label>
 
                               <div class="col-md-6">
 
                                   <p>
-                                      <select class="form-control" name="room">
+                                      <select class="form-control" name="room" value="{{ $meetingData->room }}">
                                         <option value="1">Room 1</option>
                                         <option value="2">Room 2</option>
                                         <option value="3">Room 3</option>
@@ -94,7 +94,7 @@
                           <label for="visitReason" class="col-md-4 control-label"> Meeting Purpose:</label>
 
                           <div class="col-md-6">
-                              <textarea rows="4" cols="" class="form-control" name="visitReason" disabled="" >{{$meetingData->visitReason}}</textarea>                                
+                              <textarea rows="4" cols="" class="form-control" name="visitReason" disabled="" value="{{$meetingData->visitReason}}">{{$meetingData->visitReason}}</textarea>                                
 
                               @if ($errors->has('visitReason'))
                               <span class="help-block">

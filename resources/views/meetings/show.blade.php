@@ -129,18 +129,11 @@
           </div>
          
           <div class="col-sm-6">
-           <form method="POST" action="{{ route('meetings.destroy', $meetingData->idMeeting) }}" >
-             <div class="form-group">
-                   
-                        <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Are you sure you want to delete this?')">
-                           Delete
-                       </button>
+            {!! Form::open(['route' => ['meetings.destroy', $meetingData->idMeeting], 'method' => 'DELETE']) !!}
 
+            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
 
-                
-               </div> 
-
-          </form>
+            {!! Form::close() !!}
 
           </div>
 
