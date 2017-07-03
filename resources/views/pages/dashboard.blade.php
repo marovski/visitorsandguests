@@ -56,7 +56,7 @@
 
      <div>
  
-     <img src="images/report.png">
+     <img src="images/report.png" style="width: 683px;">
    
      @yield('dashboard')
 
