@@ -89,7 +89,7 @@ class DashboardController extends Controller
 
     public function getDropsTable(){
     
-    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
+    $drops = Drop::orderBy('idDrop','desc')->where('deleteFlag', '=', 0)->paginate(10);
 
     return view('tables.drops', compact('drops'));
 
@@ -97,7 +97,7 @@ class DashboardController extends Controller
 
     public function getDeliversTable(){
     
-    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
+    $delivers = Deliver::orderBy('idDeliver','desc')->where('deleteFlag', '=', 0)->paginate(10);
     
     return view('tables.delivers', compact('delivers'));
 
@@ -105,7 +105,7 @@ class DashboardController extends Controller
 
     public function getLostItemsTable(){
     
-    $losts = LostFound::orderBy('idLostFound','desc')->paginate();
+    $losts = LostFound::orderBy('idLostFound','desc')->where('deleteFlag', '=', 0)->paginate();
     
     return view('tables.lostItems', compact('losts'));
 
@@ -113,7 +113,7 @@ class DashboardController extends Controller
 
      public function getMeetingsTable(){
      $user= User::all()->load('meetingHost');
-     $meetings = Meeting::orderBy('idMeeting','desc')->paginate();
+     $meetings = Meeting::orderBy('idMeeting','desc')->where('deleteFlag', '=', 0)->paginate();
     
     return view('tables.meetings', compact('meetings', 'user'));
 
