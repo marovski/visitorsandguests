@@ -56,8 +56,7 @@
                             <th width="">Start </th>
                               
                                <th width="">Ended </th>
-                              <th width="">Visitor arrival</th>
-                                <th width="">Visitor departure</th>
+                            
                         </tr>
                     </thead>
 
@@ -86,34 +85,11 @@
                          
                                 <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
                                  <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-                                   <td>{{ ($meeting->entryTime ? date('H:i', strtotime($meeting->entryTime)) : '')  }}</td>
-                                     <td>{{ ($meeting->exitTime ? date('H:i', strtotime($meeting->exitTime)) : '')  }}</td>
+                               
                                     <td>
                                 <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
                                 </td>
-                                <td>
-                              @if($userAuth->fk_idSecurity != 1 )
-                                @if(!empty($meeting->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i>  Check-In</button> 
-                                 @else 
-                                  {!! Form::open(array('action' => array('MeetingController@checkin', $meeting->idMeeting))) !!}
-                              
-                               <button  type="submit" class="btn btn-default btn-sm"><i class="fa fa-map-marker"></i> Check-In</button>
-                              
-                                {!! Form::close() !!}
-                                @endif
-                                 </td>
-                                 <td>
-                                @if(!empty($meeting->exitTime))<button class="btn btn-default btn-sm" disabled="true"><i class="fa fa-mail-forward"></i> Check-Out</button> 
-                                @else 
-                                {!! Form::open(array('action' => array('MeetingController@checkout', $meeting->idMeeting))) !!}
-                              
-                             <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i> Check-Out</button>
-                                {!! Form::close() !!}
-
-                                @endif
-                                @else
-                                @endif
-                                </td>
+                             
                                 
                         </tr>
                
