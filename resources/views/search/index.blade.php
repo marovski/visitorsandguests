@@ -37,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-              @if(Auth::user()->idUser == $meeting->meetIdHost && $meeting->deleteFlag != 0)
+              @if(Auth::user()->idUser == $meeting->meetIdHost && $meeting->deleteFlag == 0)
                   <tr class="success">
                   <td>{{ $meeting->meetingName }}</td>
                   <td>{{ $meeting->visitReason }}</td>
@@ -46,20 +46,7 @@
                      <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
                        <td> <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> </td>
                 </tr>
-                @elseif(Auth::user()->idUser!=$meeting->meetIdHost)
-              Information Not allowed
-                @else
-                  <tr class="info">
-                  <td>{{ $meeting->meetingName }}</td>
-                  <td>{{ $meeting->visitReason }}</td>
-                  <td>{{$user->find($meeting->meetIdHost)->username}}</td>
-                  <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
-                  <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-                  <td>
-                        <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
-                                          </td>
-                </tr>  
-                @endif
+              @endif
               </tbody>
             </table>
 

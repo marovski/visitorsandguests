@@ -89,7 +89,7 @@
                                     Sign In and Print
                                 </button>
                               
-                                  <a href="#" class="btn btn-default btn-sm btn-block">Cancel</a>  
+                                  <a href="/" class="btn btn-default btn-sm btn-block">Cancel</a>  
                             </div>
                         </div>
 
