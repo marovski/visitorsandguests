@@ -18,7 +18,7 @@ class PagesController extends Controller{
 		$userId = Auth::id();
         $user = User::find($userId);
         
-		$meetings = Meeting::orderBy('meetStartDate','asc')->where('entryTime','=',null)->paginate(10);
+		$meetings = Meeting::orderBy('meetStartDate','asc')->where('deleteFlag', '=', 0)->paginate(10);
 		$meetingWithoutCheckin = Visitor::where('entryTime','=',null);
 
 		$lostItems = LostFound::orderBy('idLostFound','desc')->where('claimedDate', '=', null)->paginate(6);

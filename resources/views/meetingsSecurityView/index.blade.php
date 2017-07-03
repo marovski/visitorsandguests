@@ -14,6 +14,12 @@
         <div class="col-md-10">
             <h1>All Meetings</h1>
         </div>
+            <div class="col-md-2">
+         
+        </div>
+      <div class="col-md-12">
+      <hr>
+    </div>
 <!-- end of .row -->
 </div>
 
