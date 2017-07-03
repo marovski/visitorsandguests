@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Search Meetings Results')
+@section('title', '| Search Delivers Results')
 
 @section('content')
 
@@ -16,20 +16,20 @@
               <div class="panel-body">
                   
 
-              @if($meetings->count())
+              @if($delivers->count())
 
               
 
           <div class="well">
-          @foreach($meetings as $meeting)
+          @foreach($delivers as $deliver)
               <div class="media">
               <div class="media-left">
                   <table class="table">
               <thead>
                 <tr>
-                  <th>Meeting Name</th>
-                  <th>Visit Reason</th>
-                  <th>Host</th>
+                  <th>Firm Supplier</th>
+                  <th>Driver Name</th>
+                  <th>Vehicle Registry</th>
                   <th>Start Date</th>
                    <th>End Date</th>
                  <th></th>
@@ -37,27 +37,16 @@
                 </tr>
               </thead>
               <tbody>
-              @if(Auth::user()->idUser == $meeting->meetIdHost)
+            
                   <tr class="success">
-                  <td>{{ $meeting->meetingName }}</td>
-                  <td>{{ $meeting->visitReason }}</td>
-                  <td>{{$user->find($meeting->meetIdHost)->username}}</td>
-                  <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
-                     <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-                       <td> <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> </td>
+                  <td>{{ $deliver->deFirmSupplier }}</td>
+                  <td>{{ $deliver->deDriverName }}</td>
+                  <td>{{$deliver->vehicleRegistry}}</td>
+                  <td>{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
+                     <td>{{ date('M j, Y H:i', strtotime($deliver->deExitTime)) }}</td>
+                       <td> <a href="{{ route('delivers.show', $deliver->idDeliver) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> </td>
                 </tr>
-                @else
-                    <tr class="info">
-                  <td>{{ $meeting->meetingName }}</td>
-                  <td>{{ $meeting->visitReason }}</td>
-                  <td>{{$user->find($meeting->meetIdHost)->username}}</td>
-                  <td>{{ date('M j, Y H:i', strtotime($meeting->meetStartDate)) }}</td>
-                     <td>{{ date('M j, Y H:i', strtotime($meeting->meetEndDate)) }}</td>
-                     <td>
-                        <a href="{{ route('meetings.show', $meeting->idMeeting) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> 
-                                          </td>
-                </tr>  
-                @endif
+       
               </tbody>
             </table>
 

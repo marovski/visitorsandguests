@@ -39,6 +39,22 @@ class SearchController extends Controller
         return view('search.index', compact('meetings','user','visitor'));
     }
 
+
+     public function indexDeliver(Request $request)
+    {
+   
+        $type= Deliver::all()->load('type');
+
+        if (!$request->q) {
+
+            return redirect('/');
+        }
+
+
+        $delivers = Deliver::search($request->q)->take(3)->get();
+
+        return view('search.indexDeliver', compact('delivers','type'));
+    }
     /**
      * Show the form for creating a new resource.
      *

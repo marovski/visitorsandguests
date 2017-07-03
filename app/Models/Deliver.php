@@ -7,7 +7,10 @@ use Carbon\Carbon;
 use Laravel\Scout\Searchable;
 class Deliver extends Model
 {
+  
+    use Searchable;
   /*
+
   |--------------------------------------------------------------------------
   | GLOBAL VARIABLES
   |--------------------------------------------------------------------------

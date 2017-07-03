@@ -319,13 +319,8 @@ class VisitorController extends Controller
 
         if($meet->email=='1')
         {
-            if(!(Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors)))){
+            Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors));
 
-            return redirect()->route('meetings.show', $request->idMeeting)->with('success', 'The Visitor was assigned but the email was not sent.');
-
-              
-
-                }
  
                
 

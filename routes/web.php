@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\CheckAuth;
+
+use App\Http\Middleware\CheckAuthD;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
 Route::get('/search','SearchController@index');
+Route::get('/search/delivers','SearchController@indexDeliver');
+
+
 Route::get('autocomplete/{id}',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 
 
@@ -117,7 +122,18 @@ Route::resource('meetings','MeetingController');
 Route::group(['middleware' => 'CheckAuth'], function()
 {
     Route::resource('meetings', 'MeetingController', ['only' => ['create']]);
+     
 });
+
+Route::group(['middleware' => 'CheckAuthD'], function()
+{
+    Route::resource('delivers', 'DeliverController');
+    Route::resource('losts', 'LostFoundController');
+    Route::resource('drops','DropController');
+
+
+});
+
 
 
 //Initial Pages
