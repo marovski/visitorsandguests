@@ -55,11 +55,7 @@ class DropController extends Controller
             ]);    
         $drop = new Drop();
     
-        if ($request->dropperName==$request->ReceiverName) {
-           Session::flash('danger','The receiver name cannot be the same as the dropper!');
-            return redirect()->back();
-        }
-        $drop->dropperCompanyName=$request->dropperCompany;
+               $drop->dropperCompanyName=$request->dropperCompany;
         $drop->dropperName=$request->dropperName;
         $drop->droppedWhen=Carbon::now('Europe/Lisbon');
         $drop->dropReceiver=$request->ReceiverName;
