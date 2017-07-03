@@ -15,7 +15,7 @@
 				<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Create Delivery</div>
 				<div class="panel-body"  ng-controller="showInputController"> 
 							
-					<form action=""></form>  class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
+					<form  class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
 						{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">

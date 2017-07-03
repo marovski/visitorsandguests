@@ -42,8 +42,8 @@
                   <td>{{ $deliver->deFirmSupplier }}</td>
                   <td>{{ $deliver->deDriverName }}</td>
                   <td>{{$deliver->vehicleRegistry}}</td>
-                  <td>{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
-                     <td>{{ date('M j, Y H:i', strtotime($deliver->deExitTime)) }}</td>
+                  <td>{{ $deliver->deEntryTime ? date('M j, Y H:i', strtotime($deliver->deEntryTime)) : '' }}</td>
+                     <td>{{ $deliver->deExitTime ? date('M j, Y H:i', strtotime($deliver->deExitTime)) : '' }}</td>
                        <td> <a href="{{ route('delivers.show', $deliver->idDeliver) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a> </td>
                 </tr>
        
