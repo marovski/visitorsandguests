@@ -14,11 +14,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Create Delivery</div>
 				<div class="panel-body"  ng-controller="showInputController"> 
-							<!-- LOADING ICON -->
-			<!-- show loading icon if the loading variable is set to true -->
-		<div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
-
-					<form ng-show="loading == true"  class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
+							
+					<form action=""></form>  class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
 						{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
