@@ -17,10 +17,7 @@
 		</div>
 	</div> 
 	     <!-- end of .row -->
-<section class="panel panel-default" >
-<i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
-
-<form action="/search/delivers" method="get" role="form">
+	     <form action="/search" method="get" role="form">
 <div class="input-group custom-search-form">
 
                                 <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}">    <span class="input-group-btn">
@@ -33,6 +30,10 @@
                       
                             </div>
       </form>
+<section class="panel panel-default" >
+<i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
+
+
 				
 		<div class="table-responsive"    >
 	

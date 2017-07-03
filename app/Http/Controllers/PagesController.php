@@ -19,7 +19,7 @@ class PagesController extends Controller{
         $user = User::find($userId);
         
 		$meetings = Meeting::orderBy('meetStartDate','asc')->where('entryTime','=',null)->paginate(10);
-		$meetingWithoutCheckin = Meeting::where('entryTime','=',null);
+		$meetingWithoutCheckin = Visitor::where('entryTime','=',null);
 
 		$lostItems = LostFound::orderBy('idLostFound','desc')->where('claimedDate', '=', null)->paginate(6);
 	

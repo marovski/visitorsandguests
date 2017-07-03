@@ -17,9 +17,9 @@
     <div class="col-md-2">
             <a href="{{ route('meetings.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">  <span class="glyphicon glyphicon-plus"></span> New Meeting</a>
         </div>
-        <div class="col-md-12">
-            <hr>
-        </div>
+      <div class="col-md-12">
+      <hr>
+    </div>
     </div> <!-- end of .row -->
 
 <form action="/search" method="get" role="form">
