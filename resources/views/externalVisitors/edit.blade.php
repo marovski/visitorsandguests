@@ -227,12 +227,13 @@
       <hr>
       <div class="row">
         <div class="col-sm-6">
-          {{ Form::submit('Save Changes', ['class' => 'btn btn-basic btn-sm btn-block']) }}
+              <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
+           
         </div>
         <div class="col-sm-6">
        
          
-        <a class="btn btn-default btn-block"  href="{{ route('meetings.show', $externalVisitor->meeting->first()->idMeeting) }}">Cancel</a>
+        <a class="btn btn-danger btn-block"  href="{{ route('meetings.show', $externalVisitor->meeting->first()->idMeeting) }}">Cancel</a>
         </div>
       
       </div>

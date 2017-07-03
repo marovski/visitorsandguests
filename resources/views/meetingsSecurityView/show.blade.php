@@ -32,10 +32,10 @@
     
       <div id="visitors" style="margin-top: 50px;">
           <h4><b>External Visitors</b> <small>{{ $meetingData->visitor()->count() }} total   </small></h4>
-</h3>
+</hr>
         
          
-
+<div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -57,39 +57,43 @@
               <td>{{ $visitorEx->visitorEmail }}</td>
               <td>{{ $visitorEx->visitorCompanyName }}</td>
               <td>{{ $visitorEx->visitorCitizenCard }}</td>
-              <td> {{ $meetingData->entryTime }}</td>
-              <td>{{ $meetingData->exitTime }}</td>
+              <td> {{ $visitorEx->entryTime }}</td>
+              <td>{{ $visitorEx->exitTime }}</td>
               
               <td> 
                  
-                                 @if(!empty($meetingData->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i></button> 
+                                 @if(!empty($visitorEx->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i></button> 
                                  @else 
-                                  {!! Form::open(array('action' => array('MeetingController@checkin', $meetingData->idMeeting))) !!}
+                                  {!! Form::open(array('action' => array('VisitorController@checkin', $visitorEx->idVisitor))) !!}
                               
                                <button  type="submit" class="btn btn-default btn-sm"><i class="fa fa-map-marker"></i></button>
                               
                                 {!! Form::close() !!}
                                 @endif
-                                  @if(!empty($meetingData->exitTime))<button class="btn btn-default btn-sm" disabled="true"><i class="fa fa-mail-forward"></i></button> 
+                                </td>
+                                <td>
+                                  @if(!empty($visitorEx->exitTime))<button class="btn btn-default btn-sm" disabled="true"><i class="fa fa-mail-forward"></i></button> 
                                 @else 
-                                {!! Form::open(array('action' => array('MeetingController@checkout', $meetingData->idMeeting))) !!}
+                                {!! Form::open(array('action' => array('VisitorController@checkout', $visitorEx->idVisitor))) !!}
                               
                              <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i></button>
                                 {!! Form::close() !!}
 
                                 @endif
-
-               
+</td>
+               <td>
            
-                <a href="{{ route('visitors.show',$visitorEx->idVisitor) }}" class="btn btn-xs btn-icon btn-success"><span class="glyphicon glyphicon-print"></span></a>
+                <a  style="height: 30px;
+    margin-top: 0px;" href="{{ route('visitors.show',$visitorEx->idVisitor) }}" class="btn btn-xs btn-icon btn-success"><span class="glyphicon glyphicon-print"></span></a>
               </td>
               </td>
             </tr>
             @endforeach
           </tbody>
         </table>
+        </div>
       </div>
-
+<hr>
         <div class="visitors">
         @foreach ($meetingData->user() as $user)
           <span class="label label-default">{{ $user->username }}</span>

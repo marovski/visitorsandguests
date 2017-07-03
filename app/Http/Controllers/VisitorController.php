@@ -8,6 +8,7 @@ use App\Models\Visitor;
 use App\Models\User;
 use App\Http\Requests;
 use Auth;
+use Carbon\Carbon;
 use Session;
 use Mail;
 use App\Mail\NewMeetingNotification;
@@ -414,8 +415,124 @@ class VisitorController extends Controller
     public function destroy($id)
     {
         
-        Visitor::destroy($id);
-        return redirect('/meetings');
+          $meeting = Visitor::find($id);
+        if ($meeting->deleteFlag==0) {
+            $meeting->deleteFlag=1;
+            foreach ($meeting->visitor as $visitors) {
+
+                $visitors->deleteFlag=1;
+                $visitor->save();
+            }
+            $meeting->save();
+             Session::flash('success','Meeting was successfully deleted!');
+        return redirect()->route('meetings.index');
+        }
+        else{
+
+             Session::flash('danger','Meeting was already erased!');
+        return redirect()->route('meetings.index');
+        }
+
+
+    }
+
+
+
+
+     public function checkin($id){
+
+
+        $currentMeeting= Visitor::findOrFail($id);
+
+
+      
+       if (empty($currentMeeting->entryTime)) {
+           $currentMeeting->entryTime = Carbon::now('Europe/Lisbon');
+          
+           foreach ($currentMeeting->meeting as $meetings) {
+               $meetings->meetStatus=2;
+           }
+
+        if ($currentMeeting->save()) {
+
+
+        Session::flash('success','The visitor check-in was successfully done!');
+        
+        return redirect()->back();
+        
+        }else{
+
+        Session::flash('danger','The visitor check-in process found an error!');
+        
+        return redirect()->back();
+
+
+        }
+
+
+
+         }else{
+
+        Session::flash('danger','The visitor check-in is already done! The meeting as already started!');
+        
+        return redirect()->back();
+
+         }
+
+
+    }
+
+
+
+    public function checkout($id){
+        
+    
+
+        $currentMeeting= Visitor::findOrFail($id);
+
+         if (empty($currentMeeting->exitTime)) {
+           $currentMeeting->exitTime = Carbon::now('Europe/Lisbon');
+           $currentMeeting->signOutFlag=1;
+
+         
+            foreach ($currentMeeting->meeting as $meetings) {
+               
+
+                $meetings->meetStatus=4;
+
+                $meetings->save();
+            }
+          
+
+
+
+        if ($currentMeeting->save()) {
+
+
+        Session::flash('success','The visitor check-out was successfully done! The meeting is finished!');
+        
+        return redirect()->back();
+        
+        }else{
+
+        Session::flash('danger','The visitor check-out process found an error!');
+        
+        return redirect()->back();
+
+
+        }
+
+
+
+         }else{
+
+        Session::flash('danger','The meeting check-out is already done! The meeting as ended!');
+        
+        return redirect()->back();
+
+         }
+
+        
 
     }
 

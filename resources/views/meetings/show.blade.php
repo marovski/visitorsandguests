@@ -43,6 +43,7 @@
               <th>Email</th>
               <th>Company</th>
               <th>ID Number</th>
+              <th>Inside
               <th width="100px"></th>
             </tr>
           </thead>

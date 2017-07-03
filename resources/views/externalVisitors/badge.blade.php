@@ -27,7 +27,7 @@
                     <br>   
                     <div class="row"> 
                     <div class="col-xs-6">         
-                    <h4 align="left">Visitor: {{ $externalVisitor->visitorName }}</h4>
+                    <h4 align="left">Visitor:{{ $externalVisitor->visitorName }}</h4>
                     @foreach ($externalVisitor->meeting as $meetingE)
                     <p align="left">
                     Topic: {{ $meetingE->meetingName }}<br>
@@ -35,7 +35,7 @@
                     </p>
                     </div>
                     <br>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-6 text-right" style="margin-top: -9px;">
                     {!! DNS2D::getBarcodeSVG(" $externalVisitor->idVisitor, $externalVisitor->visitorName, $externalVisitor->visitorCompanyName", 'QRCODE') !!}
                     </div>
                     <br>

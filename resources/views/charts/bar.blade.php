@@ -3,7 +3,8 @@
 @section('title','| Bar Charts')
 
 @section('dashboard')
-<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <button type="submit" >Make</button></form>
+
+<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <button type="submit" >Make Graph</button></form>
  <div class="well"  >
      
         <!-- prepare a DOM container with width and height -->

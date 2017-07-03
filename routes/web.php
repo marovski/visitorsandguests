@@ -37,6 +37,7 @@ Route::get('/dashboard/tables/meetings', array('as' => 'dashboard.meetings', 'us
 
 Route::get('/dashboard/barcharts/show', array('as' => 'barChart.show', 'uses'=>'DashboardController@barChartShow'));
 
+
 //Extra methods beyond CRUD for Visitor Functionalities
 
 Route::post('/visitors/selfSign', array('as' => 'visitors.selfSign','uses'=>'VisitorController@selfSign' ));
@@ -51,17 +52,11 @@ Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.create
 Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
 
 
-
-
-//Extra methods beyond CRUD for Meeting Functionalities
-
-
-
-Route::post('/meetings/checkin/{id}', ['as' => 'meetings.checkin',
-                                                        'uses' => 'MeetingController@checkin'
+Route::post('/visitors/checkin/{id}', ['as' => 'visitors.checkin',
+                                                        'uses' => 'VisitorController@checkin'
                                                         ]); 
-Route::post('/meetings/checkout/{id}', ['as' => 'meetings.checkout',
-                                                        'uses' => 'MeetingController@checkout'
+Route::post('/visitors/checkout/{id}', ['as' => 'visitors.checkout',
+                                                        'uses' => 'VisitorController@checkout'
                                                         ]); 
 
 

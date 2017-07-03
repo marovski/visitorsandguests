@@ -2,7 +2,7 @@
 @section('title','| Line Charts')
 
 @section('dashboard')
-<input type="button" value="Line Chart" ng-click="ShowHide(2)">
+
 
           <div class="well" ng-show="IsVisible2">
      

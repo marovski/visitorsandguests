@@ -20,7 +20,13 @@
 <section class="panel panel-default" >
 <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
 
-
+<div class="input-group custom-search-form">
+<form action="/search/deliver" method="get" role="form">
+                                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}"> <i class="fa fa-search"></i>
+                              
+                          
+                            </form>
+                            </div>
 				
 		<div class="table-responsive"    >
 	

@@ -51,10 +51,7 @@
 
 
           @else
-          <li>  
-
-          <a href="{{ route('login') }}" class="{{ Request::is('/') ? "active" : "" }}" ><span class="glyphicon glyphicon-log-in"></span> Login</a>
-          </li>
+        
 
 <li>  <a href="{{ route('visitors.selfcheckIn') }}">   <span class="glyphicon glyphicon-check"></span> Self SignIn</a></li>
 
