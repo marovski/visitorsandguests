@@ -136,13 +136,24 @@ class MeetingController extends Controller
     public function show($id)
     {
         $meetingData = Meeting::findOrFail($id);
+        if (empty($meetingData)) {
 
+        Session::flash('danger','This object does not exist!');
+        return redirect()->back();
+
+        }else{
+            
         if(Auth::user()->role()==true){
 
         return view('meetingsSecurityView.show', compact('meetingData') ) ;
 
         }
-       return view('meetings.show', compact('meetingData') ); 
+        else{
+
+        return view('meetings.show', compact('meetingData') ); 
+        }
+    }
+      
 
     }
 

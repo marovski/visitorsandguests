@@ -136,7 +136,18 @@ class LostFoundController extends Controller
     {
         $idLostFound=$id;
         $lost = lostFound::find($idLostFound);
-        return view('losts.show')->withLost($lost);
+
+        if (empty($lost)) {
+                
+        Session::flash('danger','This object does not exist!');
+        return redirect()->back();
+     
+      
+        }else{
+
+        return view('losts.show')->withLost($lost);          
+        }
+      
     }
 
     /**
