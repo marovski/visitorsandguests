@@ -13,7 +13,7 @@
               <th>Confidentiality</th>
               <th>Sensibility</th>
               <th>Escorted Visitors</th>
-              <th>Romm</th>
+              <th>Room</th>
               <th width="100px"></th>
             </tr>
           </thead>

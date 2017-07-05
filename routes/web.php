@@ -24,7 +24,7 @@ Route::get('/search','SearchController@indexMeeting');
 Route::get('/search/delivers','SearchController@indexDeliver');
 Route::get('/search/drops','SearchController@indexDrop');
 
-Route::get('search/autocomplete', ['as' => 'search-autocomplete', 'uses' => 'SearchController@autocomplete']);
+
 
 
  Route::get('denied', array('as' => 'denied', function()
