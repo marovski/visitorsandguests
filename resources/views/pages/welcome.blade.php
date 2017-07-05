@@ -88,7 +88,7 @@
             @elseif($user->fk_idSecurity == 1)
             <h4>Your next meetings:</h4><hr>
                 
-                @foreach($meetings as $meet)
+                @foreach($hostMeetings as $meet)
 
                     <div class="post" >
                         <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
@@ -101,7 +101,8 @@
                 @endforeach
                           
 @else
- @foreach($meetingWithoutCheckin as $meet)
+            <h4>Your next meetings:</h4>
+                @foreach($meetings as $meet)
 
                     <div class="post" >
                         <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
@@ -112,7 +113,7 @@
                     <hr>
 
                 @endforeach
-               
+                
 @endif
                 </div>
       
