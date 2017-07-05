@@ -6,6 +6,22 @@
 
     @section('assets')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+    $('#q').each(function() {
+        var $this = $(this);
+        var src = $this.data('action');
+
+        $this.autocomplete({
+            source: src,
+            minLength: 2,
+            select: function(event, ui) {
+                $this.val(ui.item.value);
+                $('#id').val(ui.item.id);
+            }
+        });
+    });</script>
     @endsection
 
     @section('content')
@@ -26,7 +42,7 @@
                                 <label for="meetingName" class="col-md-4 control-label"><span class="after">*</span> Meeting Topic:</label>
 
                                 <div class="col-md-6">
-                                    <input type="textarea" rows="2" cols="" class="typeaheadName form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'>                                
+                                    <input type="textarea" id="q"  rows="2" cols=""  name="meetingTopic" required autofocus placeholder='Type here your meeting topic' data-action="{{ route('search-autocomplete') }}">                                
 
                                     @if ($errors->has('meetingName'))
                                     <span class="help-block">

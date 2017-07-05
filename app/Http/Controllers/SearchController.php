@@ -109,42 +109,50 @@ class SearchController extends Controller
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function autocomplete(Request $request, $id)
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function autocomplete(Request $request, $id)
 
-    {
+    // {
          
-        if ($id=='mN') {
+    //     if ($id=='mN') {
 
-             $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
+    //          $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
              
-             return response()->json($data);
+    //          return response()->json($data);
    
-    }elseif ($id=='mP') {
-             $data = Meeting::select("visitReason as name")->where("visitReason","LIKE","%{$request->input('query')}%")->get();
+    // }elseif ($id=='mP') {
+    //          $data = Meeting::select("visitReason as name")->where("visitReason","LIKE","%{$request->input('query')}%")->get();
 
-             return response()->json($data);
-    }elseif ($id=='vN') {
+    //          return response()->json($data);
+    // }elseif ($id=='vN') {
 
-        $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
+    //     $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
 
-             return response()->json($data);
-    }elseif ($id=='vC') {
-          $data = Visitor::select("visitorCompanyName as name")->where("visitorCompanyName","LIKE","%{$request->input('query')}%")->get();
+    //          return response()->json($data);
+    // }elseif ($id=='vC') {
+    //       $data = Visitor::select("visitorCompanyName as name")->where("visitorCompanyName","LIKE","%{$request->input('query')}%")->get();
 
-             return response()->json($data);
-    }elseif ($id=='vE') {
-          $data = Visitor::select("visitorEmail as name")->where("visitorEmail","LIKE","%{$request->input('query')}%")->get();
+    //          return response()->json($data);
+    // }elseif ($id=='vE') {
+    //       $data = Visitor::select("visitorEmail as name")->where("visitorEmail","LIKE","%{$request->input('query')}%")->get();
 
-             return response()->json($data);
-    }elseif ($id=='dC') {
-        # code...
-    }
-        }
+    //          return response()->json($data);
+    // }elseif ($id=='dC') {
+    //     # code...
+    // }
+    //     }
+
+
+public function autocomplete()
+{
+        $term = request('meetingTopic');
+        $result = Meeting::whereName($term)->orWhere('meetingName', 'LIKE', '%' . $term . '%')->get(['id', 'meetingName as value']);
+        return response()->json($term);
+}
        
 
 
