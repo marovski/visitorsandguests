@@ -26,7 +26,7 @@
                                 <label for="meetingName" class="col-md-4 control-label"><span class="after">*</span> Meeting Topic:</label>
 
                                 <div class="col-md-6">
-                                    <input type="textarea" rows="2" cols="" class="typeaheadName form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'>                                
+                                    <input type="textarea"  rows="2" cols=""  name="meetingTopic" required autofocus placeholder='Type here your meeting topic' >                                
 
                                     @if ($errors->has('meetingName'))
                                     <span class="help-block">
@@ -236,8 +236,8 @@
  
                             <tr>
           
-                                <td>{{ ($meeting->meetStartDate ? date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) : '') }}</td>
-                                 <td>{{ ($meeting->meetEndDate ? date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) : '') }}</td>
+                                <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
+                                 <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
                              <th>{{ $meeting->meetingName }}</th>
 
                      

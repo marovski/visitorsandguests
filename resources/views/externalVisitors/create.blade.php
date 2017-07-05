@@ -153,7 +153,7 @@
                             <label for="visitorDeclaredGood" class="col-md-4 control-label">Declared Goods:</label>
 
                             <div class="col-md-6">
-                                <textareaplaceholder="Type here the goods" id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+                                <textarea placeholder="Type here the goods" id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood"   autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
                                 </textarea> 
                                 @if ($errors->has('visitorDeclaredGood'))
                                     <span class="help-block">

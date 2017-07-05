@@ -119,7 +119,7 @@ class DelivertypeController extends Controller
 
 
         if ($item->delete()) {
-            Session::flash('success', 'The deliver item was successfully deleted!')
+            Session::flash('success', 'The deliver item was successfully deleted!');
             return redirect()->route('delivers.show', $item->deliver_idDeliver);
         }
         else{

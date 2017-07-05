@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 
@@ -46,13 +47,28 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($this->isHttpException($e))
+        if($this->isHttpException($e))
         {
-            return $this->renderHttpException($e);
+            switch ($e->getStatusCode()) 
+                {
+                // not found
+                case 404:
+                return redirect()->guest('/');
+                break;
+
+                // internal error
+                case '500':
+                return redirect()->guest('/');
+                break;
+
+                default:
+                    return $this->renderHttpException($e);
+                break;
+            }
         }
         else
         {
-            return parent::render($request, $e);
+                return parent::render($request, $e);
         }
     }
 

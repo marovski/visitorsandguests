@@ -13,7 +13,7 @@
               <th>Confidentiality</th>
               <th>Sensibility</th>
               <th>Escorted Visitors</th>
-              <th>Romm</th>
+              <th>Room</th>
               <th width="100px"></th>
             </tr>
           </thead>
@@ -45,7 +45,7 @@
               <th>Email</th>
               <th>Company</th>
               <th>ID Number</th>
-              <th>Inside
+              <th>Inside</th>
               <th width="100px"></th>
             </tr>
           </thead>
@@ -57,6 +57,7 @@
               <td>{{ $visitorEx->visitorEmail }}</td>
               <td>{{ $visitorEx->visitorCompanyName }}</td>
               <td>{{ $visitorEx->visitorCitizenCard }}</td>
+               <td>{{ ($visitorEx->entryTime ? 'Still Inside' : 'Not arrived') }}</td>
               <td>
                 <a href="{{ route('visitors.edit', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
            

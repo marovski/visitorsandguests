@@ -116,16 +116,16 @@ class DeliverController extends Controller
      Session::flash('success', 'The Deliver was created successfully!');
      return redirect()->route('delivers.show',$deliver->idDeliver);
 
-}else{
+    }else{
 
- Session::flash('danger', 'The Deliver was not created successfully!');
+    Session::flash('danger', 'The Deliver was not created successfully!');
 
      return redirect()->route('delivers.create');
 
-}
+    }
 
  
-}
+    }
 
 
 
@@ -141,88 +141,98 @@ class DeliverController extends Controller
     {
         $deliver = Deliver::findOrFail($id);
 
-        return view('delivers.show')->withDeliver($deliver);
+        if (empty($deliver)) {
+        
+        Session::flash('danger','This object does not exist!');
+        return redirect()->back();
+        }else{
+
+             return view('delivers.show')->withDeliver($deliver);
+
+
+        }
+       
     }
 
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+  //   /**
+  //    * Show the form for editing the specified resource.
+  //    *
+  //    * @param  int  $id
+  //    * @return \Illuminate\Http\Response
+  //    */
+  //   public function edit($id)
+  //   {
         
-        $deliveryData = Deliver::findOrFail($id);
+  //       $deliveryData = Deliver::findOrFail($id);
       
 
-        return view('delivers.edit', compact('deliveryData') ) ;   
+  //       return view('delivers.edit', compact('deliveryData') ) ;   
 
 
-    }
+  //   }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+  //   /**
+  //    * Update the specified resource in storage.
+  //    *
+  //    * @param  \Illuminate\Http\Request  $request
+  //    * @param  int  $id
+  //    * @return \Illuminate\Http\Response
+  //    */
+  //   public function update(Request $request, $id)
+  //   {
         
-        $deliver = Deliver::findOrFail($id);
+  //       $deliver = Deliver::findOrFail($id);
         
-     $deliver->deDriverName=$request->driverName;
+  //    $deliver->deDriverName=$request->driverName;
      
-     $deliver->vehicleRegistry=$request->vehicleLicensePlate;
+  //    $deliver->vehicleRegistry=$request->vehicleLicensePlate;
    
-     $deliver->entryWeight=$request->weight;
-     $deliver->exitWeight=$request->exitweight;
-     $deliver->deFirmSupplier=$request->firm;
+  //    $deliver->entryWeight=$request->weight;
+  //    $deliver->exitWeight=$request->exitweight;
+  //    $deliver->deFirmSupplier=$request->firm;
 
-     // $deliver->deEntryTime=$request->deEntryTime;
+  //    // $deliver->deEntryTime=$request->deEntryTime;
      
-     $deliver->deExitTime=$request->deExitTime;
+  //    $deliver->deExitTime=$request->deExitTime;
      
 
-     if ($request->hasFile('image')) {
-      $image = $request->file('image');
-      $filename = time() . '.' . $image->getClientOriginalExtension();
-      $location = public_path('images/' . $filename);
-      Image::make($image)->resize(600, 300)->save($location);
+  //    if ($request->hasFile('image')) {
+  //     $image = $request->file('image');
+  //     $filename = time() . '.' . $image->getClientOriginalExtension();
+  //     $location = public_path('images/' . $filename);
+  //     Image::make($image)->resize(600, 300)->save($location);
 
-      $deliver->image = $filename;
-  }
+  //     $deliver->image = $filename;
+  // }
    
-    //store data to delivers table and deliver type table
+  //   //store data to delivers table and deliver type table
 
-    $saveDeliver= $deliver->save();
+  //   $saveDeliver= $deliver->save();
 
-    if ($saveDeliver) {
+  //   if ($saveDeliver) {
 
      
-        // set flash data with success message
-        Session::flash('success', 'This delivery was successfully saved.');
+  //       // set flash data with success message
+  //       Session::flash('success', 'This delivery was successfully saved.');
 
-        // redirect with flash data to delivers.show
-         return view('delivers.show')->withDeliver($deliver);
+  //       // redirect with flash data to delivers.show
+  //        return view('delivers.show')->withDeliver($deliver);
 
-    }
-    else{
-        // set flash data with success message
-        Session::flash('warning', 'This delivery was not successfully saved.');
+  //   }
+  //   else{
+  //       // set flash data with success message
+  //       Session::flash('warning', 'This delivery was not successfully saved.');
 
-        // redirect with flash data to delivers.show
-        return redirect()->route('delivers.edit',$deliver->idDeliver);
+  //       // redirect with flash data to delivers.show
+  //       return redirect()->route('delivers.edit',$deliver->idDeliver);
 
-    }
+  //   }
 
  
       
-    }
+  //   }
 
   /**
      * Display the specified resource.

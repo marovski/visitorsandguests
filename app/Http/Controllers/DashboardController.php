@@ -20,24 +20,8 @@ class DashboardController extends Controller
      */
     public function getDashboard(){
 
-
-    $currentMonth = date('F');
-
-    $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-
-    $meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
     
-    $visitors = Visitor::orderBy('idVisitor','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-    
-    $deliveries = Deliver::orderBy('idDeliver','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
-    
-    $drops = Drop::orderBy('idDrop','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth]);
-    
-    $users = User::orderBy('idUser','desc')->groupBy(function($item) {
-    return $item->created_at->month;});
-
-    
-    return view('pages.dashboard', compact('drops','visitors','deliveries','meetings','lostItems', 'users'));
+    return view('pages.dashboard');
     }
  
 
@@ -89,7 +73,7 @@ class DashboardController extends Controller
 
     public function getDropsTable(){
     
-    $drops = Drop::orderBy('idDrop','desc')->where('deleteFlag', '=', 0)->paginate(10);
+    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
 
     return view('tables.drops', compact('drops'));
 
@@ -97,7 +81,7 @@ class DashboardController extends Controller
 
     public function getDeliversTable(){
     
-    $delivers = Deliver::orderBy('idDeliver','desc')->where('deleteFlag', '=', 0)->paginate(10);
+    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
     
     return view('tables.delivers', compact('delivers'));
 
@@ -105,7 +89,7 @@ class DashboardController extends Controller
 
     public function getLostItemsTable(){
     
-    $losts = LostFound::orderBy('idLostFound','desc')->where('deleteFlag', '=', 0)->paginate();
+    $losts = LostFound::orderBy('idLostFound','desc')->paginate();
     
     return view('tables.lostItems', compact('losts'));
 
@@ -113,7 +97,7 @@ class DashboardController extends Controller
 
      public function getMeetingsTable(){
      $user= User::all()->load('meetingHost');
-     $meetings = Meeting::orderBy('idMeeting','desc')->where('deleteFlag', '=', 0)->paginate();
+     $meetings = Meeting::orderBy('idMeeting','desc')->paginate();
     
     return view('tables.meetings', compact('meetings', 'user'));
 

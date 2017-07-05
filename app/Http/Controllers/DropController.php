@@ -87,18 +87,18 @@ class DropController extends Controller
         
         return view('drops.checkOut')->withDrop($drop);
     }
-       /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $idDrop=$id;
-        $drop = Drop::find($idDrop);
-        return view('drops.edit')->withDrop($drop);
-    }
+    //    /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit($id)
+    // {
+    //     $idDrop=$id;
+    //     $drop = Drop::find($idDrop);
+    //     return view('drops.edit')->withDrop($drop);
+    // }
 
     /**
      * Display the specified resource.
@@ -110,38 +110,47 @@ class DropController extends Controller
     {
         $idDrop=$id;
         $drop = Drop::find($idDrop);
-        return view('drops.show')->withDrop($drop);
-    }
 
-     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateEdit(Request $request, $id)
-    {
-        $idDrop=$id;
-        $drop = Drop::find($idDrop);
-        
-        $drop->dropperCompanyName=$request->dropperCompany;
-        $drop->dropperName=$request->dropperName;
-        $drop->dropReceiver=$request->ReceiverName;
-        $drop->dropSize=$request->dropSize;
-        $drop->dropImportance=$request->dropImportance;
-        $drop->dropDescr=$request->dropDescription;
-        $drop->dropidUser=Auth::user()->idUser;
-
-        if($drop->save())
+        if(empty($drop))
         {
-            Session::flash('success','Drop was successfully edited');
-            return redirect()->route('drops.show',$drop->idDrop);
-            
+        Session::flash('danger','This object does not exist!');
+        return redirect()->back();
 
         }
-        
+        return view('drops.show')->withDrop($drop);
+    
     }
+
+
+    //  /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function updateEdit(Request $request, $id)
+    // {
+    //     $idDrop=$id;
+    //     $drop = Drop::find($idDrop);
+        
+    //     $drop->dropperCompanyName=$request->dropperCompany;
+    //     $drop->dropperName=$request->dropperName;
+    //     $drop->dropReceiver=$request->ReceiverName;
+    //     $drop->dropSize=$request->dropSize;
+    //     $drop->dropImportance=$request->dropImportance;
+    //     $drop->dropDescr=$request->dropDescription;
+    //     $drop->dropidUser=Auth::user()->idUser;
+
+    //     if($drop->save())
+    //     {
+    //         Session::flash('success','Drop was successfully edited');
+    //         return redirect()->route('drops.show',$drop->idDrop);
+            
+
+    //     }
+        
+    // }
 
     /**
      * Update the specified resource in storage.
