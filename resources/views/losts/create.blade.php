@@ -18,7 +18,7 @@
                         {{ csrf_field() }}
       
                          <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}">
-                            <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
+                            <label for="finderName" class="col-md-4 control-label"><span class="after">*</span> Finder Name:</label>
 
                             <div class="col-md-6">
                                 <input id="finderName" type="text" class="form-control" name="finderName" value="{{ old('finderName') }}" required autofocus placeholder="Type here the finder's name" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('finderPhone') ? ' has-error' : '' }}">
-                            <label for="finderPhone" class="col-md-4 control-label">Finder Phone:</label>
+                            <label for="finderPhone" class="col-md-4 control-label"><span class="after">*</span> Finder Phone:</label>
 
                             <div class="col-md-6">
                                 <input id="finderPhone" type="text" class="form-control" name="finderPhone" value="{{ old('finderPhone') }}" placeholder="Type here the finder's phone"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     <div class="form-group{{ $errors->has('itemCategory') ? ' has-error' : '' }}">
-                            <label for="itemCategory" class="col-md-4 control-label">Category: </label>
+                            <label for="itemCategory" class="col-md-4 control-label"><span class="after">*</span> Category:</label>
 
                             <div class="col-md-6">
 

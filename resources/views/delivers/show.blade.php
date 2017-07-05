@@ -5,15 +5,18 @@
 @section('content')
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-8" style="width: 71.666667%;">
 		<table class="table">
           <thead>
             <tr>
               <th>Firm Supplier</th>
-              <th>Content</th>
+              <th>Driver Name</th>
+              <th>Vehicle License</th>
               <th>Entry Weight</th>
               <th>Exit Weight</th>
-              <th width="100px"></th>
+                <th>Entry Time</th>
+              <th>Exit Time</th>
+      
             </tr>
           </thead>
 
@@ -21,11 +24,12 @@
             
             <tr>
               <td>{!! $deliver->deFirmSupplier !!}</td>
-              <td>@foreach ($deliver->type as $typeItem)
-        <span class="label label-default">{{ $typeItem->materialDetails }}</span>
-       @endforeach</td>
+              <td>{{ $deliver->deDriverName }}</td>
+              <td>{{ $deliver->vehicleRegistry }}</td>
               <td>{{ $deliver->entryWeight }}</td>
 			  <td>{{ $deliver->exitWeight }}</td>
+			  	<th>{{ $deliver->deEntryTime }}</th>
+							<th>{{ $deliver->deExitTime }}</th>
                </tr>
 
           </tbody>
@@ -38,13 +42,11 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Driver Name</th>
-							<th>Vehicle License</th>
+							<th>Content</th>
 							<th>Danger</th>
 							<th>Caution</th>
 							<th>Quantitity</th>
-							<th>Entry Time</th>
-							<th>Exit Time</th>
+						
 						
 							<th width="70px"></th>
 						</tr>
@@ -54,8 +56,7 @@
 						@foreach ($deliver->type as $delivers)
 				
 						<tr>
-							<td>{{ $deliver->deDriverName }}</td>
-							<td>{{ $deliver->vehicleRegistry }}</td>
+							<td> <span class="label label-default">{{ $delivers->materialDetails }}</span></td>
 					
 							<td>
 								@if ($delivers->dangerousGood === 1) 
@@ -75,9 +76,8 @@
 									 {{ 'High' }}
 									@endif
 									</td>
-							<th>{{ $delivers->quantitity }}</th>
-							<th>{{ $deliver->deEntryTime }}</th>
-							<th>{{ $deliver->deExitTime }}</th>
+							<th>{{ $delivers->quantity}}</th>
+						
 							
 							<td>
 								<a href="{{ route('deliveryType.edit', $delivers->idDeliverType) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -92,7 +92,7 @@
 
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-4" style=" width: 27.333333%;">
 			<div class="well">
 				
 
@@ -107,11 +107,9 @@
 				</dl>
 				<hr>
 				<div class="row">
-					<div class="col-sm-6">
-						{!! Html::linkRoute('delivers.edit', 'Edit', array($deliver->idDeliver), array('class' => 'btn btn-primary btn-block')) !!}
-					</div>
-					<div class="col-sm-6">
-						{!! Form::open(['route' => ['delivers.destroy', $deliver->idDeliver], 'method' => 'DELETE']) !!}
+				
+					<div class="col-sm-12">
+						{!! Form::open(['route' => ['delivers.destroy', $deliver->idDeliver], 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()']) !!}
 
 						{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
 

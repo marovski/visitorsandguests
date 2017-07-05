@@ -129,7 +129,7 @@
           </div>
          
           <div class="col-sm-6">
-            {!! Form::open(['route' => ['meetings.destroy', $meetingData->idMeeting], 'method' => 'DELETE']) !!}
+            {!! Form::open(['route' => ['meetings.destroy', $meetingData->idMeeting], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()']) !!}
 
             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
 

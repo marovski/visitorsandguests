@@ -23,7 +23,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('meetingName') ? ' has-error' : '' }}">
-                                <label for="meetingName" class="col-md-4 control-label">Meeting Topic:</label>
+                                <label for="meetingName" class="col-md-4 control-label"><span class="after">*</span> Meeting Topic:</label>
 
                                 <div class="col-md-6">
                                     <input type="textarea" rows="2" cols="" class="typeaheadName form-control" name="meetingTopic" required autofocus placeholder='Type here your meeting topic'>                                
@@ -36,10 +36,10 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('meetStartDate') ? ' has-error' : '' }}">
-                                <label for="meetStartDate" class="col-md-4 control-label">Start Date:</label>
+                                <label for="meetStartDate" class="col-md-4 control-label"><span class="after">*</span> Start Date:</label>
 
                                 <div class="col-md-6">
-	                                <input type="text" class="form-control" id="meetStartDate" name="meetStartDate">
+	                                <input type="text" class="form-control" required="" id="meetStartDate" name="meetStartDate">
 	
                                     @if ($errors->has('meetStartDate'))
                                     <span class="help-block">
@@ -50,10 +50,10 @@
                                 
                             </div>
                             <div class="form-group{{ $errors->has('meetEndDate') ? ' has-error' : '' }}">
-                                <label for="meetEndDate" class="col-md-4 control-label">End Date:</label>
+                                <label for="meetEndDate" class="col-md-4 control-label"><span class="after">*</span> End Date:</label>
 
                                 <div class="col-md-6">
-                                    <input id="meetEndDate" type="text" class="form-control" name="meetEndDate"/>
+                                    <input id="meetEndDate" type="text" required class="form-control" name="meetEndDate"/>
 
                                     @if ($errors->has('meetEndDate'))
                                     <span class="help-block">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('visitReason') ? ' has-error' : '' }}">
-                            <label for="visitReason" class="col-md-4 control-label"> Meeting Purpose:</label>
+                            <label for="visitReason" class="col-md-4 control-label"><span class="after">*</span> Meeting Purpose:</label>
 
                             <div class="col-md-6">
                                 <textarea rows="2" cols="" class="form-control" name="visitReason" placeholder='Type here your meeting purpose'></textarea>                                

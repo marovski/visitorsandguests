@@ -65,9 +65,9 @@
                             <label for="dropSize" class="col-md-4 control-label">Item:</label>
 
                             <div class="col-md-6">
-                                <label class="radio-inline"><input type="radio" name="dropSize" value="S" checked>Small Size</label>
-                                <label class="radio-inline"><input type="radio" name="dropSize" value="M">Medium Size</label>
-                                <label class="radio-inline"><input type="radio" name="dropSize" value="L">Large Size</label>
+                                <label class="radio-inline"><input type="radio" name="dropSize" value="Small" checked>Small Size</label>
+                                <label class="radio-inline"><input type="radio" name="dropSize" value="Medium">Medium Size</label>
+                                <label class="radio-inline"><input type="radio" name="dropSize" value="Large">Large Size</label>
                                 
                                 @if ($errors->has('dropSize'))
                                     <span class="help-block">

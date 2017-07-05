@@ -20,8 +20,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
 
-Route::get('/search','SearchController@index');
+Route::get('/search','SearchController@indexMeeting');
 Route::get('/search/delivers','SearchController@indexDeliver');
+Route::get('/search/drops','SearchController@indexDrop');
 
 
 Route::get('autocomplete/{id}',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
@@ -80,6 +81,9 @@ Route::post('/delivers/checkOut/update/{id}', ['as' => 'delivers.checkoutUpdate'
                                                         'uses' => 'DeliverController@checkoutUpdate'
                                                         ]);
 
+Route::resource('delivers','DeliverController');
+
+Route::resource('deliveryType','DelivertypeController');
 
 
 //Extra methods beyond CRUD for Drop Functionalities
@@ -113,8 +117,7 @@ Route::get('/losts/{id}/checkOut/', ['as' => 'losts.checkout',
 
 //Resources From The Controllers
 Route::resource('visitors','VisitorController');
-Route::resource('delivers','DeliverController');
-Route::resource('deliveryType','DelivertypeController');
+
 Route::resource('losts', 'LostFoundController');
 Route::resource('meetings','MeetingController');
 

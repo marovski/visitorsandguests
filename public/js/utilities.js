@@ -2,11 +2,7 @@
 
   function ConfirmExternVisitor()
   {
-  var x = confirm("Are you sure you want to add this visitor?");
-  if (x)
-    return true;
-  else
-    return false;
+  ;
   }
 
 
@@ -28,5 +24,15 @@ function downloadCanvas(link, canvasId, filename) {
     link.download = filename;
 }
 
+function ConfirmDelete(){
+var x = confirm("Are you sure to delete this?");
+  if (x)
+    return true;
+  else
+    return false
 
+
+
+
+}
 

@@ -24,7 +24,7 @@ class DropController extends Controller
      */
         public function index()
     {
-        $drops = Drop::orderBy('idDrop', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
+        $drops = Drop::orderBy('idDrop', 'desc')->paginate(10);
         return view('drops.index')->withDrops($drops);
     }
 
@@ -189,22 +189,15 @@ class DropController extends Controller
         $idDrop = $id;
 
         $drop = Drop::find($idDrop);
-        if ($drop->deleteFlag==0) {
-             $drop->deleteFlag=1;
-
-        $save=$drop->save();
-        if ($save) {
-             Session::flash('success','Drop was successfully deleted');
+        if ($drop->delete()) {
+            
+          Session::flash('success','Drop was successfully deleted');
         return redirect()->route('drops.index');
-        }else{
-
-             Session::flash('danger','Deleted process failed!');
-        return redirect()->route('drops.index');
-        }
         
         }
         else{
-             Session::flash('danger','Drop was already deleted');
+        
+         Session::flash('danger','Drop was already deleted');
         return redirect()->route('drops.index');
 
         }

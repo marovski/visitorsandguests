@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use Laravel\Scout\Searchable;
 class Deliver extends Model
 {
   
     use Searchable;
+    use SoftDeletes;
+
   /*
 
   |--------------------------------------------------------------------------
@@ -16,12 +19,21 @@ class Deliver extends Model
   |--------------------------------------------------------------------------
   */
 
+
+      /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+
     protected $dates = [
     
         'deExitTime',
-        'deEntryTime'
+        'deEntryTime',
+        'deleted_at'
     ];
-
+    
+   
 
 	  protected $primaryKey = 'idDeliver';
   

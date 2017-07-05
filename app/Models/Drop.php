@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 class Drop extends Model
 {  
-  
+
+  use SoftDeletes;
   /*
 	|--------------------------------------------------------------------------
 	| GLOBAL VARIABLES
@@ -16,6 +18,11 @@ class Drop extends Model
   protected $primaryKey = 'idDrop';
   
   protected $table='drops';	
+
+      protected $dates = [
+    
+        'deleted_at'
+    ];
 
     /**
      * The attributes that are mass assignable.

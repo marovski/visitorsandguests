@@ -22,7 +22,7 @@
                            <input id="idMeeting" name="idMeeting" class="ng-hide" type="number"  value="{{$meeting->idMeeting}}"/>
               
                         <div class="form-group{{ $errors->has('visitorName') ? ' has-error' : '' }}">
-                            <label for="visitorName" class="col-md-4 control-label" > Name:</label>
+                            <label for="visitorName" class="col-md-4 control-label" ><span class="after">*</span> Name:</label>
 
                             <div class="col-md-6">
                                 <input id="visitorName" type="text" class="form-control"  name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" placeholder="Type here the name">
@@ -91,7 +91,7 @@
 
 
                         <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
-                            <label for="visitorEmail" class="col-md-4 control-label">Email:</label>
+                            <label for="visitorEmail" class="col-md-4 control-label"><span class="after">*</span> Email:</label>
 
                             <div class="col-md-6">
                                <input placeholder="Type here the email" type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('visitorEmail') ? ' has-error' : '' }}">
-                            <label for="visitorEmail" class="col-md-4 control-label">Confirm Email:</label>
+                            <label for="visitorEmail" class="col-md-4 control-label"><span class="after">*</span> Confirm Email:</label>
 
                             <div class="col-md-6">
                                <input placeholder="Confirm the email" type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
@@ -153,8 +153,8 @@
                             <label for="visitorDeclaredGood" class="col-md-4 control-label">Declared Goods:</label>
 
                             <div class="col-md-6">
-                                <input placeholder="Type here the goods" id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
-
+                                <textareaplaceholder="Type here the goods" id="visitorDeclaredGood" type="text" class="form-control" name="visitorDeclaredGood" value=""  autofocus  ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+                                </textarea> 
                                 @if ($errors->has('visitorDeclaredGood'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('visitorDeclaredGood') }}</strong>
@@ -168,7 +168,7 @@
                             <label for="visitorDangerousGood" class="col-md-4 control-label">Dangerous Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="0"  autofocus >
+                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value=""  autofocus >
 
                                 @if ($errors->has('visitorDangerousGood')) 
                                     <span class="help-block">
@@ -183,7 +183,7 @@
                             <label for="escorted" class="col-md-4 control-label">Escorted:</label>
 
                             <div class="col-md-6">
-                                <input id="escorted" type="checkbox" name="escorted" value="1"  autofocus >
+                                <input id="escorted" type="checkbox" name="escorted" value="1" checked="" autofocus >
 
                                 @if ($errors->has('escorted')) 
                                     <span class="help-block">

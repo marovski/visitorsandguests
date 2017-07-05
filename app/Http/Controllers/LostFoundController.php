@@ -26,7 +26,7 @@ class LostFoundController extends Controller
      */
     public function index()
     {
-        $losts = LostFound::orderBy('idLostFound', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
+        $losts = LostFound::orderBy('idLostFound', 'desc')->paginate(10);
         return view('losts.index')->withLosts($losts);
         //
     }

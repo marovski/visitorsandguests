@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Visitor extends Model
 {		
+
+
+  use SoftDeletes;
   /*
 	|--------------------------------------------------------------------------
 	| GLOBAL VARIABLES
@@ -16,6 +20,11 @@ class Visitor extends Model
 	protected $primaryKey = 'idVisitor';
 	
 	protected $table='visitors';
+
+	  protected $dates = [
+    
+        'deleted_at'
+    ];
 	public $fillable=['idVisitor','visitorName' , 'visitorCompanyName' , 'visitorEmail'];
 
 	  /*

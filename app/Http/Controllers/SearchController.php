@@ -19,11 +19,11 @@ class SearchController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource Meetings.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function indexMeeting(Request $request)
     {
         $user= User::all()->load('meetingHost');
         $visitor= Visitor::all()->load('meeting');
@@ -36,10 +36,15 @@ class SearchController extends Controller
 
         $meetings = Meeting::search($request->q)->take(3)->get();
 
-        return view('search.index', compact('meetings','user','visitor'));
+        return view('search.indexMeeting', compact('meetings','user','visitor'));
     }
 
 
+/**
+     * Display a listing of the resource Deliver.
+     *
+     * @return \Illuminate\Http\Response
+     */
      public function indexDeliver(Request $request)
     {
    
@@ -55,6 +60,55 @@ class SearchController extends Controller
 
         return view('search.indexDeliver', compact('delivers','type'));
     }
+
+
+
+    /**
+     * Display a listing of the resource Drop.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     public function indexDrop(Request $request)
+    {
+  
+
+        if (!$request->q) {
+
+            return redirect('/');
+        }
+
+
+        $drops = Drop::search($request->q)->take(3)->get();
+
+        return view('search.indexDrop', compact('drops'));
+    }
+
+
+
+        /**
+     * Display a listing of the resource Drop.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     public function indexLostItem(Request $request)
+    {
+  
+
+        if (!$request->q) {
+
+            return redirect('/');
+        }
+
+
+        $lostItems = LostFound::search($request->q)->take(3)->get();
+
+        return view('search.indexLostItem', compact('lostItems'));
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *

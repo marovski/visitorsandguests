@@ -48,7 +48,7 @@
             <label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 
             <div class="col-md-6">
-              <input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ $deliveryData->vehicleRegistry }}" required autofocus data-parsley-pattern="" max-lenght="25">
+              <input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ $deliveryData->vehicleRegistry }}" required >
 
               @if ($errors->has('vehicleLicensePlate'))
               <span class="help-block">
@@ -78,7 +78,7 @@
             <label for="weight" class="col-md-4 control-label">Entry Weight (Kg):</label>
 
             <div class="col-md-6">
-              <input type="number"  name="weight" required="" max="1000" min="100" placeholder="Kg" value="{{ $deliveryData->entryWeight }}">
+              <input type="number"  name="weight"   min="0" placeholder="Kg" value="{{ $deliveryData->entryWeight }}">
 
                                      
 
@@ -94,7 +94,7 @@
             <label for="exitweight" class="col-md-4 control-label">Exit Weight (Kg):</label>
 
             <div class="col-md-6">
-              <input type="number"  name="exitweight"  max="{{ $deliveryData->entryWeight }}" min="0" placeholder="Kg" value="{{ $deliveryData->exitWeight }}">
+              <input type="number"  name="exitweight"   min="0" placeholder="Kg" value="{{ $deliveryData->exitWeight }}">
 
                                      
 
@@ -163,7 +163,7 @@
       <hr>
       <div class="row">
       <div class="col-sm-6">
-        <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
+        <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Are you certain to save this edit?')" ><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
            
         </div>
         <div class="col-sm-6">

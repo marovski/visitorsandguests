@@ -37,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-              @if(Auth::user()->idUser == $meeting->meetIdHost && $meeting->deleteFlag == 0)
+              @if(Auth::user()->idUser == $meeting->meetIdHost)
                   <tr class="success">
                   <td>{{ $meeting->meetingName }}</td>
                   <td>{{ $meeting->visitReason }}</td>

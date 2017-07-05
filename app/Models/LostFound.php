@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 class LostFound extends Model
 {
+
+
+
+	use SoftDeletes;
     /*
 	|--------------------------------------------------------------------------
 	| GLOBAL VARIABLES
@@ -15,7 +20,10 @@ class LostFound extends Model
 	protected $table = 'lostItems';
 	protected $primaryKey = 'idLostFound';
 	
-
+	 protected $dates = [
+    
+        'deleted_at'
+    ];
   /**
      * The attributes that are mass assignable.
      *

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
+
+use App\Models\Deliver;
 use App\Models\DeliverType;
 
 class DelivertypeController extends Controller
@@ -77,7 +81,30 @@ class DelivertypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item=DeliverType::findOrFail($id);
+        $deliver=Deliver::where('idDeliver', '=',$item->deliver_idDeliver)->firstOrFail();
+
+        $item->quantity=$request->quantity;
+        $item->sensitiveLevel=$request->sensitivity;
+        $item->dangerousGood=$request->danger;
+
+        $item->materialDetails=$request->cargo;
+
+
+        if($item->deliver()->associate($deliver)){
+
+            if ($item->save()) {
+              
+                Session::flash('success', 'Deliver item successfully edited!');
+
+              return redirect()->route('delivers.show', $item->deliver_idDeliver);
+            }
+            Session::flash('danger', 'Deliver item was not successfully edited!');
+            return redirect()->back();
+        }
+        
+       
+
     }
 
     /**
@@ -88,6 +115,17 @@ class DelivertypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item=DeliverType::findOrFail($id);
+
+
+        if ($item->delete()) {
+            Session::flash('success', 'The deliver item was successfully deleted!')
+            return redirect()->route('delivers.show', $item->deliver_idDeliver);
+        }
+        else{
+
+              Session::flash('danger', 'Deliver item was not successfully deleted!');
+            return redirect()->back();
+        }
     }
 }

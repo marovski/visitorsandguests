@@ -26,6 +26,12 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+.after{
+
+     color: chocolate; 
+}
+
+
 .loader{
 
   background-image: url('../images/gears.svg');

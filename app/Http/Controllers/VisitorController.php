@@ -30,6 +30,94 @@ class VisitorController extends Controller
         // return view('visitors.create')->withVisitors($visitors);
     }
 
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) 
+    {
+        $this->validate($request,[
+                'visitorName' => 'required|min:1|max:50|string',
+                'visitorEmail' => 'required|email|max:255',
+            
+            ]);  
+
+        if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
+            # code...
+         $visitors = new Visitor();
+        $meet = Meeting::find($request->idMeeting);
+    
+
+        $visitors->visitorName=$request->visitorName;
+
+
+        $visitors->visitorCitizenCard=$request->visitorCitizenCard;
+
+
+        $visitors->visitorCitizenCardType=$request->visitorCitizenCardType;
+        $visitors->visitorNPhone=$request->visitorNPhone;
+        $visitors->visitorEmail=$request->visitorEmail;
+        $visitors->visitorDangerousGood=$request->visitorDangerousGood;
+        $visitors->wifiAcess=$request->wifiAccess;
+        $visitors->visitorDeclaredGood=$request->visitorDeclaredGood;
+        $visitors->escorted=$request->escorted;
+        $visitors->visitorCompanyName=$request->visitorCompanyName;
+        
+       
+       if (!($visitors->meeting->contains($meet))) {
+            # code...
+             $v=$visitors->save();
+        if (!$v)
+        {
+
+     
+        return redirect()->back()->with('danger', 'This Visitor could not be assigned. Duplicate entry!');
+
+        } else {
+
+
+        $save=$visitors->meeting()->save($meet);
+
+        if($save){
+
+        if($meet->email=='1')
+        {
+            Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors));
+
+
+        }
+            
+
+       
+         return redirect()->route('meetings.show', $meet->idMeeting)->with('success','External Visitor was successfully created');
+        } 
+
+
+         
+           
+             }
+
+              }else{
+
+
+            return redirect()->back()->with('danger', 'This Visitor could not be assigned.');
+
+              }   
+        }else{
+
+             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+
+
+        }
+        
+
+        
+        
+        }
+
+
       /**
      * Show the form for creating a new externalvisitor.
      *
@@ -265,101 +353,6 @@ class VisitorController extends Controller
     }
 
   
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) 
-    {
-        $this->validate($request,[
-                'visitorName' => 'required|min:1|max:50|string',
-                'visitorEmail' => 'required|email|max:255',
-            
-            ]);  
-
-        if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
-            # code...
-         $visitors = new Visitor();
-        $meet = Meeting::find($request->idMeeting);
-    
-
-        $visitors->visitorName=$request->visitorName;
-
-
-        $visitors->visitorCitizenCard=$request->visitorCitizenCard;
-
-
-        $visitors->visitorCitizenCardType=$request->visitorCitizenCardType;
-        $visitors->visitorNPhone=$request->visitorNPhone;
-        $visitors->visitorEmail=$request->visitorEmail;
-        $visitors->visitorDangerousGood=$request->visitorDangerousGood;
-        $visitors->wifiAcess=$request->wifiAccess;
-        $visitors->visitorDeclaredGood=$request->visitorDeclaredGood;
-        $visitors->escorted=$request->escorted;
-        $visitors->visitorCompanyName=$request->visitorCompanyName;
-        
-       
-       if (!($visitors->meeting->contains($meet))) {
-            # code...
-             $v=$visitors->save();
-        if (!$v)
-        {
-
-     
-        return redirect()->back()->with('danger', 'This Visitor could not be assigned. Duplicate entry!');
-
-        } else {
-
-
-        $save=$visitors->meeting()->save($meet);
-
-        if($save){
-
-        if($meet->email=='1')
-        {
-            Mail::to($visitors->visitorEmail)->send(new NewMeetingNotification($meet, $visitors));
-
- 
-               
-
-            
-
-            /*Nexmo::message()->send([
-            'to' => '351918064359 ',
-            'from' => '351918064359 ',
-            'text' => 'Using the instance to send a message.'
-]);*/
-        }
-            
-
-       
-         return redirect()->route('visitors.addInternalVisitor', $meet->idMeeting)->with('success','External Visitor was successfully created');
-        } 
-
-
-         
-           
-             }
-
-              }else{
-
-
-            return redirect()->back()->with('danger', 'This Visitor could not be assigned.');
-
-              }   
-        }else{
-
-             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
-
-
-        }
-        
-
-        
-        
-        }
 
 
       public function  selfcheckIn (){
@@ -414,20 +407,17 @@ class VisitorController extends Controller
     {
         
           $meeting = Visitor::find($id);
-        if ($meeting->deleteFlag==0) {
-            $meeting->deleteFlag=1;
-            foreach ($meeting->visitor as $visitors) {
 
-                $visitors->deleteFlag=1;
-                $visitor->save();
-            }
-            $meeting->save();
-             Session::flash('success','Meeting was successfully deleted!');
+        if ($meeting->delete()) {
+
+          
+        Session::flash('success','This visitor was successfully deleted!');
         return redirect()->route('meetings.index');
+        
         }
         else{
 
-             Session::flash('danger','Meeting was already erased!');
+             Session::flash('danger','Visitor was already erased!');
         return redirect()->route('meetings.index');
         }
 

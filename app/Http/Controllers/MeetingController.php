@@ -32,9 +32,9 @@ class MeetingController extends Controller
         $userId = Auth::id();
         $userAuth = User::find($userId);
 
-        $meetings = Meeting::orderBy('meetStartDate', 'asc')->where('deleteFlag', '=', 0)->paginate(10);
+        $meetings = Meeting::orderBy('meetStartDate', 'asc')->paginate(10);
 
-        $meetingsStaff = Meeting::orderBy('meetStartDate', 'asc')->where('deleteFlag', '=', 0)->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
+        $meetingsStaff = Meeting::orderBy('meetStartDate', 'asc')->where('meetIdHost', '=', Auth::user()->idUser)->paginate(10);
 
         $user= User::all()->load('meetingHost');
 
@@ -228,22 +228,22 @@ class MeetingController extends Controller
         $meeting = Meeting::find($id);
 
 
-        if ($meeting->deleteFlag==0) {
+        if ($meeting->delete()) {
 
-            $meeting->deleteFlag=1;
+            
 
             foreach ($meeting->visitor as $visitors) {
 
-                $visitors->deleteFlag=1;
-                $visitors->save();
+                $visitors->delete();
+           
             }
-            $meeting->save();
-             Session::flash('success','Meeting was successfully deleted!');
+         
+         Session::flash('success','Meeting was successfully deleted!');
         return redirect()->route('meetings.index');
         }
         else{
 
-             Session::flash('danger','Meeting was already erased!');
+           Session::flash('danger','Meeting could not be erased!');
         return redirect()->route('meetings.index');
         }
 

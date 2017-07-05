@@ -61,12 +61,14 @@
                             <label for="dropSize" class="col-md-4 control-label">Item Size:</label>
                              <div class="col-md-6">
                                 <label class="radio-inline"><input type="radio" name="dropSize" disabled="true"  checked="checked" value="">
-                                @if ($drop->dropSize=="L")
+                                @if ($drop->dropSize=="Large")
                                 Large 
-                                @elseif($drop->dropSize=="M")
+                                @elseif($drop->dropSize=="Medium")
                                 Medium
-                                @elseif($drop->dropSize=="S") 
+                                @elseif($drop->dropSize=="Small") 
                                 Small
+                                @else
+                                No information available
                                 @endif
                                 </label>
                                 

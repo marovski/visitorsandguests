@@ -30,7 +30,7 @@ class DeliverController extends Controller
      */
       public function index()
     {
-        $delivers = Deliver::orderBy('idDeliver', 'desc')->where('deleteFlag', '=', 0)->paginate(10);
+        $delivers = Deliver::orderBy('idDeliver', 'desc')->paginate(10);
         return view('delivers.index')->withDelivers($delivers);
     }
 
@@ -56,9 +56,9 @@ class DeliverController extends Controller
     {
        //validate data
        $this->validate($request,[
-                'driverName' => 'required|min:1|max:50|string',
-                'driverID' => 'required|min:1|max:20|string',
-                'vehicleLicensePlate' => 'required|min:1|max:30|string',
+                'driverName' => 'required|min:2|max:50|string',
+                'driverID' => 'min:5|max:20|string',
+                'vehicleLicensePlate' => 'required|min:1|max:40|string',
 
                 
             ]);    
@@ -71,17 +71,22 @@ class DeliverController extends Controller
       $type=new DeliverType;
 
       $type->dangerousGood=$request->danger;
-      $type->quantitity=$request->quantity;
+
+      $type->quantity=$request->quantity;
+
       $type->sensitiveLevel=$request->sensitivity;
+
       $type->materialDetails=$request->cargo;
 
  
      $deliver->deDriverName=$request->driverName;
+
      $deliver->deDriverID=$request->driverID;
      
      $deliver->vehicleRegistry=$request->vehicleLicensePlate;
    
      $deliver->entryWeight=$request->weight;
+     
      $deliver->deFirmSupplier=$request->firm;
 
      $deliver->deEntryTime=Carbon::now('Europe/Lisbon');
@@ -309,25 +314,27 @@ class DeliverController extends Controller
          $iddeliver = $id;
 
         $deliver = Deliver::find($iddeliver);
-        if ($deliver->deleteFlag==0) {
-             $deliver->deleteFlag=1;
+   
 
-        $save=$deliver->save();
-        if ($save) {
-             Session::flash('success','Deliver was successfully deleted');
+        if ($deliver->delete()) {
+
+          foreach ($deliver->type as $item) {
+                $item->delete();
+          }
+
+      
+        Session::flash('success','Deliver was successfully deleted');
         return redirect()->route('delivers.index');
         }else{
 
              Session::flash('danger','Deleted process failed!');
         return redirect()->route('delivers.index');
         }
-        
-        }
-        else{
-             Session::flash('danger','Deliver was already deleted');
-        return redirect()->route('delivers.index');
 
-        }    }
+        
+        
+         
+    }
 
    
 }

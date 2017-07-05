@@ -15,11 +15,11 @@
 				<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Create Delivery</div>
 				<div class="panel-body"  ng-controller="showInputController"> 
 							
-					<form action=""></form>  class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" data-parsley-validate="" enctype="multipart/form-data">
+			  <form class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" enctype="multipart/form-data" >
 						{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
-							<label for="driverName" class="col-md-4 control-label">Driver Name:</label>
+							<label for="driverName" class="col-md-4 control-label"><span class="after">*</span> Driver Name:</label>
 
 							<div class="col-md-6">
 								<input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" placeholder='Type here the driver name' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
@@ -32,7 +32,7 @@
 							</div>
 						</div>
 						<div class="form-group{{ $errors->has('driverIDType') ? ' has-error' : '' }}"  >
-							<label for="driverIDType" class="col-md-4 control-label">Identification Card Type:</label>
+							<label for="driverIDType" class="col-md-4 control-label"><span class="after">*</span> Identification Card Type:</label>
 
 							<div class="col-md-6">
 								<select class="form-control" id="driverIDType" name="driverIDType" ng-model="driverIDType" >
@@ -52,10 +52,10 @@
 
 
 						<div ng-show="driverIDType != 0" class="form-group{{ $errors->has('driverID') ? ' has-error' : '' }}"   >
-							<label for="driverID" class="col-md-4 control-label">Identification Card Number:</label>
+							<label for="driverID" class="col-md-4 control-label"><span class="after">*</span> Identification Card Number:</label>
 
 							<div class="col-md-6">
-								<input id="driverID"  type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type here the id card number' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+								<input id="driverID"  type="text" class="form-control" name="driverID" value="{{ old('driverID') }}" placeholder='Type here the id card number' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" >
 
 								@if ($errors->has('driverID'))
 								<span class="help-block">
@@ -167,7 +167,7 @@
 							<label for="quantity" class="col-md-4 control-label">Quantity (per unity):</label>
 
 							<div class="col-md-6">
-								<input type="number" name="quantity" required="" min="0" placeholder="Quantity">
+								<input type="number" name="quantity"  min="0" placeholder="Quantity">
 
 							                            
 
@@ -188,7 +188,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-4" >
-							<button type="submit" class="btn btn-basic btn-sm btn-block">
+							<button type="submit" class="btn btn-basic btn-sm btn-block" onclick="return confirm('Are you certain to create this delivery?')">
 								Save Delivery
 							</button>
 							<a href="{{ route('delivers.index') }}" class="btn btn-default btn-sm btn-block">Cancel</a>
@@ -205,5 +205,5 @@
 </div>
 @endsection
 @section('scripts')
-<script type="text/java				script" src="/js/parsley.min.js"></script>
+<script type="text/javascript" src="/js/parsley.min.js"></script>
 @endsection

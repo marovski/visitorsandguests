@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 use Laravel\Scout\Searchable;
 
@@ -11,6 +12,7 @@ class Meeting extends Model
 {
 
   use Searchable;
+  use SoftDeletes;
   /*
   |--------------------------------------------------------------------------
   | GLOBAL VARIABLES
@@ -21,6 +23,11 @@ class Meeting extends Model
 	protected $primaryKey='idMeeting';
 
 	protected $table='meetings';
+
+  protected $dates = [
+    
+        'deleted_at'
+    ];
 
 
   public $fillable = ['idMeeting','meetingName','visitReason','meetStatus','room'];

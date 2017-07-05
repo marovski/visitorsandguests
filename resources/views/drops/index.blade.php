@@ -53,7 +53,7 @@
                                 <td>{{ $drop->dropperName }}</td>
                                 <td>{{ $drop->dropReceiver }}</td>
                                 <td>{{ $drop->dropDescr }}</td>
-                                <td>{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
+                                <td>{{ $drop->droppedWhen ? date('M j, Y H:i', strtotime($drop->droppedWhen)) : '' }}</td>
                                 <td>{{ $drop->dropReceivedDate ? date('M j, Y H:i', strtotime($drop->dropReceivedDate)) : '' }}</td>
                                 <td>
                               
