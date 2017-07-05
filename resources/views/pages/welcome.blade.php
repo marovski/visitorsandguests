@@ -8,7 +8,7 @@
         <div class="col-md-12">
           <div class="jumbotron">
           <img src="http://www.nanium.com/_gi/nanium-logo.svg">
-            <h4 style="text-align: justify;text-align: center;">Welcome to NANIUM's Visitors and Guests Management System</h4>
+            <h4 style="text-align: justify;text-align: center;">Welcome to NANIUM's Guests and Visitors Management System</h4>
           
        
           </div>

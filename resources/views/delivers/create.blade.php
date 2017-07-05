@@ -15,8 +15,9 @@
 				<div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Create Delivery</div>
 				<div class="panel-body"  ng-controller="showInputController"> 
 							
+
 			  <form class="form-horizontal" role="form" method="POST" action="{{ route('delivers.store') }}" enctype="multipart/form-data" >
-						{{ csrf_field() }}
+				{{ csrf_field() }}
 
 						<div class="form-group{{ $errors->has('driverName') ? ' has-error' : '' }}">
 							<label for="driverName" class="col-md-4 control-label"><span class="after">*</span> Driver Name:</label>

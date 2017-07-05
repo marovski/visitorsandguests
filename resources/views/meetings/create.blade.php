@@ -220,7 +220,7 @@
                        <th width="">Start</th>
                        <th width="">End</th>
                          <th width="">Topic</th>
-                            <th width="">Visit Reason</th>
+                  
                            
                             <th width="">Status</th>
                         
@@ -240,7 +240,7 @@
                                  <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
                              <th>{{ $meeting->meetingName }}</th>
 
-                                <td>{{ $meeting->visitReason }}</td>
+                     
                           
                                 <td> @if ($meeting->meetStatus === 1) 
                                       {{ 'Scheduled' }}

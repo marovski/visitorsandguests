@@ -133,7 +133,7 @@
 							<label for="exitweight" class="col-md-4 control-label">Exit Weight (Kg):</label>
 
 							<div class="col-md-6">
-								<input type="number"  name="exitweight" required=""  min="0" placeholder="Kg" value="{{ $deliver->exitWeight}}">
+								<input type="number"  name="exitweight"  min="0" placeholder="Kg" value="{{ $deliver->exitWeight}}">
 
 							</select>                               
 
