@@ -33,6 +33,8 @@ jQuery(function(){
  jQuery('#meetStartDate').datetimepicker({
   format:'Y/m/d H:i',
   minDate:0,
+  timepickerScrollbar: true,
+		
   onShow:function( ct ){
    this.setOptions({
     maxDate:jQuery('#meetEndDate').val()?jQuery('#meetEndDate').val():false
@@ -45,7 +47,8 @@ jQuery(function(){
   onShow:function( ct ){
    this.setOptions({
     minDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false,
-    maxDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
+    maxDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false,
+    minTime:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
    })
   },
   timepicker:true
