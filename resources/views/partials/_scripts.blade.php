@@ -31,27 +31,34 @@
 
 jQuery(function(){
  jQuery('#meetStartDate').datetimepicker({
+     
   format:'Y/m/d H:i',
   minDate:0,
-  timepickerScrollbar: true,
-		
+    step: 30,
   onShow:function( ct ){
    this.setOptions({
     maxDate:jQuery('#meetEndDate').val()?jQuery('#meetEndDate').val():false
    })
   },
-  timepicker:true
+  beforeShowDay: function(date) {
+        var day = date.getDay();
+        return [(day != 0), ''];
+    }
  });
  jQuery('#meetEndDate').datetimepicker({
   format:'Y/m/d H:i',
+  minDate:0,
+  step: 30,
   onShow:function( ct ){
    this.setOptions({
     minDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false,
     maxDate:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false,
-    minTime:jQuery('#meetStartDate').val()?jQuery('#meetStartDate').val():false
    })
   },
-  timepicker:true
+  beforeShowDay: function(date) {
+        var day = date.getDay();
+        return [(day != 0), ''];
+    }
  });
 });
 </script>
