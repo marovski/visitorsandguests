@@ -236,8 +236,8 @@
  
                             <tr>
           
-                                <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
-                                 <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
+                                <td>{{ ($meeting->meetStartDate ? date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) : '') }}</td>
+                                 <td>{{ ($meeting->meetEndDate ? date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) : '') }}</td>
                              <th>{{ $meeting->meetingName }}</th>
 
                      

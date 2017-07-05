@@ -45,6 +45,7 @@ jQuery(function(){
         return [(day != 0), ''];
     }
  });
+ 
  jQuery('#meetEndDate').datetimepicker({
   format:'Y/m/d H:i',
   minDate:0,

@@ -15,12 +15,8 @@
 
       <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> Edit External Visitor</div>
 
-                    <!-- LOADING ICON -->
-            <!-- show loading icon if the loading variable is set to true -->
-        <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
-
  
-    <form ng-show="loading == true"  class="form-horizontal" role="form" method="put" action="{{ route('visitors.update',$externalVisitor->idVisitor) }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
+    <form  class="form-horizontal" role="form" method="put" action="{{ route('visitors.update',$externalVisitor->idVisitor) }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
   {{ csrf_field() }}
 
   <div class="col-md-8">

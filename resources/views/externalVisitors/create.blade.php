@@ -40,8 +40,8 @@
 
                             <div class="col-md-6"  name="visitorCitizenCardType">
                                 <select class="form-control" name="visitorCitizenCardType"  ng-model="visitorCitizenCardType">
-                                 <option value="1" >Passport</option>
-                                    <option value="2" selected>Citizen Card</option>
+                                 <option value="1" selected>Passport</option>
+                                    <option value="2">Citizen Card</option>
                                     <option value="3" >Driver License</option>
                                  
                                 </select>
