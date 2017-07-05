@@ -186,17 +186,15 @@
                   </div>
               </div>
               <div class="form-group{{ $errors->has('$meetingData->sendmail') ? ' has-error' : '' }}">
-                  <label for="sendmail" class="col-md-4 control-label">Current Send Email Option: @if($meetingData->sendmail ==1)
-                  Email Alert
-                      @else
-            Without Email Alert
-                    @endif
+                  <label for="sendmail" class="col-md-4 control-label">Send Email: 
                   </label>
 
                   <div class="col-md-6">
-                      <input id="sendmail" type="checkbox"  name="sendmail"  value="0" > Without Email Alert
-                       <input id="sendmail" type="checkbox"  name="sendmail"  value="1" > Email Alert
-
+                  @if($meetingData->email==1)
+                           <label class="radio-inline"><input type="checkbox" name="sendmail" value="1" checked readonly disabled></label>
+                           @else
+                           <label class="radio-inline"><input type="checkbox" name="sendmail" value="0"  readonly disabled></label>
+                           @endif
                            @if ($errors->has('sendmail'))
                       <span class="help-block">
                           <strong>{{ $errors->first('sendmail') }}</strong>

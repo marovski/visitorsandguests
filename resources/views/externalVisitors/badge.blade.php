@@ -11,8 +11,20 @@
     <?php
             use Carbon\Carbon;?>
 
-    
-    <div class="container" ng-app="MyApp" style="width: 550px">
+<style type="text/css" media="print">
+@media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
+</style>
+
+<script>
+$(function() {
+    $("footer").hide();
+});
+</script>
+
+    <div id="print" class="container" ng-app="MyApp" style="width: 550px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2" style="margin-left: 11.666667%;">
             <div class="panel panel-default" style="width: 400px; height: 250px;">
@@ -58,9 +70,6 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-
-
-
-        @endsection
+    @endsection

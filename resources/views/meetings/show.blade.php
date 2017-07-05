@@ -13,6 +13,7 @@
               <th>Confidentiality</th>
               <th>Sensibility</th>
               <th>Escorted Visitors</th>
+              <th>Romm</th>
               <th width="100px"></th>
             </tr>
           </thead>
@@ -24,6 +25,7 @@
               <td>@if($meetingData->confidentiality==1) Top Secret @else Unclassified @endif</td>
               <td>@if($meetingData->sensibility==1) Small @elseif($meetingData->sensibility==2) Medium @else High @endif</td>
               <td><span class="label label-default">{{$meetingData->visitor->where('escorted', 1)->count()}} </span></td>
+              <td>{{ $meetingData->room}}<td>
               </td>
             </tr>
 
