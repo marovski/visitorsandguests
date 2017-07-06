@@ -91,19 +91,22 @@
                 @foreach($hostMeetings as $meet)
 
                     <div class="post" >
+                    <img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%"></img>
                         <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
                         <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
                         <a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a>
                     </div>
 
                     <hr>
-
+                    
                 @endforeach
-                          
+                 {!! $hostMeetings->links(); !!}         
 @else
-            <h4>Your next meetings:</h4>
-                @foreach($meetings as $meet)
 
+            <h4>Next meetings:</h4><hr>
+                @foreach($meetings as $meet)
+                 <img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%"></img>
+                   
                     <div class="post" >
                         <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
                         <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
@@ -113,10 +116,9 @@
                     <hr>
 
                 @endforeach
-                
+                {!! $meetings->links(); !!}
 @endif
                 </div>
-      
         @if(isset($user))    
         <div class="col-md-3 col-md-offset-1">
     <h4 style="margin-left: 68px">Lost and Found:</h4>
@@ -172,6 +174,7 @@
                      </div>
 @else
 @endif
+
       <script>
             var myIndex = 0;
             carousel();

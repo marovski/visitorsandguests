@@ -18,15 +18,17 @@ class PagesController extends Controller{
 		$userId = Auth::id();
         $user = User::find($userId);
 
-		
+		$userPhoto = User::all();
         
 		$meetings = Meeting::orderBy('meetStartDate','asc')->paginate(10);
 
-		$hostMeetings = Meeting::orderBy('meetStartDate','asc')->where('meetIdHost','=',$userId)->paginate(10);
+		$hostMeetings = Meeting::orderBy('meetStartDate','asc')->where('meetIdHost','=',$userId)->paginate(5);
+
+		$delivers = Deliver::orderBy('deEntryTime','asc')->paginate(5);
 		
-		$lostItems = LostFound::orderBy('idLostFound','desc')->where('claimedDate', '=', null)->paginate(6);
+		$lostItems = LostFound::orderBy('idLostFound','desc')->where('claimedDate', '=', null)->paginate(5);
 	
-		return view('pages.welcome', compact('lostItems','meetings','user','hostMeetings'));
+		return view('pages.welcome', compact('lostItems','meetings','user','hostMeetings','userPhoto','delivers'));
 	}
 
 	public function getAbout(){
