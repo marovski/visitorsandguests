@@ -100,10 +100,10 @@
             </tr>
             </thead>
             <tbody>
-            <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%"></img></td>
-            <td><h4>{{ $meet->meetingName }}</h4></td>
-            <td>{{ $meet->meetStartDate ? date('H:i', strtotime($meet->meetStartDate)) :'' }}</td>
-            <td>{{ $meet->visitReason }}</td>
+            <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%" title="{{ Auth::user()->username }}"></img></td>
+            <td title="{{$meet->meetingName}}"><h4>{{strlen(($meet->meetingName)) > 10 ? substr($meet->meetingName,0,10)."..." : $meet->meetingName}}</h4></td>
+            <td title="{{$meet->meetStartDate}}">{{ $meet->meetStartDate ? date('H:i', strtotime($meet->meetStartDate)) :'' }}</td>
+            <td title="{{$meet->visitReason}}">{{strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason  }}</td>
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -125,10 +125,10 @@
             </tr>
             </thead>
             <tbody>
-            <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%"></img></td>
-            <td><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
-            <td>{{$meet->meetStartDate? date('H:i', strtotime($meet->meetStartDate)) : '' }}</td>
-            <td>{{ strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason }}</td>
+            <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%" title="{{$userPhoto->find($meet->meetIdHost)->username}}"></img></td>
+            <td title="{{$meet->meetingName}}"><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
+            <td title="{{$meet->meetStartDate}}">{{$meet->meetStartDate? date('H:i', strtotime($meet->meetStartDate)) : '' }}</td>
+            <td title="{{$meet->visitReason}}">{{ strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason }}</td>
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -155,10 +155,10 @@
             </tr>
             </thead>
             <tbody>
-            <td>{{ $deliver->deFirmSupplier }}</td>
-            <td>{{ strlen(strip_tags($deliver->vehicleRegistry)) > 300 ? "..." : "$deliver->vehicleRegistry" }}</td>
-            <td>{{ substr(strip_tags($deliver->deDriverName), 0, 300) }}</td>
-            <td>{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
+            <td title="{{$deliver->deFirmSupplier}}">{{strlen($deliver->deFirmSupplier) > 10 ? substr($deliver->deFirmSupplier,0,10)."..." : "$deliver->deFirmSupplier" }}</td>
+            <td title="{{$deliver->vehicleRegistry}}">{{strlen($deliver->vehicleRegistry) > 10 ? substr($deliver->vehicleRegistry,0,10)."..." : "$deliver->vehicleRegistry" }}</td>
+            <td title="{{$deliver->deDriverName}}">{{ strlen($deliver->deDriverName) > 10 ? substr($deliver->deDriverName,0,10)."..." : $deliver->deDriverName}}</td>
+            <td title="{{$deliver->deEntryTime}}">{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
             <td><a href="{{ url('delivers') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -182,10 +182,10 @@
             </tr>
             </thead>
             <tbody>
-            <td>{{ $drop->idDrop }}</td>
-            <td>{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
-            <td>{{ substr(strip_tags($drop->dropperName), 0, 300) }}</td>
-            <td>{{ $drop->dropImportance}}</td>
+            <td title="{{ $drop->idDrop }}">{{strlen($drop->idDrop) > 10 ? substr($drop->idDrop,0,10)."..." : "$drop->idDrop" }}</td>
+            <td title="{{ $drop->droppedWhen }}">{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
+            <td title="{{ $drop->dropperName }}">{{strlen($drop->dropperName) > 10 ? substr($drop->dropperName,0,10)."..." : "$drop->dropperName" }}</td>
+            <td title="{{ $drop->dropImportance }}">{{ $drop->dropImportance}}</td>
             <td><a href="{{ url('drops') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
