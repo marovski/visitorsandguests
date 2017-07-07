@@ -236,12 +236,12 @@ class LostFoundController extends Controller
     {
         $idLostFound = $id;
 
-        $lost = LostFound::find($idLostFound);
-        if ($lost->deleteFlag==0) {
-             $lost->deleteFlag=1;
+    
+        if ($lost = LostFound::find($idLostFound)) {
+             $delete=$lost->delete();
 
-        $save=$lost->save();
-        if ($save) {
+      
+        if ($delete) {
              Session::flash('success','Lost object report was successfully deleted');
         return redirect()->route('losts.index');
         }else{
