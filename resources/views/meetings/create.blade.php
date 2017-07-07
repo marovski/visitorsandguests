@@ -217,32 +217,19 @@
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
-                       <th width="">Start</th>
-                       <th width="">End</th>
-                         <th width="">Topic</th>
-                  
-                           
-                            <th width="">Status</th>
-                        
-                          
-                              
-                               
-                          
-                        </tr>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Topic</th>         
+                        <th>Status</th>
                     </thead>
-
                     <tbody>
                      @foreach($meetings as $meeting )
  
                             <tr>
-          
-                                <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) }}</td>
-                                 <td>{{ date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) }}</td>
-                             <th>{{ $meeting->meetingName }}</th>
-
-                     
-                          
-                                <td> @if ($meeting->meetStatus === 1) 
+                                <td title="{{$meeting->meetStartDate}}">{{ $meeting->meetStartDate? date('H:i - m/d/Y', strtotime($meeting->meetStartDate)) : '' }}</td>
+                                <td title="{{$meeting->meetEndDate}}">{{ $meeting->meetEndDate? date('H:i - m/d/Y', strtotime($meeting->meetEndDate)) : '' }}</td>
+                                <td title="{{$meeting->meetingName}}">{{ strlen(($meeting->meetingName)) > 10 ? substr($meeting->meetingName,0,10)."..." : $meeting->meetingName }}</td>
+                                <td > @if ($meeting->meetStatus === 1) 
                                       {{ 'Scheduled' }}
                                     @elseif ($meeting->meetStatus === 2) 
                                         {{ 'Waiting Confirmation' }}
