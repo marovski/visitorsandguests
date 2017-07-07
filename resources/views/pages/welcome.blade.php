@@ -82,53 +82,53 @@
 @else
 @endif
 
-             <div>
+ <div>
             <div class="col-md-8">
             @if(!isset($user->fk_idSecurity))
             @elseif($user->fk_idSecurity == 1)
             <h4>Your next meetings:</h4>
                 
                 @foreach($hostMeetings as $meet)
-            
-            <table class="table">
+<table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Host</th>
-            <th>Meeting Topic</th>
+            <th>Meeting</th>
             <th>Meet start date</th>
-            <th>Option</th>
+            <th>Topic</th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
-            <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%"></img></td>
-            <td><h4>{{ $meet->meetingName }}</h4></td>
-            <td>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }}</td>
-    
+            <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%" title="{{ Auth::user()->username }}"></img></td>
+            <td title="{{$meet->meetingName}}"><h4>{{strlen(($meet->meetingName)) > 10 ? substr($meet->meetingName,0,10)."..." : $meet->meetingName}}</h4></td>
+            <td title="{{$meet->meetStartDate}}">{{ $meet->meetStartDate ? date('H:i', strtotime($meet->meetStartDate)) :'' }}</td>
+            <td title="{{$meet->visitReason}}">{{strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason  }}</td>
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
                     
                 @endforeach
                  {!! $hostMeetings->links(); !!}         
-          @else
+@else
 
-            <h4>Next meetings:</h4><hr>
+            <h4>Meetings scheduled for today:</h4><hr>
                 @foreach($meetings as $meet)
-                <table class="table">
+                <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Host</th>
-            <th>Meeting Topic</th>
-            <th>Meet start date</th>
-    
-            <th>Option</th>
+            <th>Meeting</th>
+            <th>Meet starts at</th>
+            <th>Topic</th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
-            <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%"></img></td>
-            <td><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
-            <td>{{$meet->meetStartDate? date('M j, Y H:i', strtotime($meet->meetStartDate)) : '' }}</td>
-          
+            <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%" title="{{$userPhoto->find($meet->meetIdHost)->username}}"></img></td>
+            <td title="{{$meet->meetingName}}"><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
+            <td title="{{$meet->meetStartDate}}">{{$meet->meetStartDate? date('H:i', strtotime($meet->meetStartDate)) : '' }}</td>
+            <td title="{{$meet->visitReason}}">{{ strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason }}</td>
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -137,11 +137,14 @@
                 @endforeach
                 {!! $meetings->links(); !!}
 @endif
+
+@if(!isset($user->fk_idSecurity))
+            @elseif($user->fk_idSecurity == 3)
 <hr><br>
 <h4>Last delivers:</h4><hr>
                 
 @foreach($delivers as $deliver)
-  <table class="table">
+  <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Firm</th>
@@ -152,40 +155,43 @@
             </tr>
             </thead>
             <tbody>
-            <td>{{ $deliver->deFirmSupplier }}</td>
-            <td>{{ strlen(strip_tags($deliver->vehicleRegistry)) > 300 ? "..." : "$deliver->vehicleRegistry" }}</td>
-            <td>{{ substr(strip_tags($deliver->deDriverName), 0, 300) }}</td>
-            <td>{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
+            <td title="{{$deliver->deFirmSupplier}}">{{strlen($deliver->deFirmSupplier) > 10 ? substr($deliver->deFirmSupplier,0,10)."..." : "$deliver->deFirmSupplier" }}</td>
+            <td title="{{$deliver->vehicleRegistry}}">{{strlen($deliver->vehicleRegistry) > 10 ? substr($deliver->vehicleRegistry,0,10)."..." : "$deliver->vehicleRegistry" }}</td>
+            <td title="{{$deliver->deDriverName}}">{{ strlen($deliver->deDriverName) > 10 ? substr($deliver->deDriverName,0,10)."..." : $deliver->deDriverName}}</td>
+            <td title="{{$deliver->deEntryTime}}">{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
             <td><a href="{{ url('delivers') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
                 @endforeach
 
+@endif
+@if(!isset($user->fk_idSecurity))
+            @elseif($user->fk_idSecurity == 3)
 <hr><br>
 <h4>Last drops:</h4><hr>
                 
 @foreach($drops as $drop)
-  <table class="table">
+  <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
-            <th>Dropper Name</th>
+            <th>Id drop</th>
             <th>Dropped when</th>
-       
-            <th>Drop Item Size</th>
+            <th>Drop importance</th>
+            <th>Topic</th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <td>{{ $drop->dropperName }}</td>
-            <td>{{ date('M j,Y - H:i a', strtotime($drop->droppedWhen)) }}</td>
-          
-            <td>{{ $drop->dropSize}}</td>
+            <td title="{{ $drop->idDrop }}">{{strlen($drop->idDrop) > 10 ? substr($drop->idDrop,0,10)."..." : "$drop->idDrop" }}</td>
+            <td title="{{ $drop->droppedWhen }}">{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
+            <td title="{{ $drop->dropperName }}">{{strlen($drop->dropperName) > 10 ? substr($drop->dropperName,0,10)."..." : "$drop->dropperName" }}</td>
+            <td title="{{ $drop->dropImportance }}">{{ $drop->dropImportance}}</td>
             <td><a href="{{ url('drops') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
                 @endforeach
                 
-                
+                @endif
                 </div>
         @if(isset($user))    
         <div class="col-md-3 col-md-offset-1">
