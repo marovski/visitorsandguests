@@ -82,40 +82,111 @@
 @else
 @endif
 
- <div class="row">
+ <div>
             <div class="col-md-8">
             @if(!isset($user->fk_idSecurity))
             @elseif($user->fk_idSecurity == 1)
-            <h4>Your next meetings:</h4><hr>
+            <h4>Your next meetings:</h4>
                 
-                @foreach($meetings as $meet)
-
-                    <div class="post" >
-                        <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
-                        <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
-                        <a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a>
-                    </div>
-
-                    <hr>
-
+                @foreach($hostMeetings as $meet)
+<table class="table">
+            <thead>
+            <tr>
+            <th>User</th>
+            <th>Meeting</th>
+            <th>Meet start date</th>
+            <th>Topic</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%"></img></td>
+            <td><h4>{{ $meet->meetingName }}</h4></td>
+            <td>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }}</td>
+            <td>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</td>
+            <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
+            </tbody>
+            </table>
+                    
                 @endforeach
-                          
+                 {!! $hostMeetings->links(); !!}         
 @else
- @foreach($meetingWithoutCheckin as $meet)
 
-                    <div class="post" >
-                        <h4><b>{{ $meet->meetingName }}</b></h4>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }} 
-                        <p>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</p>
-                        <a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a>
-                    </div>
+            <h4>Next meetings:</h4><hr>
+                @foreach($meetings as $meet)
+                <table class="table">
+            <thead>
+            <tr>
+            <th>User</th>
+            <th>Meeting</th>
+            <th>Meet start date</th>
+            <th>Topic</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%"></img></td>
+            <td><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
+            <td>{{$meet->meetStartDate? date('M j, Y H:i', strtotime($meet->meetStartDate)) : '' }}</td>
+            <td>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</td>
+            <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
+            </tbody>
+            </table>
 
-                    <hr>
-
+                 
                 @endforeach
-               
+                {!! $meetings->links(); !!}
 @endif
+<hr><br>
+<h4>Last delivers:</h4><hr>
+                
+@foreach($delivers as $deliver)
+  <table class="table">
+            <thead>
+            <tr>
+            <th>Firm</th>
+            <th>Vehicle</th>
+            <th>Driver</th>
+            <th>Delivered at</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <td>{{ $deliver->deFirmSupplier }}</td>
+            <td>{{ strlen(strip_tags($deliver->vehicleRegistry)) > 300 ? "..." : "$deliver->vehicleRegistry" }}</td>
+            <td>{{ substr(strip_tags($deliver->deDriverName), 0, 300) }}</td>
+            <td>{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
+            <td><a href="{{ url('delivers') }}" class="btn btn-primary btn-sm">See More</a></td>
+            </tbody>
+            </table>
+                @endforeach
+
+<hr><br>
+<h4>Last drops:</h4><hr>
+                
+@foreach($drops as $drop)
+  <table class="table">
+            <thead>
+            <tr>
+            <th>Id drop</th>
+            <th>Dropped when</th>
+            <th>Drop importance</th>
+            <th>Topic</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <td>{{ $drop->idDrop }}</td>
+            <td>{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
+            <td>{{ substr(strip_tags($drop->dropperName), 0, 300) }}</td>
+            <td>{{ $drop->dropImportance}}</td>
+            <td><a href="{{ url('drops') }}" class="btn btn-primary btn-sm">See More</a></td>
+            </tbody>
+            </table>
+                @endforeach
+                
+                
                 </div>
-      
         @if(isset($user))    
         <div class="col-md-3 col-md-offset-1">
     <h4 style="margin-left: 68px">Lost and Found:</h4>
@@ -171,6 +242,7 @@
                      </div>
 @else
 @endif
+
       <script>
             var myIndex = 0;
             carousel();
