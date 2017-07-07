@@ -59,7 +59,7 @@ Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInter
 
 Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'))->middleware('CheckAuth');
 
-Route::post('/visitors/externalVisitor/{id}', ['as' => 'visitors.badge',
+Route::get('/visitors/externalVisitor/{id}', ['as' => 'visitors.badge',
                                                         'uses' => 'VisitorController@badge'
                                                         ]);
 

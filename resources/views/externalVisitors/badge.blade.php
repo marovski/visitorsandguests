@@ -33,13 +33,13 @@ $(function() {
                 <div class="row">
                 <div class="col-md-6" style="width: 400px">
                     <div id="logo">
-                    <img src="../images/nanium.jpg">
+                    <img src="/images/nanium.jpg">
                      <h5 style="">Expires at: {{ date('d-m-Y', strtotime($current = Carbon::now('Europe/Lisbon')))}}</h5>
                     </div>
                     <br>   
                     <div class="row"> 
                     <div class="col-xs-6">         
-                    <h4 align="left">Visitor:{{ $externalVisitor->visitorName }}</h4>
+                    <h4 align="left">Visitor: {{ $externalVisitor->visitorName }}</h4>
                     @foreach ($externalVisitor->meeting as $meetingE)
                     <p align="left">
                     Topic: {{ $meetingE->meetingName }}<br>

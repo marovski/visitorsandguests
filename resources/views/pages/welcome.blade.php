@@ -82,53 +82,53 @@
 @else
 @endif
 
- <div>
+             <div>
             <div class="col-md-8">
             @if(!isset($user->fk_idSecurity))
             @elseif($user->fk_idSecurity == 1)
             <h4>Your next meetings:</h4>
                 
                 @foreach($hostMeetings as $meet)
-<table class="table">
+            
+            <table class="table">
             <thead>
             <tr>
-            <th>User</th>
-            <th>Meeting</th>
+            <th>Host</th>
+            <th>Meeting Topic</th>
             <th>Meet start date</th>
-            <th>Topic</th>
-            <th></th>
+            <th>Option</th>
             </tr>
             </thead>
             <tbody>
             <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%"></img></td>
             <td><h4>{{ $meet->meetingName }}</h4></td>
             <td>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }}</td>
-            <td>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</td>
+    
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
                     
                 @endforeach
                  {!! $hostMeetings->links(); !!}         
-@else
+          @else
 
             <h4>Next meetings:</h4><hr>
                 @foreach($meetings as $meet)
                 <table class="table">
             <thead>
             <tr>
-            <th>User</th>
-            <th>Meeting</th>
+            <th>Host</th>
+            <th>Meeting Topic</th>
             <th>Meet start date</th>
-            <th>Topic</th>
-            <th></th>
+    
+            <th>Option</th>
             </tr>
             </thead>
             <tbody>
             <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%"></img></td>
             <td><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
             <td>{{$meet->meetStartDate? date('M j, Y H:i', strtotime($meet->meetStartDate)) : '' }}</td>
-            <td>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</td>
+          
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -168,18 +168,18 @@
   <table class="table">
             <thead>
             <tr>
-            <th>Id drop</th>
+            <th>Dropper Name</th>
             <th>Dropped when</th>
-            <th>Drop importance</th>
-            <th>Topic</th>
+       
+            <th>Drop Item Size</th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <td>{{ $drop->idDrop }}</td>
-            <td>{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
-            <td>{{ substr(strip_tags($drop->dropperName), 0, 300) }}</td>
-            <td>{{ $drop->dropImportance}}</td>
+            <td>{{ $drop->dropperName }}</td>
+            <td>{{ date('M j,Y - H:i a', strtotime($drop->droppedWhen)) }}</td>
+          
+            <td>{{ $drop->dropSize}}</td>
             <td><a href="{{ url('drops') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
