@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/css/mouseOver.css">
 <!-- Default Bootstrap Navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -25,10 +26,10 @@
       <ul class="nav navbar-nav navbar-right">
       @if (Auth::check())
 
-        <li class="dropdown">
-          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;"><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">     {{ Auth::user()->username }} <span class="caret"></span></a>
+        <div class="dropdown">
+          <button href="/" class="dropbtn" style="position:relative; padding-left:50px;"><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">     {{ Auth::user()->username }} <span class="caret"></span></button>
          
-          <ul class="dropdown-menu">
+          <div class="dropdown-content">
 
             @if (Auth::check() && Auth::user()->role()==true)
               
@@ -41,6 +42,8 @@
               @include('partials._navStaff')
 
             @endif
+            </div>
+            </div>
             <li role="separator" class="divider"></li>
             <li><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
 
