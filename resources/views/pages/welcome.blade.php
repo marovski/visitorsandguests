@@ -89,10 +89,10 @@
             <h4>Your next meetings:</h4>
                 
                 @foreach($hostMeetings as $meet)
-<table class="table">
+<table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
-            <th>User</th>
+            <th>Host</th>
             <th>Meeting</th>
             <th>Meet start date</th>
             <th>Topic</th>
@@ -102,8 +102,8 @@
             <tbody>
             <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%"></img></td>
             <td><h4>{{ $meet->meetingName }}</h4></td>
-            <td>{{ date('M j, Y H:i', strtotime($meet->meetStartDate)) }}</td>
-            <td>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</td>
+            <td>{{ $meet->meetStartDate ? date('H:i', strtotime($meet->meetStartDate)) :'' }}</td>
+            <td>{{ $meet->visitReason }}</td>
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -112,14 +112,14 @@
                  {!! $hostMeetings->links(); !!}         
 @else
 
-            <h4>Next meetings:</h4><hr>
+            <h4>Meetings scheduled for today:</h4><hr>
                 @foreach($meetings as $meet)
-                <table class="table">
+                <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
-            <th>User</th>
+            <th>Host</th>
             <th>Meeting</th>
-            <th>Meet start date</th>
+            <th>Meet starts at</th>
             <th>Topic</th>
             <th></th>
             </tr>
@@ -127,8 +127,8 @@
             <tbody>
             <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%"></img></td>
             <td><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
-            <td>{{$meet->meetStartDate? date('M j, Y H:i', strtotime($meet->meetStartDate)) : '' }}</td>
-            <td>{{ substr(strip_tags($meet->visitorCompanyName), 0, 300) }}{{ strlen(strip_tags($meet->visitReason)) > 300 ? "..." : "" }}</td>
+            <td>{{$meet->meetStartDate? date('H:i', strtotime($meet->meetStartDate)) : '' }}</td>
+            <td>{{ strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason }}</td>
             <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
@@ -137,11 +137,14 @@
                 @endforeach
                 {!! $meetings->links(); !!}
 @endif
+
+@if(!isset($user->fk_idSecurity))
+            @elseif($user->fk_idSecurity == 3)
 <hr><br>
 <h4>Last delivers:</h4><hr>
                 
 @foreach($delivers as $deliver)
-  <table class="table">
+  <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Firm</th>
@@ -161,11 +164,14 @@
             </table>
                 @endforeach
 
+@endif
+@if(!isset($user->fk_idSecurity))
+            @elseif($user->fk_idSecurity == 3)
 <hr><br>
 <h4>Last drops:</h4><hr>
                 
 @foreach($drops as $drop)
-  <table class="table">
+  <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Id drop</th>
@@ -185,7 +191,7 @@
             </table>
                 @endforeach
                 
-                
+                @endif
                 </div>
         @if(isset($user))    
         <div class="col-md-3 col-md-offset-1">
