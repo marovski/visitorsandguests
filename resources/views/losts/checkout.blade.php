@@ -17,7 +17,7 @@
         <div ng-show="loading == false"  ><p class="text-center" ><span class="loader"></span></p></div>
                        <div class="panel-body" ng-show="loading == true">
     
-                  {!! Form::model($lost, array('method'=>'PATCH','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('losts.update', $lost->idLostFound))) !!}
+                  {!! Form::model($lost, array('method'=>'post','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('losts.updateCheckOut', $lost->idLostFound))) !!}
 
                       <div class="form-group{{ $errors->has('finderName') ? ' has-error' : '' }}" ng-show="loading == true">
                             <label for="finderName" class="col-md-4 control-label">Finder Name:</label>
