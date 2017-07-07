@@ -150,69 +150,69 @@ class LostFoundController extends Controller
       
     }
 
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  int  $id
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function update(Request $request, $id)
-//     {
-//         $idLostFound=$id;
-//         $lost = LostFound::find($idLostFound);     
+    /**
+     * Update the checkout of the lost item resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCheckOut(Request $request, $id)
+    {
+        $idLostFound=$id;
+        $lost = LostFound::find($idLostFound);     
         
-//           $this->validate($request,[
-//                 'receiverName' => 'required|min:1|max:50|string',
-//                 'receiverPhone' => 'min:1|max:25!string',
+          $this->validate($request,[
+                'receiverName' => 'required|min:1|max:50|string',
+                'receiverPhone' => 'min:1|max:25!string',
                
                 
-//             ]);
+            ]);
 
-// //CHeck if claimed date is empty
+//CHeck if claimed date is empty
 
-//          if(!empty($lost->claimedDate))
-//         {   
+         if(!empty($lost->claimedDate))
+        {   
             
-//             Session::flash('danger','Lost and Found item was already claimed!');
-//             return redirect()->route('losts.index');
+            Session::flash('danger','Lost and Found item was already claimed!');
+            return redirect()->route('losts.index');
             
-//         }
-//         else{
+        }
+        else{
 
-//             if ($request->receiverName==$lost->finderName || $request->receiverPhone==$lost->finderPhone) {
+            if ($request->receiverName==$lost->finderName || $request->receiverPhone==$lost->finderPhone) {
 
-//                  Session::flash('danger','The receiver might be the same as the finder!Security issues!');
-//                  return redirect()->route('losts.index');
-//             }
-//             else{
+                 Session::flash('danger','The receiver might be the same as the finder!Security issues!');
+                 return redirect()->route('losts.index');
+            }
+            else{
 
 
 
-//                     //Getting the new input values for the receiver
-//             $lost->receiverName=$request->receiverName;
-//             $lost->receiverPhone=$request->receiverPhone;
+                    //Getting the new input values for the receiver
+            $lost->receiverName=$request->receiverName;
+            $lost->receiverPhone=$request->receiverPhone;
          
-//          //Getting the local time
-//              $lost->claimedDate=Carbon::now('Europe/Lisbon');
+         //Getting the local time
+             $lost->claimedDate=Carbon::now('Europe/Lisbon');
 
 
-//              //Save the model with the new values in the database
-//             if ($lost->save()) {
+             //Save the model with the new values in the database
+            if ($lost->save()) {
 
             
-//             Session::flash('success','Lost item was successfully claimed!');
-//             return redirect()->route('losts.index');
-//         }else{
+            Session::flash('success','Lost item was successfully claimed!');
+            return redirect()->route('losts.index');
+        }else{
 
 
           
-//              Session::flash('danger', 'The claiming process failed!');
-//             return redirect()->route('losts.index');
-//         }
-//             }
+             Session::flash('danger', 'The claiming process failed!');
+            return redirect()->route('losts.index');
+        }
+            }
         
-//         }
+        }
         
        
 
@@ -221,8 +221,8 @@ class LostFoundController extends Controller
         
 
        
-//         //
-//     }
+
+    }
 
     /**
      * Remove the specified resource from storage.

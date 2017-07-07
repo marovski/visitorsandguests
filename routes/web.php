@@ -47,12 +47,25 @@ Route::get('/dashboard/barcharts/show', array('as' => 'barChart.show', 'uses'=>'
 
 Route::post('/visitors/selfSign', array('as' => 'visitors.selfSign','uses'=>'VisitorController@selfSign' ));
 
+Route::delete('/visitors/internalVisitor/{id}/{idM}', ['as' => 'visitors.removeInternalV',
+                                                        'uses' => 'VisitorController@removeInternalV'
+                                                        ]); 
+
 Route::get('/visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVisitor', 'uses' => 'VisitorController@addInternalVisitor'))->middleware('CheckAuth');
 
 Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
 
 
+
 Route::get('/visitors/createExternalVisitor/{id}',array('as' => 'visitors.createExternalVisitor', 'uses' => 'VisitorController@createExternalVisitor'))->middleware('CheckAuth');
+
+Route::post('/visitors/externalVisitor/{id}', ['as' => 'visitors.badge',
+                                                        'uses' => 'VisitorController@badge'
+                                                        ]);
+
+Route::post('/visitors/externalVisitor/{id}', ['as' => 'visitors.destroy',
+                                                        'uses' => 'VisitorController@destroy'
+                                                        ]);
 
 Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
 
@@ -62,7 +75,9 @@ Route::post('/visitors/checkin/{id}', ['as' => 'visitors.checkin',
                                                         ]); 
 Route::post('/visitors/checkout/{id}', ['as' => 'visitors.checkout',
                                                         'uses' => 'VisitorController@checkout'
-                                                        ]); 
+                                                        ]);
+
+
 
 
 
@@ -110,6 +125,9 @@ Route::resource('drops','DropController');
 
 Route::get('/losts/{id}/checkOut/', ['as' => 'losts.checkout',
                                                         'uses' => 'LostFoundController@checkout'
+                                                        ]); 
+Route::post('/losts/checkOut/{id}', ['as' => 'losts.updateCheckOut',
+                                                        'uses' => 'LostFoundController@updateCheckOut'
                                                         ]); 
 
 

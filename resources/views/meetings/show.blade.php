@@ -60,10 +60,16 @@
                <td>{{ ($visitorEx->entryTime ? 'Still Inside' : 'Not arrived') }}</td>
               <td>
                 <a href="{{ route('visitors.edit', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-           
-       
-              </td>
-              </td>
+            {!! Form::open(['route' => ['visitors.destroy', $visitorEx->idVisitor], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()', 'style' => '    margin-left: 32px;
+                   margin-top: -21px;']) !!}
+
+           <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+            {!! Form::close() !!}
+            
+            </td>
+
+             
             </tr>
             @endforeach
           </tbody>
@@ -98,7 +104,17 @@
               <td>{{ $visitorInt->username }}</td>
               <td>{{ $visitorInt->email }}</td>
                <td>{{ $visitorInt->department }}</td>
-              
+
+
+              <td>
+
+             {!! Form::open(['route' => ['visitors.removeInternalV', $visitorInt->idUser, $meetingData->idMeeting], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()']) !!}
+
+           <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+            {!! Form::close() !!}
+
+            </td>
               
             </tr>
             @endforeach

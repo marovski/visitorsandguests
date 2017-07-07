@@ -46,8 +46,8 @@ class VisitorController extends Controller
 
         if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
             # code...
-         $visitors = new Visitor();
-        $meet = Meeting::find($request->idMeeting);
+            $visitors = new Visitor();
+            $meet = Meeting::find($request->idMeeting);
     
 
         $visitors->visitorName=$request->visitorName;
@@ -57,18 +57,26 @@ class VisitorController extends Controller
 
 
         $visitors->visitorCitizenCardType=$request->visitorCitizenCardType;
+
         $visitors->visitorNPhone=$request->visitorNPhone;
+        
         $visitors->visitorEmail=$request->visitorEmail;
+        
         $visitors->visitorDangerousGood=$request->visitorDangerousGood;
+        
         $visitors->wifiAcess=$request->wifiAccess;
+        
         $visitors->visitorDeclaredGood=$request->visitorDeclaredGood;
+        
         $visitors->escorted=$request->escorted;
+        
         $visitors->visitorCompanyName=$request->visitorCompanyName;
         
        
        if (!($visitors->meeting->contains($meet))) {
             # code...
              $v=$visitors->save();
+
         if (!$v)
         {
 
@@ -76,6 +84,16 @@ class VisitorController extends Controller
         return redirect()->back()->with('danger', 'This Visitor could not be assigned. Duplicate entry!');
 
         } else {
+
+            foreach ($meet->visitor as $visitor) {
+              
+
+              if ($visitor->visitorEmail==$visitors->visitorEmail) {
+                  return redirect()->back()->with('danger', 'This Visitor could not be assigned. Duplicate entry for this meeting!');
+              }
+
+            }
+
 
 
         $save=$visitors->meeting()->save($meet);
@@ -203,24 +221,29 @@ class VisitorController extends Controller
        
 
         
-        }  
+        }
+
+
+    public function removeInternalV($id, $idM){
+
+   
+
+
+        if (($user= User::findOrFail($id))&&($meeting=Meeting::findOrFail($idM))) {
+
+            $user->meetings()->detach($idM);
+
+            return redirect()->back()->with('success','Successfully removed the internal visitor');
+
+        }else{
+
+            return redirect()->back()->with('danger', 'Failed to remove this internal visitor!');
+        }
+
+    }  
 
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $externalVisitor = Visitor::findOrFail($id);
-        $user= User::all()->load('meetingHost');    
-
-        return view('externalVisitors.badge', compact('externalVisitor','user') ) ;  
-        
-    }
 
       /**
      * Display the specified resource.
@@ -231,12 +254,16 @@ class VisitorController extends Controller
     public function badge($id)
     {
         $externalVisitor = Visitor::findOrFail($id);
-        
-    
+        $user= User::all()->load('meetingHost');    
 
-        return view('externalVisitors.badge', compact('externalVisitor') ) ;  
+        return view('externalVisitors.badge', compact('externalVisitor','user') ) ;  
         
     }
+
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -256,7 +283,11 @@ class VisitorController extends Controller
 
     }
 
-    /**
+
+
+
+
+      /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -354,6 +385,8 @@ class VisitorController extends Controller
 
   
 
+  
+
 
       public function  selfcheckIn (){
 
@@ -397,32 +430,6 @@ class VisitorController extends Controller
 
       }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        
-          $meeting = Visitor::find($id);
-
-        if ($meeting->delete()) {
-
-          
-        Session::flash('success','This visitor was successfully deleted!');
-        return redirect()->route('meetings.index');
-        
-        }
-        else{
-
-             Session::flash('danger','Visitor was already erased!');
-        return redirect()->route('meetings.index');
-        }
-
-
-    }
 
 
 
@@ -430,23 +437,23 @@ class VisitorController extends Controller
      public function checkin($id){
 
 
-        $currentMeeting= Visitor::findOrFail($id);
+        $currentVisitor= Visitor::findOrFail($id);
 
 
       
-       if (empty($currentMeeting->entryTime)) {
-           $currentMeeting->entryTime = Carbon::now('Europe/Lisbon');
+       if (empty($currentVisitor->entryTime)) {
+           $currentVisitor->entryTime = Carbon::now('Europe/Lisbon');
           
-           foreach ($currentMeeting->meeting as $meetings) {
+           foreach ($currentVisitor->meeting as $meetings) {
                $meetings->meetStatus=2;
            }
 
-        if ($currentMeeting->save()) {
+        if ($currentVisitor->save()) {
 
 
         Session::flash('success','The visitor check-in was successfully done!');
         
-        return redirect()->back();
+        return redirect()->route('visitors.badge', $currentVisitor->idVisitor);
         
         }else{
 
@@ -476,14 +483,14 @@ class VisitorController extends Controller
         
     
 
-        $currentMeeting= Visitor::findOrFail($id);
+        $currentVisitor= Visitor::findOrFail($id);
 
-         if (empty($currentMeeting->exitTime)) {
-           $currentMeeting->exitTime = Carbon::now('Europe/Lisbon');
-           $currentMeeting->signOutFlag=1;
+         if (empty($currentVisitor->exitTime)) {
+           $currentVisitor->exitTime = Carbon::now('Europe/Lisbon');
+           $currentVisitor->signOutFlag=1;
 
          
-            foreach ($currentMeeting->meeting as $meetings) {
+            foreach ($currentVisitor->meeting as $meetings) {
                
 
                 $meetings->meetStatus=4;
@@ -494,7 +501,7 @@ class VisitorController extends Controller
 
 
 
-        if ($currentMeeting->save()) {
+        if ($currentVisitor->save()) {
 
 
         Session::flash('success','The visitor check-out was successfully done! The meeting is finished!');
@@ -521,6 +528,34 @@ class VisitorController extends Controller
          }
 
         
+
+    }
+
+
+       /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        
+          $visitor = Visitor::find($id);
+
+        if ($visitor->delete()) {
+
+          
+        Session::flash('success','This visitor was successfully deleted!');
+        return redirect()->back();
+        
+        }
+        else{
+
+             Session::flash('danger','Visitor was already erased!');
+        return redirect()->back();
+        }
+
 
     }
 

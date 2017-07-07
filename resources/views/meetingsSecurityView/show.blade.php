@@ -84,7 +84,7 @@
                <td>
            
                 <a  style="height: 30px;
-    margin-top: 0px;" href="{{ route('visitors.show',$visitorEx->idVisitor) }}" class="btn btn-xs btn-icon btn-success"><span class="glyphicon glyphicon-print"></span></a>
+    margin-top: 0px;" href="{{ route('visitors.badge',$visitorEx->idVisitor) }}" class="btn btn-xs btn-icon btn-success"><span class="glyphicon glyphicon-print"></span></a>
               </td>
               </td>
             </tr>
