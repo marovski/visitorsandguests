@@ -22,7 +22,7 @@ class PagesController extends Controller{
 
 		$userPhoto = User::all();
         
-		$meetings = Meeting::orderBy('meetStartDate','asc')->paginate(10);
+		$meetings = Meeting::orderBy('meetStartDate','asc')->whereDay('meetStartDate','=',date('d'))->paginate(10);
 
 		$hostMeetings = Meeting::orderBy('meetStartDate','asc')->where('meetIdHost','=>','$userId')->paginate(5);
 
