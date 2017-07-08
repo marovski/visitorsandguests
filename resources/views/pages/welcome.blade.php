@@ -176,8 +176,8 @@
             <tr>
             <th>Id drop</th>
             <th>Dropped when</th>
+            <th>Dropper Name</th>
             <th>Drop importance</th>
-            <th>Topic</th>
             <th></th>
             </tr>
             </thead>
@@ -185,7 +185,13 @@
             <td title="{{ $drop->idDrop }}">{{strlen($drop->idDrop) > 10 ? substr($drop->idDrop,0,10)."..." : "$drop->idDrop" }}</td>
             <td title="{{ $drop->droppedWhen }}">{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
             <td title="{{ $drop->dropperName }}">{{strlen($drop->dropperName) > 10 ? substr($drop->dropperName,0,10)."..." : "$drop->dropperName" }}</td>
-            <td title="{{ $drop->dropImportance }}">{{ $drop->dropImportance}}</td>
+            <td title="{{ $drop->dropImportance }}">@if($drop->dropImportance==1)
+                       Low
+                       @elseif($drop->dropImportance==2)
+                       Medium
+                       @else
+                       High
+                       @endif</td>
             <td><a href="{{ url('drops') }}" class="btn btn-primary btn-sm">See More</a></td>
             </tbody>
             </table>
