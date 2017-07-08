@@ -4,7 +4,7 @@
 
 @section('dashboard')
 
-<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <input type="text" name="idchart" hidden="" value="1"> <button type="submit" >Make Graph</button></form>
+<form action="{{ route('barChart.show') }}"> <div class="col-xs-4"><input type="month" name="month" class="form-control input-sm" required=""> <input type="text" name="idchart"  hidden="" value="1"> </div><button class="btn btn-default btn-sm" type="submit" >Make Graph</button></form><br>
 
  <div class="well"  >
      

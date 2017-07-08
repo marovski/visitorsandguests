@@ -18,7 +18,7 @@
 	</div> 
 	     <!-- end of .row -->
 	     <form action="/search/delivers" method="get" role="form">
-<div class="input-group custom-search-form">
+<div class="input-group custom-search-form col-xs-4">
 
                                 <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}">    <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
@@ -56,12 +56,12 @@
 
 							
 						
-							<td>{{$deliver->deFirmSupplier }}</td>
-							<td>{{ $deliver->vehicleRegistry}}</td>
-							<td>{{ $deliver->deDriverName}}</td>
+							<td title="{{$deliver->deFirmSupplier }}">{{$deliver->deFirmSupplier }}</td>
+							<td title="{{ $deliver->vehicleRegistry}}">{{ $deliver->vehicleRegistry}}</td>
+							<td title="{{ $deliver->deDriverName}}">{{ $deliver->deDriverName}}</td>
 							
-							     <td>{{ ($deliver->deEntryTime ? date('M, d, y - h:i:s A', strtotime($deliver->deEntryTime)) : '')  }}</td>
-                                     <td>{{ ($deliver->deExitTime ? date('M, d, y - h:i:s A', strtotime($deliver->deExitTime)) : '')  }}</td>
+							     <td title="{{$deliver->deEntryTime}}">{{ ($deliver->deEntryTime ? date('M, d, y - h:i:s A', strtotime($deliver->deEntryTime)) : '')  }}</td>
+                                     <td title="{{$deliver->deExitTime}}">{{ ($deliver->deExitTime ? date('M, d, y - h:i:s A', strtotime($deliver->deExitTime)) : '')  }}</td>
 						
 							<td>
 							
