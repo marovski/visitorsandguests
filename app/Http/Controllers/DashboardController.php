@@ -26,13 +26,25 @@ class DashboardController extends Controller
  
 
 
-    public function getBarChart(){
+    public function getCharts(){
 
      
   
 
-    return view('charts.bar');
+    return view('charts.chartsmenu');
 
+    }
+
+
+    public function getBarCharts(){
+
+        return view('charts.bar');
+    }
+
+
+        public function getPieCharts(){
+
+        return view('charts.pie');
     }
 
     public function barChartShow(Request $request){
@@ -56,7 +68,15 @@ class DashboardController extends Controller
     
     $users = User::orderBy('idUser','desc');
 
+    if ($request->idchart==1) {
+        
     return view('charts.bar', compact('drops','visitors','deliveries','meetings','lostItems', 'users', 'input'));
+    }
+    elseif ($request->idchart==2) {
+       
+    return view('charts.pie', compact('drops','visitors','deliveries','meetings','lostItems', 'users', 'input'));
+    }
+
 
     }
 

@@ -4,7 +4,7 @@
 @section('assets')
  
     <script src="/node_modules/chart.js/dist/Chart.js"></script>
-   <script src="/js/echarts.common.min.js"></script>
+  <script src="/js/echarts-all-english-v2.js"></script>
 
 @endsection
     @section('content')
@@ -28,8 +28,8 @@
                             <!-- /input-group -->
                         </li>
                         
-                        <li {{ (Request::is('*dashboard.barcharts') ? 'class="active"' : '') }}> 
-                            <a style="color: #310826;"  href="{{ route('dashboard.barcharts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
+                        <li {{ (Request::is('*dashboard.charts') ? 'class="active"' : '') }}> 
+                            <a style="color: #310826;"  href="{{ route('dashboard.charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*dashboard.tables') ? 'class="active"' : '') }}>
