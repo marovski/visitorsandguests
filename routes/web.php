@@ -33,14 +33,20 @@ Route::get('/search/drops','SearchController@indexDrop');
 }) );
 
 
- Route::get('/dashboard/barcharts', array('as' => 'dashboard.barcharts', 'uses'=>'DashboardController@getBarChart'));
+ Route::get('/dashboard/charts', array('as' => 'dashboard.charts', 'uses'=>'DashboardController@getCharts'));
+
+ Route::get('/dashboard/barcharts', array('as' => 'dashboard.barcharts', 'uses'=>'DashboardController@getBarCharts'));
+ Route::get('/dashboard/barcharts/show', array('as' => 'barChart.show', 'uses'=>'DashboardController@barChartShow'));
+
+  Route::get('/dashboard/piecharts', array('as' => 'dashboard.piecharts', 'uses'=>'DashboardController@getPieCharts'));
+
 Route::get('/dashboard/tables', array('as' => 'dashboard.tables', 'uses'=>'DashboardController@getTables'));
 Route::get('/dashboard/tables/drops', array('as' => 'dashboard.drops', 'uses'=>'DashboardController@getDropsTable'));
 Route::get('/dashboard/tables/delivers', array('as' => 'dashboard.delivers', 'uses'=>'DashboardController@getDeliversTable'));
 Route::get('/dashboard/tables/lostItems', array('as' => 'dashboard.lostItems', 'uses'=>'DashboardController@getLostItemsTable'));
 Route::get('/dashboard/tables/meetings', array('as' => 'dashboard.meetings', 'uses'=>'DashboardController@getMeetingsTable'));
 
-Route::get('/dashboard/barcharts/show', array('as' => 'barChart.show', 'uses'=>'DashboardController@barChartShow'));
+
 
 
 //Extra methods beyond CRUD for Visitor Functionalities

@@ -4,7 +4,8 @@
 
 @section('dashboard')
 
-<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <button type="submit" >Make Graph</button></form>
+<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <input type="text" name="idchart" hidden="" value="1"> <button type="submit" >Make Graph</button></form>
+
  <div class="well"  >
      
         <!-- prepare a DOM container with width and height -->
@@ -12,13 +13,13 @@
 
     <script type="text/javascript">
         // based on prepared DOM, initialize echarts instance
-        var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById('main'),'sakura');
 
         // specify chart configuration item and data
         var option = {
 
             title: {
-                text: @if (!empty($input))'{{ date('M', strtotime("$input")) }}' @else 'Insert the month' @endif + ' Regists'
+                text: @if (!empty($input))'{{ date('F', strtotime("$input")) }}' @else 'Insert the month' @endif + ' Regists'
             },
             toolbox: {
             show : true,
@@ -31,7 +32,7 @@
             
             tooltip: { trigger: 'axis'},
             legend: {
-                data:['Sales']
+                data:['Number of Regists']
             },
             xAxis: {
                 data: ["Deliveries","Drops","LostF Items","Meetings","Visitors"]
@@ -49,6 +50,33 @@
         myChart.setOption(option);
     </script>
       </div>
+
+{{--                 <div class="well" >
+     <h3>Deliveries and Drops registed by the User</h3>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+  
+  type: 'pie',
+  data: {
+    labels: ['Deliveries', 'Drops'],
+    datasets: [{
+      label: 'Regists by user',
+      data: [@if(!empty($deliveries)){{ $deliveries->where('deIdUser', Auth::user()->idUser)->count() }}@else "No value"@endif,@if(!empty($drops)){{ $drops->where('dropIdUser', Auth::user()->idUser)->count() }}@else"No value"@endif],
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db"
+      ],
+    }]
+  }
+});
+</script> --}}
+ </div>
+
+     
+
+
 
  
     @endsection
