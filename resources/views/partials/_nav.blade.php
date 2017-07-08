@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/css/mouseOver.css">
+
 <!-- Default Bootstrap Navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
