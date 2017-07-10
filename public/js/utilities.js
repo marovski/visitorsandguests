@@ -2,7 +2,11 @@
 
   function ConfirmExternVisitor()
   {
-  ;
+var x = confirm("Are you sure to store this information?");
+  if (x)
+    return true;
+  else
+    return false;
   }
 
 
@@ -29,7 +33,7 @@ var x = confirm("Are you sure to delete this?");
   if (x)
     return true;
   else
-    return false
+    return false;
 
 
 

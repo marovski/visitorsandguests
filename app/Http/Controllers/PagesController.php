@@ -14,7 +14,7 @@ use Mail;
 
 class PagesController extends Controller{
 
-	public function getIndex() {
+	public function getIndex() {			
 		$userId = Auth::id();
         $user = User::find($userId);
 
@@ -22,11 +22,11 @@ class PagesController extends Controller{
         
 		$meetings = Meeting::orderBy('meetStartDate','asc')->whereDay('meetStartDate','=',date('d'))->paginate(10);
 
-		$hostMeetings = Meeting::orderBy('meetStartDate','asc')->where('meetIdHost','=',$userId)->paginate(5);
+		$hostMeetings = Meeting::orderBy('meetStartDate','asc')->where('meetIdHost','=', $userId)->paginate(5);
 
-		$delivers = Deliver::orderBy('deEntryTime','asc')->paginate(5);
+		$delivers = Deliver::orderBy('deEntryTime','asc')->whereRaw('DAY(created_at) = ?',[date('d')])->paginate(5);
 
-		$drops = Drop::orderBy('droppedWhen','asc')->paginate(5);
+		$drops = Drop::orderBy('droppedWhen','asc')->whereRaw('DAY(created_at) = ?',[date('d')])->paginate(5);
 		
 		$lostItems = LostFound::orderBy('idLostFound','desc')->where('claimedDate', '=', null)->paginate(5);
 	

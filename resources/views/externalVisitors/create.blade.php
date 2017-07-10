@@ -139,7 +139,7 @@
                             <label for="wifiAccess" class="col-md-4 control-label">WiFi Access:</label>
 
                             <div class="col-md-6">
-                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1" checked autofocus>
+                                <input id="wifiAccess" type="checkbox" name="wifiAccess" value="1" checked >
 
                                 @if ($errors->has('wifiAccess')) 
                                     <span class="help-block">
@@ -168,7 +168,7 @@
                             <label for="visitorDangerousGood" class="col-md-4 control-label">Dangerous Goods:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value=""  autofocus >
+                                <input id="visitorDangerousGood" type="checkbox" name="visitorDangerousGood" value="1"   >
 
                                 @if ($errors->has('visitorDangerousGood')) 
                                     <span class="help-block">
@@ -183,7 +183,7 @@
                             <label for="escorted" class="col-md-4 control-label">Escorted:</label>
 
                             <div class="col-md-6">
-                                <input id="escorted" type="checkbox" name="escorted" value="1" checked="" autofocus >
+                                <input id="escorted" type="checkbox" name="escorted" value="1" checked=""  >
 
                                 @if ($errors->has('escorted')) 
                                     <span class="help-block">

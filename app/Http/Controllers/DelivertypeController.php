@@ -15,24 +15,21 @@ class DelivertypeController extends Controller
     public function __construct() {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
+  
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createDeliveryType($id)
     {
-        //
+
+
+        $deliver=Deliver::findOrFail($id);
+
+
+        //Return the creating view with the necessary form
+        return view('deliveryType.create', compact('deliver'));
     }
 
     /**
@@ -44,18 +41,50 @@ class DelivertypeController extends Controller
     public function store(Request $request)
     {
         //
+
+         //validate data
+       $this->validate($request,[
+                'cargo' => 'required|string',
+                'quantity' => 'required',
+                'danger' => 'required',
+              
+
+                
+            ]); 
+
+
+      $deliver= Deliver::findOrFail($request->idDeliver);
+
+      $type=new DeliverType;
+
+      $type->dangerousGood=$request->danger;
+
+      $type->quantity=$request->quantity;
+
+      $type->sensitiveLevel=$request->sensitivity;
+
+      $type->materialDetails=$request->cargo;
+
+
+
+      $saveDeliverType=$deliver->type()->save($type);
+
+      if ($saveDeliverType) {
+
+     Session::flash('success', 'The Deliver was created successfully!');
+
+     return redirect()->route('delivers.show', $deliver->idDeliver);
+
+    }else{
+
+    Session::flash('danger', 'The Deliver was not created successfully!');
+
+     return redirect()->route('deliveryType.createDeliveryType', $deliver->idDeliver);
+
+    }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.

@@ -59,9 +59,10 @@
               <td>{{ $visitorEx->visitorCitizenCard }}</td>
                <td>{{ ($visitorEx->entryTime ? 'Still Inside' : 'Not arrived') }}</td>
               <td>
+                <a href="{{ route('visitors.show', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-zoom-in"></span></a>
                 <a href="{{ route('visitors.edit', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-            {!! Form::open(['route' => ['visitors.destroy', $visitorEx->idVisitor], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()', 'style' => '    margin-left: 32px;
-                   margin-top: -21px;']) !!}
+            {!! Form::open(['route' => ['visitors.destroy', $visitorEx->idVisitor], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()', 'style' => '   margin-left: 59px;
+    margin-top: -22px;']) !!}
 
            <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
 

@@ -1,7 +1,7 @@
 
   @extends('main')
 
-  @section('title', '| Edit Visitor')
+  @section('title', '| Show Visitor')
 
   @section('assets')
   <link rel='stylesheet' href='/css/parsley.css' />
@@ -13,17 +13,18 @@
 
          
 
-      <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> Edit External Visitor</div>
+      <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span> External Visitor Informtation</div>
 
- 
 
-    {!! Form::model($externalVisitor, array('method'=>'put','class'=>'form-horizontal', 'role'=> 'form', 'route' => array('visitors.update', $externalVisitor->idVisitor))) !!}
+
+    {!! Form::model($externalVisitor, array('method'=>'put','class'=>'form-horizontal', 'role'=> 'form')) !!}
              {{ csrf_field() }}
+
    
   <div class="col-md-8">
                         
 
-                     
+                      <fieldset disabled="disabled">  
 
                         
 
@@ -198,7 +199,7 @@
                                 @endif
                             </div>
                         </div>
-
+</fieldset>
            
           </div>
 
@@ -216,14 +217,11 @@
       </dl>
       <hr>
       <div class="row">
-        <div class="col-sm-6">
-              <button type="submit" class="btn btn-primary btn-block" onclick="return ConfirmExternVisitor()"><span class="glyphicon glyphicon-floppy-save"></span> Save Changes</button>
-           
-        </div>
-        <div class="col-sm-6">
+ 
+        <div class="col-sm-12">
        
          
-        <a class="btn btn-danger btn-block"  href="{{ route('meetings.show', $externalVisitor->meeting->first()->idMeeting) }}">Cancel</a>
+        <a class="btn btn-danger btn-block"  href="{{ route('meetings.show', $externalVisitor->meeting->first()->idMeeting) }}">Return</a>
         </div>
       
       </div>

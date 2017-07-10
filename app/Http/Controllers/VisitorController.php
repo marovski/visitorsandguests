@@ -30,6 +30,63 @@ class VisitorController extends Controller
         // return view('visitors.create')->withVisitors($visitors);
     }
 
+
+
+       /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $externalVisitor = Visitor::findOrFail($id);
+        $user= User::all()->load('meetingHost');    
+
+        return view('externalVisitors.show', compact('externalVisitor') ) ;  
+        
+    }
+
+       /**
+     * Show the form for creating a new externalvisitor.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createExternalVisitor($id)
+    {
+        $meeting = Meeting::findOrFail($id);
+        
+        return view('externalVisitors.create', compact('meeting'));
+
+
+        
+        } 
+
+    /**
+     * Show the form for creating to add a new internal visitor.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addInternalVisitor($i)
+    {    
+        $id=Auth::user()->idUser;
+
+        $users= User::where('idUser', '!=', $id)->get();
+
+        $meetingRestricted=Meeting::findOrFail($i);
+
+
+        //Variable $meetings for the view to add internal visitors for any meeting
+        $meetings=Meeting::where('meetStatus', '=', 1)->get();
+        
+        return view('internalVisitors.create', compact('meetings', 'users', 'meetingRestricted'));
+        
+        
+
+        
+        }  
+
+
         /**
      * Store a newly created resource in storage.
      *
@@ -136,43 +193,158 @@ class VisitorController extends Controller
         }
 
 
-      /**
-     * Show the form for creating a new externalvisitor.
+
+         /**
+     * Show the form for editing the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function createExternalVisitor($id)
+     public function edit($id)
     {
-        $meeting = Meeting::findOrFail($id);
         
-        return view('externalVisitors.create', compact('meeting'));
+        $externalVisitor = Visitor::findOrFail($id);
+
+    
+
+        return view('externalVisitors.edit', compact('externalVisitor') ) ;   
 
 
-        
-        }       
-       /**
-     * Show the form for creating to add a new internal visitor.
+    }
+
+
+
+
+
+      /**
+     * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function addInternalVisitor($i)
-    {    
-        $id=Auth::user()->idUser;
+    public function update(Request $request, $id)
+    {
+         // Validate the data
+        $visitor = Visitor::find($id);
 
-        $users= User::where('idUser', '!=', $id)->get();
+   
 
-        $meetingRestricted=Meeting::findOrFail($i);
+        if (empty($request->visitorIDnumber)) {
+         
 
 
-        //Variable $meetings for the view to add internal visitors for any meeting
-        $meetings=Meeting::where('meetStatus', '=', 1)->get();
+        $visitor->visitorCitizenCard=$request->visitorIDnumber;
+
+
+        $visitor->visitorCitizenCardType=$request->visitorIDType;
+        $visitor->visitorNPhone=$request->visitorNPhone;
+      
+        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
+        $visitor->wifiAcess=$request->wifiAccess;
+        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
+       
+     
         
-        return view('internalVisitors.create', compact('meetings', 'users', 'meetingRestricted'));
+       
+       if ($visitor->save()) {
+            # code...
+
+             Session::flash('success', 'This visitor information was updated!');
+           return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+
+              }   
+        else{
+
+                Session::flash('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+             return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+
+
+        }
+        }elseif (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorIDnumber)->first())) {
+            # code...
         
+        $visitor->visitorCitizenCard=$request->visitorIDnumber;
+
+
+        $visitor->visitorCitizenCardType=$request->visitorIDType;
         
+        $visitor->visitorNPhone=$request->visitorNPhone;
+           
+        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
+
+        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
+        
+        $visitor->wifiAcess=$request->wifiAccess;
+     
+        
+       
+        
+       
+       if ($visitor->save()) {
+            # code...
+
+            Session::flash('success', 'This visitor information was updated!');
+            return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+
+              }   
+        else{
+
+
+                Session::flash('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+             return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+
+
+        }
+         }else{
+
+
+        $visitor->visitorCitizenCard=$request->visitorIDnumber;
+
+
+        $visitor->visitorCitizenCardType=$request->visitorIDType;
+        $visitor->visitorNPhone=$request->visitorNPhone;
+
+        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
+        $visitor->wifiAcess=$request->wifiAccess;
+        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
+        
+       
+        
+       
+       if ($visitor->save()) {
+            # code...
+
+            Session::flash('success', 'This visitor information was updated!');
+            return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+
+              }   
+        else{
+
+
+                Session::flash('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
+             return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+
+
+        }
+
+         }
+
+      
+
+    
+     
+
 
         
-        }  
+    
+
+    }
+
+  
+
+         
+
 
         /**
      * Add the internal visitor to the meeting.
@@ -215,13 +387,13 @@ class VisitorController extends Controller
         }
         Session::flash('success','The internal visitor was assigned to the meeting, with success!');
 
-        return view('meetings.show', compact('meetingData'));
-        }
-                
+        return view('meetings.show', $meetingData->idMeeting);
+
        
 
         
         }
+    }
 
 
     public function removeInternalV($id, $idM){
@@ -261,131 +433,6 @@ class VisitorController extends Controller
     }
 
 
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-     public function edit($id)
-    {
-        
-        $externalVisitor = Visitor::findOrFail($id);
-
-    
-
-        return view('externalVisitors.edit', compact('externalVisitor') ) ;   
-
-
-    }
-
-
-
-
-
-      /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-         // Validate the data
-        $visitor = Visitor::find($id);
-
-        if ($request->input('visitorEmail') == $visitor->visitorEmail) {
-            $this->validate($request, array(
-                'visitorName' => 'required|min:1|max:50|string',
-               'visitorCompanyName' => 'required|min:4',
-             
-            ));
-        } else {
-        $this->validate($request, array(
-                 'visitorName' => 'required|min:1|max:50|string',
-                'visitorEmail' => 'required|email|max:255|unique:visitors,visitorEmail',
-                'visitorCompanyName' => 'required|min:4',
-            ));
-        }
-
-        if (empty($request->visitorCitizenCard)) {
-            $visitor->visitorName=$request->visitorName;
-
-
-        $visitor->visitorCitizenCard=$request->visitorCitizenCard;
-
-
-        $visitor->visitorCitizenCardType=$request->visitorCitizenCardType;
-        $visitor->visitorNPhone=$request->visitorNPhone;
-        $visitor->visitorEmail=$request->visitorEmail;
-        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
-        $visitor->wifiAcess=$request->wifiAccess;
-        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
-        $visitor->escorted=$request->escorted;
-        $visitor->visitorCompanyName=$request->visitorCompanyName;
-        
-       
-       if ($visitor->save()) {
-            # code...
-
-
-            return redirect()->back()->with('success', 'This visitor' + $visitor->visitorName + 'information was updated!');
-
-              }   
-        else{
-
-             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
-
-
-        }
-        }else{
-
-        if (empty(Visitor::where('visitorCitizenCard', "LIKE", "%$request->visitorCitizenCard%")->get())) {
-
-    
-        $visitor->visitorName=$request->visitorName;
-
-
-        $visitor->visitorCitizenCard=$request->visitorCitizenCard;
-
-
-        $visitor->visitorCitizenCardType=$request->visitorCitizenCardType;
-        $visitor->visitorNPhone=$request->visitorNPhone;
-        $visitor->visitorEmail=$request->visitorEmail;
-        $visitor->visitorDangerousGood=$request->visitorDangerousGood;
-        $visitor->wifiAcess=$request->wifiAccess;
-        $visitor->visitorDeclaredGood=$request->visitorDeclaredGood;
-        $visitor->escorted=$request->escorted;
-        $visitor->visitorCompanyName=$request->visitorCompanyName;
-        
-       
-       if ($visitor->save()) {
-            # code...
-
-
-            return redirect()->back()->with('success', 'This visitor' + $visitor->$visitorName + 'information was updated!');
-
-              }   
-        else{
-
-             return redirect()->back()->with('danger', 'This Visitor is already assigned! No duplicate entries allowed!');
-
-
-        }
-         } 
-        }
-    
-
-    }
-
-  
-
-  
 
 
       public function  selfcheckIn (){

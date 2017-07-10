@@ -37,7 +37,7 @@
     
 			
 			<div id="backend-comments" style="margin-top: 50px;">
-				<h3>Items <small>{{ $deliver->type()->count() }} total</small></h3>
+				<h3>Items <small>{{ $deliver->type()->count() }} total</small> <a href="{{ route('deliveryType.createDeliveryType', $deliver->idDeliver)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h3>
 
 				<table class="table">
 					<thead>
@@ -53,35 +53,35 @@
 					</thead>
 
 					<tbody>
-						@foreach ($deliver->type as $delivers)
+						@foreach ($deliver->type as $items)
 				
 						<tr>
-							<td> <span class="label label-default">{{ $delivers->materialDetails }}</span></td>
+							<td> <span class="label label-default">{{ $items->materialDetails }}</span></td>
 					
 							<td>
-								@if ($delivers->dangerousGood === 1) 
+								@if ($items->dangerousGood === 1) 
                                       {{ 'Danger' }}
-                                    @elseif ($delivers->dangerousGood === 0) 
+                                    @elseif ($items->dangerousGood === 0) 
                                         {{ 'Not Danger' }}
                                     
                                      @endif
 
 							</td>
 									<td>
-									@if ($delivers->sensitiveLevel === 1)
+									@if ($items->sensitiveLevel === 1)
 									{{ 'Low' }}
-									@elseif($delivers->sensitiveLevel === 2)
+									@elseif($items->sensitiveLevel === 2)
 									{{ 'Medium' }}
-									@elseif ($delivers->sensitiveLevel === 3)
+									@elseif ($items->sensitiveLevel === 3)
 									 {{ 'High' }}
 									@endif
 									</td>
-							<th>{{ $delivers->quantity}}</th>
+							<th>{{ $items->quantity}}</th>
 						
 							
 							<td>
-								<a href="{{ route('deliveryType.edit', $delivers->idDeliverType) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a href="{{ route('deliveryType.destroy', $delivers->idDeliverType) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+								<a href="{{ route('deliveryType.edit', $items->idDeliverType) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+								<a href="{{ route('deliveryType.destroy', $items->idDeliverType) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
 							</td>
 						</tr>
 					

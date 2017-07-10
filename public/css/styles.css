@@ -26,6 +26,11 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+.col-md-6 p {
+
+ margin-top: 7px;
+}
+
 .after{
 
      color: chocolate; 

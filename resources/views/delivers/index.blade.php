@@ -71,10 +71,10 @@
 							@if (empty($deliver->deExitTime))
 										
 					
-					<a  href="{{ route('delivers.checkout', $deliver->idDeliver) }}" id="checkOut" onclick="return confirm('Are you certain to proceed to the Check-out process?')" class="btn btn-default btn-sm"   ><span class="glyphicon glyphicon-check"></span> Check-out</a>
+					<a  href="{{ route('delivers.checkout', $deliver->idDeliver) }}" id="checkOut" onclick="return confirm('Are you certain to proceed to the Check-out process?')" class="btn btn-default btn-sm"   ><i class="fa fa-mail-forward" ></i> Check-out</a>
 
 								@else
-					<a disabled readonly id="checkOut"  class="btn btn-default btn-sm"  ><span class="glyphicon glyphicon-check"></span> Check-out</a>
+					<a disabled readonly id="checkOut"  class="btn btn-default btn-sm"  ><i class="fa fa-mail-forward" ></i> Check-out</a>
 
 											@endif
 

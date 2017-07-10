@@ -30,6 +30,7 @@ class MeetingController extends Controller
     {
 
         $userId = Auth::id();
+
         $userAuth = User::find($userId);
 
         $meetings = Meeting::orderBy('meetStartDate', 'asc')->paginate(10);
@@ -200,7 +201,7 @@ class MeetingController extends Controller
         $meeting->sensibility=$request->sensibility;
         $meeting->meetStatus=$request->meetStatus;
         $meeting->visitReason=$request->visitReason;
-        $meeting->meetIdHost=Auth::user()->idUser;
+   
         $meeting->meetEndDate=$request->meetEndDate;
         $meeting->meetingName=$request->meetingTopic;
         $meeting->email=$request->sendmail;

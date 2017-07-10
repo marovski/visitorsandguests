@@ -53,13 +53,26 @@ Route::get('/dashboard/tables/meetings', array('as' => 'dashboard.meetings', 'us
 
 Route::post('/visitors/selfSign', array('as' => 'visitors.selfSign','uses'=>'VisitorController@selfSign' ));
 
-Route::delete('/visitors/internalVisitor/{id}/{idM}', ['as' => 'visitors.removeInternalV',
-                                                        'uses' => 'VisitorController@removeInternalV'
+Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
+
+
+Route::post('/visitors/checkin/{id}', ['as' => 'visitors.checkin',
+                                                        'uses' => 'VisitorController@checkin'
                                                         ]); 
+Route::post('/visitors/checkout/{id}', ['as' => 'visitors.checkout',
+                                                        'uses' => 'VisitorController@checkout'
+                                                        ]);
+
 
 Route::get('/visitors/internalVisitor/{id}',array('as' => 'visitors.addInternalVisitor', 'uses' => 'VisitorController@addInternalVisitor'))->middleware('CheckAuth');
 
 Route::post('/visitors/storeInternalVisitor', array('as' => 'visitors.storeInternalVisitor', 'uses' => 'VisitorController@storeInternalVisitor'));
+
+
+
+Route::delete('/visitors/internalVisitor/{id}/{idM}', ['as' => 'visitors.removeInternalV',
+                                                        'uses' => 'VisitorController@removeInternalV'
+                                                        ]); 
 
 
 
@@ -73,15 +86,7 @@ Route::post('/visitors/externalVisitor/{id}', ['as' => 'visitors.destroy',
                                                         'uses' => 'VisitorController@destroy'
                                                         ]);
 
-Route::get('/visitors/selfcheckIn',array('as' => 'visitors.selfcheckIn', 'uses' => 'VisitorController@selfcheckIn'));
 
-
-Route::post('/visitors/checkin/{id}', ['as' => 'visitors.checkin',
-                                                        'uses' => 'VisitorController@checkin'
-                                                        ]); 
-Route::post('/visitors/checkout/{id}', ['as' => 'visitors.checkout',
-                                                        'uses' => 'VisitorController@checkout'
-                                                        ]);
 
 
 
@@ -101,8 +106,20 @@ Route::post('/delivers/checkOut/update/{id}', ['as' => 'delivers.checkoutUpdate'
                                                         'uses' => 'DeliverController@checkoutUpdate'
                                                         ]);
 
+
+
+
 Route::resource('delivers','DeliverController');
 
+
+//Extra methods beyond CRUD for Delivery Type Functionalities
+
+
+
+
+Route::get('/deliveryType/create/{id}', ['as' => 'deliveryType.createDeliveryType',
+                                                        'uses' => 'DelivertypeController@createDeliveryType'
+                                                        ]);
 Route::resource('deliveryType','DelivertypeController');
 
 
@@ -156,6 +173,7 @@ Route::group(['middleware' => 'CheckAuthD'], function()
     Route::resource('delivers', 'DeliverController');
     Route::resource('losts', 'LostFoundController');
     Route::resource('drops','DropController');
+    Route::resource('deliveryType','DelivertypeController');
 
 
 });

@@ -68,15 +68,7 @@ class DeliverController extends Controller
         //creating the models
       $deliver=new Deliver;
 
-      $type=new DeliverType;
-
-      $type->dangerousGood=$request->danger;
-
-      $type->quantity=$request->quantity;
-
-      $type->sensitiveLevel=$request->sensitivity;
-
-      $type->materialDetails=$request->cargo;
+     
 
  
      $deliver->deDriverName=$request->driverName;
@@ -109,12 +101,12 @@ class DeliverController extends Controller
     //store data to delivers table and deliver type table
 
     $saveDeliver= $deliver->save();
-    $saveDeliverType=$deliver->type()->save($type);
+    
 
-    if ($saveDeliver && $saveDeliverType) {
+    if ($saveDeliver) {
 
      Session::flash('success', 'The Deliver was created successfully!');
-     return redirect()->route('delivers.show',$deliver->idDeliver);
+     return redirect()->route('deliveryType.createDeliveryType', $deliver->idDeliver);
 
     }else{
 

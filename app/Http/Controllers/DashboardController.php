@@ -55,16 +55,16 @@ class DashboardController extends Controller
     $currentMonth=date("m", strtotime($date));
 
 
-    $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at)= ?',  [$currentMonth])->get();
+    $lostItems = LostFound::orderBy('idLostFound','desc')->whereRaw('MONTH(created_at)= ?',  [$currentMonth])->withTrashed()->get();
 
 
-    $meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
+    $meetings = Meeting::orderBy('idMeeting','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->withTrashed()->get();
     
-    $visitors = Visitor::orderBy('idVisitor','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
+    $visitors = Visitor::orderBy('idVisitor','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->withTrashed()->get();
     
-    $deliveries = Deliver::orderBy('idDeliver','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->get();
+    $deliveries = Deliver::orderBy('idDeliver','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->withTrashed()->get();
     
-    $drops = Drop::orderBy('idDrop','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth]);
+    $drops = Drop::orderBy('idDrop','desc')->whereRaw('MONTH(created_at) = ?',[$currentMonth])->withTrashed()->get();
     
     $users = User::orderBy('idUser','desc');
 
@@ -82,10 +82,10 @@ class DashboardController extends Controller
 
     public function getTables(){
     
-    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
-    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
-    $lostItems = LostFound::orderBy('idLostFound','desc')->paginate();
-    $meetings = Meeting::orderBy('idMeeting','desc')->paginate();
+    $drops = Drop::orderBy('idDrop','desc')->withTrashed()->paginate(10);
+    $delivers = Deliver::orderBy('idDeliver','desc')->withTrashed()->paginate(10);
+    $lostItems = LostFound::orderBy('idLostFound','desc')->withTrashed()->paginate();
+    $meetings = Meeting::orderBy('idMeeting','desc')->withTrashed()->paginate();
 
     return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems'));
 
@@ -93,7 +93,7 @@ class DashboardController extends Controller
 
     public function getDropsTable(){
     
-    $drops = Drop::orderBy('idDrop','desc')->paginate(10);
+    $drops = Drop::orderBy('idDrop','desc')->withTrashed()->paginate(10);
 
     return view('tables.drops', compact('drops'));
 
@@ -101,7 +101,7 @@ class DashboardController extends Controller
 
     public function getDeliversTable(){
     
-    $delivers = Deliver::orderBy('idDeliver','desc')->paginate(10);
+    $delivers = Deliver::orderBy('idDeliver','desc')->withTrashed()->paginate(10);
     
     return view('tables.delivers', compact('delivers'));
 
@@ -109,7 +109,7 @@ class DashboardController extends Controller
 
     public function getLostItemsTable(){
     
-    $losts = LostFound::orderBy('idLostFound','desc')->paginate();
+    $losts = LostFound::orderBy('idLostFound','desc')->withTrashed()->paginate();
     
     return view('tables.lostItems', compact('losts'));
 
@@ -117,7 +117,7 @@ class DashboardController extends Controller
 
      public function getMeetingsTable(){
      $user= User::all()->load('meetingHost');
-     $meetings = Meeting::orderBy('idMeeting','desc')->paginate();
+     $meetings = Meeting::orderBy('idMeeting','desc')->withTrashed()->paginate();
     
     return view('tables.meetings', compact('meetings', 'user'));
 

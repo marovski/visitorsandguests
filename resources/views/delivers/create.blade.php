@@ -97,56 +97,7 @@
 						</div>
 
 
-						<div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
-							<label for="cargo" class="col-md-4 control-label">Cargo Details:</label>
-
-							<div class="col-md-6">
-								<input id="cargo" type="text" class="form-control" name="cargo" value="{{ old('cargo') }}" required autofocus placeholder='Type here the cargo details' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
-
-								@if ($errors->has('cargo'))
-								<span class="help-block">
-									<strong>{{ $errors->first('cargo') }}</strong>
-								</span>
-								@endif
-							</div>
-						</div>
-
-						<div class="form-group{{ $errors->has('danger') ? ' has-error' : '' }}">
-							<label for="danger" class="col-md-4 control-label">Dangerous Cargo:</label>
-
-							<div class="col-md-6" >
-								<p>
-
-									<label class="radio-inline"><input type="radio" name="danger" value="0" checked>No</label>
-									<label class="radio-inline"><input type="radio" name="danger" value="1">Yes</label>
-
-									@if ($errors->has('danger'))
-									<span class="help-block">
-										<strong>{{ $errors->first('danger') }}</strong>
-									</span>
-									@endif
-								</p>
-							</div>
-						</div>
-
-						<div class="form-group{{ $errors->has('sensitivity') ? ' has-error' : '' }}">
-							<label for="sensitivity" class="col-md-4 control-label"> Sensitivity Level (select one):</label>
-
-							<div class="col-md-6">
-								<select class="form-control" id="sensitivity" name="sensitivity">
-									<option value="1">Low</option>
-									<option value="2">Medium</option>
-									<option value="3">High</option>
-
-								</select>                               
-
-								@if ($errors->has('sensitivity'))
-								<span class="help-block">
-									<strong>{{ $errors->first('sensitivity') }}</strong>
-								</span>
-								@endif
-							</div>
-						</div>
+						
 						<div class="form-group{{ $errors->has('weight') ? ' has-error' : '' }}" >
 							<label for="weight" class="col-md-4 control-label">Entry Weight (Kg):</label>
 
@@ -164,21 +115,7 @@
 						</div>
 					</div>
 
-						<div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}" >
-							<label for="quantity" class="col-md-4 control-label">Quantity (per unity):</label>
-
-							<div class="col-md-6">
-								<input type="number" name="quantity"  min="0" placeholder="Quantity">
-
-							                            
-
-							@if ($errors->has('quantity'))
-							<span class="help-block">
-								<strong>{{ $errors->first('quantity') }}</strong>
-							</span>
-							@endif
-						</div>
-					</div>
+					
 				
 						<div class="form-group">
 						<label for="image" class="col-md-4 control-label" >Image Upload:</label>

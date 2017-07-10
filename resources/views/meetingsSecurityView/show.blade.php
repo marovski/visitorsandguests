@@ -61,7 +61,8 @@
               <td>{{ $visitorEx->exitTime }}</td>
               
               <td> 
-                 
+                 <a href="{{ route('visitors.show', $visitorEx->idVisitor)}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span></a> </td>
+                 <td>
                                  @if(!empty($visitorEx->entryTime))<button  class="btn btn-default btn-sm" disabled="true"><i class="fa fa-map-marker"></i></button> 
                                  @else 
                                   {!! Form::open(array('action' => array('VisitorController@checkin', $visitorEx->idVisitor))) !!}

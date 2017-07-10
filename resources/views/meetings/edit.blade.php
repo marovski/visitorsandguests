@@ -108,9 +108,9 @@
 
                           <div class="col-md-6">
                               @if ($meetingData->confidentiality==1)
-                              <input id="confidentiality" type="checkbox"  name="confidentiality" readonly=""  value="1"> Top Secret
+                          <p> Top Secret</p>
                               @else
-                                <input id="confidentiality" type="checkbox"  name="confidentiality" readonly=""  value="0">  Unclassified
+                         <p>    Unclassified</p>
                               @endif
 
                               @if ($errors->has('confidentiality'))
@@ -191,9 +191,9 @@
 
                   <div class="col-md-6">
                   @if($meetingData->email==1)
-                           <label class="radio-inline"><input type="checkbox" name="sendmail" value="1" checked readonly disabled></label>
+                <p>Email Confirmation Sent</p>
                            @else
-                           <label class="radio-inline"><input type="checkbox" name="sendmail" value="0"  readonly disabled></label>
+                     <p>No Email Sent</p>
                            @endif
                            @if ($errors->has('sendmail'))
                       <span class="help-block">
