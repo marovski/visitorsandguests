@@ -215,7 +215,7 @@ class VisitorController extends Controller
         }
         Session::flash('success','The internal visitor was assigned to the meeting, with success!');
 
-        return view('meetings.show', compact('meetingData'));
+        return view('meetings.show', $meetingData->idMeeting);
         }
                 
        
