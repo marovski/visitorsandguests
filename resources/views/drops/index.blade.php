@@ -17,7 +17,7 @@
 		</div>
 	</div> <!-- end of .row -->
     <form action="/search" method="get" role="form">
-<div class="input-group custom-search-form">
+<div class="input-group custom-search-form col-xs-4">
 
                                 <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}">    <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
@@ -49,12 +49,12 @@
                     <tbody>
                         @foreach($drops as $drop )
                             <tr>
-                                <td>{{ $drop->dropperCompanyName }}</td>
-                                <td>{{ $drop->dropperName }}</td>
-                                <td>{{ $drop->dropReceiver }}</td>
-                                <td>{{ $drop->dropDescr }}</td>
-                                <td>{{ $drop->droppedWhen ? date('M j, Y H:i', strtotime($drop->droppedWhen)) : '' }}</td>
-                                <td>{{ $drop->dropReceivedDate ? date('M j, Y H:i', strtotime($drop->dropReceivedDate)) : '' }}</td>
+                                <td title="{{ $drop->dropperCompanyName }}">{{ $drop->dropperCompanyName }}</td>
+                                <td title="{{ $drop->dropperName }}">{{ $drop->dropperName }}</td>
+                                <td title="{{ $drop->dropReceiver }}">{{ $drop->dropReceiver }}</td>
+                                <td title="{{ $drop->dropDescr }}">{{ $drop->dropDescr }}</td>
+                                <td title="{{ $drop->droppedWhen}}">{{ $drop->droppedWhen ? date('M j, Y H:i', strtotime($drop->droppedWhen)) : '' }}</td>
+                                <td title="{{ $drop->dropReceivedDate}}">{{ $drop->dropReceivedDate ? date('M j, Y H:i', strtotime($drop->dropReceivedDate)) : '' }}</td>
                                 <td>
                               
                                 <a href="{{ route('drops.show',$drop->idDrop) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a>

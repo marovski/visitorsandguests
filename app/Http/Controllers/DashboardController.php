@@ -80,16 +80,16 @@ class DashboardController extends Controller
 
     }
 
-    public function getTables(){
+    // public function getTables(){
     
-    $drops = Drop::orderBy('idDrop','desc')->withTrashed()->paginate(10);
-    $delivers = Deliver::orderBy('idDeliver','desc')->withTrashed()->paginate(10);
-    $lostItems = LostFound::orderBy('idLostFound','desc')->withTrashed()->paginate();
-    $meetings = Meeting::orderBy('idMeeting','desc')->withTrashed()->paginate();
+    // $drops = Drop::orderBy('idDrop','desc')->withTrashed()->paginate(10);
+    // $delivers = Deliver::orderBy('idDeliver','desc')->withTrashed()->paginate(10);
+    // $lostItems = LostFound::orderBy('idLostFound','desc')->withTrashed()->paginate();
+    // $meetings = Meeting::orderBy('idMeeting','desc')->withTrashed()->paginate();
 
-    return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems'));
+    // return view('tables.table', compact('drops','visitors','delivers','meetings','lostItems'));
 
-    }
+    // }
 
     public function getDropsTable(){
     

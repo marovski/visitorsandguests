@@ -389,6 +389,9 @@ class VisitorController extends Controller
 
         return view('meetings.show', $meetingData->idMeeting);
 
+        }
+                
+
        
 
         
