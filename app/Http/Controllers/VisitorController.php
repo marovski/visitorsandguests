@@ -80,19 +80,27 @@ class VisitorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addInternalVisitor($i)
+    public function addInternalVisitor($id)
     {    
-        
+       
 
         $users= User::where('fk_idSecurity', '!=', 3)->where('idUser', '!=', Auth::user()->idUser)->get();
 
-        $meetingRestricted=Meeting::findOrFail($i);
+        $meetingRestricted=Meeting::findOrFail($id);
+        $currentDate=date("Y/m/d", strtotime($meetingRestricted->meetEndDate));
 
 
-        //Variable $meetings for the view to add internal visitors for any meeting
-        $meetings=Meeting::where('meetIdHost', '=', Auth::user()->idUser)->get();
-        
-        return view('internalVisitors.create', compact('meetings', 'users', 'meetingRestricted'));
+
+          if ($currentDate != date('Y/m/d') ) {
+            Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
+            return redirect()->route('meetings.show', $id);
+        }else{
+
+
+        return view('internalVisitors.create', compact( 'users', 'meetingRestricted'));
+
+        }
+
         
         
 
@@ -117,6 +125,19 @@ class VisitorController extends Controller
          $user = User::find($request->internalVisitor);
 
         $meetingData = Meeting::find($request->meeting);
+
+        $currentDate=date("Y/m/d", strtotime($meetingData->meetEndDate));
+
+
+
+          if ($currentDate != date('Y/m/d') ) {
+            Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
+            return redirect()->route('meetings.show', $id);
+        }else{
+
+
+        
+
 
 
         if($user->meetings->contains($meetingData)){
@@ -152,7 +173,7 @@ class VisitorController extends Controller
 
         }
                 
-
+}
        
 
         
@@ -173,6 +194,17 @@ class VisitorController extends Controller
                 'visitorEmail' => 'required|email|max:255',
             
             ]);  
+
+         $currentM = Meeting::find($request->idMeeting);
+
+          $currentDate=date("Y/m/d", strtotime($currentM->meetEndDate));
+
+
+
+          if ($currentDate != date('Y/m/d') ) {
+            Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
+            return redirect()->route('meetings.show', $id);
+        }else{
 
         if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
             # code...
@@ -259,6 +291,7 @@ class VisitorController extends Controller
 
 
         }
+    }
         
 
         
@@ -278,10 +311,17 @@ class VisitorController extends Controller
         
         $externalVisitor = Visitor::findOrFail($id);
 
-    
+     
+
+
+
+     if (!empty($externalVisitor->entryTime) ) {
+            Session::flash('danger', 'Cannot edit this visitor after the check-in');
+            return redirect()->route('meetings.show', $externalVisitor->meeting->first()->idMeeting);
+        }else{
 
         return view('externalVisitors.edit', compact('externalVisitor') ) ;   
-
+        }
 
     }
 
@@ -301,7 +341,10 @@ class VisitorController extends Controller
          // Validate the data
         $visitor = Visitor::find($id);
 
-   
+    if (!empty($visitor->entryTime) ) {
+            Session::flash('danger', 'Cannot edit this visitor after the check-in');
+            return redirect()->route('meetings.show', $visitor->meeting->first()->idMeeting);
+        }else{
 
         if (empty($request->visitorIDnumber)) {
          
@@ -409,7 +452,7 @@ class VisitorController extends Controller
      
 
 
-        
+        }
     
 
     }

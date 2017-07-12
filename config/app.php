@@ -163,12 +163,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Mews\Purifier\PurifierServiceProvider::class,
-        /*
-         * SMS Service Provider...
-         */
+      
         
-        Nexmo\Laravel\NexmoServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */
