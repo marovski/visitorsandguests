@@ -53,7 +53,10 @@
        
       <div class="row">
         <div class="col-sm-3" style="width: 80%;" >
-
+@if (\Request::is('dashboard'))  
+ <img src="/images/report.png" style="width: 93%;
+    margin-top: -46px;">
+@endif
 
      <div>
      

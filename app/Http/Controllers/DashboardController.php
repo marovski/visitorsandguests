@@ -21,7 +21,7 @@ class DashboardController extends Controller
     public function getDashboard(){
 
     
-    return view('pages.dashboard');
+    return view('pages.dashboard')->with('pages.imageReport');
     }
  
 

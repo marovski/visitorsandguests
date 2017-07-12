@@ -14,7 +14,8 @@
      <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
      <div class="table-responsive">
 
-                <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+                <table class="table table-striped m-b-none" data-ride="datatables" id="table" style="    width: 113%;
+    ">
                     <thead>
                         <tr>
                             <th>Firm</th>

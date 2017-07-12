@@ -11,7 +11,8 @@
                 
             
    </header>
-    <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+    <table class="table table-striped m-b-none" data-ride="datatables" id="table" style="    width: 113%;
+    ">
                     <thead>
                         <tr>  
                          <th width="">Meeting Name</th>
