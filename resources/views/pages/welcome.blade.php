@@ -79,72 +79,100 @@
      </div>
  </div>
 </div>
-@else
-@endif
 
- <div>
-            <div class="col-md-8">
-            @if(!isset($user->fk_idSecurity))
-            @elseif($user->fk_idSecurity == 1)
-            <h4>Your next meetings:</h4>
-                
+
+
+            @elseif(($user->fk_idSecurity == 1))
+           
+            <h4>Your Daily Meetings:</h4>
+            <section class="panel panel-default"   ng-controller="showInputController">
+          <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
+        <div class="table-responsive" >
+         <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+            <thead>
+            <tr>
+            <th>Host</th>
+            <th>Visitor Company</th>
+            <th>Visitor Name</th>
+            <th>Meeting</th>
+            <th>Sensibility</th>
+            <th>Starts At</th>
+           <th>Ends At</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
                 @foreach($hostMeetings as $meet)
-<table class="table table-striped m-b-none" data-ride="datatables" id="table">
-            <thead>
-            <tr>
-            <th>Host</th>
-            <th>Meeting</th>
-            <th>Meet start date</th>
-            <th>Topic</th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
+  <tr>
             <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%" title="{{ Auth::user()->username }}"></img></td>
-            <td title="{{$meet->meetingName}}"><h4>{{strlen(($meet->meetingName)) > 10 ? substr($meet->meetingName,0,10)."..." : $meet->meetingName}}</h4></td>
+            <td>{{ $meet->visitor->first()->visitorCompanyName }}</td>
+           <td>{{ $meet->visitor->first()->visitorName }}</td>
+            <td>{{ $meet->meetingName }}</td>
+               <td>@if($meet->sensibility==1) Small @elseif($meet->sensibility==2) Medium @else High @endif</td>
             <td title="{{$meet->meetStartDate}}">{{ $meet->meetStartDate ? date('H:i', strtotime($meet->meetStartDate)) :'' }}</td>
-            <td title="{{$meet->visitReason}}">{{strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason  }}</td>
-            <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
-            </tbody>
-            </table>
-                    
+            <td title="{{$meet->meetEndDate}}">{{ $meet->meetEndDate ? date('H:i', strtotime($meet->meetEndDate)) :'' }}</td>
+            <td><a href="{{ route('meetings.show', $meet->idMeeting) }}" class="btn btn-primary btn-sm">See More</a></td>
+           
+                      </tr>
                 @endforeach
-                 {!! $hostMeetings->links(); !!}         
-@else
+                 </tbody>
+                  </table>
+                  <div class="text-center">
+              {!! $hostMeetings->links(); !!} 
+                   </div>
+                  </div>   
+                  </section>    
+       @elseif(($user->fk_idSecurity == 3))
 
-            <h4>Meetings scheduled for today:</h4><hr>
-                @foreach($meetings as $meet)
-                <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+            <h4>Meetings Scheduled For Today:</h4><hr>
+            <section class="panel panel-default"   ng-controller="showInputController">
+        <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
+      <div class="table-responsive" >
+         <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Host</th>
-            <th>Meeting</th>
-            <th>Meet starts at</th>
-            <th>Topic</th>
+            <th>Visitor Name</th>
+           <th>Visitor Company</th>
+            <th>Meeting Name</th>
+             <th>Sensibility</th>
+            <th>Starts At</th>
+            <th>Ends At</th>
             <th></th>
             </tr>
             </thead>
             <tbody>
+                @foreach($meetings as $meet)
+            <tr>
             <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%" title="{{$userPhoto->find($meet->meetIdHost)->username}}"></img></td>
+            
+           <td>{{ $meet->visitor->first()->visitorName }}</td>
+           <td>{{ $meet->visitor->first()->visitorCompanyName }}</td>
+
             <td title="{{$meet->meetingName}}"><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
+            <td>@if($meet->sensibility==1) Small @elseif($meet->sensibility==2) Medium @else High @endif</td>
             <td title="{{$meet->meetStartDate}}">{{$meet->meetStartDate? date('H:i', strtotime($meet->meetStartDate)) : '' }}</td>
-            <td title="{{$meet->visitReason}}">{{ strlen(($meet->visitReason)) > 10 ? substr($meet->visitReason,0,10)."..." : $meet->visitReason }}</td>
-            <td><a href="{{ url('meetings') }}" class="btn btn-primary btn-sm">See More</a></td>
-            </tbody>
+            <td title="{{$meet->meetEndDate}}">{{ $meet->meetEndDate ? date('H:i', strtotime($meet->meetEndDate)) :'' }}</td>
+            <td><a href="{{ route('meetings.show', $meet->idMeeting) }}" class="btn btn-primary btn-sm">See More</a></td>
+            
+
+                 </tr>
+                @endforeach
+                </tbody>
             </table>
 
-                 
-                @endforeach
+                <div class="text-center">
                 {!! $meetings->links(); !!}
-@endif
+            </div>
+             </div>
+             </section>
+         
 
-@if(!isset($user->fk_idSecurity))
-            @elseif($user->fk_idSecurity == 3)
+
+         
 <hr><br>
 <h4>Last delivers:</h4><hr>
-                
-@foreach($delivers as $deliver)
-  <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+    <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
             <th>Firm</th>
@@ -154,37 +182,40 @@
             <th></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody>              
+@foreach($delivers as $deliver)
+             <tr>
             <td title="{{$deliver->deFirmSupplier}}">{{strlen($deliver->deFirmSupplier) > 10 ? substr($deliver->deFirmSupplier,0,10)."..." : "$deliver->deFirmSupplier" }}</td>
             <td title="{{$deliver->vehicleRegistry}}">{{strlen($deliver->vehicleRegistry) > 10 ? substr($deliver->vehicleRegistry,0,10)."..." : "$deliver->vehicleRegistry" }}</td>
             <td title="{{$deliver->deDriverName}}">{{ strlen($deliver->deDriverName) > 10 ? substr($deliver->deDriverName,0,10)."..." : $deliver->deDriverName}}</td>
             <td title="{{$deliver->deEntryTime}}">{{ date('M j, Y H:i', strtotime($deliver->deEntryTime)) }}</td>
-            <td><a href="{{ url('delivers') }}" class="btn btn-primary btn-sm">See More</a></td>
+            <td><a href="{{ route('delivers.show', $deliver->idDeliver) }}" class="btn btn-primary btn-sm">See More</a></td>
+           
+                @endforeach
+            </tr>
             </tbody>
             </table>
-                @endforeach
 
-@endif
-@if(!isset($user->fk_idSecurity))
-            @elseif($user->fk_idSecurity == 3)
+
 <hr><br>
 <h4>Last drops:</h4><hr>
-                
-@foreach($drops as $drop)
-  <table class="table table-striped m-b-none" data-ride="datatables" id="table">
+        <table class="table table-striped m-b-none" data-ride="datatables" id="table">
             <thead>
             <tr>
-            <th>Id drop</th>
-            <th>Dropped when</th>
             <th>Dropper Name</th>
+            <th>Dropper Company</th>
             <th>Drop importance</th>
+            <th>Dropped when</th>
+           
             <th></th>
             </tr>
             </thead>
-            <tbody>
-            <td title="{{ $drop->idDrop }}">{{strlen($drop->idDrop) > 10 ? substr($drop->idDrop,0,10)."..." : "$drop->idDrop" }}</td>
-            <td title="{{ $drop->droppedWhen }}">{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
-            <td title="{{ $drop->dropperName }}">{{strlen($drop->dropperName) > 10 ? substr($drop->dropperName,0,10)."..." : "$drop->dropperName" }}</td>
+            <tbody>          
+@foreach($drops as $drop)
+ <tr>
+               <td title="{{ $drop->dropperName }}">{{ $drop->dropperName }}</td>
+          
+            <td title="{{ $drop->dropperCompanyName }}">{{ $drop->dropperCompanyName }}</td>
             <td title="{{ $drop->dropImportance }}">@if($drop->dropImportance==1)
                        Low
                        @elseif($drop->dropImportance==2)
@@ -192,86 +223,14 @@
                        @else
                        High
                        @endif</td>
-            <td><a href="{{ url('drops') }}" class="btn btn-primary btn-sm">See More</a></td>
+                         <td title="{{ $drop->droppedWhen }}">{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}</td>
+            <td><a href="{{ route('drops.show', $drop->idDrop) }}" class="btn btn-primary btn-sm">See More</a></td>
+          
+                @endforeach
+                </tr>
             </tbody>
             </table>
-                @endforeach
-                
                 @endif
-                </div>
-        @if(isset($user))    
-        <div class="col-md-3 col-md-offset-1">
-    <h4 style="margin-left: 68px">Lost and Found:</h4>
-               
-                @foreach($lostItems as $item)
-
-                    <div class="mySlides" >
-                       <b style="color: #0078ab;
-    margin-left: 93px;">Category:
-
-     
-
-
-                       @if($item->itemCategory==1)
-                       Electronic
-                       @elseif($item->itemCategory==2)
-                       Document
-                       @elseif($item->itemCategory==3)
-                       Money
-                       @elseif($item->itemCategory==4)
-                       Gadget
-                       @elseif($item->itemCategory==5)
-                       Cloth
-                       @else Other
-                       @endif
-                     </b>
-                      @if(!empty($item->photo))
-            <div class="thumbnail">
-               <div class="image">
        
-
-              <img src="{{ asset('images/'. $item->photo)}}" height="150"  width="200" style="margin-left: 35px;" alt="Some awesome text"/>
-
-             
-      </div>
-                </div>
-                 @else
-<h3>No photo available</h3>
-             
-              @endif
-                     
-                        <h5>Found Date: {{ $item->foundDate ? date('F j, Y', strtotime($item->foundDate)) : '' }}</h5>  
-                        
-                        <a href="{{ url('/losts/' . $item->idLostFound) }}" class="btn btn-primary btn-sm">See More</a>
-                    </div>
-                
-
-                    <hr>
-
-                @endforeach
-                      <div class="tedelivert-center">
-                 {!! $lostItems->links(); !!}
-                     </div>
-@else
-@endif
-
-      <script>
-            var myIndex = 0;
-            carousel();
-                         function carousel() {
-                var i;
-                var x = document.getElementsByClassName("mySlides");
-                for (i = 0; i < x.length; i++) {
-                 x[i].style.display = "none";  
-             }
-             myIndex++;
-             if (myIndex > x.length) {myIndex = 1}    
-                x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 2000); // Change image every 2 seconds
-}
-</script>
-</div>
-
-      </div>
 @endsection
   
