@@ -138,9 +138,6 @@ class VisitorController extends Controller
         }else{
 
 
-        
-
-
 
         if($user->meetings->contains($meetingData)){
     
@@ -171,7 +168,7 @@ class VisitorController extends Controller
         }
         Session::flash('success','The internal visitor was assigned to the meeting, with success!');
 
-        return view('meetings.show', $meetingData->idMeeting);
+        return redirect()->route('meetings.show', $meetingData->idMeeting);
 
         }
                 
@@ -205,7 +202,7 @@ class VisitorController extends Controller
 
           if (!($meetingDate == date('Y/m/d')) ) {
             Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
-            return redirect()->route('meetings.show', $id);
+            return redirect()->route('meetings.show', $request->idMeeting);
         }else{
 
         if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
@@ -480,10 +477,11 @@ class VisitorController extends Controller
      */
     public function badge($id)
     {
+        $meeting = Meeting::findOrFail($id);
         $externalVisitor = Visitor::findOrFail($id);
         $user= User::all()->load('meetingHost');    
 
-        return view('externalVisitors.badge', compact('externalVisitor','user') ) ;  
+        return view('externalVisitors.badge', compact('externalVisitor','user','meeting') ) ;  
         
     }
 
