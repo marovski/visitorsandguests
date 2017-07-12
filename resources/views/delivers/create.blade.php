@@ -23,7 +23,7 @@
 							<label for="driverName" class="col-md-4 control-label"><span class="after">*</span> Driver Name:</label>
 
 							<div class="col-md-6">
-								<input id="driverName" type="text" class="form-control" name="driverName" value="{{ old('driverName') }}" placeholder='Type here the driver name' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+								<input id="driverName" type="text" class="driverName form-control" data-provide="driverName" name="driverName" value="{{ old('driverName') }}" placeholder='Type here the driver name' required autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('driverName'))
 								<span class="help-block">
@@ -72,7 +72,7 @@
 							<label for="vehicleLicensePlate" class="col-md-4 control-label">Vehicle License Plate:</label>
 
 							<div class="col-md-6">
-								<input id="vehicleLicensePlate" type="text" class="form-control" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus  max-lenght="40" placeholder='ex.PT:00-AA-00'>
+								<input id="vehicleLicensePlate" type="text" class="vehicleLicensePlate form-control" data-provide="vehicleLicensePlate" name="vehicleLicensePlate" value="{{ old('vehicleLicensePlate') }}" required autofocus  max-lenght="40" placeholder='ex.PT:00-AA-00'>
 
 								@if ($errors->has('vehicleLicensePlate'))
 								<span class="help-block">
@@ -86,7 +86,7 @@
 							<label for="firm" class="col-md-4 control-label">Firm Supplier:</label>
 
 							<div class="col-md-6">
-								<input id="firm" type="text" class="form-control" name="firm" value="{{ old('firm') }}" required autofocus placeholder='Type here the firm supplier' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+								<input id="firm" type="text" class="firm form-control" data-provide="firm" name="firm" value="{{ old('firm') }}" required autofocus placeholder='Type here the firm supplier' ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
 
 								@if ($errors->has('firm'))
 								<span class="help-block">

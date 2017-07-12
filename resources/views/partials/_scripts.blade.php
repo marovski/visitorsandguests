@@ -14,25 +14,106 @@
 
 
 
-{{--  <script src="/jpeg_camera/swfobject.min.js" type="text/javascript"></script>
-<script src="/jpeg_camera/canvas-to-blob.min.js" type="text/javascript"></script>
-<script src="/jpeg_camera/jpeg_camera.min.js" type="text/javascript"></script>
-<script src="/jpeg_camera/jpeg_camera_with_dependencies.min.js" type="text/javascript"></script>
-<script src="/js/camera.js"></script> --}}
 <script src="/js/utilities.js"></script>
+
  <!-- load our application -->
 
 <script src="/js/main.js"></script>
 
-<script src="/js/app.js"></script>
+
 
     <script type="text/javascript">
-    var path = "{{ route('autocomplete/vN') }}";
+   
 
 
     $('input.visitorName').typeahead({
         source:  function (query, process) {
-        return $.get(path, { query: query }, function (data) {
+        return $.get("{{ route('autocomplete','vn') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+   
+    $('input.visitorNPhone').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','vP') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+    $('input.visitorEmail').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','vE') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+
+       $('input.visitorCompanyName').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','vC') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+        $('input.meetingTopic').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','mT') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+        $('textarea.visitReason').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','mP') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+          $('input.driverName').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','driverN') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+             $('input.firm').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','firm') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+     $('input.vehicleLicensePlate').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','vehiclePlate') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+        $('input.dropperCompany').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','dropC') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });ReceiverName
+        $('input.dropperName').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','dropN') }}", { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+        $('input.ReceiverName').typeahead({
+        source:  function (query, process) {
+        return $.get("{{ route('autocomplete','dropR') }}", { query: query }, function (data) {
                 return process(data);
             });
         }

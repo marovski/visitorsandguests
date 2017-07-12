@@ -109,48 +109,62 @@ class SearchController extends Controller
 
 
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function autocomplete(Request $request, $id)
-
-    // {
-         
-    //     if ($id=='mN') {
-
-    //          $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
-             
-    //          return response()->json($data);
-   
-    // }elseif ($id=='mP') {
-    //          $data = Meeting::select("visitReason as name")->where("visitReason","LIKE","%{$request->input('query')}%")->get();
-
-    //          return response()->json($data);
-    // }elseif ($id=='vN') {
-
-    //     $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
-
-    //          return response()->json($data);
-    // }elseif ($id=='vC') {
-    //       $data = Visitor::select("visitorCompanyName as name")->where("visitorCompanyName","LIKE","%{$request->input('query')}%")->get();
-
-    //          return response()->json($data);
-    // }elseif ($id=='vE') {
-    //       $data = Visitor::select("visitorEmail as name")->where("visitorEmail","LIKE","%{$request->input('query')}%")->get();
-
-    //          return response()->json($data);
-    // }elseif ($id=='dC') {
-    //     # code...
-    // }
-    //     }
 
 
-public function autocomplete(Request $request)
+
+public function autocomplete(Request $request, $id)
 {
-           $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
+
+    if ($id=='vn') {
+          $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);}
+       elseif ($id=='vE') {
+      $data = Visitor::select("visitorEmail as name")->where("visitorEmail","LIKE","%{$request->input('query')}%")->get();
+
         return response()->json($data);
+        }elseif ($id=='vC') {
+          $data = Visitor::select("visitorCompanyName as name")->where("visitorCompanyName","LIKE","%{$request->input('query')}%")->get();
+            return response()->json($data);
+        }elseif ($id=='vP') {
+            $data = Visitor::select("visitorNPhone as name")->where("visitorNPhone","LIKE","%{$request->input('query')}%")->get();
+            return response()->json($data);
+        }elseif ($id=='mT') {
+
+             $data = Meeting::select("meetingName as name")->where("meetingName","LIKE","%{$request->input('query')}%")->get();
+             
+             return response()->json($data);
+   
+    }elseif ($id=='mP') {
+             $data = Meeting::select("visitReason as name")->where("visitReason","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }elseif ($id=='driverN') {
+             $data = Deliver::select("deDriverName as name")->where("deDriverName","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }elseif ($id=='firm') {
+             $data = Deliver::select("deFirmSupplier as name")->where("deFirmSupplier","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }elseif ($id=='vehiclePlate') {
+             $data = Deliver::select("vehicleRegistry as name")->where("vehicleRegistry","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }elseif ($id=='dropC') {
+             $data = Drop::select("dropperCompanyName as name")->where("dropperCompanyName","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }elseif ($id=='dropN') {
+             $data = Drop::select("dropperName as name")->where("dropperName","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }elseif ($id=='dropR') {
+             $data = User::select("username as name")->where("username","LIKE","%{$request->input('query')}%")->get();
+
+             return response()->json($data);
+    }
+
+
 }
        
 

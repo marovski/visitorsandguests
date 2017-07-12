@@ -7,7 +7,4 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-  <!-- including ECharts file -->
 
-
- <script src="https://www.google.com/recaptcha/api.js"></script>

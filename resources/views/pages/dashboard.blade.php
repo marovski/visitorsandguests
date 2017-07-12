@@ -1,10 +1,12 @@
 
-  @extends('main')
-  @section('title','| HomePage')
+@extends('main')
+@section('title','| HomePage')
 @section('assets')
- 
-    <script src="/node_modules/chart.js/dist/Chart.js"></script>
-  <script src="/js/echarts-all-english-v2.js"></script>
+
+  <!-- load echarts package -->
+
+
+ <script src="/js/echarts-all-english-v2.js"></script>
 
 @endsection
     @section('content')
@@ -47,12 +49,11 @@
     
     <div class="col-sm-9">
 
-                        <!-- LOADING ICON -->
-            <!-- show loading icon if the loading variable is set to true -->
+                 
        
       <div class="row">
         <div class="col-sm-3" style="width: 80%;" >
-    
+
 
      <div>
      

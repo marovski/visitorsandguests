@@ -25,7 +25,7 @@ Route::get('/search/delivers','SearchController@indexDeliver');
 Route::get('/search/drops','SearchController@indexDrop');
 Route::get('/search/lostItems','SearchController@indexLostItem');
 
-Route::get('autocomplete/vN',array('as'=>'autocomplete/vN','uses'=>'SearchController@autocomplete'));
+Route::get('autocomplete/{id}',array('as'=>'autocomplete','uses'=>'SearchController@autocomplete'));
 
  Route::get('denied', array('as' => 'denied', function()
 {
@@ -191,7 +191,7 @@ Route::group(['middleware' => 'CheckAuthD'], function()
 
 
 //Initial Pages
-Route::get('dashboard', 'DashboardController@getDashboard');
+Route::get('dashboard', [ 'as'=>'dashboard','uses'=>'DashboardController@getDashboard']);
 Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');

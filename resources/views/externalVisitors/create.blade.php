@@ -61,7 +61,7 @@
                             <label for="visitorCitizenCard" class="col-md-4 control-label">Identification Card Number:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorCitizenCard" type="text" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" class="form-control" name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus placeholder="Type here the ID number">
+                                <input id="visitorCitizenCard" type="text" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"  name="visitorCitizenCard" value="{{ old('visitorCitizenCard') }}" autofocus placeholder="Type here the ID number" >
 
                                 @if ($errors->has('visitorCitizenCard'))
                                 <span class="help-block">
@@ -80,7 +80,7 @@
 
                             <div class="col-md-6">
                             
-                                <input placeholder="Type here the phone number" id="visitorNPhone" type="text" min="17"  class="form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+                                <input placeholder="Type here the phone number" id="visitorNPhone" type="text" min="17"  class="visitorNPhone form-control" name="visitorNPhone" value="{{ old('visitorNPhone') }}"  autofocus ng-model="visitorNPhone" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" data-provide="visitorNPhone">
 
                                 @if ($errors->has('visitorNPhone'))
                                     <span class="help-block">
@@ -95,7 +95,7 @@
                             <label for="visitorEmail" class="col-md-4 control-label"><span class="after">*</span> Email:</label>
 
                             <div class="col-md-6">
-                               <input placeholder="Type here the email" type="email" class="form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"></input>
+                               <input placeholder="Type here the email" type="email" class="visitorEmail form-control" name="visitorEmail" required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" data-provide="visitorEmail"></input>
 
                                 @if ($errors->has('visitorEmail'))
                                     <span class="help-block">
@@ -123,7 +123,7 @@
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
                             <div class="col-md-6">
-                                <input placeholder="Type here the company name" id="visitorCompanyName" type="text" class="form-control" name="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" >
+                                <input placeholder="Type here the company name" id="visitorCompanyName" type="text" class="visitorCompanyName form-control" name="visitorCompanyName" data-provide="visitorCompanyName" value="{{ old('visitorCompanyName') }}"  autofocus ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" >
 
                                 @if ($errors->has('visitorCompanyName'))
                                     <span class="help-block">

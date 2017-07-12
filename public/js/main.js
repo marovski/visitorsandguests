@@ -36,7 +36,7 @@ var app= angular.module('MyApp', []).controller('ShowController', ShowController
             }
 
         }
-
+//Controller showInput to controller certain scopes in our forms
 
 function showInputController($scope, $timeout){
 
@@ -55,7 +55,12 @@ function showInputController($scope, $timeout){
       
 
       console.log( $scope.visitorCitizenCardType);
+
+
+
     }
+
+
 // function BarcodeCtrl($scope) {
 //     $scope.model = {
 //         barcode: 'none',

@@ -26,7 +26,7 @@
                                 <label for="meetingName" class="col-md-4 control-label"><span class="after">*</span> Meeting Topic:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control"  rows="2" cols=""  name="meetingTopic" required autofocus placeholder='Type here your meeting topic' >                                
+                                    <input type="text" class="meetingTopic form-control"  data-provide="meetingTopic" rows="2" cols=""  name="meetingTopic" required autofocus placeholder='Type here your meeting topic' >                                
 
                                     @if ($errors->has('meetingName'))
                                     <span class="help-block">
@@ -93,7 +93,7 @@
                             <label for="visitReason" class="col-md-4 control-label"><span class="after">*</span> Meeting Purpose:</label>
 
                             <div class="col-md-6">
-                                <textarea rows="2" cols="" class="form-control" name="visitReason" placeholder='Type here your meeting purpose'></textarea>                                
+                                <textarea rows="2" cols="" class="visitReason form-control" data-provide="visitReason" name="visitReason" placeholder='Type here your meeting purpose'></textarea>                                
 
                                 @if ($errors->has('visitReason'))
                                 <span class="help-block">

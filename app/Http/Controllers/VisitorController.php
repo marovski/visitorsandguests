@@ -19,16 +19,16 @@ class VisitorController extends Controller
      public function __construct() {
         $this->middleware('auth',['except' => ['selfcheckIn', 'show','selfSign']]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-      public function index()
-    {
-        // $visitors = Visitor::orderBy('idVisitor', 'desc')->paginate(10);
-        // return view('visitors.create')->withVisitors($visitors);
-    }
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    //   public function index()
+    // {
+    //     // $visitors = Visitor::orderBy('idVisitor', 'desc')->paginate(10);
+    //     // return view('visitors.create')->withVisitors($visitors);
+    // }
 
 
 
