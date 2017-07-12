@@ -1,6 +1,6 @@
 
 @extends('main')
-@section('title','| HomePage')
+@section('title','| Charts and Exports')
 @section('assets')
 
   <!-- load echarts package -->

@@ -24,6 +24,7 @@
         <!--<li class="{{ Request::is('contact') ? "active" : "" }}"><a href="/contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
+
       @if (Auth::check())
 
         <div class="dropdown">

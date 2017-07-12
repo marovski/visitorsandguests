@@ -13,6 +13,7 @@ use App\Models\Meeting;
 class User extends Authenticatable
 {
   use Notifiable;
+  
 
       /*
   |--------------------------------------------------------------------------

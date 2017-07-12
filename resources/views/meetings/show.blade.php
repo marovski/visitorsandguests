@@ -97,7 +97,7 @@
               <td>{{ $visitorEx->visitorEmail }}</td>
               <td>{{ $visitorEx->visitorCompanyName }}</td>
               <td>{{ $visitorEx->visitorCitizenCard }}</td>
-               <td>{{ ($visitorEx->entryTime ? 'Still Inside' : 'Not arrived') }}</td>
+               <td>@if(empty($visitorEx->exitTime)){{ ($visitorEx->entryTime ? 'Still Inside' : 'Not arrived') }}@else The visitor has left @endif</td>
               <td>
                 <a href="{{ route('visitors.show', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-zoom-in"></span></a>
                 <a href="{{ route('visitors.edit', $visitorEx->idVisitor)}}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>

@@ -56,10 +56,12 @@ class VisitorController extends Controller
     {
         $meeting = Meeting::findOrFail($id);
 
-        $currentDate=date("Y/m/d", strtotime($meeting->meetEndDate));
+        //Get the end date of the meeting
+
+        $meetingDate=date("Y/m/d", strtotime($meeting->meetEndDate));
    
       
-        if ($currentDate != date('Y/m/d') ) {
+        if (!($meetingDate >= date('Y/m/d')) ) {
             # code...
             
 
@@ -87,11 +89,11 @@ class VisitorController extends Controller
         $users= User::where('fk_idSecurity', '!=', 3)->where('idUser', '!=', Auth::user()->idUser)->get();
 
         $meetingRestricted=Meeting::findOrFail($id);
-        $currentDate=date("Y/m/d", strtotime($meetingRestricted->meetEndDate));
+        $meetingDate=date("Y/m/d", strtotime($meetingRestricted->meetEndDate));
 
 
 
-          if ($currentDate != date('Y/m/d') ) {
+          if (!($meetingDate >= date('Y/m/d')) ) {
             Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
             return redirect()->route('meetings.show', $id);
         }else{
@@ -126,11 +128,11 @@ class VisitorController extends Controller
 
         $meetingData = Meeting::find($request->meeting);
 
-        $currentDate=date("Y/m/d", strtotime($meetingData->meetEndDate));
+        $meetingDate=date("Y/m/d", strtotime($meetingData->meetEndDate));
 
 
 
-          if ($currentDate != date('Y/m/d') ) {
+          if (!($meetingDate >= date('Y/m/d')) ) {
             Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
             return redirect()->route('meetings.show', $id);
         }else{
@@ -197,11 +199,11 @@ class VisitorController extends Controller
 
          $currentM = Meeting::find($request->idMeeting);
 
-          $currentDate=date("Y/m/d", strtotime($currentM->meetEndDate));
+          $meetingDate=date("Y/m/d", strtotime($currentM->meetEndDate));
 
 
 
-          if ($currentDate != date('Y/m/d') ) {
+          if (!($meetingDate == date('Y/m/d')) ) {
             Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
             return redirect()->route('meetings.show', $id);
         }else{
