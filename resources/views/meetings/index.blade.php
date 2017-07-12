@@ -67,9 +67,9 @@
                      @foreach($meetingsStaff as $meeting )
  
                             <tr>
-                                 <th>{{ $meeting->visitor->first()->visitorCompanyName }}</th>
-                              <th>{{ $meeting->visitor->first()->visitorName }}</th>
-                             <th>{{ $meeting->meetingName }}</th>
+                                 <td> @if(empty($meeting->visitor->first()->visitorCompanyName)) @else{{ $meeting->visitor->first()->visitorCompanyName }}@endif</td>
+                              <td>@if(empty($meeting->visitor->first()->visitorName)) @else{{ $meeting->visitor->first()->visitorName }}@endif</td>
+                             <td>{{ $meeting->meetingName }}</td>
 
                                  <td>@if($meeting->sensibility==1) Small @elseif($meeting->sensibility==2) Medium @else High @endif</td>
                           

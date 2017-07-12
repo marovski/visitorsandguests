@@ -105,8 +105,8 @@
                 @foreach($hostMeetings as $meet)
   <tr>
             <td><img src="/images/{{ Auth::user()->photo }}" style="width:32px; height:32px;border-radius:50%" title="{{ Auth::user()->username }}"></img></td>
-            <td>{{ $meet->visitor->first()->visitorCompanyName }}</td>
-           <td>{{ $meet->visitor->first()->visitorName }}</td>
+             <td> @if(empty($meet->visitor->first()->visitorCompanyName)) @else{{ $meet->visitor->first()->visitorCompanyName }}@endif</td>
+           <td> @if(empty($meet->visitor->first()->visitorCompanyName)) @else{{ $meet->visitor->first()->visitorCompanyName }}@endif</td>
             <td>{{ $meet->meetingName }}</td>
                <td>@if($meet->sensibility==1) Small @elseif($meet->sensibility==2) Medium @else High @endif</td>
             <td title="{{$meet->meetStartDate}}">{{ $meet->meetStartDate ? date('H:i', strtotime($meet->meetStartDate)) :'' }}</td>
@@ -146,8 +146,8 @@
             <tr>
             <td><img src="/images/{{$userPhoto->find($meet->meetIdHost)->photo}}" style="width:32px; height:32px;border-radius:50%" title="{{$userPhoto->find($meet->meetIdHost)->username}}"></img></td>
             
-           <td>{{ $meet->visitor->first()->visitorName }}</td>
-           <td>{{ $meet->visitor->first()->visitorCompanyName }}</td>
+        <td> @if(empty($meet->visitor->first()->visitorCompanyName)) @else{{ $meet->visitor->first()->visitorCompanyName }}@endif</td>
+           <td> @if(empty($meet->visitor->first()->visitorCompanyName)) @else{{ $meet->visitor->first()->visitorCompanyName }}@endif</td>
 
             <td title="{{$meet->meetingName}}"><h4>{{ substr(strip_tags($meet->meetingName),0,10) }}</h4></td>
             <td>@if($meet->sensibility==1) Small @elseif($meet->sensibility==2) Medium @else High @endif</td>
