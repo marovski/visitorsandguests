@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-md-10">
-            <h1>All Meetings</h1>
+            <h1>My Meetings</h1>
         </div>
 
     <div class="col-md-2">
@@ -46,12 +46,15 @@
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
                         <tr>  
+                             
+                        <th width="">Visitor Company</th>
+                        <th width="">Visitor Name</th>
                          <th width="">Meeting Name</th>
-                            <th width="">Visit Reason</th>
+                            <th width="">Sensibility</th>
             
                            
                             <th width="">Status</th>
-                            <th width="">Host</th>
+                     
 
                             <th width="">Start </th>
                               
@@ -64,10 +67,11 @@
                      @foreach($meetingsStaff as $meeting )
  
                             <tr>
-                            
+                                 <th>{{ $meeting->visitor->first()->visitorCompanyName }}</th>
+                              <th>{{ $meeting->visitor->first()->visitorName }}</th>
                              <th>{{ $meeting->meetingName }}</th>
 
-                                <td>{{ $meeting->visitReason }}</td>
+                                 <td>@if($meeting->sensibility==1) Small @elseif($meeting->sensibility==2) Medium @else High @endif</td>
                           
                                 <td> @if ($meeting->meetStatus == 1) 
                                       {{ 'Scheduled' }}
@@ -81,7 +85,7 @@
                                         {{ 'Finished' }}
                                      @endif</td>
                                  
-                                <td>{{$user->find($meeting->meetIdHost)->username}}</td>
+                        
                          
                                 <td>{{$meeting->meetStartDate ? date('M j, Y H:i', strtotime($meeting->meetStartDate)) : ''}}</td>
                                  <td>{{ $meeting->meetEndDate ?  date('M j, Y H:i', strtotime($meeting->meetEndDate)) : '' }}</td>

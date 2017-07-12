@@ -40,7 +40,7 @@ class MeetingController extends Controller
         $user= User::all()->load('meetingHost');
 
        
-        $visitor=Visitor::all()->load('meeting');
+        
    
 
         
