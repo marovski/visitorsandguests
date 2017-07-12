@@ -205,7 +205,7 @@ class VisitorController extends Controller
 
           if (!($meetingDate == date('Y/m/d')) ) {
             Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
-            return redirect()->route('meetings.show', $id);
+            return redirect()->route('meetings.show', $request->idMeeting);
         }else{
 
         if (empty(Visitor::where('visitorCitizenCard', '=', $request->visitorCitizenCard)->where('visitorCitizenCard', '!=', null)->first())) {
