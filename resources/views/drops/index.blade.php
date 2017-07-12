@@ -53,8 +53,8 @@
                                 <td title="{{ $drop->dropperName }}">{{ $drop->dropperName }}</td>
                                 <td title="{{ $drop->dropReceiver }}">{{ $drop->dropReceiver }}</td>
                                 <td title="{{ $drop->dropDescr }}">{{ $drop->dropDescr }}</td>
-                                <td title="{{ $drop->droppedWhen}}">{{ $drop->droppedWhen ? date('M j, Y H:i', strtotime($drop->droppedWhen)) : '' }}</td>
-                                <td title="{{ $drop->dropReceivedDate}}">{{ $drop->dropReceivedDate ? date('M j, Y H:i', strtotime($drop->dropReceivedDate)) : '' }}</td>
+                                <td title="{{ date('M j, Y H:i', strtotime($drop->droppedWhen)) }}">{{ $drop->droppedWhen ? date('M j, Y H:i', strtotime($drop->droppedWhen)) : '' }}</td>
+                                <td title="{{ date('M j, Y H:i', strtotime($drop->dropReceivedDate)) }}">{{ $drop->dropReceivedDate ? date('M j, Y H:i', strtotime($drop->dropReceivedDate)) : '' }}</td>
                                 <td>
                               
                                 <a href="{{ route('drops.show',$drop->idDrop) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> View</a>

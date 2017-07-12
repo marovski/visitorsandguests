@@ -60,8 +60,8 @@
 							<td title="{{ $deliver->vehicleRegistry}}">{{ $deliver->vehicleRegistry}}</td>
 							<td title="{{ $deliver->deDriverName}}">{{ $deliver->deDriverName}}</td>
 							
-							     <td title="{{$deliver->deEntryTime}}">{{ ($deliver->deEntryTime ? date('M j, Y H:i', strtotime($deliver->deEntryTime)) : '')  }}</td>
-                                     <td title="{{$deliver->deExitTime}}">{{ ($deliver->deExitTime ? date('M j, Y H:i', strtotime($deliver->deExitTime)) : '')  }}</td>
+							     <td title="{{date('M j, Y H:i', strtotime($deliver->deEntryTime))}}">{{ ($deliver->deEntryTime ? date('M j, Y H:i', strtotime($deliver->deEntryTime)) : '')  }}</td>
+                                     <td title="{{date('M j, Y H:i', strtotime($deliver->deExitTime)) }}">{{ ($deliver->deExitTime ? date('M j, Y H:i', strtotime($deliver->deExitTime)) : '')  }}</td>
 						
 							<td>
 							

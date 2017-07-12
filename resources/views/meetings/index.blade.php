@@ -69,15 +69,15 @@
 
                                 <td>{{ $meeting->visitReason }}</td>
                           
-                                <td> @if ($meeting->meetStatus === 1) 
+                                <td> @if ($meeting->meetStatus == 1) 
                                       {{ 'Scheduled' }}
-                                    @elseif ($meeting->meetStatus === 2) 
+                                    @elseif ($meeting->meetStatus == 2) 
                                         {{ 'Started' }}
                                     
-                                    @elseif ($meeting->meetStatus === 3) 
+                                    @elseif ($meeting->meetStatus == 3) 
                                         {{ 'Canceled' }}
                                     
-                                     @elseif ($meeting->meetStatus === 4) 
+                                     @elseif ($meeting->meetStatus == 4) 
                                         {{ 'Finished' }}
                                      @endif</td>
                                  

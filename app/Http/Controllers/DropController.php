@@ -56,11 +56,17 @@ class DropController extends Controller
         $drop = new Drop();
     
                $drop->dropperCompanyName=$request->dropperCompany;
+
         $drop->dropperName=$request->dropperName;
+
         $drop->droppedWhen=Carbon::now('Europe/Lisbon');
+
         $drop->dropReceiver=$request->ReceiverName;
+
         $drop->dropSize=$request->dropSize;
+
         $drop->dropImportance=$request->dropImportance;
+        
         $drop->dropDescr=$request->dropDescription;
         
          //Associate relationship to insert the foreign key of the user that create the new entity.

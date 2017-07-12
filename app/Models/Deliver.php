@@ -28,8 +28,7 @@ class Deliver extends Model
 
     protected $dates = [
     
-        'deExitTime',
-        'deEntryTime',
+       
         'deleted_at'
     ];
     
