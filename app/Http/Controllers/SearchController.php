@@ -147,11 +147,10 @@ class SearchController extends Controller
     //     }
 
 
-public function autocomplete()
+public function autocomplete(Request $request)
 {
-        $term = request('meetingTopic');
-        $result = Meeting::whereName($term)->orWhere('meetingName', 'LIKE', '%' . $term . '%')->get(['id', 'meetingName as value']);
-        return response()->json($term);
+           $data = Visitor::select("visitorName as name")->where("visitorName","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
 }
        
 

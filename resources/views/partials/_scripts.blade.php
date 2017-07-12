@@ -1,5 +1,6 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/jquery.datetimepicker.full.min.js"></script>
+<script src="/js/bootstrap3-typeahead.js"></script>
 
 <script type="text/javascript" src="/js/parsley.min.js"></script>
 
@@ -25,7 +26,18 @@
 
 <script src="/js/app.js"></script>
 
+    <script type="text/javascript">
+    var path = "{{ route('autocomplete/vN') }}";
 
+
+    $('input.visitorName').typeahead({
+        source:  function (query, process) {
+        return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>
 
 <script>
 

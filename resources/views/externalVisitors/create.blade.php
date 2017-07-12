@@ -6,6 +6,7 @@
 
     @section('assets')
     <link rel='stylesheet' href='/css/parsley.css' />
+
     @endsection
 
     @section('content')
@@ -25,7 +26,7 @@
                             <label for="visitorName" class="col-md-4 control-label" ><span class="after">*</span> Name:</label>
 
                             <div class="col-md-6">
-                                <input id="visitorName" type="text" class="form-control"  name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" placeholder="Type here the name">
+                                <input id="visitorName" type="text" class="visitorName form-control" data-provide="visitorName" name="visitorName" value="{{ old('visitorName') }}"  autofocus  required="" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" placeholder="Type here the name">
 
                                 @if ($errors->has('visitorName'))
                                     <span class="help-block">
@@ -117,9 +118,7 @@
                                 @endif
                             </div>
                         </div>
-<script type="text/javascript">$('#visitorEmail').bind("cut copy paste",function(e) {
-          e.preventDefault();
-      });</script>
+
                         <div class="form-group{{ $errors->has('visitorCompanyName') ? ' has-error' : '' }}">
                             <label for="visitorCompanyName" class="col-md-4 control-label">Company:</label>
 
@@ -215,3 +214,5 @@
        
 
         @endsection
+
+

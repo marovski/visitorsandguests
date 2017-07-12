@@ -148,83 +148,7 @@ class DeliverController extends Controller
 
 
 
-  //   /**
-  //    * Show the form for editing the specified resource.
-  //    *
-  //    * @param  int  $id
-  //    * @return \Illuminate\Http\Response
-  //    */
-  //   public function edit($id)
-  //   {
-        
-  //       $deliveryData = Deliver::findOrFail($id);
-      
-
-  //       return view('delivers.edit', compact('deliveryData') ) ;   
-
-
-  //   }
-
-  //   /**
-  //    * Update the specified resource in storage.
-  //    *
-  //    * @param  \Illuminate\Http\Request  $request
-  //    * @param  int  $id
-  //    * @return \Illuminate\Http\Response
-  //    */
-  //   public function update(Request $request, $id)
-  //   {
-        
-  //       $deliver = Deliver::findOrFail($id);
-        
-  //    $deliver->deDriverName=$request->driverName;
-     
-  //    $deliver->vehicleRegistry=$request->vehicleLicensePlate;
-   
-  //    $deliver->entryWeight=$request->weight;
-  //    $deliver->exitWeight=$request->exitweight;
-  //    $deliver->deFirmSupplier=$request->firm;
-
-  //    // $deliver->deEntryTime=$request->deEntryTime;
-     
-  //    $deliver->deExitTime=$request->deExitTime;
-     
-
-  //    if ($request->hasFile('image')) {
-  //     $image = $request->file('image');
-  //     $filename = time() . '.' . $image->getClientOriginalExtension();
-  //     $location = public_path('images/' . $filename);
-  //     Image::make($image)->resize(600, 300)->save($location);
-
-  //     $deliver->image = $filename;
-  // }
-   
-  //   //store data to delivers table and deliver type table
-
-  //   $saveDeliver= $deliver->save();
-
-  //   if ($saveDeliver) {
-
-     
-  //       // set flash data with success message
-  //       Session::flash('success', 'This delivery was successfully saved.');
-
-  //       // redirect with flash data to delivers.show
-  //        return view('delivers.show')->withDeliver($deliver);
-
-  //   }
-  //   else{
-  //       // set flash data with success message
-  //       Session::flash('warning', 'This delivery was not successfully saved.');
-
-  //       // redirect with flash data to delivers.show
-  //       return redirect()->route('delivers.edit',$deliver->idDeliver);
-
-  //   }
-
- 
-      
-  //   }
+  
 
   /**
      * Display the specified resource.
@@ -239,8 +163,11 @@ class DeliverController extends Controller
         
              $deliver= Deliver::findOrFail($id);
 
+
+
              $type=DeliverType::where('deliver_idDeliver', '=', $id)->first();
 
+            
              return view('delivers.checkout', compact('deliver', 'type'));
 
 
@@ -255,20 +182,21 @@ class DeliverController extends Controller
 
         $deliver = Deliver::findOrFail($id);
 
-        //GEt local Time
-        $time=Carbon::now('Europe/Lisbon');
+   
+      
 
         $exittime=$deliver->deExitTime;
 
         //Get value from the database and check if it's empty or not
         $exitweight=$deliver->exitWeight;
 
-//CHeck if the field is empty or not
+        //CHeck if the field is empty or not
         if (empty($exittime)) {
 
         $deliver->exitWeight=$request->exitweight;
-//Save it to the model/database
-        $deliver->deExitTime=$time;
+
+      //Save it to the model/database
+        $deliver->deExitTime=Carbon::now('Europe/Lisbon');     //GEt local Time
 
         $save=$deliver->save();
         
@@ -289,13 +217,13 @@ class DeliverController extends Controller
         
                                                     }
 
-                                                    else{
+         else{
          // set flash data with success message
         Session::flash('danger', 'The Check-out process was already done!');
            // redirect with flash data to delivers.show
          return redirect()->route('delivers.index');
 
-                                                    }
+          }
 
       
                 

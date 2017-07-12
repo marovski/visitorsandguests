@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 class Drop extends Model
 {  
-
+  use Searchable;
   use SoftDeletes;
   /*
 	|--------------------------------------------------------------------------

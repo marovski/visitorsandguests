@@ -9,7 +9,7 @@ class LostFound extends Model
 {
 
 
-
+	use Searchable;
 	use SoftDeletes;
     /*
 	|--------------------------------------------------------------------------

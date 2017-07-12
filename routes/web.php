@@ -23,9 +23,9 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('/search','SearchController@indexMeeting');
 Route::get('/search/delivers','SearchController@indexDeliver');
 Route::get('/search/drops','SearchController@indexDrop');
+Route::get('/search/lostItems','SearchController@indexLostItem');
 
-
-
+Route::get('autocomplete/vN',array('as'=>'autocomplete/vN','uses'=>'SearchController@autocomplete'));
 
  Route::get('denied', array('as' => 'denied', function()
 {
@@ -112,7 +112,7 @@ Route::post('/delivers/checkOut/update/{id}', ['as' => 'delivers.checkoutUpdate'
 Route::resource('delivers','DeliverController');
 
 
-//Extra methods beyond CRUD for Delivery Type Functionalities
+//Routes to extra methods beyond CRUD for Delivery Type Functionalities
 
 
 
@@ -144,7 +144,7 @@ Route::get('/drops/{idDrop}/show/', ['as' => 'drops.show',
 Route::resource('drops','DropController');
 
 
-//Extra methods beyond CRUD for Lost and Found Functionalities
+//Routes to extra methods beyond CRUD for Lost and Found Functionalities
 
 Route::get('/losts/{id}/checkOut/', ['as' => 'losts.checkout',
                                                         'uses' => 'LostFoundController@checkout'
@@ -159,14 +159,24 @@ Route::post('/losts/checkOut/{id}', ['as' => 'losts.updateCheckOut',
 Route::resource('visitors','VisitorController');
 
 Route::resource('losts', 'LostFoundController');
+
 Route::resource('meetings','MeetingController');
 
 
+
+//Middleware CheckAuthD is to allow only the staff to perfom meetings and visitors functionalities
+
 Route::group(['middleware' => 'CheckAuth'], function()
 {
-    Route::resource('meetings', 'MeetingController', ['only' => ['create']]);
+    Route::resource('meetings', 'MeetingController', ['only' => ['create','store']]);
+
+    Route::resource('visitors','VisitorController', ['only' => ['createExternalVisitor', 'addInternalVisitor','storeInternalVisitor','store','destroy','removeInternalV']]);
      
 });
+
+
+//Middleware to restrict users functionalities
+//Middleware CheckAuthD is to allow only the security guard to perfom delivery, drop and lostfound functionalities
 
 Route::group(['middleware' => 'CheckAuthD'], function()
 {

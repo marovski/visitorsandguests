@@ -37,7 +37,7 @@
     
 			
 			<div id="backend-comments" style="margin-top: 50px;">
-				<h3>Items <small>{{ $deliver->type()->count() }} total</small> <a href="{{ route('deliveryType.createDeliveryType', $deliver->idDeliver)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h3>
+				<h3>Cargo <small>{{ $deliver->type()->count() }} total</small> @if(empty($deliver->deEntryTime))<a href="{{ route('deliveryType.createDeliveryType', $deliver->idDeliver)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a>@else <a   style="pointer-events: none;cursor: default;" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a>@endif</h3>
 
 				<table class="table">
 					<thead>

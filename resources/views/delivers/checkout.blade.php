@@ -62,8 +62,12 @@
 							<label for="cargo" class="col-md-4 control-label">Cargo Details:</label>
 
 							<div class="col-md-6">
-								<input id="cargo" type="text"  readonly=""  class="form-control" name="cargo" value="{{ $type->materialDetails }}">
+							@if(empty($type))
+						<input id="cargo" type="text"  readonly=""  class="form-control" name="cargo" value="No Cargo">
 
+							@else
+								<input id="cargo" type="text"  readonly=""  class="form-control" name="cargo" value="{{ $type->materialDetails }}">
+								@endif
 								@if ($errors->has('cargo'))
 								<span class="help-block">
 									<strong>{{ $errors->first('cargo') }}</strong>
@@ -77,6 +81,7 @@
 
 							<div class="col-md-6" >
 								<p>
+								@if(!empty($type))
 								@if($type->dangerousGood==1)
 									<label class="radio-inline"><input type="radio" name="danger" readonly="" disabled="" value="1" > Danger Materials</label>								@else
 										<label class="radio-inline"><input type="radio" name="danger" readonly="" disabled="" value="0" > No Danger Materials</label>
@@ -87,6 +92,10 @@
 										<strong>{{ $errors->first('danger') }}</strong>
 									</span>
 									@endif
+									@else
+									<p>No Cargo</p>
+
+									@endif
 								</p>
 							</div>
 						</div>
@@ -96,7 +105,7 @@
 
 							<div class="col-md-6">
 								<select class="form-control" id="sensitivity" readonly="" disabled="" >
-
+									@if(!empty($type))
 								@if($type->sensitiveLevel==1)
 									<option value="" >Low</option>
 									@elseif($deliver->sensitiveLevel==2)
@@ -104,7 +113,10 @@
 									@elseif($deliver->sensitiveLevel==3)
 									<option value="">High</option>
 									@endif
+									@else
+									<option>No Cargo</option>>
 
+									@endif
 								</select>                               
 
 								@if ($errors->has('sensitivity'))
@@ -112,6 +124,7 @@
 									<strong>{{ $errors->first('sensitivity') }}</strong>
 								</span>
 								@endif
+								
 							</div>
 						</div>
 						<div class="form-group{{ $errors->has('weight') ? ' has-error' : '' }}" >
@@ -149,8 +162,11 @@
 							<label for="quantity" class="col-md-4 control-label">Entry Quantity (per unity):</label>
 
 							<div class="col-md-6">
-								<input type="number" readonly="" disabled="" name="quantity" min="1" placeholder="" value="{{ $deliver->deQuantity}}">
-
+							@if(!empty($type))
+						<input type="number" readonly="" disabled="" name="quantity" min="1" placeholder="" value="{{ $deliver->deQuantity}}">
+							@else
+									<input type="number" readonly="" disabled="" name="quantity" min="1" placeholder="" value="">
+									@endif
 							</select>                               
 
 							@if ($errors->has('quantity'))

@@ -31,7 +31,47 @@
 
           </tbody>
         </table>
-    
+    <div id="visitors" style="margin-top: 50px;">
+        </hr>
+<h4>Internal Visitors <small>{{ $meetingData->user()->count() }} total   </small><a href="{{ route('visitors.addInternalVisitor', $meetingData->idMeeting)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h4>
+
+         
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Department</th>
+           
+              <th width="70px"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @foreach ($meetingData->user as $visitorInt)
+            <tr>
+              <td>{{ $visitorInt->username }}</td>
+              <td>{{ $visitorInt->email }}</td>
+               <td>{{ $visitorInt->department }}</td>
+
+
+              <td>
+
+             {!! Form::open(['route' => ['visitors.removeInternalV', $visitorInt->idUser, $meetingData->idMeeting], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()']) !!}
+
+           <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+
+            {!! Form::close() !!}
+
+            </td>
+              
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      <hr>
       <div id="visitors" style="margin-top: 50px;">
           <h4>External Visitors <small>{{ $meetingData->visitor()->count() }} total   </small><a href="{{ route('visitors.createExternalVisitor', $meetingData->idMeeting)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h4>
 
@@ -77,51 +117,7 @@
         </table>
       </div>
 
-        <div class="visitors">
-        @foreach ($meetingData->user() as $user)
-          <span class="label label-default">{{ $user->username }}</span>
-        @endforeach
-      </div>
-        <div id="visitors" style="margin-top: 50px;">
         
-<h4>Internal Visitors <small>{{ $meetingData->user()->count() }} total   </small><a href="{{ route('visitors.addInternalVisitor', $meetingData->idMeeting)}}" class="btn btn-xs btn-success"> <span class="glyphicon glyphicon-plus"></span></a></h4>
-
-         
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Department</th>
-           
-              <th width="70px"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            @foreach ($meetingData->user as $visitorInt)
-            <tr>
-              <td>{{ $visitorInt->username }}</td>
-              <td>{{ $visitorInt->email }}</td>
-               <td>{{ $visitorInt->department }}</td>
-
-
-              <td>
-
-             {!! Form::open(['route' => ['visitors.removeInternalV', $visitorInt->idUser, $meetingData->idMeeting], 'method' => 'DELETE' , 'onsubmit' => 'return ConfirmDelete()']) !!}
-
-           <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-
-            {!! Form::close() !!}
-
-            </td>
-              
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
 
   </div>
 

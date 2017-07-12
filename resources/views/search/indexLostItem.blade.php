@@ -24,7 +24,7 @@
           @foreach($lostItems as $item)
               <div class="media">
               <div class="media-left">
-                  <table class="table-responsive">
+                  <table class="table">
               <thead>
                         <tr>
                             <th width="">Finder Name</th>
@@ -32,6 +32,7 @@
                             <th width="">Item Description</th>
                             <th width="">Receiver Name</th>
                             <th width="">Claimed at</th>
+                            <th></th>
                         </tr>
                     </thead>
               <tbody>

@@ -16,7 +16,7 @@
 			<hr>
 		</div>
 	</div> <!-- end of .row -->
-    <form action="/search" method="get" role="form">
+    <form action="/search/drops" method="get" role="form">
 <div class="input-group custom-search-form col-xs-4">
 
                                 <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ Request::get('q') }}">    <span class="input-group-btn">

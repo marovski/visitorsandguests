@@ -55,8 +55,21 @@ class VisitorController extends Controller
     public function createExternalVisitor($id)
     {
         $meeting = Meeting::findOrFail($id);
-        
-        return view('externalVisitors.create', compact('meeting'));
+
+        $currentDate=date("Y/m/d", strtotime($meeting->meetEndDate));
+   
+      
+        if ($currentDate != date('Y/m/d') ) {
+            # code...
+            
+
+            Session::flash('danger', 'The meeting has ended! Cannot add visitor to this meeting');
+            return redirect()->route('meetings.show', $id);
+        }
+        else{
+             return view('externalVisitors.create', compact('meeting'));
+        }
+       
 
 
         
@@ -69,15 +82,15 @@ class VisitorController extends Controller
      */
     public function addInternalVisitor($i)
     {    
-        $id=Auth::user()->idUser;
+        
 
-        $users= User::where('idUser', '!=', $id)->get();
+        $users= User::where('fk_idSecurity', '!=', 3)->where('idUser', '!=', Auth::user()->idUser)->get();
 
         $meetingRestricted=Meeting::findOrFail($i);
 
 
         //Variable $meetings for the view to add internal visitors for any meeting
-        $meetings=Meeting::where('meetStatus', '=', 1)->get();
+        $meetings=Meeting::where('meetIdHost', '=', Auth::user()->idUser)->get();
         
         return view('internalVisitors.create', compact('meetings', 'users', 'meetingRestricted'));
         
@@ -85,6 +98,66 @@ class VisitorController extends Controller
 
         
         }  
+
+        /**
+     * Add the internal visitor to the meeting.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeInternalVisitor(Request $request)
+
+    {  
+        $this->validate($request,[
+                'meeting' => 'required',
+                'internalVisitor' => 'required',
+            
+            ]); 
+
+
+         $user = User::find($request->internalVisitor);
+
+        $meetingData = Meeting::find($request->meeting);
+
+
+        if($user->meetings->contains($meetingData)){
+    
+        Session::flash('danger','This visitor could not be assigned. Duplicate entry!');
+        return redirect()->back();
+
+
+        }
+        else{
+
+         $save=$meetingData->user()->sync($user, false);
+
+        if($save){
+
+        if($meetingData->email=='1')
+        {
+           if(Mail::to($user->email)->send(new NewMeetingNotification($meetingData, $user))){
+            Session::flash('success','The email was sent!');
+
+           } else{
+            Session::flash('danger','The email was not sent!');
+           }
+        }
+            
+
+           
+            
+        }
+        Session::flash('success','The internal visitor was assigned to the meeting, with success!');
+
+        return view('meetings.show', $meetingData->idMeeting);
+
+        }
+                
+
+       
+
+        
+        
+    }
 
 
         /**
@@ -153,7 +226,7 @@ class VisitorController extends Controller
 
 
 
-        $save=$visitors->meeting()->save($meet);
+        $save=$visitors->meeting()->sync($meet, false);
 
         if($save){
 
@@ -346,76 +419,10 @@ class VisitorController extends Controller
          
 
 
-        /**
-     * Add the internal visitor to the meeting.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function storeInternalVisitor(Request $request)
-
-    {   $user = User::find($request->internalVisitor);
-
-        $meetingData = Meeting::find($request->meeting);
-
-
-        if($user->meetings->contains($meetingData)){
     
-        Session::flash('danger','This visitor could not be assigned. Duplicate entry!');
-        return redirect()->back();
 
 
-        }
-        else{
-
-         $save=$meetingData->user()->save($user);
-
-        if($save){
-
-        if($meetingData->email=='1')
-        {
-           if(Mail::to($user->email)->send(new NewMeetingNotification($meetingData, $user))){
-            Session::flash('success','The email was sent!');
-
-           } else{
-            Session::flash('danger','The email was not sent!');
-           }
-        }
-            
-
-           
-            
-        }
-        Session::flash('success','The internal visitor was assigned to the meeting, with success!');
-
-        return view('meetings.show', $meetingData->idMeeting);
-
-        }
-                
-
-       
-
-        
-        }
-    }
-
-
-    public function removeInternalV($id, $idM){
-
-   
-
-
-        if (($user= User::findOrFail($id))&&($meeting=Meeting::findOrFail($idM))) {
-
-            $user->meetings()->detach($idM);
-
-            return redirect()->back()->with('success','Successfully removed the internal visitor');
-
-        }else{
-
-            return redirect()->back()->with('danger', 'Failed to remove this internal visitor!');
-        }
-
-    }  
+  
 
 
 
@@ -448,7 +455,7 @@ class VisitorController extends Controller
 
        public function  selfSign (Request $request){
 
-  $this->validate($request,[
+             $this->validate($request,[
                 'visitorName' => 'required|min:1|max:50|string',
                 'visitorEmail' => 'required|email|max:255',
                 'visitorCompany' => 'required|string',
@@ -456,22 +463,22 @@ class VisitorController extends Controller
             ]); 
 
 
-    $searchVisitor= Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName','LIKE','%$request->visitorCompany%')->where('visitorName', 'LIKE', '%$request->visitorName%')->get();
+    $searchVisitor = Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName','LIKE','%$request->visitorCompany%')->where('visitorName', 'LIKE', '%$request->visitorName%')->get();
     
-    $searchMeeting=$searchVisitor->meeting()->get();
+    $searchMeeting = $searchVisitor->meeting()->get();
 
       if ((empty($searchVisitor)) && (empty($searchMeeting))) {
 
 
-    Session::flash('danger','The visitor is invalid');
+        Session::flash('danger','The visitor is invalid');
 
-    return redirect()->back();
+        return redirect()->back();
 
       }
       else{
 
         
-     $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName', '=', $request->visitorCompany)->first();
+        $visitor=Visitor::where('visitorEmail', '=', $request->visitorEmail)->where('visitorCompanyName', '=', $request->visitorCompany)->first();
 
         Session::flash('success', 'The visitor is valid!');
         
@@ -482,7 +489,12 @@ class VisitorController extends Controller
 
 
 
+    /**
+    *   CheckIn the external visitor
+    *   @param  int  $id
+    *   @return \Illuminate\Http\Response
 
+    */
 
      public function checkin($id){
 
@@ -528,6 +540,12 @@ class VisitorController extends Controller
     }
 
 
+    /**
+    *   CheckOut the external visitor
+    *   @param  int  $id
+    *   @return \Illuminate\Http\Response
+
+    */
 
     public function checkout($id){
         
@@ -582,8 +600,8 @@ class VisitorController extends Controller
     }
 
 
-       /**
-     * Remove the specified resource from storage.
+    /**
+     * Remove the external visitor from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -606,6 +624,33 @@ class VisitorController extends Controller
         return redirect()->back();
         }
 
+
+    }
+
+
+
+        /**
+     * Remove the internal visitor resource from meeting.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function removeInternalV($id, $idM){
+
+   
+
+
+        if (($user= User::findOrFail($id))&&($meeting=Meeting::findOrFail($idM))) {
+
+            $user->meetings()->detach($idM);
+
+            return redirect()->back()->with('success','Successfully removed the internal visitor');
+
+        }else{
+
+            return redirect()->back()->with('danger', 'Failed to remove this internal visitor!');
+        }
 
     }
 

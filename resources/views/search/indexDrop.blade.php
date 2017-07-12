@@ -24,7 +24,7 @@
           @foreach($drops as $drop)
               <div class="media">
               <div class="media-left">
-                  <table class="table-responsive">
+                  <table class="table">
               <thead>
                            <tr>
                             <th width="">Company Name</th>
@@ -33,6 +33,7 @@
                             <th width="">Drop Item</th>
                             <th width="">Dropped at</th>
                             <th width="">Received at</th>
+                            <th></th>
                         </tr>
                     </thead>
               <tbody>

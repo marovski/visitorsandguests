@@ -14,9 +14,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><span class="glyphicon glyphicon-blackboard"></span>  Add Internal Visitor for the Meeting: </div>
                                     <div class="panel-body" ng-controller="showInputController">
-                                   <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.storeInternalVisitor') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
-
- 
+             <form  class="form-horizontal" role="form" method="POST" action="{{ route('visitors.storeInternalVisitor') }}" data-parsley-validate="" onsubmit="return ConfirmExternVisitor()"  >
                         {{ csrf_field() }}
 
 
