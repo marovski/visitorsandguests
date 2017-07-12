@@ -68,7 +68,7 @@
                             
                              <th>{{ $meeting->meetingName }}</th>
 
-                                <td>{{ $meeting->visitReason }}</td>
+                                  <td>@if($meeting->sensibility==1) Small @elseif($meeting->sensibility==2) Medium @else High @endif</td>
                           
                                 <td> @if ($meeting->meetStatus == 1) 
                                       {{ 'Scheduled' }}
