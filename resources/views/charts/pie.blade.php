@@ -2,7 +2,7 @@
 @section('title','| Pie Charts')
 
 @section('dashboard')
-<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <input type="text" name="idchart" hidden="" value="2"> <button type="submit" >Make Graph</button></form>
+<form action="{{ route('barChart.show') }}"> <input type="month" name="month"  required=""> <input type="text" name="idchart" hidden="" value="2"> <button class="btn btn-default btn-sm" type="submit" >Make Graph</button></form><br>
 <div class="well">
 <div id="departments" style="width: 600px;height:400px;"></div>
    
