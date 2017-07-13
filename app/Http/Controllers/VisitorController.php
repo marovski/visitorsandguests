@@ -477,11 +477,12 @@ class VisitorController extends Controller
      */
     public function badge($id)
     {
-        $meeting = Meeting::findOrFail($id);
+        
         $externalVisitor = Visitor::findOrFail($id);
+
         $user= User::all()->load('meetingHost');    
 
-        return view('externalVisitors.badge', compact('externalVisitor','user','meeting') ) ;  
+        return view('externalVisitors.badge', compact('externalVisitor','user') ) ;  
         
     }
 
@@ -547,6 +548,7 @@ class VisitorController extends Controller
 
       
        if (empty($currentVisitor->entryTime)) {
+
            $currentVisitor->entryTime = Carbon::now('Europe/Lisbon');
           
            foreach ($currentVisitor->meeting as $meetings) {
