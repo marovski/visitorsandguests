@@ -29,23 +29,19 @@
 
                     <tbody>
                         @foreach ($delivers as $deliver)
-                        
+
                         <tr>
-                            <th>{{ $deliver->id }}</th>
-                                <td>{{ $deliver->deFirmSupplier}}</td>
-                                    <td>{{ $deliver->vehicleRegistry}}</td>
-                                        <td>{{ $deliver->deDriverName}}</td>
-                            <td>{{ date('M j, Y', strtotime($deliver->deEntryTime)) }}</td>
-                            <td>{{ $deliver->deExitTime ? date('M j, Y', strtotime($deliver->deExitTime)) : '' }}</td>
+                        <td>{{ $deliver->deFirmSupplier}}</td>
+                        <td>{{ $deliver->vehicleRegistry}}</td>
+                        <td>{{ $deliver->deDriverName}}</td>
+                        <td>{{ date('M j, Y', strtotime($deliver->deEntryTime)) }}</td>
+                        <td>{{ $deliver->deExitTime ? date('M j, Y', strtotime($deliver->deExitTime)) : '' }}</td>
                         </tr>
 
-                    @endforeach
+                        @endforeach
 
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
        <a href="{{ URL::previous() }}" class="btn btn-default btn-sm btn-block">Return</a>
-        </div>
       </div>
-
     @endsection

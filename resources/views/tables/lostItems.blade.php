@@ -19,6 +19,7 @@
     ">
                     <thead>
                         <tr>
+                            <th width="">Security Name</th>
                             <th width="">Finder Name</th>
                             <th width="">Finder Phone</th>
                             <th width="">Item Description</th>
@@ -30,6 +31,7 @@
                <tbody>
                         @foreach($losts as $lost )
                             <tr>
+                                <td>{{ $user->find($lost->idUser)->username }}</td>
                                 <td>{{ $lost->finderName }}</td>
                                 <td>{{ $lost->finderPhone }}</td>
                                 <td>{{ $lost->itemDescription }}</td>

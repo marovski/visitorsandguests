@@ -12,12 +12,15 @@
             
    </header>
 
+     <i class="fa fa-info-sign text-muted" data-toggle="tooltip" data-placement="bottom" data-title="ajax to load the data."></i>
+
      <div class="table-responsive">
 
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table" style="width: 113%;
     ">
                     <thead>
                         <tr>
+                            <th width="">Security Name</th>
                             <th width="">Company Name</th>
                             <th width="">Dropper Name</th> 
                             <th width="">Receiver Name</th>
@@ -30,6 +33,7 @@
                     <tbody>
                         @foreach($drops as $drop )
                             <tr>
+                                <td>{{ $user->find($drop->dropIdUser)->username }}</td>
                                 <td>{{ $drop->dropperCompanyName }}</td>
                                 <td>{{ $drop->dropperName }}</td>
                                 <td>{{ $drop->dropReceiver }}</td>

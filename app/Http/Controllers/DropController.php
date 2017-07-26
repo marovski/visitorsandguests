@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Drop;
 use App\Models\DropItem;
+use App\Models\User;
 use Auth;
 use Session;
 
@@ -24,8 +25,9 @@ class DropController extends Controller
      */
         public function index()
     {
+        $user = User::all()->load('drops');
         $drops = Drop::orderBy('idDrop', 'desc')->paginate(10);
-        return view('drops.index')->withDrops($drops);
+        return view('drops.index', compact('drops','user'));
     }
 
     /**

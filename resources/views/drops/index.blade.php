@@ -37,6 +37,7 @@
                 <table class="table table-striped m-b-none" data-ride="datatables" id="table">
                     <thead>
                         <tr>
+                            <th width="">Security Name</th>
                             <th width="">Company Name</th>
                             <th width="">Dropper Name</th> 
                             <th width="">Receiver Name</th>
@@ -49,6 +50,7 @@
                     <tbody>
                         @foreach($drops as $drop )
                             <tr>
+                                <td>{{ $user->find($drop->dropIdUser)->username }}</td>
                                 <td title="{{ $drop->dropperCompanyName }}">{{ $drop->dropperCompanyName }}</td>
                                 <td title="{{ $drop->dropperName }}">{{ $drop->dropperName }}</td>
                                 <td title="{{ $drop->dropReceiver }}">{{ $drop->dropReceiver }}</td>
@@ -64,9 +66,7 @@
                                 <a href="{{ route('drops.checkOut',$drop->idDrop) }}" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i> Check-out</a>
                                 @else <a disabled="disabled" class="btn btn-default btn-sm"><i class="fa fa-mail-forward" ></i> Check-out</a>
                                 @endif
-                                </td>
-                               
-							    
+                                </td>				    
 						</tr>
 
 					@endforeach

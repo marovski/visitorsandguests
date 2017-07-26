@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use Image;
+use App\Models\User;
 use Carbon\Carbon;
 
 
@@ -26,8 +27,9 @@ class LostFoundController extends Controller
      */
     public function index()
     {
+        $user = User::all()->load('losts');
         $losts = LostFound::orderBy('idLostFound', 'desc')->paginate(10);
-        return view('losts.index')->withLosts($losts);
+        return view('losts.index', compact('losts','user'));
         //
     }
 
