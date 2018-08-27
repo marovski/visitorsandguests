@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'new connection'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,9 +43,9 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'nan'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', 'forge'),
+            'database' => env('DB_DATABASE', 'nanium'),
+            'username' => env('DB_USERNAME', 'jose'),
+            'password' => env('DB_PASSWORD', 'jose.pt.&'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'redis' => [
+ /*    'redis' => [
 
         'client' => 'predis',
 
@@ -105,5 +105,5 @@ return [
         ],
 
     ],
-
+ */
 ];
